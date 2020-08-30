@@ -62,7 +62,7 @@ class SecondIdPageState extends State<SecondIdPage> {
     options.radioOp1 = "Yes";
     options.radioOp2 = "No";
 
-    options.mainImg = '';
+    options.mainImg = 'assets/labialscales.svg';
     options.pageDescription =
         'The mental is the scale at the front of the lower jaw, just below where the tongue comes out. In some Calamaria it touches the anterior pair of chin shields; in others the first lower labials on the left and right side of the head meet behind the mental, and thereby separate the mental from the anterior chin shields. \n\nSpecify here which of those alternatives your snake exhibits.';
 
