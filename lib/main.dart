@@ -1,253 +1,172 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'firstidpage.dart';
+import 'secondidpage.dart';
+import 'thirdidpage.dart';
+// import 'fourthidpage.dart';
+// import 'fifthidpage.dart';
+// import 'sixthidpage.dart';
+// import 'seventhidpage.dart';
+// import 'eighthidpage.dart';
 
-void main() => runApp(new MyApp());
+int test = 0; // keep results from selections in a global array of some kind?
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+void main() => runApp(Calamaria());
+
+class Calamaria extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Calamaria of Borneo',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: new MyHomePage(title: 'Calamaria of Borneo'),
+      home: FirstIdPage(title: 'Calamaria of Borneo'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class FirstIdPage extends StatefulWidget {
+  FirstIdPage({Key key, this.title}) : super(key: key);
   final String title;
-
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  FirstIdPageState createState() => FirstIdPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int correctScore = 0;
-  int _grUpperLabial = -1;
-  int _grLowerLabial = -1;
-
-  bool _eyeLabial2nd = false;
-  bool _eyeLabial3rd = false;
-  bool _eyeLabial4th = false;
-
-  void _eyeLabial2ndChanged(bool value) =>
-      setState(() => _eyeLabial2nd = value);
-  void _eyeLabial3rdChanged(bool value) =>
-      setState(() => _eyeLabial3rd = value);
-  void _eyeLabial4thChanged(bool value) =>
-      setState(() => _eyeLabial4th = value);
-
-  void _handleGrUpperLabial(int value) {
-    setState(() {
-      _grUpperLabial = value;
-
-      switch (_grUpperLabial) {
-        case 0:
-          correctScore++;
-          break;
-        case 1:
-          break;
-        case 2:
-          break;
-      }
-    });
-  }
-
-  void _handleGrLowerLabial(int value) {
-    setState(() {
-      _grLowerLabial = value;
-
-      switch (_grLowerLabial) {
-        case 0:
-          break;
-        case 1:
-          correctScore++;
-          break;
-        case 2:
-          break;
-      }
-    });
-  }
-
+class SecondIdPage extends StatefulWidget {
+  SecondIdPage({Key key, this.title}) : super(key: key);
+  final String title;
   @override
-  Widget build(BuildContext context) {
-    final String labialscales = 'assets/labialscales.svg';
+  SecondIdPageState createState() => SecondIdPageState();
+}
 
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-      ),
-      body: new Container(
-        padding: EdgeInsets.all(8.0),
-        child: new Center(
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              new Text('Upper and lower labials (lip scales)',
-                  style: Theme.of(context).textTheme.headline5),
-              new Divider(height: 15.0, color: Colors.transparent),
-              new Text(
-                  'Bornean Calamaria have either 4 or 5 (in one species sometimes 6) upper labials (UL), and 4 or 5 lower labials (LL). The tricky part is to judge what are the most posterior of those scales (and not scales named differently). \n\nHere you provide those counts, and enter which of the upper labials are in contact with the eye. Usually two upper labials touch the eye; either the 3rd and 4th, or the 2nd and 3rd. In one species, sometimes only the 3rd UL touches the eye.',
-                  style: TextStyle(fontSize: 14)),
-              new Divider(height: 15.0, color: Colors.transparent),
-              new SvgPicture.asset(
-                labialscales,
-                color: Colors.black,
-                matchTextDirection: false,
-              ),
-              new Divider(height: 15.0, color: Colors.transparent),
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  new Text(
-                    '# of upper labials:',
-                    style: new TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                    ),
-                  ),
-                  new Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new Radio(
-                        value: 0,
-                        groupValue: _grUpperLabial,
-                        onChanged: _handleGrUpperLabial,
-                      ),
-                      new Text(
-                        '4',
-                        style: new TextStyle(fontSize: 16.0),
-                      ),
-                      new Radio(
-                        value: 1,
-                        groupValue: _grUpperLabial,
-                        onChanged: _handleGrUpperLabial,
-                      ),
-                      new Text(
-                        '5',
-                        style: new TextStyle(
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      new Radio(
-                        value: 2,
-                        groupValue: _grUpperLabial,
-                        onChanged: _handleGrUpperLabial,
-                      ),
-                      new Text(
-                        '6',
-                        style: new TextStyle(fontSize: 16.0),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  new Text(
-                    '# of lower labials:',
-                    style: new TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                    ),
-                  ),
-                  new Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new Radio(
-                        value: 0,
-                        groupValue: _grLowerLabial,
-                        onChanged: _handleGrLowerLabial,
-                      ),
-                      new Text(
-                        '4',
-                        style: new TextStyle(fontSize: 16.0),
-                      ),
-                      new Radio(
-                        value: 1,
-                        groupValue: _grLowerLabial,
-                        onChanged: _handleGrLowerLabial,
-                      ),
-                      new Text(
-                        '5',
-                        style: new TextStyle(
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      new Radio(
-                        value: 2,
-                        groupValue: _grLowerLabial,
-                        onChanged: _handleGrLowerLabial,
-                      ),
-                      new Text(
-                        '6',
-                        style: new TextStyle(fontSize: 16.0),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  new Text(
-                    'Which upper\nlabials touch\nthe eye?',
-                    style: new TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                    ),
-                  ),
-                  new Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new Checkbox(
-                          value: _eyeLabial2nd,
-                          onChanged: _eyeLabial2ndChanged),
-                      new Text(
-                        '2nd',
-                        style: new TextStyle(fontSize: 16.0),
-                      ),
-                      new Checkbox(
-                          value: _eyeLabial3rd,
-                          onChanged: _eyeLabial3rdChanged),
-                      new Text(
-                        '3rd',
-                        style: new TextStyle(
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      new Checkbox(
-                          value: _eyeLabial4th,
-                          onChanged: _eyeLabial4thChanged),
-                      new Text(
-                        '4th',
-                        style: new TextStyle(fontSize: 16.0),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+class ThirdIdPage extends StatefulWidget {
+  ThirdIdPage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  ThirdIdPageState createState() => ThirdIdPageState();
+}
+
+// class FourthIdPage extends StatefulWidget {
+//   FourthIdPage({Key key, this.title}) : super(key: key);
+//   final String title;
+//   @override
+//   FourthIdPageState createState() => FourthIdPageState();
+// }
+
+// class FifthIdPage extends StatefulWidget {
+//   FifthIdPage({Key key, this.title}) : super(key: key);
+//   final String title;
+//   @override
+//   FifthIdPageState createState() => FifthIdPageState();
+// }
+
+// class SixthIdPage extends StatefulWidget {
+//   SixthIdPage({Key key, this.title}) : super(key: key);
+//   final String title;
+//   @override
+//   SixthIdPageState createState() => SixthIdPageState();
+// }
+
+// class SeventhIdPage extends StatefulWidget {
+//   SeventhIdPage({Key key, this.title}) : super(key: key);
+//   final String title;
+//   @override
+//   SeventhIdPageState createState() => SeventhIdPageState();
+// }
+
+// class EigthIdPage extends StatefulWidget {
+//   EigthIdPage({Key key, this.title}) : super(key: key);
+//   final String title;
+//   @override
+//   EighthIdPageState createState() => EighthIdPageState();
+// }
+
+Widget navFAB(BuildContext context, Widget next) {
+  return FloatingActionButton(
+      child: Icon(Icons.arrow_forward),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => next),
+        );
+      });
+}
+
+Widget navBar(BuildContext context) {
+  return BottomAppBar(
+    child: Row(
+      children: <Widget>[
+        IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {
+            showModalBottomSheet<Null>(
+              context: context,
+              builder: (BuildContext context) => bottomDrawer(),
+            );
+          },
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: [
-            IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-            IconButton(icon: Icon(Icons.arrow_back), onPressed: () {}),
-            IconButton(icon: Icon(Icons.delete), onPressed: () {}),
-          ],
+        // IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   onPressed: () {},
+        // ),
+        IconButton(
+          icon: const Icon(Icons.delete),
+          onPressed: () {},
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.arrow_forward), onPressed: () {}),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-    );
-  }
+      ],
+    ),
+  );
+}
+
+Widget bottomDrawer() {
+  return Drawer(
+    child: ListView(
+      children: const <Widget>[
+        const ListTile(
+          leading: const Icon(Icons.info),
+          title: const Text('About this app'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.question_answer),
+          title: const Text('Are you really sure it’s a Calamaria...?'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.list),
+          title: const Text('Species list and species accounts'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.perm_identity),
+          title: const Text('Identify your Calamaria'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.photo),
+          title: const Text('How to take photos that allow identification'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.ac_unit),
+          title: const Text('How to sex a snake'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.share),
+          title: const Text('Share your novel records'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.bug_report),
+          title: const Text('Report bugs & inconsistencies'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.update),
+          title: const Text('Version and update info'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.copyright),
+          title: const Text('Copyright info & photo credits'),
+        ),
+        const ListTile(
+          leading: const Icon(Icons.book),
+          title: const Text('Further reading'),
+        ),
+      ],
+    ),
+  );
 }
