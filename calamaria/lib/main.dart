@@ -1,7 +1,8 @@
+import 'package:calamaria/pages/listSpecies.dart';
 import 'package:flutter/material.dart';
-import 'firstidpage.dart';
-import 'secondidpage.dart';
-import 'thirdidpage.dart';
+import 'pages/firstidpage.dart';
+import 'pages/secondidpage.dart';
+import 'pages/thirdidpage.dart';
 // import 'fourthidpage.dart';
 // import 'fifthidpage.dart';
 // import 'sixthidpage.dart';
@@ -44,6 +45,13 @@ class ThirdIdPage extends StatefulWidget {
   final String title;
   @override
   ThirdIdPageState createState() => ThirdIdPageState();
+}
+
+class PageListSpecies extends StatefulWidget {
+  PageListSpecies({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  PageState_ListSpecies createState() => PageState_ListSpecies();
 }
 
 // class FourthIdPage extends StatefulWidget {
@@ -101,7 +109,7 @@ Widget navBar(BuildContext context) {
           onPressed: () {
             showModalBottomSheet<Null>(
               context: context,
-              builder: (BuildContext context) => bottomDrawer(),
+              builder: (BuildContext context) => bottomDrawer(context),
             );
           },
         ),
@@ -118,10 +126,10 @@ Widget navBar(BuildContext context) {
   );
 }
 
-Widget bottomDrawer() {
+Widget bottomDrawer(BuildContext context) {
   return Drawer(
     child: ListView(
-      children: const <Widget>[
+      children: <Widget>[
         const ListTile(
           leading: const Icon(Icons.info),
           title: const Text('About this app'),
@@ -130,9 +138,15 @@ Widget bottomDrawer() {
           leading: const Icon(Icons.question_answer),
           title: const Text('Are you really sure it’s a Calamaria...?'),
         ),
-        const ListTile(
+        ListTile(
           leading: const Icon(Icons.list),
-          title: const Text('Species list and species accounts'),
+          title: Text('Species list and species accounts'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PageListSpecies()),
+            );
+          }
         ),
         const ListTile(
           leading: const Icon(Icons.perm_identity),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'options.dart';
-import 'main.dart';
+import '../classes/formPageOptions.dart';
+import '../main.dart';
 
 class SecondIdPageState extends State<SecondIdPage> {
   int _firstGroup = -1;
@@ -56,7 +56,7 @@ class SecondIdPageState extends State<SecondIdPage> {
 
   @override
   Widget build(BuildContext context) {
-    Options options = Options();
+    FormPageOptions options = FormPageOptions();
     options.firstQuestion = 'Mental touching\nthe anterior\nchin shields?';
 
     options.radioOp1 = "Yes";

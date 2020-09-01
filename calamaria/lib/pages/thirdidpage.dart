@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'options.dart';
-import 'main.dart';
+import '../classes/formPageOptions.dart';
+import '../main.dart';
 
 class ThirdIdPageState extends State<ThirdIdPage> {
   int _firstGroup = -1;
@@ -102,7 +102,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
 
   @override
   Widget build(BuildContext context) {
-    Options options = Options();
+    FormPageOptions options = FormPageOptions();
     options.firstQuestion = 'Preocular present?';
     options.secondQuestion = 'Postocular present?';
     options.thirdQuestion = 'Postocular fused\nwith supraocular?';
@@ -146,9 +146,9 @@ class ThirdIdPageState extends State<ThirdIdPage> {
           ),
         ),
       ),
-      bottomNavigationBar: navBar(context),
-      floatingActionButton: navFAB(context, SecondIdPage()),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      //bottomNavigationBar: navBar(context),
+      //floatingActionButton: navFAB(context, SecondIdPage()),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }

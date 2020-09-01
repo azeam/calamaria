@@ -1,0 +1,76 @@
+[
+  {
+    "id":1,
+    "scientificName":"Calamaria battersbyi",
+    "UpperLabials": [4],
+    "LowerLabials":  [5],
+    "ULTouchingEye":  [2,3],
+    "Mental":  {"Touching":  true, "NotTouching":  false},
+    "Preocular": {"Present":  true, "Absent":  false},
+    "Supraocular": {"Present":  true, "Absent":  false},
+    "Postocular": {"Present":  true, "Absent":  false, "Fused":  false},
+    "SSEP": {"4":  false, "5":  false, "6":  true},
+    "EyeDiam": {"Smaller":  false, "Equal":  false, "Larger": true},
+    "Vents": {
+      "Male": {"Min":  171, "Max":  171},
+      "Female": null
+    },
+    "Subcaudals": {
+      "Male": {"Min":  16, "Max":  16},
+      "Female": null
+    },
+    "Tail": {"Gradually":  false, "SomewhatAbruptly":  false, "Abruptly":  true},
+    "Notes": "ERROR in SoB2:  the sole known specimen is a MALE (I&M 1965:208)!"
+  },
+  {
+    "id":2,
+    "scientificName":"Calamaria bicolor",
+    "UpperLabials": [5],
+    "LowerLabials":  [5],
+    "ULTouchingEye":  [3,4],
+    "Mental":  {"Touching":  false, "NotTouching":  true},
+    "Preocular": {"Present":  true, "Absent":  false},
+    "Supraocular": {"Present":  true, "Absent":  false},
+    "Postocular": {"Present":  true, "Absent":  false, "Fused":  false},
+    "SSEP": {"4":  false, "5":  true, "6":  false},
+    "EyeDiam": {"Smaller":  true, "Equal":  false, "Larger": false},
+    "Vents": {
+      "Male": {"Min":  139, "Max":  169},
+      "Female": {"Min":  149, "Max":  161}
+    },
+    "Subcaudals": {
+      "Male": {"Min":  21, "Max":  28},
+      "Female": {"Min":  18, "Max":  21}
+    },
+    "Tail": {"Gradually":  true, "SomewhatAbruptly":  false, "Abruptly":  false},
+    "Notes": ""
+  },
+  {
+    "id":3,
+    "scientificName":"Calamaria borneensis",
+    "UpperLabials": [4],
+    "LowerLabials":  [4],
+    "ULTouchingEye":  [2,3],
+    "Mental":  {"Touching":  true, "NotTouching":  false},
+    "Preocular": {"Present":  true, "Absent":  false},
+    "Supraocular": {"Present":  true, "Absent":  false},
+    "Postocular": {"Present":  true, "Absent":  false, "Fused":  false},
+    "SSEP": {"4":  false, "5":  false, "6":  true},
+    "EyeDiam": {"Smaller":  false, "Equal":  true, "Larger": true},
+    "Vents": {
+      "Male": {"Min":  126, "Max":  169},
+      "Female": {"Min":  159, "Max":  192}
+    },
+    "Subcaudals": {
+      "Male": {"Min":  20, "Max":  26},
+      "Female": {"Min":  13, "Max":  21}
+    },
+    "Tail": {"Gradually":  true, "SomewhatAbruptly":  false, "Abruptly":  false},
+    "Notes": ""
+  }
+
+
+
+
+
+]

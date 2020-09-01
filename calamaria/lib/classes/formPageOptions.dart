@@ -1,4 +1,4 @@
-class Options {
+class FormPageOptions {
   String firstQuestion,
       secondQuestion,
       thirdQuestion,

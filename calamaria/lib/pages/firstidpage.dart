@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'options.dart';
-import 'main.dart';
+import '../classes/formPageOptions.dart';
+import '../main.dart';
 
 class FirstIdPageState extends State<FirstIdPage> {
   bool _firstCheck = false;
@@ -139,8 +139,8 @@ class FirstIdPageState extends State<FirstIdPage> {
 
   @override
   Widget build(BuildContext context) {
-    Options options =
-        Options(); // class is redundant but makes it easier to copy pages, unused args in radioRow etc. can stay
+    FormPageOptions options =
+        FormPageOptions(); // class is redundant but makes it easier to copy pages, unused args in radioRow etc. can stay
     options.firstQuestion = '# of upper labials:';
     options.secondQuestion = '# of lower labials:';
     options.thirdQuestion = 'Which upper\nlabials touch\nthe eye?';
