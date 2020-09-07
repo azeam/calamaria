@@ -15,22 +15,22 @@ class FirstIdPageState extends State<FirstIdPage> {
   void _firstCheckChanged(bool value) {
     setState(() => _firstCheck = value);
     (_firstCheck)
-        ? SelectedOptions.uLTouchingEye.add("2nd")
-        : SelectedOptions.uLTouchingEye.remove("2nd");
+        ? SelectedOptions.uLTouchingEye.add(2)
+        : SelectedOptions.uLTouchingEye.remove(2);
   }
 
   void _secondCheckChanged(bool value) {
     setState(() => _secondCheck = value);
     (_secondCheck)
-        ? SelectedOptions.uLTouchingEye.add("3rd")
-        : SelectedOptions.uLTouchingEye.remove("3rd");
+        ? SelectedOptions.uLTouchingEye.add(3)
+        : SelectedOptions.uLTouchingEye.remove(3);
   }
 
   void _thirdCheckChanged(bool value) {
     setState(() => _thirdCheck = value);
     (_thirdCheck)
-        ? SelectedOptions.uLTouchingEye.add("4th")
-        : SelectedOptions.uLTouchingEye.remove("4th");
+        ? SelectedOptions.uLTouchingEye.add(4)
+        : SelectedOptions.uLTouchingEye.remove(4);
   }
 
   void _handleFirstRow(int value) {

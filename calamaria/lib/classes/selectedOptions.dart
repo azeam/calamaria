@@ -1,7 +1,7 @@
 class SelectedOptions {
   static int upperLabials;
   static int lowerLabials;
-  static List<String> uLTouchingEye = List<String>();
+  static List<int> uLTouchingEye = List<int>();
   static bool mental;
   static bool preocular;
   static bool postocular;
