@@ -5,8 +5,6 @@ import '../classes/formPageOptions.dart';
 import '../main.dart';
 
 class FirstIdPageState extends State<FirstIdPage> {
-  FormPageOptions options = FormPageOptions();
-
   bool _firstCheck = false;
   bool _secondCheck = false;
   bool _thirdCheck = false;
@@ -71,12 +69,12 @@ class FirstIdPageState extends State<FirstIdPage> {
     });
   }
 
-  Widget checkRow() {
+  Widget checkRow(int row, FormPageOptions options) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          options.questions[2],
+          options.questions[row - 1],
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18.0,
@@ -99,7 +97,7 @@ class FirstIdPageState extends State<FirstIdPage> {
             ),
             Checkbox(value: _thirdCheck, onChanged: _thirdCheckChanged),
             Text(
-              options.checkOp[1],
+              options.checkOp[2],
               style: TextStyle(fontSize: 16.0),
             ),
           ],
@@ -108,10 +106,7 @@ class FirstIdPageState extends State<FirstIdPage> {
     );
   }
 
-  // possible to build a list and do 'for (var option in options) Text("${option.data}")'
-  // but not possible to add more than one element in the loop (?), and radio buttons need a separate text element next to it.
-  // because layout options are limited
-  Widget radioRow(int group, int row) {
+  Widget radioRow(int group, int row, FormPageOptions options) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -122,47 +117,32 @@ class FirstIdPageState extends State<FirstIdPage> {
             fontSize: 18.0,
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Radio(
-              value: 0,
-              groupValue: group,
-              onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          for (int i = 0; i < options.radioOp.length; i++)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Radio(
+                  value: i,
+                  groupValue: group,
+                  onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
+                ),
+                Text(
+                  options.radioOp[i],
+                  style: TextStyle(fontSize: 16.0),
+                ),
+              ],
             ),
-            Text(
-              options.radioOp[0],
-              style: TextStyle(fontSize: 16.0),
-            ),
-            Radio(
-              value: 1,
-              groupValue: group,
-              onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
-            ),
-            Text(
-              options.radioOp[1],
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
-            Radio(
-              value: 2,
-              groupValue: group,
-              onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
-            ),
-            Text(
-              options.radioOp[2],
-              style: TextStyle(fontSize: 16.0),
-            ),
-          ],
-        ),
+        ]),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    // class is redundant but makes it easier to copy pages, unused args in radioRow etc. can stay
+    FormPageOptions options =
+        FormPageOptions(); // init on each build and pass options as arg or lists will keep increasing when going back to page
+
     options.questions.add('# of upper labials:');
     options.questions.add('# of lower labials:');
     options.questions.add('Which upper\nlabials touch\nthe eye?');
@@ -178,10 +158,12 @@ class FirstIdPageState extends State<FirstIdPage> {
     options.mainImg = 'assets/labialscales.svg';
     options.pageDescription =
         'Bornean Calamaria have either 4 or 5 (in one species sometimes 6) upper labials (UL), and 4 or 5 lower labials (LL). The tricky part is to judge what are the most posterior of those scales (and not scales named differently). \n\nHere you provide those counts, and enter which of the upper labials are in contact with the eye. Usually two upper labials touch the eye; either the 3rd and 4th, or the 2nd and 3rd. In one species, sometimes only the 3rd UL touches the eye.';
-    options.pageTitle = 'Upper and lower labials (lip scales)';
+    options.pageHeading = 'Upper and lower labials (lip scales)';
+    options.pageTitle = "Page 1 of 8";
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(options.pageTitle),
       ),
       body: Container(
         padding: EdgeInsets.all(8.0),
@@ -189,7 +171,7 @@ class FirstIdPageState extends State<FirstIdPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(options.pageTitle,
+              Text(options.pageHeading,
                   style: Theme.of(context).textTheme.headline5),
               Divider(height: 15.0, color: Colors.transparent),
               Text(options.pageDescription, style: TextStyle(fontSize: 14)),
@@ -200,9 +182,9 @@ class FirstIdPageState extends State<FirstIdPage> {
                 matchTextDirection: false,
               ),
               Divider(height: 15.0, color: Colors.transparent),
-              radioRow(_firstGroup, 1),
-              radioRow(_secondGroup, 2),
-              checkRow(),
+              radioRow(_firstGroup, 1, options),
+              radioRow(_secondGroup, 2, options),
+              checkRow(3, options),
             ],
           ),
         ),

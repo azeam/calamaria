@@ -5,20 +5,18 @@ import '../classes/formPageOptions.dart';
 import '../main.dart';
 
 class SecondIdPageState extends State<SecondIdPage> {
-  FormPageOptions options = FormPageOptions();
-
   int _firstGroup = -1;
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
 
       (_firstGroup > 0)
-          ? SelectedOptions.mental = true
-          : SelectedOptions.mental = false;
+          ? SelectedOptions.mental = false
+          : SelectedOptions.mental = true;
     });
   }
 
-  Widget radioRow(int group, int row) {
+  Widget radioRow(int group, int row, FormPageOptions options) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -29,29 +27,33 @@ class SecondIdPageState extends State<SecondIdPage> {
             fontSize: 18.0,
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Radio(value: 1, groupValue: group, onChanged: _handleFirstRow),
-            Text(
-              options.radioOp[0],
-              style: TextStyle(fontSize: 16.0),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          for (int i = 0;
+              i < options.radioOp.length;
+              i++) // TODO: get index better
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Radio(
+                  value: i,
+                  groupValue: group,
+                  onChanged: _handleFirstRow,
+                ),
+                Text(
+                  options.radioOp[i],
+                  style: TextStyle(fontSize: 16.0),
+                ),
+              ],
             ),
-            Radio(value: 0, groupValue: group, onChanged: _handleFirstRow),
-            Text(
-              options.radioOp[1],
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
-          ],
-        ),
+        ]),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    FormPageOptions options = FormPageOptions();
+
     options.questions.add('Mental touching\nthe anterior\nchin shields?');
 
     options.radioOp.add("Yes");
@@ -73,7 +75,7 @@ class SecondIdPageState extends State<SecondIdPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(options.pageTitle,
+              Text(options.pageHeading,
                   style: Theme.of(context).textTheme.headline5),
               Divider(height: 15.0, color: Colors.transparent),
               Text(options.pageDescription, style: TextStyle(fontSize: 14)),
@@ -84,7 +86,7 @@ class SecondIdPageState extends State<SecondIdPage> {
                 matchTextDirection: false,
               ),
               Divider(height: 15.0, color: Colors.transparent),
-              radioRow(_firstGroup, 1),
+              radioRow(_firstGroup, 1, options),
             ],
           ),
         ),

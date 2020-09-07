@@ -5,8 +5,6 @@ import '../classes/formPageOptions.dart';
 import '../main.dart';
 
 class ThirdIdPageState extends State<ThirdIdPage> {
-  FormPageOptions options = FormPageOptions();
-
   int _firstGroup = -1;
   int _secondGroup = -1;
   int _thirdGroup = -1;
@@ -16,8 +14,8 @@ class ThirdIdPageState extends State<ThirdIdPage> {
       _firstGroup = value;
 
       (_firstGroup > 0)
-          ? SelectedOptions.preocular = true
-          : SelectedOptions.preocular = false;
+          ? SelectedOptions.preocular = false
+          : SelectedOptions.preocular = true;
     });
   }
 
@@ -26,8 +24,8 @@ class ThirdIdPageState extends State<ThirdIdPage> {
       _secondGroup = value;
 
       (_secondGroup > 0)
-          ? SelectedOptions.postocular = true
-          : SelectedOptions.postocular = false;
+          ? SelectedOptions.postocular = false
+          : SelectedOptions.postocular = true;
     });
   }
 
@@ -35,16 +33,16 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     setState(() {
       _thirdGroup = value;
 
-      (_firstGroup > 0)
-          ? SelectedOptions.postFused = true
-          : SelectedOptions.postFused = false;
+      (_thirdGroup > 0)
+          ? SelectedOptions.postFused = false
+          : SelectedOptions.postFused = true;
 
       SelectedOptions sel = SelectedOptions();
       print(sel.toJson()); // display saved selections as json
     });
   }
 
-  Widget radioRow(int group, int row) {
+  Widget radioRow(int group, int row, FormPageOptions options) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -55,41 +53,33 @@ class ThirdIdPageState extends State<ThirdIdPage> {
             fontSize: 18.0,
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Radio(
-              value: 1,
-              groupValue: group,
-              onChanged: row == 1
-                  ? _handleFirstRow
-                  : row == 2 ? _handleSecondRow : _handleThirdRow,
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          for (int i = 0; i < options.radioOp.length; i++)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Radio(
+                  value: i,
+                  groupValue: group,
+                  onChanged: row == 1
+                      ? _handleFirstRow
+                      : row == 2 ? _handleSecondRow : _handleThirdRow,
+                ),
+                Text(
+                  options.radioOp[i],
+                  style: TextStyle(fontSize: 16.0),
+                ),
+              ],
             ),
-            Text(
-              options.radioOp[0],
-              style: TextStyle(fontSize: 16.0),
-            ),
-            Radio(
-              value: 0,
-              groupValue: group,
-              onChanged: row == 1
-                  ? _handleFirstRow
-                  : row == 2 ? _handleSecondRow : _handleThirdRow,
-            ),
-            Text(
-              options.radioOp[1],
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
-          ],
-        ),
+        ]),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    FormPageOptions options = FormPageOptions();
+
     options.questions.add('Preocular present?');
     options.questions.add('Postocular present?');
     options.questions.add('Postocular fused\nwith supraocular?');
@@ -123,9 +113,9 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                 matchTextDirection: false,
               ),
               Divider(height: 15.0, color: Colors.transparent),
-              radioRow(_firstGroup, 1),
-              radioRow(_secondGroup, 2),
-              radioRow(_thirdGroup, 3),
+              radioRow(_firstGroup, 1, options),
+              radioRow(_secondGroup, 2, options),
+              radioRow(_thirdGroup, 3, options),
             ],
           ),
         ),
