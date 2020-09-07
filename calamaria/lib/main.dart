@@ -139,15 +139,14 @@ Widget bottomDrawer(BuildContext context) {
           title: const Text('Are you really sure it’s a Calamaria...?'),
         ),
         ListTile(
-          leading: const Icon(Icons.list),
-          title: Text('Species list and species accounts'),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PageListSpecies()),
-            );
-          }
-        ),
+            leading: const Icon(Icons.list),
+            title: Text('Species list and species accounts'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PageListSpecies()),
+              );
+            }),
         const ListTile(
           leading: const Icon(Icons.perm_identity),
           title: const Text('Identify your Calamaria'),

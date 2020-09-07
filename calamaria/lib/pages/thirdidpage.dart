@@ -1,9 +1,12 @@
+import 'package:calamaria/classes/selectedOptions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
 class ThirdIdPageState extends State<ThirdIdPage> {
+  FormPageOptions options = FormPageOptions();
+
   int _firstGroup = -1;
   int _secondGroup = -1;
   int _thirdGroup = -1;
@@ -12,16 +15,9 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     setState(() {
       _firstGroup = value;
 
-      switch (_firstGroup) {
-        case 0:
-          test++;
-          print(test);
-          break;
-        case 1:
-          break;
-        case 2:
-          break;
-      }
+      (_firstGroup > 0)
+          ? SelectedOptions.preocular = true
+          : SelectedOptions.preocular = false;
     });
   }
 
@@ -29,14 +25,9 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     setState(() {
       _secondGroup = value;
 
-      switch (_secondGroup) {
-        case 0:
-          break;
-        case 1:
-          break;
-        case 2:
-          break;
-      }
+      (_secondGroup > 0)
+          ? SelectedOptions.postocular = true
+          : SelectedOptions.postocular = false;
     });
   }
 
@@ -44,24 +35,21 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     setState(() {
       _thirdGroup = value;
 
-      switch (_thirdGroup) {
-        case 0:
-          break;
-        case 1:
-          break;
-        case 2:
-          break;
-      }
+      (_firstGroup > 0)
+          ? SelectedOptions.postFused = true
+          : SelectedOptions.postFused = false;
+
+      SelectedOptions sel = SelectedOptions();
+      print(sel.toJson()); // display saved selections as json
     });
   }
 
-  Widget radioRow(
-      String question, String op1, String op2, String op3, int group, int row) {
+  Widget radioRow(int group, int row) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          question,
+          options.questions[row - 1],
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18.0,
@@ -71,17 +59,6 @@ class ThirdIdPageState extends State<ThirdIdPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Radio(
-              value: 0,
-              groupValue: group,
-              onChanged: row == 1
-                  ? _handleFirstRow
-                  : row == 2 ? _handleSecondRow : _handleThirdRow,
-            ),
-            Text(
-              op1,
-              style: TextStyle(fontSize: 16.0),
-            ),
-            Radio(
               value: 1,
               groupValue: group,
               onChanged: row == 1
@@ -89,7 +66,18 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                   : row == 2 ? _handleSecondRow : _handleThirdRow,
             ),
             Text(
-              op2,
+              options.radioOp[0],
+              style: TextStyle(fontSize: 16.0),
+            ),
+            Radio(
+              value: 0,
+              groupValue: group,
+              onChanged: row == 1
+                  ? _handleFirstRow
+                  : row == 2 ? _handleSecondRow : _handleThirdRow,
+            ),
+            Text(
+              options.radioOp[1],
               style: TextStyle(
                 fontSize: 16.0,
               ),
@@ -102,13 +90,12 @@ class ThirdIdPageState extends State<ThirdIdPage> {
 
   @override
   Widget build(BuildContext context) {
-    FormPageOptions options = FormPageOptions();
-    options.firstQuestion = 'Preocular present?';
-    options.secondQuestion = 'Postocular present?';
-    options.thirdQuestion = 'Postocular fused\nwith supraocular?';
+    options.questions.add('Preocular present?');
+    options.questions.add('Postocular present?');
+    options.questions.add('Postocular fused\nwith supraocular?');
 
-    options.radioOp1 = "Yes";
-    options.radioOp2 = "No";
+    options.radioOp.add("Yes");
+    options.radioOp.add("No");
 
     options.mainImg = 'assets/ocularscales.svg';
     options.pageDescription =
@@ -136,12 +123,9 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                 matchTextDirection: false,
               ),
               Divider(height: 15.0, color: Colors.transparent),
-              radioRow(options.firstQuestion, options.radioOp1,
-                  options.radioOp2, options.radioOp3, _firstGroup, 1),
-              radioRow(options.secondQuestion, options.radioOp1,
-                  options.radioOp2, options.radioOp3, _secondGroup, 2),
-              radioRow(options.thirdQuestion, options.radioOp1,
-                  options.radioOp2, options.radioOp3, _thirdGroup, 3),
+              radioRow(_firstGroup, 1),
+              radioRow(_secondGroup, 2),
+              radioRow(_thirdGroup, 3),
             ],
           ),
         ),

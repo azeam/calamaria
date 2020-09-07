@@ -1,9 +1,12 @@
+import 'package:calamaria/classes/selectedOptions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
 class FirstIdPageState extends State<FirstIdPage> {
+  FormPageOptions options = FormPageOptions();
+
   bool _firstCheck = false;
   bool _secondCheck = false;
   bool _thirdCheck = false;
@@ -11,9 +14,26 @@ class FirstIdPageState extends State<FirstIdPage> {
   int _firstGroup = -1;
   int _secondGroup = -1;
 
-  void _firstCheckChanged(bool value) => setState(() => _firstCheck = value);
-  void _secondCheckChanged(bool value) => setState(() => _secondCheck = value);
-  void _thirdCheckChanged(bool value) => setState(() => _thirdCheck = value);
+  void _firstCheckChanged(bool value) {
+    setState(() => _firstCheck = value);
+    (_firstCheck)
+        ? SelectedOptions.uLTouchingEye.add("2nd")
+        : SelectedOptions.uLTouchingEye.remove("2nd");
+  }
+
+  void _secondCheckChanged(bool value) {
+    setState(() => _secondCheck = value);
+    (_secondCheck)
+        ? SelectedOptions.uLTouchingEye.add("3rd")
+        : SelectedOptions.uLTouchingEye.remove("3rd");
+  }
+
+  void _thirdCheckChanged(bool value) {
+    setState(() => _thirdCheck = value);
+    (_thirdCheck)
+        ? SelectedOptions.uLTouchingEye.add("4th")
+        : SelectedOptions.uLTouchingEye.remove("4th");
+  }
 
   void _handleFirstRow(int value) {
     setState(() {
@@ -21,12 +41,13 @@ class FirstIdPageState extends State<FirstIdPage> {
 
       switch (_firstGroup) {
         case 0:
-          test++;
-          print(test);
+          SelectedOptions.upperLabials = 4;
           break;
         case 1:
+          SelectedOptions.upperLabials = 5;
           break;
         case 2:
+          SelectedOptions.upperLabials = 6;
           break;
       }
     });
@@ -38,21 +59,24 @@ class FirstIdPageState extends State<FirstIdPage> {
 
       switch (_secondGroup) {
         case 0:
+          SelectedOptions.lowerLabials = 4;
           break;
         case 1:
+          SelectedOptions.lowerLabials = 5;
           break;
         case 2:
+          SelectedOptions.lowerLabials = 6;
           break;
       }
     });
   }
 
-  Widget checkRow(String question, String op1, String op2, String op3) {
+  Widget checkRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          question,
+          options.questions[2],
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18.0,
@@ -63,19 +87,19 @@ class FirstIdPageState extends State<FirstIdPage> {
           children: <Widget>[
             Checkbox(value: _firstCheck, onChanged: _firstCheckChanged),
             Text(
-              op1,
+              options.checkOp[0],
               style: TextStyle(fontSize: 16.0),
             ),
             Checkbox(value: _secondCheck, onChanged: _secondCheckChanged),
             Text(
-              op2,
+              options.checkOp[1],
               style: TextStyle(
                 fontSize: 16.0,
               ),
             ),
             Checkbox(value: _thirdCheck, onChanged: _thirdCheckChanged),
             Text(
-              op3,
+              options.checkOp[1],
               style: TextStyle(fontSize: 16.0),
             ),
           ],
@@ -87,13 +111,12 @@ class FirstIdPageState extends State<FirstIdPage> {
   // possible to build a list and do 'for (var option in options) Text("${option.data}")'
   // but not possible to add more than one element in the loop (?), and radio buttons need a separate text element next to it.
   // because layout options are limited
-  Widget radioRow(
-      String question, String op1, String op2, String op3, int group, int row) {
+  Widget radioRow(int group, int row) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          question,
+          options.questions[row - 1],
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18.0,
@@ -108,7 +131,7 @@ class FirstIdPageState extends State<FirstIdPage> {
               onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
             ),
             Text(
-              op1,
+              options.radioOp[0],
               style: TextStyle(fontSize: 16.0),
             ),
             Radio(
@@ -117,7 +140,7 @@ class FirstIdPageState extends State<FirstIdPage> {
               onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
             ),
             Text(
-              op2,
+              options.radioOp[1],
               style: TextStyle(
                 fontSize: 16.0,
               ),
@@ -128,7 +151,7 @@ class FirstIdPageState extends State<FirstIdPage> {
               onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
             ),
             Text(
-              op3,
+              options.radioOp[2],
               style: TextStyle(fontSize: 16.0),
             ),
           ],
@@ -139,19 +162,18 @@ class FirstIdPageState extends State<FirstIdPage> {
 
   @override
   Widget build(BuildContext context) {
-    FormPageOptions options =
-        FormPageOptions(); // class is redundant but makes it easier to copy pages, unused args in radioRow etc. can stay
-    options.firstQuestion = '# of upper labials:';
-    options.secondQuestion = '# of lower labials:';
-    options.thirdQuestion = 'Which upper\nlabials touch\nthe eye?';
+    // class is redundant but makes it easier to copy pages, unused args in radioRow etc. can stay
+    options.questions.add('# of upper labials:');
+    options.questions.add('# of lower labials:');
+    options.questions.add('Which upper\nlabials touch\nthe eye?');
 
-    options.radioOp1 = "4";
-    options.radioOp2 = "5";
-    options.radioOp3 = "6";
+    options.radioOp.add("4");
+    options.radioOp.add("5");
+    options.radioOp.add("6");
 
-    options.checkOp1 = "2nd";
-    options.checkOp2 = "3rd";
-    options.checkOp3 = "4th";
+    options.checkOp.add("2nd");
+    options.checkOp.add("3rd");
+    options.checkOp.add("4th");
 
     options.mainImg = 'assets/labialscales.svg';
     options.pageDescription =
@@ -178,12 +200,9 @@ class FirstIdPageState extends State<FirstIdPage> {
                 matchTextDirection: false,
               ),
               Divider(height: 15.0, color: Colors.transparent),
-              radioRow(options.firstQuestion, options.radioOp1,
-                  options.radioOp2, options.radioOp3, _firstGroup, 1),
-              radioRow(options.secondQuestion, options.radioOp1,
-                  options.radioOp2, options.radioOp3, _secondGroup, 2),
-              checkRow(options.thirdQuestion, options.checkOp1,
-                  options.checkOp2, options.checkOp3),
+              radioRow(_firstGroup, 1),
+              radioRow(_secondGroup, 2),
+              checkRow(),
             ],
           ),
         ),

@@ -1,15 +1,6 @@
 class FormPageOptions {
-  String firstQuestion,
-      secondQuestion,
-      thirdQuestion,
-      radioOp1,
-      radioOp2,
-      radioOp3,
-      checkOp1,
-      checkOp2,
-      checkOp3,
-      mainImg,
-      pageDescription,
-      pageTitle,
-      pageHeading;
+  String mainImg, pageDescription, pageTitle, pageHeading;
+  List<String> questions = List<String>();
+  List<String> radioOp = List<String>();
+  List<String> checkOp = List<String>();
 }

@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Flutter",
-            "program": "lib/main.dart",
+            "program": "calamaria/lib/main.dart",
             "request": "launch",
             "type": "dart"
         }

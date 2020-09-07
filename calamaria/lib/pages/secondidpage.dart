@@ -1,33 +1,29 @@
+import 'package:calamaria/classes/selectedOptions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
 class SecondIdPageState extends State<SecondIdPage> {
-  int _firstGroup = -1;
+  FormPageOptions options = FormPageOptions();
 
+  int _firstGroup = -1;
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
 
-      switch (_firstGroup) {
-        case 0:
-          test++;
-          print(test);
-          break;
-        case 1:
-          break;
-      }
+      (_firstGroup > 0)
+          ? SelectedOptions.mental = true
+          : SelectedOptions.mental = false;
     });
   }
 
-  Widget radioRow(
-      String question, String op1, String op2, String op3, int group, int row) {
+  Widget radioRow(int group, int row) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          question,
+          options.questions[row - 1],
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18.0,
@@ -36,14 +32,14 @@ class SecondIdPageState extends State<SecondIdPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Radio(value: 0, groupValue: group, onChanged: _handleFirstRow),
-            Text(
-              op1,
-              style: TextStyle(fontSize: 16.0),
-            ),
             Radio(value: 1, groupValue: group, onChanged: _handleFirstRow),
             Text(
-              op2,
+              options.radioOp[0],
+              style: TextStyle(fontSize: 16.0),
+            ),
+            Radio(value: 0, groupValue: group, onChanged: _handleFirstRow),
+            Text(
+              options.radioOp[1],
               style: TextStyle(
                 fontSize: 16.0,
               ),
@@ -56,11 +52,10 @@ class SecondIdPageState extends State<SecondIdPage> {
 
   @override
   Widget build(BuildContext context) {
-    FormPageOptions options = FormPageOptions();
-    options.firstQuestion = 'Mental touching\nthe anterior\nchin shields?';
+    options.questions.add('Mental touching\nthe anterior\nchin shields?');
 
-    options.radioOp1 = "Yes";
-    options.radioOp2 = "No";
+    options.radioOp.add("Yes");
+    options.radioOp.add("No");
 
     options.mainImg = 'assets/labialscales.svg';
     options.pageDescription =
@@ -89,8 +84,7 @@ class SecondIdPageState extends State<SecondIdPage> {
                 matchTextDirection: false,
               ),
               Divider(height: 15.0, color: Colors.transparent),
-              radioRow(options.firstQuestion, options.radioOp1,
-                  options.radioOp2, options.radioOp3, _firstGroup, 1),
+              radioRow(_firstGroup, 1),
             ],
           ),
         ),
