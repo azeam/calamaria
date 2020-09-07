@@ -9,8 +9,8 @@ class FirstIdPageState extends State<FirstIdPage> {
   bool _secondCheck = false;
   bool _thirdCheck = false;
 
-  int _firstGroup = -1;
-  int _secondGroup = -1;
+  int _firstGroup = SelectedOptions.sUpperLabials;
+  int _secondGroup = SelectedOptions.sLowerLabials;
 
   void _firstCheckChanged(bool value) {
     setState(() => _firstCheck = value);
@@ -36,36 +36,14 @@ class FirstIdPageState extends State<FirstIdPage> {
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-
-      switch (_firstGroup) {
-        case 0:
-          SelectedOptions.sUpperLabials = 4;
-          break;
-        case 1:
-          SelectedOptions.sUpperLabials = 5;
-          break;
-        case 2:
-          SelectedOptions.sUpperLabials = 6;
-          break;
-      }
+      SelectedOptions.sUpperLabials = value;
     });
   }
 
   void _handleSecondRow(int value) {
     setState(() {
       _secondGroup = value;
-
-      switch (_secondGroup) {
-        case 0:
-          SelectedOptions.sLowerLabials = 4;
-          break;
-        case 1:
-          SelectedOptions.sLowerLabials = 5;
-          break;
-        case 2:
-          SelectedOptions.sLowerLabials = 6;
-          break;
-      }
+      SelectedOptions.sLowerLabials = value;
     });
   }
 
@@ -123,7 +101,7 @@ class FirstIdPageState extends State<FirstIdPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Radio(
-                  value: i,
+                  value: i + 4,
                   groupValue: group,
                   onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
                 ),

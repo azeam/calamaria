@@ -5,14 +5,11 @@ import '../classes/formPageOptions.dart';
 import '../main.dart';
 
 class SecondIdPageState extends State<SecondIdPage> {
-  int _firstGroup = -1;
+  int _firstGroup = SelectedOptions.sMental;
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-
-      (_firstGroup > 0)
-          ? SelectedOptions.sMental = false
-          : SelectedOptions.sMental = true;
+      SelectedOptions.sMental = value;
     });
   }
 

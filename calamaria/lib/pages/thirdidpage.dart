@@ -5,17 +5,14 @@ import '../classes/formPageOptions.dart';
 import '../main.dart';
 
 class ThirdIdPageState extends State<ThirdIdPage> {
-  int _firstGroup = -1;
-  int _secondGroup = -1;
-  int _thirdGroup = -1;
+  int _firstGroup = SelectedOptions.sPreocular;
+  int _secondGroup = SelectedOptions.sPostocular;
+  int _thirdGroup = SelectedOptions.sPostFused;
 
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-
-      (_firstGroup > 0)
-          ? SelectedOptions.sPreocular = false
-          : SelectedOptions.sPreocular = true;
+      SelectedOptions.sPreocular = value;
     });
   }
 
@@ -23,9 +20,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     setState(() {
       _secondGroup = value;
 
-      (_secondGroup > 0)
-          ? SelectedOptions.sPostocular = false
-          : SelectedOptions.sPostocular = true;
+      SelectedOptions.sPostocular = value;
     });
   }
 
@@ -33,12 +28,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     setState(() {
       _thirdGroup = value;
 
-      (_thirdGroup > 0)
-          ? SelectedOptions.sPostFused = false
-          : SelectedOptions.sPostFused = true;
-
-      SelectedOptions sel = SelectedOptions();
-      print(sel.toJson()); // display saved selections as json
+      SelectedOptions.sPostFused = value;
     });
   }
 
@@ -92,6 +82,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
         'All Bornean Calamaria have a supraocular scale sitting above the eye. Most also have a postocular (a small scale just behind the eye). However, in some the postocular may be seamlessly fused with the supralabial – if so, that single, merged scale is called supraocular (and the postocular is considered absent). \n\nHere you focus on these scales plus the presence/absence of a preocular (a small scale sitting in front of the eye). \n\nThe pre- and postoculars can be very small, so make sure you use a good hand lens – or even better, a very good macro lens on your camera – to document their presence/absence!';
     options.pageHeading = 'Scales around the eye';
     options.pageTitle = "Page 3 of 8";
+
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),
@@ -120,9 +111,15 @@ class ThirdIdPageState extends State<ThirdIdPage> {
           ),
         ),
       ),
-      //bottomNavigationBar: navBar(context),
-      //floatingActionButton: navFAB(context, SecondIdPage()),
-      //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: navBar(context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          SelectedOptions sel = SelectedOptions();
+          print(sel.toJson());
+        },
+      ),
+      // display saved selections as json),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }

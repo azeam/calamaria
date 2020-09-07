@@ -1,17 +1,17 @@
 class SelectedOptions {
-  static int sUpperLabials;
-  static int sLowerLabials;
+  static int sUpperLabials,
+      sLowerLabials,
+      sMental,
+      sPreocular,
+      sSupraocular,
+      sPostocular,
+      sPostFused,
+      sSSEP,
+      sEyeDiam,
+      sVents,
+      sSubcaudals,
+      sTail;
   static List<int> sULTouchingEye = List<int>();
-  static bool sMental;
-  static bool sPreocular;
-  static bool sSupraocular; // not in powerpoint but should be there?
-  static bool sPostocular;
-  static bool sPostFused;
-  static int sSSEP;
-  static int sEyeDiam; // Smaller, Equal, Larger
-  static int sVents;
-  static int sSubcaudals;
-  static int sTail; // gradually, SomewhatAbruptly, Abruptly
 
   SelectedOptions(
       {sUpperLabials,
@@ -27,32 +27,15 @@ class SelectedOptions {
       sSubcaudals,
       sTail});
 
-  factory SelectedOptions.fromJson(Map<String, dynamic> parsedJson) {
-    return new SelectedOptions(
-      sUpperLabials: parsedJson['upperLabials'] ?? "",
-      sLowerLabials: parsedJson['lowerLabials'] ?? "",
-      sULTouchingEye: parsedJson['uLTouchingEye'] ?? "",
-      sMental: parsedJson['mental'] ?? "",
-      sPreocular: parsedJson['preocular'] ?? "",
-      sPostocular: parsedJson['postocular'] ?? "",
-      sPostFused: parsedJson['postFused'] ?? "",
-      sSSEP: parsedJson['sSEP'] ?? "",
-      sEyeDiam: parsedJson['eyeDiam'] ?? "",
-      sVents: parsedJson['vents'] ?? "",
-      sSubcaudals: parsedJson['subcaudals'] ?? "",
-      sTail: parsedJson['tail'] ?? "",
-    );
-  }
-
   Map<String, dynamic> toJson() {
     return {
       "sUpperLabials": sUpperLabials,
       "sLowerLabials": sLowerLabials,
       "sULTouchingEye": sULTouchingEye,
-      "sMental": sMental,
-      "sPreocular": sPreocular,
-      "sPostocular": sPostocular,
-      "sPostFused": sPostFused,
+      "sMental": sMental == 1 ? true : sMental == 0 ? false : null,
+      "sPreocular": sPreocular == 1 ? true : sPreocular == 0 ? false : null,
+      "sPostocular": sPostocular == 1 ? true : sPostocular == 0 ? false : null,
+      "sPostFused": sPostFused == 1 ? true : sPostFused == 0 ? false : null,
       "sSSEP": sSSEP,
       "sEyeDiam": sEyeDiam,
       "sVents": sVents,
