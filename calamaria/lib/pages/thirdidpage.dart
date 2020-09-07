@@ -19,7 +19,6 @@ class ThirdIdPageState extends State<ThirdIdPage> {
   void _handleSecondRow(int value) {
     setState(() {
       _secondGroup = value;
-
       SelectedOptions.sPostocular = value;
     });
   }
@@ -27,7 +26,6 @@ class ThirdIdPageState extends State<ThirdIdPage> {
   void _handleThirdRow(int value) {
     setState(() {
       _thirdGroup = value;
-
       SelectedOptions.sPostFused = value;
     });
   }
@@ -118,7 +116,6 @@ class ThirdIdPageState extends State<ThirdIdPage> {
           print(sel.toJson());
         },
       ),
-      // display saved selections as json),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }

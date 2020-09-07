@@ -13,20 +13,6 @@ class SelectedOptions {
       sTail;
   static List<int> sULTouchingEye = List<int>();
 
-  SelectedOptions(
-      {sUpperLabials,
-      sLowerLabials,
-      sULTouchingEye,
-      sMental,
-      sPreocular,
-      sPostocular,
-      sPostFused,
-      sSSEP,
-      sEyeDiam,
-      sVents,
-      sSubcaudals,
-      sTail});
-
   Map<String, dynamic> toJson() {
     return {
       "sUpperLabials": sUpperLabials,
