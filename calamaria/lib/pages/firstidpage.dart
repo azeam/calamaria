@@ -101,7 +101,7 @@ class FirstIdPageState extends State<FirstIdPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Radio(
-                  value: i + 4,
+                  value: int.parse(options.radioOp[i]), // get val from text
                   groupValue: group,
                   onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
                 ),

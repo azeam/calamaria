@@ -25,9 +25,7 @@ class SecondIdPageState extends State<SecondIdPage> {
           ),
         ),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          for (int i = 0;
-              i < options.radioOp.length;
-              i++) // TODO: get index better
+          for (int i = 0; i < options.radioOp.length; i++)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
