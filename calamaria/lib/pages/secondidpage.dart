@@ -11,8 +11,8 @@ class SecondIdPageState extends State<SecondIdPage> {
       _firstGroup = value;
 
       (_firstGroup > 0)
-          ? SelectedOptions.mental = false
-          : SelectedOptions.mental = true;
+          ? SelectedOptions.sMental = false
+          : SelectedOptions.sMental = true;
     });
   }
 

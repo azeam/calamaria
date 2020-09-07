@@ -14,8 +14,8 @@ class ThirdIdPageState extends State<ThirdIdPage> {
       _firstGroup = value;
 
       (_firstGroup > 0)
-          ? SelectedOptions.preocular = false
-          : SelectedOptions.preocular = true;
+          ? SelectedOptions.sPreocular = false
+          : SelectedOptions.sPreocular = true;
     });
   }
 
@@ -24,8 +24,8 @@ class ThirdIdPageState extends State<ThirdIdPage> {
       _secondGroup = value;
 
       (_secondGroup > 0)
-          ? SelectedOptions.postocular = false
-          : SelectedOptions.postocular = true;
+          ? SelectedOptions.sPostocular = false
+          : SelectedOptions.sPostocular = true;
     });
   }
 
@@ -34,8 +34,8 @@ class ThirdIdPageState extends State<ThirdIdPage> {
       _thirdGroup = value;
 
       (_thirdGroup > 0)
-          ? SelectedOptions.postFused = false
-          : SelectedOptions.postFused = true;
+          ? SelectedOptions.sPostFused = false
+          : SelectedOptions.sPostFused = true;
 
       SelectedOptions sel = SelectedOptions();
       print(sel.toJson()); // display saved selections as json

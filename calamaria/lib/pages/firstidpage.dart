@@ -15,22 +15,22 @@ class FirstIdPageState extends State<FirstIdPage> {
   void _firstCheckChanged(bool value) {
     setState(() => _firstCheck = value);
     (_firstCheck)
-        ? SelectedOptions.uLTouchingEye.add(2)
-        : SelectedOptions.uLTouchingEye.remove(2);
+        ? SelectedOptions.sULTouchingEye.add(2)
+        : SelectedOptions.sULTouchingEye.remove(2);
   }
 
   void _secondCheckChanged(bool value) {
     setState(() => _secondCheck = value);
     (_secondCheck)
-        ? SelectedOptions.uLTouchingEye.add(3)
-        : SelectedOptions.uLTouchingEye.remove(3);
+        ? SelectedOptions.sULTouchingEye.add(3)
+        : SelectedOptions.sULTouchingEye.remove(3);
   }
 
   void _thirdCheckChanged(bool value) {
     setState(() => _thirdCheck = value);
     (_thirdCheck)
-        ? SelectedOptions.uLTouchingEye.add(4)
-        : SelectedOptions.uLTouchingEye.remove(4);
+        ? SelectedOptions.sULTouchingEye.add(4)
+        : SelectedOptions.sULTouchingEye.remove(4);
   }
 
   void _handleFirstRow(int value) {
@@ -39,13 +39,13 @@ class FirstIdPageState extends State<FirstIdPage> {
 
       switch (_firstGroup) {
         case 0:
-          SelectedOptions.upperLabials = 4;
+          SelectedOptions.sUpperLabials = 4;
           break;
         case 1:
-          SelectedOptions.upperLabials = 5;
+          SelectedOptions.sUpperLabials = 5;
           break;
         case 2:
-          SelectedOptions.upperLabials = 6;
+          SelectedOptions.sUpperLabials = 6;
           break;
       }
     });
@@ -57,13 +57,13 @@ class FirstIdPageState extends State<FirstIdPage> {
 
       switch (_secondGroup) {
         case 0:
-          SelectedOptions.lowerLabials = 4;
+          SelectedOptions.sLowerLabials = 4;
           break;
         case 1:
-          SelectedOptions.lowerLabials = 5;
+          SelectedOptions.sLowerLabials = 5;
           break;
         case 2:
-          SelectedOptions.lowerLabials = 6;
+          SelectedOptions.sLowerLabials = 6;
           break;
       }
     });

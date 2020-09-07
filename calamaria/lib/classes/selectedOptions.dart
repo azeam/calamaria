@@ -1,62 +1,63 @@
 class SelectedOptions {
-  static int upperLabials;
-  static int lowerLabials;
-  static List<int> uLTouchingEye = List<int>();
-  static bool mental;
-  static bool preocular;
-  static bool postocular;
-  static bool postFused;
-  static int sSEP;
-  static int eyeDiam; // Smaller, Equal, Larger
-  static int vents;
-  static int subcaudals;
-  static int tail; // gradually, SomewhatAbruptly, Abruptly
+  static int sUpperLabials;
+  static int sLowerLabials;
+  static List<int> sULTouchingEye = List<int>();
+  static bool sMental;
+  static bool sPreocular;
+  static bool sSupraocular; // not in powerpoint but should be there?
+  static bool sPostocular;
+  static bool sPostFused;
+  static int sSSEP;
+  static int sEyeDiam; // Smaller, Equal, Larger
+  static int sVents;
+  static int sSubcaudals;
+  static int sTail; // gradually, SomewhatAbruptly, Abruptly
 
   SelectedOptions(
-      {upperLabials,
-      lowerLabials,
-      uLTouchingEye,
-      mental,
-      preocular,
-      postocular,
-      postFused,
-      sSEP,
-      eyeDiam,
-      vents,
-      subcaudals,
-      tail});
+      {sUpperLabials,
+      sLowerLabials,
+      sULTouchingEye,
+      sMental,
+      sPreocular,
+      sPostocular,
+      sPostFused,
+      sSSEP,
+      sEyeDiam,
+      sVents,
+      sSubcaudals,
+      sTail});
 
   factory SelectedOptions.fromJson(Map<String, dynamic> parsedJson) {
     return new SelectedOptions(
-      upperLabials: parsedJson['upperLabials'] ?? "",
-      lowerLabials: parsedJson['lowerLabials'] ?? "",
-      uLTouchingEye: parsedJson['uLTouchingEye'] ?? "",
-      mental: parsedJson['mental'] ?? "",
-      preocular: parsedJson['preocular'] ?? "",
-      postocular: parsedJson['postocular'] ?? "",
-      postFused: parsedJson['postFused'] ?? "",
-      sSEP: parsedJson['sSEP'] ?? "",
-      eyeDiam: parsedJson['eyeDiam'] ?? "",
-      vents: parsedJson['vents'] ?? "",
-      subcaudals: parsedJson['subcaudals'] ?? "",
-      tail: parsedJson['tail'] ?? "",
+      sUpperLabials: parsedJson['upperLabials'] ?? "",
+      sLowerLabials: parsedJson['lowerLabials'] ?? "",
+      sULTouchingEye: parsedJson['uLTouchingEye'] ?? "",
+      sMental: parsedJson['mental'] ?? "",
+      sPreocular: parsedJson['preocular'] ?? "",
+      sPostocular: parsedJson['postocular'] ?? "",
+      sPostFused: parsedJson['postFused'] ?? "",
+      sSSEP: parsedJson['sSEP'] ?? "",
+      sEyeDiam: parsedJson['eyeDiam'] ?? "",
+      sVents: parsedJson['vents'] ?? "",
+      sSubcaudals: parsedJson['subcaudals'] ?? "",
+      sTail: parsedJson['tail'] ?? "",
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "upperLabials": upperLabials,
-      "lowerLabials": lowerLabials,
-      "uLTouchingEye": uLTouchingEye,
-      "mental": mental,
-      "preocular": preocular,
-      "postocular": postocular,
-      "postFused": postFused,
-      "sSEP": sSEP,
-      "eyeDiam": eyeDiam,
-      "vents": vents,
-      "subcaudals": subcaudals,
-      "tail": tail,
+      "sUpperLabials": sUpperLabials,
+      "sLowerLabials": sLowerLabials,
+      "sULTouchingEye": sULTouchingEye,
+      "sMental": sMental,
+      "sPreocular": sPreocular,
+      "sPostocular": sPostocular,
+      "sPostFused": sPostFused,
+      "sSSEP": sSSEP,
+      "sEyeDiam": sEyeDiam,
+      "sVents": sVents,
+      "sSubcaudals": sSubcaudals,
+      "sTail": sTail,
     };
   }
 }
