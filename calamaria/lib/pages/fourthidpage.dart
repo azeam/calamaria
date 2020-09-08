@@ -64,7 +64,7 @@ class FourthIdPageState extends State<FourthIdPage> {
 
     options.mainImg = 'assets/paraparietalscales.svg';
     options.pageDescription =
-        'The paraparietal (PP) sits behind/below the parietal on the rear side of the head. Calamaria species differ in how many scales may surround (and touch) the paraparietal – it may be 4, 5, or 6 scales.\n\nIn the example shown below, there are 5 scales around the paraparietal. (The scale marked”1” is the parietal, and number ”5” is the last upper labial.)';
+        'The paraparietal (PP) sits behind/below the parietal on the rear side of the head. Calamaria species differ in how many scales may surround (and touch) the paraparietal – it may be 4, 5 or 6 scales.\n\nIn the example shown below, there are 5 scales around the paraparietal. (The scale marked ”1” is the parietal, and number ”5” is the last upper labial.)';
 
     options.pageHeading = 'Scales around the paraparietal';
     options.pageTitle = "Page 4 of 8";

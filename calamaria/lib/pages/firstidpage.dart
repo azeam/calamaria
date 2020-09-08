@@ -12,21 +12,21 @@ class FirstIdPageState extends State<FirstIdPage> {
   int _firstGroup = SelectedOptions.sUpperLabials;
   int _secondGroup = SelectedOptions.sLowerLabials;
 
-  void _firstCheckChanged(bool value) {
+  void _handleFirstCheck(bool value) {
     setState(() => _firstCheck = value);
     (_firstCheck)
         ? SelectedOptions.sULTouchingEye.add(2)
         : SelectedOptions.sULTouchingEye.remove(2);
   }
 
-  void _secondCheckChanged(bool value) {
+  void _handleSecondCheck(bool value) {
     setState(() => _secondCheck = value);
     (_secondCheck)
         ? SelectedOptions.sULTouchingEye.add(3)
         : SelectedOptions.sULTouchingEye.remove(3);
   }
 
-  void _thirdCheckChanged(bool value) {
+  void _handleThirdCheck(bool value) {
     setState(() => _thirdCheck = value);
     (_thirdCheck)
         ? SelectedOptions.sULTouchingEye.add(4)
@@ -60,48 +60,32 @@ class FirstIdPageState extends State<FirstIdPage> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: 40.0,
-              width: 30.0,
-              child:
-                  Checkbox(value: _firstCheck, onChanged: _firstCheckChanged),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Text(
-                options.checkOp[0],
-                style: TextStyle(fontSize: 16.0),
+          children: [
+            for (int i = 0; i < options.radioOp.length; i++)
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 40.0,
+                        width: 30.0,
+                        child: Checkbox(
+                            value: i == 0
+                                ? _firstCheck
+                                : i == 1 ? _secondCheck : _thirdCheck,
+                            onChanged: i == 0
+                                ? _handleFirstCheck
+                                : i == 1
+                                    ? _handleSecondCheck
+                                    : _handleThirdCheck),
+                      ),
+                      Text(
+                        options.checkOp[i],
+                        style: TextStyle(fontSize: 16.0),
+                      ),
+                    ]),
               ),
-            ),
-            SizedBox(
-              height: 40.0,
-              width: 30.0,
-              child:
-                  Checkbox(value: _secondCheck, onChanged: _secondCheckChanged),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Text(
-                options.checkOp[1],
-                style: TextStyle(
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 40.0,
-              width: 30.0,
-              child:
-                  Checkbox(value: _thirdCheck, onChanged: _thirdCheckChanged),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Text(
-                options.checkOp[2],
-                style: TextStyle(fontSize: 16.0),
-              ),
-            ),
           ],
         ),
       ],
