@@ -8,6 +8,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
   int _firstGroup = SelectedOptions.sPreocular;
   int _secondGroup = SelectedOptions.sPostocular;
   int _thirdGroup = SelectedOptions.sPostFused;
+  int _fourthGroup = SelectedOptions.sSupraocular;
 
   void _handleFirstRow(int value) {
     setState(() {
@@ -30,6 +31,13 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     });
   }
 
+  void _handleFourthRow(int value) {
+    setState(() {
+      _fourthGroup = value;
+      SelectedOptions.sSupraocular = value;
+    });
+  }
+
   Widget radioRow(int group, int row, FormPageOptions options) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,21 +51,30 @@ class ThirdIdPageState extends State<ThirdIdPage> {
         ),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           for (int i = 0; i < options.radioOp.length; i++)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Radio(
-                  value: i,
-                  groupValue: group,
-                  onChanged: row == 1
-                      ? _handleFirstRow
-                      : row == 2 ? _handleSecondRow : _handleThirdRow,
-                ),
-                Text(
-                  options.radioOp[i],
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 40.0,
+                    width: 30.0,
+                    child: Radio(
+                      value: i,
+                      groupValue: group,
+                      onChanged: row == 1
+                          ? _handleFirstRow
+                          : row == 2
+                              ? _handleSecondRow
+                              : row == 3 ? _handleThirdRow : _handleFourthRow,
+                    ),
+                  ),
+                  Text(
+                    options.radioOp[i],
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ],
+              ),
             ),
         ]),
       ],
@@ -71,6 +88,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     options.questions.add('Preocular present?');
     options.questions.add('Postocular present?');
     options.questions.add('Postocular fused\nwith supraocular?');
+    options.questions.add('Supraocular present?');
 
     options.radioOp.add("Yes");
     options.radioOp.add("No");
@@ -87,8 +105,8 @@ class ThirdIdPageState extends State<ThirdIdPage> {
       ),
       body: Container(
         padding: EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
+        child: new SingleChildScrollView(
+          child: new Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(options.pageHeading,
@@ -105,17 +123,13 @@ class ThirdIdPageState extends State<ThirdIdPage> {
               radioRow(_firstGroup, 1, options),
               radioRow(_secondGroup, 2, options),
               radioRow(_thirdGroup, 3, options),
+              radioRow(_fourthGroup, 4, options),
             ],
           ),
         ),
       ),
       bottomNavigationBar: navBar(context),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          SelectedOptions sel = SelectedOptions();
-          print(sel.toJson());
-        },
-      ),
+      floatingActionButton: navFAB(context, FourthIdPage()),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }

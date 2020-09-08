@@ -61,22 +61,46 @@ class FirstIdPageState extends State<FirstIdPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Checkbox(value: _firstCheck, onChanged: _firstCheckChanged),
-            Text(
-              options.checkOp[0],
-              style: TextStyle(fontSize: 16.0),
+            SizedBox(
+              height: 40.0,
+              width: 30.0,
+              child:
+                  Checkbox(value: _firstCheck, onChanged: _firstCheckChanged),
             ),
-            Checkbox(value: _secondCheck, onChanged: _secondCheckChanged),
-            Text(
-              options.checkOp[1],
-              style: TextStyle(
-                fontSize: 16.0,
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Text(
+                options.checkOp[0],
+                style: TextStyle(fontSize: 16.0),
               ),
             ),
-            Checkbox(value: _thirdCheck, onChanged: _thirdCheckChanged),
-            Text(
-              options.checkOp[2],
-              style: TextStyle(fontSize: 16.0),
+            SizedBox(
+              height: 40.0,
+              width: 30.0,
+              child:
+                  Checkbox(value: _secondCheck, onChanged: _secondCheckChanged),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Text(
+                options.checkOp[1],
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 40.0,
+              width: 30.0,
+              child:
+                  Checkbox(value: _thirdCheck, onChanged: _thirdCheckChanged),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Text(
+                options.checkOp[2],
+                style: TextStyle(fontSize: 16.0),
+              ),
             ),
           ],
         ),
@@ -97,19 +121,26 @@ class FirstIdPageState extends State<FirstIdPage> {
         ),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           for (int i = 0; i < options.radioOp.length; i++)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Radio(
-                  value: int.parse(options.radioOp[i]), // get val from text
-                  groupValue: group,
-                  onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
-                ),
-                Text(
-                  options.radioOp[i],
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 40.0,
+                    width: 30.0,
+                    child: Radio(
+                      value: int.parse(options.radioOp[i]), // get val from text
+                      groupValue: group,
+                      onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
+                    ),
+                  ),
+                  Text(
+                    options.radioOp[i],
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ],
+              ),
             ),
         ]),
       ],
@@ -145,8 +176,8 @@ class FirstIdPageState extends State<FirstIdPage> {
       ),
       body: Container(
         padding: EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
+        child: new SingleChildScrollView(
+          child: new Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(options.pageHeading,

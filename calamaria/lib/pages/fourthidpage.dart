@@ -4,12 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
-class SecondIdPageState extends State<SecondIdPage> {
-  int _firstGroup = SelectedOptions.sMental;
+class FourthIdPageState extends State<FourthIdPage> {
+  int _firstGroup = SelectedOptions.sSSEP;
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-      SelectedOptions.sMental = value;
+      SelectedOptions.sSSEP = value;
     });
   }
 
@@ -35,7 +35,7 @@ class SecondIdPageState extends State<SecondIdPage> {
                     height: 40.0,
                     width: 30.0,
                     child: Radio(
-                      value: i,
+                      value: int.parse(options.radioOp[i]),
                       groupValue: group,
                       onChanged: _handleFirstRow,
                     ),
@@ -56,17 +56,18 @@ class SecondIdPageState extends State<SecondIdPage> {
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
 
-    options.questions.add('Mental touching\nthe anterior\nchin shields?');
+    options.questions.add('# of scales\nsurrounding the\nparaparietal?');
 
-    options.radioOp.add("Yes");
-    options.radioOp.add("No");
+    options.radioOp.add("4");
+    options.radioOp.add("5");
+    options.radioOp.add("6");
 
-    options.mainImg = 'assets/labialscales.svg';
+    options.mainImg = 'assets/paraparietalscales.svg';
     options.pageDescription =
-        'The mental is the scale at the front of the lower jaw, just below where the tongue comes out. In some Calamaria it touches the anterior pair of chin shields; in others the first lower labials on the left and right side of the head meet behind the mental, and thereby separate the mental from the anterior chin shields. \n\nSpecify here which of those alternatives your snake exhibits.';
+        'The paraparietal (PP) sits behind/below the parietal on the rear side of the head. Calamaria species differ in how many scales may surround (and touch) the paraparietal – it may be 4, 5, or 6 scales.\n\nIn the example shown below, there are 5 scales around the paraparietal. (The scale marked”1” is the parietal, and number ”5” is the last upper labial.)';
 
-    options.pageHeading = 'Mental scale vs. chin shields';
-    options.pageTitle = "Page 2 of 8";
+    options.pageHeading = 'Scales around the paraparietal';
+    options.pageTitle = "Page 4 of 8";
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),
@@ -94,7 +95,12 @@ class SecondIdPageState extends State<SecondIdPage> {
         ),
       ),
       bottomNavigationBar: navBar(context),
-      floatingActionButton: navFAB(context, ThirdIdPage()),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          SelectedOptions sel = SelectedOptions();
+          print(sel.toJson());
+        },
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
