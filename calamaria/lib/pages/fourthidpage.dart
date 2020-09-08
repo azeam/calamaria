@@ -43,19 +43,7 @@ class FourthIdPageState extends State<FourthIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
-
-    options.questions.add('Number of scales touching the paraparietal?');
-
-    options.radioOp.add("4");
-    options.radioOp.add("5");
-    options.radioOp.add("6");
-
-    options.mainImg = 'assets/paraparietalscales.svg';
-    options.pageDescription =
-        'The paraparietal (PP) sits behind/below the parietal on the rear side of the head. Calamaria species differ in how many scales may surround (and touch) the paraparietal – it may be 4, 5 or 6 scales.\n\nIn the example shown below, there are 5 scales around the paraparietal. (The scale marked ”1” is the parietal, and number ”5” is the last upper labial.)';
-
-    options.pageHeading = 'Scales around the paraparietal';
-    options.pageTitle = "Page 4 of 8";
+    options.setData(4);
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),

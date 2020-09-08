@@ -43,19 +43,8 @@ class SeventhIdPageState extends State<SeventhIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
+    options.setData(7);
 
-    options.questions.add('Tail tapering...');
-
-    options.radioOp.add("Gradually");
-    options.radioOp.add("Intermediately");
-    options.radioOp.add("Abruptly");
-
-    options.mainImg = 'assets/paraparietalscales.svg';
-    options.pageDescription =
-        'This is not about the tail length – it is about where on the tail it starts to get narrower, and how abruptly (steeply) it then narrows down. We say that the tail tapers gradually for much of the tail’s length, or abruptly near the end, or something inbetween those states.\n\nThis is a subjective character which can be difficult to score correctly. If this character results in a mis-match for an otherwise good species agreement, revisit the character state.';
-
-    options.pageHeading = 'Shape of the tail / tail tip';
-    options.pageTitle = "Page 7 of 8";
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),

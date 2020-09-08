@@ -62,19 +62,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
-
-    options.questions.add('Preocular present?');
-    options.questions.add('Postocular present?');
-    options.questions.add('Postocular fused with supraocular?');
-
-    options.radioOp.add("Yes");
-    options.radioOp.add("No");
-
-    options.mainImg = 'assets/ocularscales.svg';
-    options.pageDescription =
-        'All Bornean Calamaria have a supraocular scale sitting above the eye. Most also have a postocular (a small scale just behind the eye). However, in some the postocular may be seamlessly fused with the supralabial – if so, that single, merged scale is called supraocular (and the postocular is considered absent). \n\nHere you focus on these scales plus the presence/absence of a preocular (a small scale sitting in front of the eye). \n\nThe pre- and postoculars can be very small, so make sure you use a good hand lens – or even better, a very good macro lens on your camera – to document their presence/absence!';
-    options.pageHeading = 'Scales around the eye';
-    options.pageTitle = "Page 3 of 8";
+    options.setData(3);
 
     return Scaffold(
       appBar: AppBar(

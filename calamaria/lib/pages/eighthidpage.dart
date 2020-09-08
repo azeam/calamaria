@@ -22,7 +22,9 @@ class EighthIdPageState extends State<EighthIdPage> {
       width: 280.0,
       child: TextField(
         controller: TextEditingController()
-          ..text = (group == "null" ? "" : group),
+          ..text = (group == "null"
+              ? ""
+              : group), // no text = "null" (!= null), show hint instead
         onChanged: row == 0 ? _handleFirstRow : _handleSecondRow,
         decoration: InputDecoration(
           border: OutlineInputBorder(),
@@ -39,16 +41,8 @@ class EighthIdPageState extends State<EighthIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
+    options.setData(8);
 
-    options.questions.add('Enter the number of ventrals:');
-    options.questions.add('Enter the number of subcaudals:');
-
-    options.mainImg = 'assets/paraparietalscales.svg';
-    options.pageDescription =
-        'It is virtually impossible to count how many ventral scales a living Calamaria specimen has – they move too much! It is easier with road-killed specimens unless they are too damaged. Best is to photograph the snake from below (see advice on how to do that under the Main Menu) and count scales from the photo.\n\nCounting subcaudals (they are paired in Calamaria, so only count those on one side of the tail) is also best done from photos.\n\nIt is important to start counting on the right scale; to not count the anal scale; and to not count the tail tip scute. The photo advice page gives more info on this.';
-
-    options.pageHeading = 'Number of ventrals & subcaudals';
-    options.pageTitle = "Page 8 of 8";
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),

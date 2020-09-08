@@ -109,25 +109,7 @@ class FirstIdPageState extends State<FirstIdPage> {
   Widget build(BuildContext context) {
     FormPageOptions options =
         FormPageOptions(); // init on each build and pass options as arg or lists will keep increasing when going back to page
-
-    options.questions.add('Number of upper labials:');
-    options.questions.add('Number of lower labials:');
-    options.questions.add('Which upper labials touch the eye?');
-
-    options.radioOp.add("4");
-    options.radioOp.add("5");
-    options.radioOp.add("6");
-
-    options.checkOp.add("2nd");
-    options.checkOp.add("3rd");
-    options.checkOp.add("4th");
-
-    options.mainImg = 'assets/labialscales.svg';
-    options.pageDescription =
-        'Bornean Calamaria have either 4 or 5 (in one species sometimes 6) upper labials (UL), and 4 or 5 lower labials (LL). The tricky part is to judge what are the most posterior of those scales (and not scales named differently). \n\nHere you provide those counts, and enter which of the upper labials are in contact with the eye. Usually two upper labials touch the eye; either the 3rd and 4th, or the 2nd and 3rd. In one species, sometimes only the 3rd UL touches the eye.';
-    options.pageHeading = 'Upper and lower labials (lip scales)';
-    options.pageTitle = "Page 1 of 8";
-
+    options.setData(1);
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),

@@ -43,18 +43,8 @@ class SecondIdPageState extends State<SecondIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
+    options.setData(2);
 
-    options.questions.add('Mental touching the anterior chin shields?');
-
-    options.radioOp.add("Yes");
-    options.radioOp.add("No");
-
-    options.mainImg = 'assets/labialscales.svg';
-    options.pageDescription =
-        'The mental is the scale at the front of the lower jaw, just below where the tongue comes out. In some Calamaria it touches the anterior pair of chin shields; in others the first lower labials on the left and right side of the head meet behind the mental, and thereby separate the mental from the anterior chin shields. \n\nSpecify here which of those alternatives your snake exhibits.';
-
-    options.pageHeading = 'Mental scale vs. chin shields';
-    options.pageTitle = "Page 2 of 8";
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),

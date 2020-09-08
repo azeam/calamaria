@@ -43,18 +43,8 @@ class SixthIdPageState extends State<SixthIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
+    options.setData(6);
 
-    options.questions.add('Hemipenes seen?');
-
-    options.radioOp.add("Yes");
-    options.radioOp.add("No");
-
-    options.mainImg = 'assets/paraparietalscales.svg';
-    options.pageDescription =
-        'Knowing the sex of the snake can help narrowing down the number of candidate species. But sexing a small snake is difficult unless you are an expert. [See link under Main Menu.]\n\nHere we ask you to say if – or if not – you observed one or two hemipenes stick out from the snake’s cloaca. This sometimes happens if a male snake coils tightly around your finger and gives it a squeeze.\n\nIf you answer ”NO”, the algorithm will consider both sexes’ ventral and subcaudal counts (which you will be given a chance to enter soon).';
-
-    options.pageHeading = 'Hemipenes seen?';
-    options.pageTitle = "Page 6 of 8";
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),

@@ -43,19 +43,7 @@ class FifthIdPageState extends State<FifthIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
-
-    options.questions.add('Relative eye size');
-
-    options.radioOp.add("Smaller");
-    options.radioOp.add("Equal");
-    options.radioOp.add("Larger");
-
-    options.mainImg = 'assets/paraparietalscales.svg';
-    options.pageDescription =
-        'The size of the eye varies among Calamaria spp. Here you compare the eye diameter with the height of the upper lip below the eye. Is the eye diameter smaller than, more or less equal to, or larger than that the height of the upper lip?\n\nBelow are three illustrations showing what it might look like. ”Larger” is just a little larger.\n\nBeware that baby snakes often have eyes that, relatively speaking, are larger than in the adults; this character works best for adults.';
-
-    options.pageHeading = 'Relative size of the eye';
-    options.pageTitle = "Page 5 of 8";
+    options.setData(5);
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),
