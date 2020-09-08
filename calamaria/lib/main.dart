@@ -118,7 +118,7 @@ Widget navBar(BuildContext context) {
         //   onPressed: () {},
         // ),
         IconButton(
-          icon: const Icon(Icons.delete),
+          icon: Image.asset("assets/icons/trash.png"),
           onPressed: () {},
         ),
       ],
@@ -130,16 +130,16 @@ Widget bottomDrawer(BuildContext context) {
   return Drawer(
     child: ListView(
       children: <Widget>[
-        const ListTile(
-          leading: const Icon(Icons.info),
+        ListTile(
+          leading: Image.asset("assets/icons/info-circle.png"),
           title: const Text('About this app'),
         ),
-        const ListTile(
-          leading: const Icon(Icons.question_answer),
+        ListTile(
+          leading: Image.asset("assets/icons/head-question.png"),
           title: const Text('Are you really sure it’s a Calamaria...?'),
         ),
         ListTile(
-            leading: const Icon(Icons.list),
+            leading: Image.asset("assets/icons/clipboard-list.png"),
             title: Text('Species list and species accounts'),
             onTap: () {
               Navigator.push(
@@ -147,36 +147,36 @@ Widget bottomDrawer(BuildContext context) {
                 MaterialPageRoute(builder: (context) => PageListSpecies()),
               );
             }),
-        const ListTile(
-          leading: const Icon(Icons.perm_identity),
+        ListTile(
+          leading: Image.asset("assets/icons/loupe.png"),
           title: const Text('Identify your Calamaria'),
         ),
-        const ListTile(
-          leading: const Icon(Icons.photo),
+        ListTile(
+          leading: Image.asset("assets/icons/camera-time2.png"),
           title: const Text('How to take photos that allow identification'),
         ),
-        const ListTile(
-          leading: const Icon(Icons.ac_unit),
+        ListTile(
+          leading: Image.asset("assets/icons/gender.png"),
           title: const Text('How to sex a snake'),
         ),
-        const ListTile(
-          leading: const Icon(Icons.share),
+        ListTile(
+          leading: Image.asset("assets/icons/share2.png"),
           title: const Text('Share your novel records'),
         ),
-        const ListTile(
-          leading: const Icon(Icons.bug_report),
+        ListTile(
+          leading: Image.asset("assets/icons/bug2.png"),
           title: const Text('Report bugs & inconsistencies'),
         ),
-        const ListTile(
-          leading: const Icon(Icons.update),
+        ListTile(
+          leading: Image.asset("assets/icons/drawer-sync.png"),
           title: const Text('Version and update info'),
         ),
         const ListTile(
-          leading: const Icon(Icons.copyright),
+          leading: const Icon(Icons.copyright, color: Colors.black),
           title: const Text('Copyright info & photo credits'),
         ),
-        const ListTile(
-          leading: const Icon(Icons.book),
+        ListTile(
+          leading: Image.asset("assets/icons/read.png"),
           title: const Text('Further reading'),
         ),
       ],
