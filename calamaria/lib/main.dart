@@ -1,4 +1,5 @@
 import 'package:calamaria/pages/listSpecies.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'pages/firstidpage.dart';
 import 'pages/secondidpage.dart';
@@ -95,17 +96,18 @@ Widget navFAB(BuildContext context, Widget next) {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => next),
+          CupertinoPageRoute(builder: (context) => next),
         );
       });
 }
 
 Widget navBar(BuildContext context) {
   return BottomAppBar(
+    color: Colors.blueGrey,
     child: Row(
       children: <Widget>[
         IconButton(
-          icon: Icon(Icons.menu),
+          icon: Icon(Icons.menu, color: Colors.white),
           onPressed: () {
             showModalBottomSheet<Null>(
               context: context,
@@ -118,7 +120,7 @@ Widget navBar(BuildContext context) {
         //   onPressed: () {},
         // ),
         IconButton(
-          icon: Image.asset("assets/icons/trash.png"),
+          icon: Image.asset("assets/icons/trash.png", color: Colors.white),
           onPressed: () {},
         ),
       ],

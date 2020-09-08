@@ -44,7 +44,7 @@ class FourthIdPageState extends State<FourthIdPage> {
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
 
-    options.questions.add('Scales surrounding the paraparietal?');
+    options.questions.add('Number of scales touching the paraparietal?');
 
     options.radioOp.add("4");
     options.radioOp.add("5");
