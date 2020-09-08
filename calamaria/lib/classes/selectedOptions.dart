@@ -3,7 +3,6 @@ class SelectedOptions {
       sLowerLabials,
       sMental,
       sPreocular,
-      sSupraocular,
       sPostocular,
       sPostFused,
       sSSEP,
@@ -22,8 +21,6 @@ class SelectedOptions {
       "sPreocular": sPreocular == 0 ? true : sPreocular == 1 ? false : null,
       "sPostocular": sPostocular == 0 ? true : sPostocular == 1 ? false : null,
       "sPostFused": sPostFused == 0 ? true : sPostFused == 1 ? false : null,
-      "sSupraocular":
-          sSupraocular == 0 ? true : sSupraocular == 1 ? false : null,
       "sSSEP": sSSEP,
       "sEyeDiam": sEyeDiam,
       "sVents": sVents,

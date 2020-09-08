@@ -8,7 +8,6 @@ class ThirdIdPageState extends State<ThirdIdPage> {
   int _firstGroup = SelectedOptions.sPreocular;
   int _secondGroup = SelectedOptions.sPostocular;
   int _thirdGroup = SelectedOptions.sPostFused;
-  int _fourthGroup = SelectedOptions.sSupraocular;
 
   void _handleFirstRow(int value) {
     setState(() {
@@ -28,13 +27,6 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     setState(() {
       _thirdGroup = value;
       SelectedOptions.sPostFused = value;
-    });
-  }
-
-  void _handleFourthRow(int value) {
-    setState(() {
-      _fourthGroup = value;
-      SelectedOptions.sSupraocular = value;
     });
   }
 
@@ -64,9 +56,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                       groupValue: group,
                       onChanged: row == 1
                           ? _handleFirstRow
-                          : row == 2
-                              ? _handleSecondRow
-                              : row == 3 ? _handleThirdRow : _handleFourthRow,
+                          : row == 2 ? _handleSecondRow : _handleThirdRow,
                     ),
                   ),
                   Text(
@@ -88,7 +78,6 @@ class ThirdIdPageState extends State<ThirdIdPage> {
     options.questions.add('Preocular present?');
     options.questions.add('Postocular present?');
     options.questions.add('Postocular fused\nwith supraocular?');
-    options.questions.add('Supraocular present?');
 
     options.radioOp.add("Yes");
     options.radioOp.add("No");
@@ -123,7 +112,6 @@ class ThirdIdPageState extends State<ThirdIdPage> {
               radioRow(_firstGroup, 1, options),
               radioRow(_secondGroup, 2, options),
               radioRow(_thirdGroup, 3, options),
-              radioRow(_fourthGroup, 4, options),
             ],
           ),
         ),
