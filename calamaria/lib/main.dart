@@ -4,10 +4,10 @@ import 'pages/firstidpage.dart';
 import 'pages/secondidpage.dart';
 import 'pages/thirdidpage.dart';
 import 'pages/fourthidpage.dart';
-// import 'fifthidpage.dart';
-// import 'sixthidpage.dart';
-// import 'seventhidpage.dart';
-// import 'eighthidpage.dart';
+import 'pages/fifthidpage.dart';
+import 'pages/sixthidpage.dart';
+import 'pages/seventhidpage.dart';
+import 'pages/eighthidpage.dart';
 
 int test = 0; // keep results from selections in a global array of some kind?
 
@@ -61,33 +61,33 @@ class FourthIdPage extends StatefulWidget {
   FourthIdPageState createState() => FourthIdPageState();
 }
 
-// class FifthIdPage extends StatefulWidget {
-//   FifthIdPage({Key key, this.title}) : super(key: key);
-//   final String title;
-//   @override
-//   FifthIdPageState createState() => FifthIdPageState();
-// }
+class FifthIdPage extends StatefulWidget {
+  FifthIdPage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  FifthIdPageState createState() => FifthIdPageState();
+}
 
-// class SixthIdPage extends StatefulWidget {
-//   SixthIdPage({Key key, this.title}) : super(key: key);
-//   final String title;
-//   @override
-//   SixthIdPageState createState() => SixthIdPageState();
-// }
+class SixthIdPage extends StatefulWidget {
+  SixthIdPage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  SixthIdPageState createState() => SixthIdPageState();
+}
 
-// class SeventhIdPage extends StatefulWidget {
-//   SeventhIdPage({Key key, this.title}) : super(key: key);
-//   final String title;
-//   @override
-//   SeventhIdPageState createState() => SeventhIdPageState();
-// }
+class SeventhIdPage extends StatefulWidget {
+  SeventhIdPage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  SeventhIdPageState createState() => SeventhIdPageState();
+}
 
-// class EigthIdPage extends StatefulWidget {
-//   EigthIdPage({Key key, this.title}) : super(key: key);
-//   final String title;
-//   @override
-//   EighthIdPageState createState() => EighthIdPageState();
-// }
+class EighthIdPage extends StatefulWidget {
+  EighthIdPage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  EighthIdPageState createState() => EighthIdPageState();
+}
 
 Widget navFAB(BuildContext context, Widget next) {
   return FloatingActionButton(

@@ -4,29 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
-class ThirdIdPageState extends State<ThirdIdPage> {
-  int _firstGroup = SelectedOptions.sPreocular;
-  int _secondGroup = SelectedOptions.sPostocular;
-  int _thirdGroup = SelectedOptions.sPostFused;
-
+class FifthIdPageState extends State<FifthIdPage> {
+  int _firstGroup = SelectedOptions.sEyeDiam;
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-      SelectedOptions.sPreocular = value;
-    });
-  }
-
-  void _handleSecondRow(int value) {
-    setState(() {
-      _secondGroup = value;
-      SelectedOptions.sPostocular = value;
-    });
-  }
-
-  void _handleThirdRow(int value) {
-    setState(() {
-      _thirdGroup = value;
-      SelectedOptions.sPostFused = value;
+      SelectedOptions.sEyeDiam = value;
     });
   }
 
@@ -44,9 +27,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                 child: Radio(
                   value: i,
                   groupValue: group,
-                  onChanged: row == 1
-                      ? _handleFirstRow
-                      : row == 2 ? _handleSecondRow : _handleThirdRow,
+                  onChanged: _handleFirstRow,
                 ),
               ),
               Text(
@@ -63,19 +44,18 @@ class ThirdIdPageState extends State<ThirdIdPage> {
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
 
-    options.questions.add('Preocular present?');
-    options.questions.add('Postocular present?');
-    options.questions.add('Postocular fused with supraocular?');
+    options.questions.add('Relative eye size');
 
-    options.radioOp.add("Yes");
-    options.radioOp.add("No");
+    options.radioOp.add("Smaller");
+    options.radioOp.add("Equal");
+    options.radioOp.add("Larger");
 
-    options.mainImg = 'assets/ocularscales.svg';
+    options.mainImg = 'assets/paraparietalscales.svg';
     options.pageDescription =
-        'All Bornean Calamaria have a supraocular scale sitting above the eye. Most also have a postocular (a small scale just behind the eye). However, in some the postocular may be seamlessly fused with the supralabial – if so, that single, merged scale is called supraocular (and the postocular is considered absent). \n\nHere you focus on these scales plus the presence/absence of a preocular (a small scale sitting in front of the eye). \n\nThe pre- and postoculars can be very small, so make sure you use a good hand lens – or even better, a very good macro lens on your camera – to document their presence/absence!';
-    options.pageHeading = 'Scales around the eye';
-    options.pageTitle = "Page 3 of 8";
+        'The size of the eye varies among Calamaria spp. Here you compare the eye diameter with the height of the upper lip below the eye. Is the eye diameter smaller than, more or less equal to, or larger than that the height of the upper lip?\n\nBelow are three illustrations showing what it might look like. ”Larger” is just a little larger.\n\nBeware that baby snakes often have eyes that, relatively speaking, are larger than in the adults; this character works best for adults.';
 
+    options.pageHeading = 'Relative size of the eye';
+    options.pageTitle = "Page 5 of 8";
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),
@@ -83,7 +63,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
       body: Container(
         padding: EdgeInsets.all(8.0),
         child: new SingleChildScrollView(
-          child: new Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(options.pageHeading,
@@ -105,30 +85,12 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                 ),
               ),
               radioRow(_firstGroup, 1, options),
-              Divider(height: 10.0, color: Colors.transparent),
-              Text(
-                options.questions[1],
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
-              ),
-              radioRow(_secondGroup, 2, options),
-              Divider(height: 10.0, color: Colors.transparent),
-              Text(
-                options.questions[2],
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
-              ),
-              radioRow(_thirdGroup, 3, options),
             ],
           ),
         ),
       ),
       bottomNavigationBar: navBar(context),
-      floatingActionButton: navFAB(context, FourthIdPage()),
+      floatingActionButton: navFAB(context, SixthIdPage()),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }

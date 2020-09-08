@@ -14,49 +14,37 @@ class SecondIdPageState extends State<SecondIdPage> {
   }
 
   Widget radioRow(int group, int row, FormPageOptions options) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          options.questions[row - 1],
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.0,
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      for (int i = 0; i < options.radioOp.length; i++)
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 40.0,
+                width: 30.0,
+                child: Radio(
+                  value: i,
+                  groupValue: group,
+                  onChanged: _handleFirstRow,
+                ),
+              ),
+              Text(
+                options.radioOp[i],
+                style: TextStyle(fontSize: 16.0),
+              ),
+            ],
           ),
         ),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          for (int i = 0; i < options.radioOp.length; i++)
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    height: 40.0,
-                    width: 30.0,
-                    child: Radio(
-                      value: i,
-                      groupValue: group,
-                      onChanged: _handleFirstRow,
-                    ),
-                  ),
-                  Text(
-                    options.radioOp[i],
-                    style: TextStyle(fontSize: 16.0),
-                  ),
-                ],
-              ),
-            ),
-        ]),
-      ],
-    );
+    ]);
   }
 
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
 
-    options.questions.add('Mental touching\nthe anterior\nchin shields?');
+    options.questions.add('Mental touching the anterior chin shields?');
 
     options.radioOp.add("Yes");
     options.radioOp.add("No");
@@ -88,6 +76,13 @@ class SecondIdPageState extends State<SecondIdPage> {
                 matchTextDirection: false,
               ),
               Divider(height: 15.0, color: Colors.transparent),
+              Text(
+                options.questions[0],
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
               radioRow(_firstGroup, 1, options),
             ],
           ),

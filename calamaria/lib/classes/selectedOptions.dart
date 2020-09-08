@@ -7,6 +7,7 @@ class SelectedOptions {
       sPostFused,
       sSSEP,
       sEyeDiam,
+      sHemipenes,
       sVents,
       sSubcaudals,
       sTail;
@@ -22,10 +23,15 @@ class SelectedOptions {
       "sPostocular": sPostocular == 0 ? true : sPostocular == 1 ? false : null,
       "sPostFused": sPostFused == 0 ? true : sPostFused == 1 ? false : null,
       "sSSEP": sSSEP,
-      "sEyeDiam": sEyeDiam,
+      "sEyeDiam": sEyeDiam == 0
+          ? "smaller"
+          : sEyeDiam == 1 ? "equal" : sEyeDiam == 2 ? "larger" : null,
+      "sHemipenes": sHemipenes == 0 ? true : sHemipenes == 1 ? false : null,
       "sVents": sVents,
       "sSubcaudals": sSubcaudals,
-      "sTail": sTail,
+      "sTail": sTail == 0
+          ? "gradually"
+          : sTail == 1 ? "intermediately" : sTail == 2 ? "abruptly" : null,
     };
   }
 }

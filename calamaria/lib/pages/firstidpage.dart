@@ -49,86 +49,60 @@ class FirstIdPageState extends State<FirstIdPage> {
 
   Widget checkRow(int row, FormPageOptions options) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          options.questions[row - 1],
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.0,
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (int i = 0; i < options.radioOp.length; i++)
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 40.0,
-                        width: 30.0,
-                        child: Checkbox(
-                            value: i == 0
-                                ? _firstCheck
-                                : i == 1 ? _secondCheck : _thirdCheck,
-                            onChanged: i == 0
-                                ? _handleFirstCheck
-                                : i == 1
-                                    ? _handleSecondCheck
-                                    : _handleThirdCheck),
-                      ),
-                      Text(
-                        options.checkOp[i],
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                    ]),
-              ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget radioRow(int group, int row, FormPageOptions options) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          options.questions[row - 1],
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.0,
-          ),
-        ),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          for (int i = 0; i < options.radioOp.length; i++)
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (int i = 0; i < options.radioOp.length; i++)
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
                     height: 40.0,
                     width: 30.0,
-                    child: Radio(
-                      value: int.parse(options.radioOp[i]), // get val from text
-                      groupValue: group,
-                      onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
-                    ),
+                    child: Checkbox(
+                        value: i == 0
+                            ? _firstCheck
+                            : i == 1 ? _secondCheck : _thirdCheck,
+                        onChanged: i == 0
+                            ? _handleFirstCheck
+                            : i == 1 ? _handleSecondCheck : _handleThirdCheck),
                   ),
                   Text(
-                    options.radioOp[i],
+                    options.checkOp[i],
                     style: TextStyle(fontSize: 16.0),
                   ),
-                ],
-              ),
-            ),
-        ]),
+                ]),
+          ),
       ],
     );
+  }
+
+  Widget radioRow(int group, int row, FormPageOptions options) {
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      for (int i = 0; i < options.radioOp.length; i++)
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 40.0,
+                width: 30.0,
+                child: Radio(
+                  value: int.parse(options.radioOp[i]), // get val from text
+                  groupValue: group,
+                  onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
+                ),
+              ),
+              Text(
+                options.radioOp[i],
+                style: TextStyle(fontSize: 16.0),
+              ),
+            ],
+          ),
+        ),
+    ]);
   }
 
   @override
@@ -136,9 +110,9 @@ class FirstIdPageState extends State<FirstIdPage> {
     FormPageOptions options =
         FormPageOptions(); // init on each build and pass options as arg or lists will keep increasing when going back to page
 
-    options.questions.add('# of upper labials:');
-    options.questions.add('# of lower labials:');
-    options.questions.add('Which upper\nlabials touch\nthe eye?');
+    options.questions.add('Number of upper labials:');
+    options.questions.add('Number of lower labials:');
+    options.questions.add('Which upper labials touch the eye?');
 
     options.radioOp.add("4");
     options.radioOp.add("5");
@@ -175,8 +149,31 @@ class FirstIdPageState extends State<FirstIdPage> {
                 matchTextDirection: false,
               ),
               Divider(height: 15.0, color: Colors.transparent),
+              Text(
+                options.questions[0],
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
               radioRow(_firstGroup, 1, options),
+              Divider(height: 10.0, color: Colors.transparent),
+              Text(
+                options.questions[1],
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
               radioRow(_secondGroup, 2, options),
+              Divider(height: 10.0, color: Colors.transparent),
+              Text(
+                options.questions[2],
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
               checkRow(3, options),
             ],
           ),

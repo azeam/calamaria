@@ -4,29 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
-class ThirdIdPageState extends State<ThirdIdPage> {
-  int _firstGroup = SelectedOptions.sPreocular;
-  int _secondGroup = SelectedOptions.sPostocular;
-  int _thirdGroup = SelectedOptions.sPostFused;
-
+class SixthIdPageState extends State<SixthIdPage> {
+  int _firstGroup = SelectedOptions.sHemipenes;
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-      SelectedOptions.sPreocular = value;
-    });
-  }
-
-  void _handleSecondRow(int value) {
-    setState(() {
-      _secondGroup = value;
-      SelectedOptions.sPostocular = value;
-    });
-  }
-
-  void _handleThirdRow(int value) {
-    setState(() {
-      _thirdGroup = value;
-      SelectedOptions.sPostFused = value;
+      SelectedOptions.sHemipenes = value;
     });
   }
 
@@ -44,9 +27,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                 child: Radio(
                   value: i,
                   groupValue: group,
-                  onChanged: row == 1
-                      ? _handleFirstRow
-                      : row == 2 ? _handleSecondRow : _handleThirdRow,
+                  onChanged: _handleFirstRow,
                 ),
               ),
               Text(
@@ -63,19 +44,17 @@ class ThirdIdPageState extends State<ThirdIdPage> {
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
 
-    options.questions.add('Preocular present?');
-    options.questions.add('Postocular present?');
-    options.questions.add('Postocular fused with supraocular?');
+    options.questions.add('Hemipenes seen?');
 
     options.radioOp.add("Yes");
     options.radioOp.add("No");
 
-    options.mainImg = 'assets/ocularscales.svg';
+    options.mainImg = 'assets/paraparietalscales.svg';
     options.pageDescription =
-        'All Bornean Calamaria have a supraocular scale sitting above the eye. Most also have a postocular (a small scale just behind the eye). However, in some the postocular may be seamlessly fused with the supralabial – if so, that single, merged scale is called supraocular (and the postocular is considered absent). \n\nHere you focus on these scales plus the presence/absence of a preocular (a small scale sitting in front of the eye). \n\nThe pre- and postoculars can be very small, so make sure you use a good hand lens – or even better, a very good macro lens on your camera – to document their presence/absence!';
-    options.pageHeading = 'Scales around the eye';
-    options.pageTitle = "Page 3 of 8";
+        'Knowing the sex of the snake can help narrowing down the number of candidate species. But sexing a small snake is difficult unless you are an expert. [See link under Main Menu.]\n\nHere we ask you to say if – or if not – you observed one or two hemipenes stick out from the snake’s cloaca. This sometimes happens if a male snake coils tightly around your finger and gives it a squeeze.\n\nIf you answer ”NO”, the algorithm will consider both sexes’ ventral and subcaudal counts (which you will be given a chance to enter soon).';
 
+    options.pageHeading = 'Hemipenes seen?';
+    options.pageTitle = "Page 6 of 8";
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),
@@ -83,7 +62,7 @@ class ThirdIdPageState extends State<ThirdIdPage> {
       body: Container(
         padding: EdgeInsets.all(8.0),
         child: new SingleChildScrollView(
-          child: new Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(options.pageHeading,
@@ -105,30 +84,12 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                 ),
               ),
               radioRow(_firstGroup, 1, options),
-              Divider(height: 10.0, color: Colors.transparent),
-              Text(
-                options.questions[1],
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
-              ),
-              radioRow(_secondGroup, 2, options),
-              Divider(height: 10.0, color: Colors.transparent),
-              Text(
-                options.questions[2],
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
-              ),
-              radioRow(_thirdGroup, 3, options),
             ],
           ),
         ),
       ),
       bottomNavigationBar: navBar(context),
-      floatingActionButton: navFAB(context, FourthIdPage()),
+      floatingActionButton: navFAB(context, SeventhIdPage()),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
