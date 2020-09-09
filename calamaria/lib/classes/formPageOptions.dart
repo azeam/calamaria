@@ -19,7 +19,7 @@ class FormPageOptions {
         this.mainImg = 'assets/labialscales.svg';
         this.pageDescription =
             'Bornean Calamaria have either 4 or 5 (in one species sometimes 6) upper labials (UL), and 4 or 5 lower labials (LL). The tricky part is to judge what are the most posterior of those scales (and not scales named differently). \n\nHere you provide those counts, and enter which of the upper labials are in contact with the eye. Usually two upper labials touch the eye; either the 3rd and 4th, or the 2nd and 3rd. In one species, sometimes only the 3rd UL touches the eye.';
-        this.pageHeading = 'Upper and lower labials (lip scales)';
+        this.pageHeading = 'Upper and lower labials';
         this.pageTitle = "Calamaria of Borneo (" + page.toString() + " of 8)";
         break;
       case 2:
@@ -77,10 +77,10 @@ class FormPageOptions {
         this.pageTitle = "Calamaria of Borneo (" + page.toString() + " of 8)";
         break;
       case 7:
-        this.questions.add('Tail tapering...');
-        this.radioOp.add("Gradually");
-        this.radioOp.add("Intermediately");
-        this.radioOp.add("Abruptly");
+        this.questions.add('Tail tapering?');
+        this.radioOp.add("Gradual");
+        this.radioOp.add("Intermediate");
+        this.radioOp.add("Abrupt");
         this.mainImg = 'assets/paraparietalscales.svg';
         this.pageDescription =
             'This is not about the tail length – it is about where on the tail it starts to get narrower, and how abruptly (steeply) it then narrows down. We say that the tail tapers gradually for much of the tail’s length, or abruptly near the end, or something inbetween those states.\n\nThis is a subjective character which can be difficult to score correctly. If this character results in a mis-match for an otherwise good species agreement, revisit the character state.';
@@ -93,7 +93,7 @@ class FormPageOptions {
         this.mainImg = 'assets/paraparietalscales.svg';
         this.pageDescription =
             'It is virtually impossible to count how many ventral scales a living Calamaria specimen has – they move too much! It is easier with road-killed specimens unless they are too damaged. Best is to photograph the snake from below (see advice on how to do that under the Main Menu) and count scales from the photo.\n\nCounting subcaudals (they are paired in Calamaria, so only count those on one side of the tail) is also best done from photos.\n\nIt is important to start counting on the right scale; to not count the anal scale; and to not count the tail tip scute. The photo advice page gives more info on this.';
-        this.pageHeading = 'Number of ventrals & subcaudals';
+        this.pageHeading = 'Ventrals & subcaudals';
         this.pageTitle = "Calamaria of Borneo (" + page.toString() + " of 8)";
         break;
     }

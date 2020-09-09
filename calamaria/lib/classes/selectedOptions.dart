@@ -30,8 +30,8 @@ class SelectedOptions {
       "sVents": sVents,
       "sSubcaudals": sSubcaudals,
       "sTail": sTail == 0
-          ? "gradually"
-          : sTail == 1 ? "intermediately" : sTail == 2 ? "abruptly" : null,
+          ? "gradual"
+          : sTail == 1 ? "intermediate" : sTail == 2 ? "abrupt" : null,
     };
   }
 

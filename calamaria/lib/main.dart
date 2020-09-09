@@ -101,7 +101,7 @@ class InfoPage extends StatefulWidget {
 Widget navFAB(BuildContext context, Widget next) {
   return FloatingActionButton(
       child: Icon(Icons.arrow_forward),
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.green[600],
       onPressed: () {
         Navigator.push(
           context,
@@ -215,7 +215,7 @@ Widget bottomDrawer(BuildContext context) {
     child: ListView(
       children: <Widget>[
         ListTile(
-            leading: Image.asset("assets/icons/info-circle.png"),
+            leading: Image.asset("assets/icons/info-square.png"),
             title: const Text('About this app'),
             onTap: () {
               Navigator.push(
