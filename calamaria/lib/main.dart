@@ -101,6 +101,7 @@ class InfoPage extends StatefulWidget {
 Widget navFAB(BuildContext context, Widget next) {
   return FloatingActionButton(
       child: Icon(Icons.arrow_forward),
+      backgroundColor: Colors.green,
       onPressed: () {
         Navigator.push(
           context,
@@ -140,7 +141,8 @@ showAlert(BuildContext context) {
       builder: (dialogContex) {
         return Dialog(
           child: Container(
-            margin: EdgeInsets.all(16.0),
+            margin: EdgeInsets.only(
+                top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
             child: Form(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -152,26 +154,33 @@ showAlert(BuildContext context) {
                       fontSize: 18.0,
                     ),
                   ),
+                  Divider(height: 15.0, color: Colors.transparent),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       FlatButton(
-                          onPressed: () {
-                            Navigator.of(dialogContex).pop();
-                          },
-                          child: Text("Cancel")),
+                        onPressed: () {
+                          Navigator.of(dialogContex).pop();
+                        },
+                        child: Text("Cancel"),
+                        color: Colors.blueGrey,
+                        textColor: Colors.white,
+                      ),
                       FlatButton(
-                          onPressed: () {
-                            Navigator.of(dialogContex).pop();
-                            SelectedOptions sel = SelectedOptions();
-                            sel.resetData();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Calamaria()),
-                            );
-                          },
-                          child: Text("Continue"))
+                        onPressed: () {
+                          Navigator.of(dialogContex).pop();
+                          SelectedOptions sel = SelectedOptions();
+                          sel.resetData();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Calamaria()),
+                          );
+                        },
+                        child: Text("Continue"),
+                        color: Colors.blueGrey,
+                        textColor: Colors.white,
+                      )
                     ],
                   )
                 ],

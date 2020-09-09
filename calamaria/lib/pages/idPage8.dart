@@ -74,6 +74,7 @@ class IdPageState8 extends State<IdPage8> {
       bottomNavigationBar: idNavBar(context),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.done),
+        backgroundColor: Colors.green,
         onPressed: () {
           SelectedOptions sel = SelectedOptions();
           print(sel.toJson());
