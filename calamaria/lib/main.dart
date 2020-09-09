@@ -135,40 +135,51 @@ Widget idNavBar(BuildContext context) {
 }
 
 showAlert(BuildContext context) {
-  // set up the buttons
-  Widget cancelButton = FlatButton(
-    child: Text("Cancel"),
-    onPressed: () {
-      Navigator.of(context).pop();
-    },
-  );
-  Widget continueButton = FlatButton(
-    child: Text("Continue"),
-    onPressed: () {
-      SelectedOptions sel = SelectedOptions();
-      sel.resetData();
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Calamaria()),
-      );
-    },
-  );
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Clear data"),
-    content: Text("Clear all entered data and restart?"),
-    actions: [
-      cancelButton,
-      continueButton,
-    ],
-  );
-  // show the dialog
   showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
+      context: context,
+      builder: (dialogContex) {
+        return Dialog(
+          child: Container(
+            margin: EdgeInsets.all(16.0),
+            child: Form(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    "Clear all entered data and restart?",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      FlatButton(
+                          onPressed: () {
+                            Navigator.of(dialogContex).pop();
+                          },
+                          child: Text("Cancel")),
+                      FlatButton(
+                          onPressed: () {
+                            Navigator.of(dialogContex).pop();
+                            SelectedOptions sel = SelectedOptions();
+                            sel.resetData();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Calamaria()),
+                            );
+                          },
+                          child: Text("Continue"))
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      });
 }
 
 Widget navBar(BuildContext context) {
