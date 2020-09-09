@@ -115,11 +115,12 @@ class IdPageState1 extends State<IdPage1> {
         title: Text(options.pageTitle),
       ),
       body: Container(
-        padding: EdgeInsets.all(8.0),
-        child: new SingleChildScrollView(
-          child: new Column(
+        padding: EdgeInsets.symmetric(horizontal: 8.0),
+        child: SingleChildScrollView(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              Divider(height: 8.0, color: Colors.transparent),
               Text(options.pageHeading,
                   style: Theme.of(context).textTheme.headline5),
               Divider(height: 15.0, color: Colors.transparent),
