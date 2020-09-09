@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../classes/infoPageData.dart';
 import '../main.dart';
+import 'common.dart';
 
 class InfoPageState extends State<InfoPage> {
   @override

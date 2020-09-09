@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
+import 'common.dart';
 
 class IdPageState7 extends State<IdPage7> {
   int _firstGroup = SelectedOptions.sTail;

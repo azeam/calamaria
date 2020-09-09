@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
+import 'common.dart';
 
 class IdPageState3 extends State<IdPage3> {
   int _firstGroup = SelectedOptions.sPreocular;

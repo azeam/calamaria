@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
+import 'common.dart';
 
 class IdPageState5 extends State<IdPage5> {
   int _firstGroup = SelectedOptions.sEyeDiam;
