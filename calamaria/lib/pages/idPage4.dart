@@ -4,12 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
-class FifthIdPageState extends State<FifthIdPage> {
-  int _firstGroup = SelectedOptions.sEyeDiam;
+class IdPageState4 extends State<IdPage4> {
+  int _firstGroup = SelectedOptions.sSSEP;
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-      SelectedOptions.sEyeDiam = value;
+      SelectedOptions.sSSEP = value;
     });
   }
 
@@ -25,7 +25,7 @@ class FifthIdPageState extends State<FifthIdPage> {
                 height: 40.0,
                 width: 30.0,
                 child: Radio(
-                  value: i,
+                  value: int.parse(options.radioOp[i]),
                   groupValue: group,
                   onChanged: _handleFirstRow,
                 ),
@@ -43,7 +43,7 @@ class FifthIdPageState extends State<FifthIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
-    options.setData(5);
+    options.setData(4);
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),
@@ -78,7 +78,7 @@ class FifthIdPageState extends State<FifthIdPage> {
         ),
       ),
       bottomNavigationBar: navBar(context),
-      floatingActionButton: navFAB(context, SixthIdPage()),
+      floatingActionButton: navFAB(context, IdPage5()),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }

@@ -4,12 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
-class FourthIdPageState extends State<FourthIdPage> {
-  int _firstGroup = SelectedOptions.sSSEP;
+class IdPageState2 extends State<IdPage2> {
+  int _firstGroup = SelectedOptions.sMental;
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-      SelectedOptions.sSSEP = value;
+      SelectedOptions.sMental = value;
     });
   }
 
@@ -25,7 +25,7 @@ class FourthIdPageState extends State<FourthIdPage> {
                 height: 40.0,
                 width: 30.0,
                 child: Radio(
-                  value: int.parse(options.radioOp[i]),
+                  value: i,
                   groupValue: group,
                   onChanged: _handleFirstRow,
                 ),
@@ -43,7 +43,8 @@ class FourthIdPageState extends State<FourthIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
-    options.setData(4);
+    options.setData(2);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),
@@ -78,7 +79,7 @@ class FourthIdPageState extends State<FourthIdPage> {
         ),
       ),
       bottomNavigationBar: navBar(context),
-      floatingActionButton: navFAB(context, FifthIdPage()),
+      floatingActionButton: navFAB(context, IdPage3()),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }

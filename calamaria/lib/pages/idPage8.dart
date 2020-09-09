@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
-class EighthIdPageState extends State<EighthIdPage> {
+class IdPageState8 extends State<IdPage8> {
   String _firstGroup = SelectedOptions.sVents.toString();
   String _secondGroup = SelectedOptions.sSubcaudals.toString();
 

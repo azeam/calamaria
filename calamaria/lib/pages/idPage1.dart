@@ -4,30 +4,78 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
-class ThirdIdPageState extends State<ThirdIdPage> {
-  int _firstGroup = SelectedOptions.sPreocular;
-  int _secondGroup = SelectedOptions.sPostocular;
-  int _thirdGroup = SelectedOptions.sPostFused;
+class IdPageState1 extends State<IdPage1> {
+  bool _firstCheck = false;
+  bool _secondCheck = false;
+  bool _thirdCheck = false;
+
+  int _firstGroup = SelectedOptions.sUpperLabials;
+  int _secondGroup = SelectedOptions.sLowerLabials;
+
+  void _handleFirstCheck(bool value) {
+    setState(() => _firstCheck = value);
+    (_firstCheck)
+        ? SelectedOptions.sULTouchingEye.add(2)
+        : SelectedOptions.sULTouchingEye.remove(2);
+  }
+
+  void _handleSecondCheck(bool value) {
+    setState(() => _secondCheck = value);
+    (_secondCheck)
+        ? SelectedOptions.sULTouchingEye.add(3)
+        : SelectedOptions.sULTouchingEye.remove(3);
+  }
+
+  void _handleThirdCheck(bool value) {
+    setState(() => _thirdCheck = value);
+    (_thirdCheck)
+        ? SelectedOptions.sULTouchingEye.add(4)
+        : SelectedOptions.sULTouchingEye.remove(4);
+  }
 
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-      SelectedOptions.sPreocular = value;
+      SelectedOptions.sUpperLabials = value;
     });
   }
 
   void _handleSecondRow(int value) {
     setState(() {
       _secondGroup = value;
-      SelectedOptions.sPostocular = value;
+      SelectedOptions.sLowerLabials = value;
     });
   }
 
-  void _handleThirdRow(int value) {
-    setState(() {
-      _thirdGroup = value;
-      SelectedOptions.sPostFused = value;
-    });
+  Widget checkRow(int row, FormPageOptions options) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (int i = 0; i < options.radioOp.length; i++)
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 40.0,
+                    width: 30.0,
+                    child: Checkbox(
+                        value: i == 0
+                            ? _firstCheck
+                            : i == 1 ? _secondCheck : _thirdCheck,
+                        onChanged: i == 0
+                            ? _handleFirstCheck
+                            : i == 1 ? _handleSecondCheck : _handleThirdCheck),
+                  ),
+                  Text(
+                    options.checkOp[i],
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ]),
+          ),
+      ],
+    );
   }
 
   Widget radioRow(int group, int row, FormPageOptions options) {
@@ -42,11 +90,9 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                 height: 40.0,
                 width: 30.0,
                 child: Radio(
-                  value: i,
+                  value: int.parse(options.radioOp[i]), // get val from text
                   groupValue: group,
-                  onChanged: row == 1
-                      ? _handleFirstRow
-                      : row == 2 ? _handleSecondRow : _handleThirdRow,
+                  onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
                 ),
               ),
               Text(
@@ -61,9 +107,9 @@ class ThirdIdPageState extends State<ThirdIdPage> {
 
   @override
   Widget build(BuildContext context) {
-    FormPageOptions options = FormPageOptions();
-    options.setData(3);
-
+    FormPageOptions options =
+        FormPageOptions(); // init on each build and pass options as arg or lists will keep increasing when going back to page
+    options.setData(1);
     return Scaffold(
       appBar: AppBar(
         title: Text(options.pageTitle),
@@ -110,13 +156,13 @@ class ThirdIdPageState extends State<ThirdIdPage> {
                   fontSize: 18.0,
                 ),
               ),
-              radioRow(_thirdGroup, 3, options),
+              checkRow(3, options),
             ],
           ),
         ),
       ),
       bottomNavigationBar: navBar(context),
-      floatingActionButton: navFAB(context, FourthIdPage()),
+      floatingActionButton: navFAB(context, IdPage2()),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }

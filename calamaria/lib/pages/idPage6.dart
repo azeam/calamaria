@@ -4,12 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
 
-class SeventhIdPageState extends State<SeventhIdPage> {
-  int _firstGroup = SelectedOptions.sTail;
+class IdPageState6 extends State<IdPage6> {
+  int _firstGroup = SelectedOptions.sHemipenes;
   void _handleFirstRow(int value) {
     setState(() {
       _firstGroup = value;
-      SelectedOptions.sTail = value;
+      SelectedOptions.sHemipenes = value;
     });
   }
 
@@ -43,7 +43,7 @@ class SeventhIdPageState extends State<SeventhIdPage> {
   @override
   Widget build(BuildContext context) {
     FormPageOptions options = FormPageOptions();
-    options.setData(7);
+    options.setData(6);
 
     return Scaffold(
       appBar: AppBar(
@@ -79,7 +79,7 @@ class SeventhIdPageState extends State<SeventhIdPage> {
         ),
       ),
       bottomNavigationBar: navBar(context),
-      floatingActionButton: navFAB(context, EighthIdPage()),
+      floatingActionButton: navFAB(context, IdPage7()),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
