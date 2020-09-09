@@ -79,7 +79,7 @@ class IdPageState6 extends State<IdPage6> {
           ),
         ),
       ),
-      bottomNavigationBar: navBar(context),
+      bottomNavigationBar: idNavBar(context),
       floatingActionButton: navFAB(context, IdPage7()),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );

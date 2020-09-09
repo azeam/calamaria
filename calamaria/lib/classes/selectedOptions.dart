@@ -34,4 +34,20 @@ class SelectedOptions {
           : sTail == 1 ? "intermediately" : sTail == 2 ? "abruptly" : null,
     };
   }
+
+  void resetData() {
+    sULTouchingEye = List<int>();
+    sUpperLabials = null;
+    sLowerLabials = null;
+    sMental = null;
+    sPreocular = null;
+    sPostocular = null;
+    sPostFused = null;
+    sSSEP = null;
+    sEyeDiam = null;
+    sHemipenes = null;
+    sVents = null;
+    sSubcaudals = null;
+    sTail = null;
+  }
 }

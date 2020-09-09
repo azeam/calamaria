@@ -1,6 +1,7 @@
 import 'package:calamaria/pages/listSpecies.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'classes/selectedOptions.dart';
 import 'pages/idPage1.dart';
 import 'pages/idPage2.dart';
 import 'pages/idPage3.dart';
@@ -108,7 +109,7 @@ Widget navFAB(BuildContext context, Widget next) {
       });
 }
 
-Widget navBar(BuildContext context) {
+Widget idNavBar(BuildContext context) {
   return BottomAppBar(
     color: Colors.blueGrey,
     child: Row(
@@ -124,7 +125,65 @@ Widget navBar(BuildContext context) {
         ),
         IconButton(
           icon: Image.asset("assets/icons/trash.png", color: Colors.white),
-          onPressed: () {},
+          onPressed: () {
+            showAlert(context);
+          },
+        ),
+      ],
+    ),
+  );
+}
+
+showAlert(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = FlatButton(
+    child: Text("Cancel"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+  Widget continueButton = FlatButton(
+    child: Text("Continue"),
+    onPressed: () {
+      SelectedOptions sel = SelectedOptions();
+      sel.resetData();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Calamaria()),
+      );
+    },
+  );
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Clear data"),
+    content: Text("Clear all entered data and restart?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+Widget navBar(BuildContext context) {
+  return BottomAppBar(
+    color: Colors.blueGrey,
+    child: Row(
+      children: <Widget>[
+        IconButton(
+          icon: Icon(Icons.menu, color: Colors.white),
+          onPressed: () {
+            showModalBottomSheet<Null>(
+              context: context,
+              builder: (BuildContext context) => bottomDrawer(context),
+            );
+          },
         ),
       ],
     ),
@@ -166,6 +225,8 @@ Widget bottomDrawer(BuildContext context) {
             leading: Image.asset("assets/icons/loupe.png"),
             title: const Text('Identify your Calamaria'),
             onTap: () {
+              SelectedOptions sel = SelectedOptions();
+              sel.resetData();
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Calamaria()),

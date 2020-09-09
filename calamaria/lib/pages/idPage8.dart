@@ -71,7 +71,7 @@ class IdPageState8 extends State<IdPage8> {
           ),
         ),
       ),
-      bottomNavigationBar: navBar(context),
+      bottomNavigationBar: idNavBar(context),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.done),
         onPressed: () {
