@@ -9,6 +9,7 @@ import 'pages/idPage5.dart';
 import 'pages/idPage6.dart';
 import 'pages/idPage7.dart';
 import 'pages/idPage8.dart';
+import 'pages/infoPage.dart';
 
 void main() => runApp(Calamaria());
 
@@ -88,6 +89,14 @@ class PageListSpecies extends StatefulWidget {
   PageState_ListSpecies createState() => PageState_ListSpecies();
 }
 
+class InfoPage extends StatefulWidget {
+  InfoPage(this.page, {Key key, this.title}) : super(key: key);
+  final String title;
+  final String page;
+  @override
+  InfoPageState createState() => InfoPageState();
+}
+
 Widget navFAB(BuildContext context, Widget next) {
   return FloatingActionButton(
       child: Icon(Icons.arrow_forward),
@@ -127,13 +136,23 @@ Widget bottomDrawer(BuildContext context) {
     child: ListView(
       children: <Widget>[
         ListTile(
-          leading: Image.asset("assets/icons/info-circle.png"),
-          title: const Text('About this app'),
-        ),
+            leading: Image.asset("assets/icons/info-circle.png"),
+            title: const Text('About this app'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage("about")),
+              );
+            }),
         ListTile(
-          leading: Image.asset("assets/icons/head-question.png"),
-          title: const Text('Are you really sure it’s a Calamaria...?'),
-        ),
+            leading: Image.asset("assets/icons/head-question.png"),
+            title: const Text('Are you really sure it’s a Calamaria...?'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage("sure")),
+              );
+            }),
         ListTile(
             leading: Image.asset("assets/icons/clipboard-list.png"),
             title: Text('Species list and species accounts'),
@@ -144,37 +163,77 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-          leading: Image.asset("assets/icons/loupe.png"),
-          title: const Text('Identify your Calamaria'),
-        ),
+            leading: Image.asset("assets/icons/loupe.png"),
+            title: const Text('Identify your Calamaria'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Calamaria()),
+              );
+            }),
         ListTile(
-          leading: Image.asset("assets/icons/camera-time2.png"),
-          title: const Text('How to take photos that allow identification'),
-        ),
+            leading: Image.asset("assets/icons/camera-time2.png"),
+            title: const Text('How to take photos that allow identification'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage("photos")),
+              );
+            }),
         ListTile(
-          leading: Image.asset("assets/icons/gender.png"),
-          title: const Text('How to sex a snake'),
-        ),
+            leading: Image.asset("assets/icons/gender.png"),
+            title: const Text('How to sex a snake'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage("sexing")),
+              );
+            }),
         ListTile(
-          leading: Image.asset("assets/icons/share2.png"),
-          title: const Text('Share your novel records'),
-        ),
+            leading: Image.asset("assets/icons/share2.png"),
+            title: const Text('Share your novel records'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage("share")),
+              );
+            }),
         ListTile(
-          leading: Image.asset("assets/icons/bug2.png"),
-          title: const Text('Report bugs & inconsistencies'),
-        ),
+            leading: Image.asset("assets/icons/bug2.png"),
+            title: const Text('Report bugs & inconsistencies'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage("bugs")),
+              );
+            }),
         ListTile(
-          leading: Image.asset("assets/icons/drawer-sync.png"),
-          title: const Text('Version and update info'),
-        ),
-        const ListTile(
-          leading: const Icon(Icons.copyright, color: Colors.black),
-          title: const Text('Copyright info & photo credits'),
-        ),
+            leading: Image.asset("assets/icons/drawer-sync.png"),
+            title: const Text('Version and update info'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage("version")),
+              );
+            }),
         ListTile(
-          leading: Image.asset("assets/icons/read.png"),
-          title: const Text('Further reading'),
-        ),
+            leading: const Icon(Icons.copyright, color: Colors.black),
+            title: const Text('Copyright info & photo credits'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage("copyright")),
+              );
+            }),
+        ListTile(
+            leading: Image.asset("assets/icons/read.png"),
+            title: const Text('Further reading'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoPage("reading")),
+              );
+            }),
       ],
     ),
   );
