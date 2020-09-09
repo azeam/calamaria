@@ -64,6 +64,7 @@ class IdPageState8 extends State<IdPage8> {
                 color: Colors.black,
                 matchTextDirection: false,
               ),
+              Divider(height: 10.0, color: Colors.transparent),
               inputRow(_firstGroup, 0, options),
               Divider(height: 10.0, color: Colors.transparent),
               inputRow(_secondGroup, 1, options),
