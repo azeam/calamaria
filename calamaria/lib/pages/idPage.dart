@@ -315,15 +315,29 @@ class IdPageState extends State<IdPage> {
       bottomNavigationBar: idNavBar(context),
       floatingActionButton: (_page != 8)
           ? navFAB(context, IdPage(_page + 1))
-          : FloatingActionButton(
-              child: Icon(Icons.done),
-              backgroundColor: Colors.green,
-              onPressed: () {
-                SelectedOptions sel = SelectedOptions();
-                print(sel.toJson());
-              },
+          : Builder(
+              builder: (context) => FloatingActionButton(
+                child: Icon(Icons.done),
+                backgroundColor: Colors.green,
+                onPressed: () {
+                  SelectedOptions sel = SelectedOptions();
+                  String selected = sel.toJson().toString();
+                  _showToast(context, selected);
+                },
+              ),
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+    );
+  }
+
+  void _showToast(BuildContext context, String selected) {
+    final scaffold = Scaffold.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(selected),
+        action: SnackBarAction(
+            label: 'Hide', onPressed: scaffold.hideCurrentSnackBar),
+      ),
     );
   }
 }
