@@ -115,11 +115,12 @@ class IdPageState extends State<IdPage> {
     }
   }
 
+  // only page 3
   void _handleThirdRow(int value) {
     setState(() {
       _thirdGroup = value;
     });
-    SelectedOptions.sPostFused = value; // only page 3
+    SelectedOptions.sPostFused = value;
   }
 
   // only page 8
@@ -129,6 +130,89 @@ class IdPageState extends State<IdPage> {
 
   void _handleSecondInput(String value) {
     SelectedOptions.sSubcaudals = int.parse(value);
+  }
+
+  Widget checkRow(int row, FormPageOptions options) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (int i = 0; i < options.radioOp.length; i++)
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 40.0,
+                    width: 30.0,
+                    child: Checkbox(
+                        value: i == 0
+                            ? _firstCheck
+                            : i == 1 ? _secondCheck : _thirdCheck,
+                        onChanged: i == 0
+                            ? _handleFirstCheck
+                            : i == 1 ? _handleSecondCheck : _handleThirdCheck),
+                  ),
+                  Text(
+                    options.checkOp[i],
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ]),
+          ),
+      ],
+    );
+  }
+
+  Widget radioRow(int group, int row, FormPageOptions options, int page) {
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      for (int i = 0; i < options.radioOp.length; i++)
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 40.0,
+                width: 30.0,
+                child: Radio(
+                  value: (_page == 1 || _page == 4)
+                      ? int.parse(options.radioOp[i])
+                      : i, // get val from text
+                  groupValue: group,
+                  onChanged: row == 1
+                      ? _handleFirstRow
+                      : row == 2 ? _handleSecondRow : _handleThirdRow,
+                ),
+              ),
+              Text(
+                options.radioOp[i],
+                style: TextStyle(fontSize: 16.0),
+              ),
+            ],
+          ),
+        ),
+    ]);
+  }
+
+  Widget inputRow(String group, int row, FormPageOptions options) {
+    return Container(
+      width: 280.0,
+      child: TextField(
+        controller: TextEditingController()
+          ..text = (group == "null"
+              ? ""
+              : group), // no text = "null" (!= null), show hint instead
+        onChanged: row == 0 ? _handleFirstInput : _handleSecondInput,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: options.questions[row],
+        ),
+        keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly
+        ],
+      ),
+    );
   }
 
   @override
@@ -209,7 +293,7 @@ class IdPageState extends State<IdPage> {
                       ],
                     )
                   : Divider(height: 0.0, color: Colors.transparent),
-              _page == 1
+              (_page == 1)
                   ? Column(
                       children: [
                         Text(
