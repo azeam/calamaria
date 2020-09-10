@@ -262,7 +262,6 @@ class IdPageState extends State<IdPage> {
                       inputRow(_firstInput, 0, options),
                       Divider(height: 10.0, color: Colors.transparent),
                       inputRow(_secondInput, 1, options),
-                      Divider(height: 15.0, color: Colors.transparent),
                     ]),
               (_page == 1 || _page == 3)
                   ? Column(
@@ -297,7 +296,7 @@ class IdPageState extends State<IdPage> {
                   ? Column(
                       children: [
                         Text(
-                          options.questions[1],
+                          options.questions[2],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0,
@@ -308,6 +307,7 @@ class IdPageState extends State<IdPage> {
                       ],
                     )
                   : Divider(height: 0.0, color: Colors.transparent),
+              Divider(height: 35.0, color: Colors.transparent),
             ],
           ),
         ),

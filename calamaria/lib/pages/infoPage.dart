@@ -32,6 +32,7 @@ class InfoPageState extends State<InfoPage> {
                 ),
               Divider(height: 15.0, color: Colors.transparent),
               Text(page.pageDescription, style: TextStyle(fontSize: 14)),
+              Divider(height: 35.0, color: Colors.transparent),
             ],
           ),
         ),
