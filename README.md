@@ -2,6 +2,9 @@
 
 Identify snakes in the genus *Calamaria* to species level with an innovative approach
 
+## Note
+
+Work in progress. Not in a functional state!
 
 ## Instructions
 
