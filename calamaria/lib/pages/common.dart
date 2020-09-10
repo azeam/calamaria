@@ -1,6 +1,7 @@
 import 'package:calamaria/classes/selectedOptions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../main.dart';
 
@@ -121,7 +122,11 @@ Widget bottomDrawer(BuildContext context) {
     child: ListView(
       children: <Widget>[
         ListTile(
-            leading: Image.asset("assets/icons/info-square.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/info-square.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: const Text('About this app'),
             onTap: () {
               Navigator.push(
@@ -130,7 +135,11 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-            leading: Image.asset("assets/icons/head-question.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/head-question.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: const Text('Are you really sure it’s a Calamaria...?'),
             onTap: () {
               Navigator.push(
@@ -139,7 +148,11 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-            leading: Image.asset("assets/icons/clipboard-list.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/clipboard-list.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: Text('Species list and species accounts'),
             onTap: () {
               Navigator.push(
@@ -148,7 +161,11 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-            leading: Image.asset("assets/icons/loupe.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/loupe.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: const Text('Identify your Calamaria'),
             onTap: () {
               SelectedOptions sel = SelectedOptions();
@@ -159,7 +176,11 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-            leading: Image.asset("assets/icons/camera-time2.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/camera-time2.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: const Text('How to take photos that allow identification'),
             onTap: () {
               Navigator.push(
@@ -168,7 +189,11 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-            leading: Image.asset("assets/icons/gender.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/gender.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: const Text('How to sex a snake'),
             onTap: () {
               Navigator.push(
@@ -177,7 +202,11 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-            leading: Image.asset("assets/icons/share2.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/share2.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: const Text('Share your novel records'),
             onTap: () {
               Navigator.push(
@@ -186,7 +215,11 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-            leading: Image.asset("assets/icons/bug2.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/bug2.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: const Text('Report bugs & inconsistencies'),
             onTap: () {
               Navigator.push(
@@ -195,7 +228,11 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-            leading: Image.asset("assets/icons/drawer-sync.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/drawer-sync.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: const Text('Version and update info'),
             onTap: () {
               Navigator.push(
@@ -213,7 +250,11 @@ Widget bottomDrawer(BuildContext context) {
               );
             }),
         ListTile(
-            leading: Image.asset("assets/icons/read.png"),
+            leading: SvgPicture.asset(
+              "assets/icons/read.svg",
+              color: Colors.black,
+              matchTextDirection: false,
+            ),
             title: const Text('Further reading'),
             onTap: () {
               Navigator.push(
