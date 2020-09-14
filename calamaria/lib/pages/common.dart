@@ -1,3 +1,4 @@
+import 'package:calamaria/classes/infoPageData.dart';
 import 'package:calamaria/classes/selectedOptions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,11 @@ Widget idNavBar(BuildContext context) {
           },
         ),
         IconButton(
-          icon: Image.asset("assets/icons/trash.png", color: Colors.white),
+          icon: SvgPicture.asset(
+            "assets/icons/trash.svg",
+            color: Colors.white,
+            matchTextDirection: false,
+          ),
           onPressed: () {
             showAlert(context);
           },
@@ -118,151 +123,35 @@ Widget navBar(BuildContext context) {
 }
 
 Widget bottomDrawer(BuildContext context) {
+  InfoPageData data = new InfoPageData();
   return Drawer(
-    child: ListView(
-      children: <Widget>[
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/info-square.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: const Text('About this app'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InfoPage("about")),
-              );
-            }),
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/head-question.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: const Text('Are you really sure it’s a Calamaria...?'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InfoPage("sure")),
-              );
-            }),
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/clipboard-list.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: Text('Species list and species accounts'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PageListSpecies()),
-              );
-            }),
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/loupe.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: const Text('Identify your Calamaria'),
-            onTap: () {
-              SelectedOptions sel = SelectedOptions();
-              sel.resetData();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Calamaria()),
-              );
-            }),
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/camera-time2.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: const Text('How to take photos that allow identification'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InfoPage("photos")),
-              );
-            }),
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/gender.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: const Text('How to sex a snake'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InfoPage("sexing")),
-              );
-            }),
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/share2.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: const Text('Share your novel records'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InfoPage("share")),
-              );
-            }),
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/bug2.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: const Text('Report bugs & inconsistencies'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InfoPage("bugs")),
-              );
-            }),
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/drawer-sync.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: const Text('Version and update info'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InfoPage("version")),
-              );
-            }),
-        ListTile(
-            leading: const Icon(Icons.copyright, color: Colors.black),
-            title: const Text('Copyright info & photo credits'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InfoPage("copyright")),
-              );
-            }),
-        ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/read.svg",
-              color: Colors.black,
-              matchTextDirection: false,
-            ),
-            title: const Text('Further reading'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InfoPage("reading")),
-              );
-            }),
-      ],
-    ),
+    child: ListView.builder(
+        itemCount: 11,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+              leading: SvgPicture.asset(
+                index == 0
+                    ? "assets/icons/loupe.svg"
+                    : index == 1
+                        ? "assets/icons/clipboard-list.svg"
+                        : data.getIcon(index),
+                color: Colors.black,
+                matchTextDirection: false,
+              ),
+              title: Text(index == 0
+                  ? "Identify your Calamaria"
+                  : index == 1
+                      ? "Species list and species accounts"
+                      : data.getHeading(index)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => index == 0
+                          ? Calamaria()
+                          : index == 1 ? PageListSpecies() : InfoPage(index)),
+                );
+              });
+        }),
   );
 }

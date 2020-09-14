@@ -303,7 +303,10 @@ class IdPageState extends State<IdPage> {
                           ),
                         ),
                         checkRow(3, options),
-                        Divider(height: 10.0, color: Colors.transparent),
+                        Divider(
+                            height: 10.0,
+                            color: Colors
+                                .transparent), // something empty, can't be null
                       ],
                     )
                   : Divider(height: 0.0, color: Colors.transparent),
