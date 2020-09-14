@@ -128,13 +128,14 @@ Widget bottomDrawer(BuildContext context) {
     child: ListView.builder(
         itemCount: 11,
         itemBuilder: (BuildContext context, int index) {
+          data.setData(index);
           return ListTile(
               leading: SvgPicture.asset(
                 index == 0
                     ? "assets/icons/loupe.svg"
                     : index == 1
                         ? "assets/icons/clipboard-list.svg"
-                        : data.getIcon(index),
+                        : data.getIcon(),
                 color: Colors.black,
                 matchTextDirection: false,
               ),
@@ -142,7 +143,7 @@ Widget bottomDrawer(BuildContext context) {
                   ? "Identify your Calamaria"
                   : index == 1
                       ? "Species list and species accounts"
-                      : data.getHeading(index)),
+                      : data.getHeading()),
               onTap: () {
                 Navigator.push(
                   context,

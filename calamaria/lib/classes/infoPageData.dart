@@ -57,13 +57,11 @@ class InfoPageData {
     }
   }
 
-  String getHeading(int index) {
-    setData(index);
+  String getHeading() {
     return this.pageHeading;
   }
 
-  String getIcon(int index) {
-    setData(index);
+  String getIcon() {
     return this.icon;
   }
 }
