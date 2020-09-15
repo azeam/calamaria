@@ -51,7 +51,7 @@ class IdPageState extends State<IdPage> {
     }
   }
 
-  // only page 1
+  // only page 1 has checkboxes
   void _handleFirstCheck(bool value) {
     setState(() => _firstCheck = value);
     (_firstCheck)
@@ -101,18 +101,14 @@ class IdPageState extends State<IdPage> {
     }
   }
 
+  // page 1 and 3
   void _handleSecondRow(int value) {
     setState(() {
       _secondGroup = value;
     });
-    switch (_page) {
-      case 1:
-        SelectedOptions.sLowerLabials = value;
-        break;
-      case 3:
-        SelectedOptions.sPostocular = value;
-        break;
-    }
+    (_page == 1)
+        ? SelectedOptions.sLowerLabials = value
+        : SelectedOptions.sPostocular = value;
   }
 
   // only page 3
@@ -123,7 +119,7 @@ class IdPageState extends State<IdPage> {
     SelectedOptions.sPostFused = value;
   }
 
-  // only page 8
+  // only page 8 has inputs
   void _handleFirstInput(String value) {
     SelectedOptions.sVents = int.parse(value);
   }
@@ -315,7 +311,7 @@ class IdPageState extends State<IdPage> {
           ),
         ),
       ),
-      bottomNavigationBar: idNavBar(context),
+      bottomNavigationBar: navBar(context, true),
       floatingActionButton: (_page != 8)
           ? navFAB(context, IdPage(_page + 1))
           : Builder(

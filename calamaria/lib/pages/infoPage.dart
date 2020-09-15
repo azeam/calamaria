@@ -37,7 +37,7 @@ class InfoPageState extends State<InfoPage> {
           ),
         ),
       ),
-      bottomNavigationBar: navBar(context),
+      bottomNavigationBar: navBar(context, false),
     );
   }
 }

@@ -18,7 +18,7 @@ Widget navFAB(BuildContext context, Widget next) {
       });
 }
 
-Widget navBar(BuildContext context) {
+Widget navBar(BuildContext context, bool isIdPage) {
   return BottomAppBar(
     color: Colors.blueGrey,
     child: Row(
@@ -32,35 +32,18 @@ Widget navBar(BuildContext context) {
             );
           },
         ),
-      ],
-    ),
-  );
-}
-
-Widget idNavBar(BuildContext context) {
-  return BottomAppBar(
-    color: Colors.blueGrey,
-    child: Row(
-      children: <Widget>[
-        IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
-          onPressed: () {
-            showModalBottomSheet<Null>(
-              context: context,
-              builder: (BuildContext context) => bottomDrawer(context),
-            );
-          },
-        ),
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/trash.svg",
-            color: Colors.white,
-            matchTextDirection: false,
-          ),
-          onPressed: () {
-            showAlert(context);
-          },
-        ),
+        (isIdPage)
+            ? IconButton(
+                icon: SvgPicture.asset(
+                  "assets/icons/trash.svg",
+                  color: Colors.white,
+                  matchTextDirection: false,
+                ),
+                onPressed: () {
+                  showAlert(context);
+                },
+              )
+            : Divider(height: 0.0, color: Colors.transparent),
       ],
     ),
   );
