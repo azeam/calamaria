@@ -43,7 +43,7 @@ Widget navBar(BuildContext context, bool isIdPage) {
                   showAlert(context);
                 },
               )
-            : Divider(height: 0.0, color: Colors.transparent),
+            : SizedBox.shrink(),
       ],
     ),
   );

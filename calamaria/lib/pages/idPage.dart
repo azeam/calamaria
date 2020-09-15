@@ -272,7 +272,7 @@ class IdPageState extends State<IdPage> {
                         radioRow(_secondGroup, 2, options, _page),
                       ],
                     )
-                  : Divider(height: 0.0, color: Colors.transparent),
+                  : SizedBox.shrink(),
               (_page == 3)
                   ? Column(
                       children: [
@@ -287,7 +287,7 @@ class IdPageState extends State<IdPage> {
                         Divider(height: 10.0, color: Colors.transparent),
                       ],
                     )
-                  : Divider(height: 0.0, color: Colors.transparent),
+                  : SizedBox.shrink(),
               (_page == 1)
                   ? Column(
                       children: [
@@ -299,13 +299,10 @@ class IdPageState extends State<IdPage> {
                           ),
                         ),
                         checkRow(3, options),
-                        Divider(
-                            height: 10.0,
-                            color: Colors
-                                .transparent), // something empty, can't be null
+                        Divider(height: 10.0, color: Colors.transparent),
                       ],
                     )
-                  : Divider(height: 0.0, color: Colors.transparent),
+                  : SizedBox.shrink(), // something empty, can't be null
               Divider(height: 35.0, color: Colors.transparent),
             ],
           ),
