@@ -224,7 +224,7 @@ class IdPageState extends State<IdPage> {
     options.setData(_page);
     return Scaffold(
       appBar: AppBar(
-        title: Text(options.pageTitle),
+        title: Text("Calamaria of Borneo (" + _page.toString() + " of 8)"),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 8.0),

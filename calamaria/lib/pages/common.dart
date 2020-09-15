@@ -18,6 +18,25 @@ Widget navFAB(BuildContext context, Widget next) {
       });
 }
 
+Widget navBar(BuildContext context) {
+  return BottomAppBar(
+    color: Colors.blueGrey,
+    child: Row(
+      children: <Widget>[
+        IconButton(
+          icon: Icon(Icons.menu, color: Colors.white),
+          onPressed: () {
+            showModalBottomSheet<Null>(
+              context: context,
+              builder: (BuildContext context) => bottomDrawer(context),
+            );
+          },
+        ),
+      ],
+    ),
+  );
+}
+
 Widget idNavBar(BuildContext context) {
   return BottomAppBar(
     color: Colors.blueGrey,
@@ -101,25 +120,6 @@ showAlert(BuildContext context) {
           ),
         );
       });
-}
-
-Widget navBar(BuildContext context) {
-  return BottomAppBar(
-    color: Colors.blueGrey,
-    child: Row(
-      children: <Widget>[
-        IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
-          onPressed: () {
-            showModalBottomSheet<Null>(
-              context: context,
-              builder: (BuildContext context) => bottomDrawer(context),
-            );
-          },
-        ),
-      ],
-    ),
-  );
 }
 
 Widget bottomDrawer(BuildContext context) {
