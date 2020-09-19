@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:calamaria/classes/species.dart';
+import '../main.dart';
 
 class SpeciesList extends StatelessWidget {
   final List<Species> species;
@@ -13,6 +14,7 @@ class SpeciesList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return
           new Card(
+            child: new GestureDetector(
             child: new Container (
               child: new Center(
                 child: new Column (
@@ -28,6 +30,16 @@ class SpeciesList extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(15.0)
             ),
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        PageSpeciesInfo(index)
+                ),
+              );
+            }
+            )
           );
       }
     );

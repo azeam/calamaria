@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'pages/idPage.dart';
 import 'pages/infoPage.dart';
+import 'pages/speciesInfoPage.dart';
+import 'classes/selectedOptions.dart';
+
 
 void main() => runApp(Calamaria());
 
@@ -28,11 +31,19 @@ class IdPage extends StatefulWidget {
 }
 
 class PageListSpecies extends StatefulWidget {
-  PageListSpecies({Key key, this.title}) : super(key: key);
-  final String title;
+  //PageListSpecies(this.filter, {Key key, this.title}) : super(key: key);
+  SelectedOptions filter;
+
+  PageListSpecies([this.filter]) {
+
+  }
+  //final String title;
+
+
   @override
-  PageState_ListSpecies createState() => PageState_ListSpecies();
+  PageState_ListSpecies createState() => PageState_ListSpecies(filter);
 }
+
 
 class InfoPage extends StatefulWidget {
   InfoPage(this.page, {Key key, this.title}) : super(key: key);
@@ -40,4 +51,12 @@ class InfoPage extends StatefulWidget {
   final int page;
   @override
   InfoPageState createState() => InfoPageState();
+}
+
+class PageSpeciesInfo extends StatefulWidget {
+  PageSpeciesInfo(this.speciesId, {Key key, this.title}) : super(key: key);
+  final int speciesId;
+  final String title;
+  @override
+  PageState_SpeciesInfoPage createState() => PageState_SpeciesInfoPage(speciesId);
 }

@@ -1,34 +1,29 @@
 import 'dart:convert';
-import 'package:calamaria/classes/selectedOptions.dart';
 import 'package:flutter/material.dart';
 import 'package:calamaria/classes/species.dart';
-import 'package:calamaria/classes/speciesList.dart';
-import 'package:calamaria/classes/speciesResult.dart';
-import 'speciesInfoPage.dart';
+//import 'package:calamaria/classes/speciesList.dart';
+//import 'package:calamaria/classes/speciesResult.dart';
+import 'package:calamaria/classes/speciesInfo.dart';
 import '../main.dart';
 
-
-class PageState_ListSpecies extends State<PageListSpecies> {
-  final SelectedOptions filter;
-  PageState_ListSpecies(this.filter);
-
-
+class PageState_SpeciesInfoPage extends State<PageSpeciesInfo> {
+  final int speciesId;
+  PageState_SpeciesInfoPage(this.speciesId);
 
   @override
   Widget build(BuildContext context) {
-    //debugPrint(this.filter);
     return Scaffold(
       appBar: AppBar(
-        title: Text('List species'),
+        title: Text('Species info'),
       ),
       body: Container(
         child: new Center(
             child: new FutureBuilder(
                 future: DefaultAssetBundle.of(context).loadString('assets/species.json'),
                 builder: (context, snapshot) {
-                  List<Species> species = parseJson(snapshot.data);
+                  List<Species> species = parseJson(snapshot.data.toString());
                   return species.isNotEmpty
-                      ? ((this.filter != null) ? new SpeciesResult(species: species, filter: this.filter) : new SpeciesList(species: species))
+                      ? new SpeciesInfo(species: species, speciesId: this.speciesId)
                       : new Center(child: new CircularProgressIndicator());
                 }
             )
@@ -46,8 +41,7 @@ class PageState_ListSpecies extends State<PageListSpecies> {
     if(response == null) {
       return [];
     }
-
-    final parsed = json.decode(response.toString()).cast<Map<String, dynamic>>();
+    final parsed = json.decode(response).cast<Map<String, dynamic>>();
     return parsed.map<Species>((json) => new Species.fromJSON(json)).toList();
   }
 }

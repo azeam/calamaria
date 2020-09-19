@@ -319,6 +319,14 @@ class IdPageState extends State<IdPage> {
                   SelectedOptions sel = SelectedOptions();
                   String selected = sel.toJson().toString();
                   _showToast(context, selected);
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PageListSpecies(sel)
+                    ),
+                  );
+
                 },
               ),
             ),
