@@ -46,7 +46,6 @@ class PageState_ListSpecies extends State<PageListSpecies> {
     if(response == null) {
       return [];
     }
-
     final parsed = json.decode(response.toString()).cast<Map<String, dynamic>>();
     return parsed.map<Species>((json) => new Species.fromJSON(json)).toList();
   }

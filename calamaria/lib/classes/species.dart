@@ -101,9 +101,27 @@ class Species {
       postocular: new SpeciesDataPostocular(isPresent: json['Preocular']['Present'] as bool, isAbsent: json['Preocular']['IsAbsent'] as bool, isFused: json['Preocular']['Fused'] as bool),
       ssep: new SpeciesDataSSEP(isFour: json['SSEP']['4'] as bool, isFive: json['SSEP']['5'] as bool, isSix: json['SSEP']['6'] as bool),
       eyeDiameter: new SpeciesDataEyeDiameter(isEqual: json['EyeDiam']['Equal'] as bool, isSmaller: json['EyeDiam']['Smaller'] as bool, isLarger: json['EyeDiam']['Larger'] as bool),
-      //vents: new SpeciesDataVents(maleMin: json['Vents']['Male']['Min'] as int, maleMax: json['Vents']['Male']['Max'] as int, femaleMin: json['Vents']['Male']['Min'] as int, femaleMax: json['Vents']['Male']['Max'] as int),
-      //subcaudals: new SpeciesDataSubcaudals(maleMin: json['Subcaudals']['Male']['Min'] as int, maleMax: json['Subcaudals']['Male']['Max'] as int, femaleMin: json['Subcaudals']['Female']['Min'] as int, femaleMax: json['Subcaudals']['Female']['Max'] as int),
-      tail: new SpeciesDataTail(isGradually: json['Tail']['Gradually'] as bool, isSomewhatAbruptly: json['Tail']['SomewhatAbruptly'] as bool, isAbruptly: json['Tail']['Abruptly'] as bool),
+      vents: new SpeciesDataVents(
+          maleMin: ((json['Vents']['Male'] != null) ? json['Vents']['Male']['Min'] as int : null),
+          maleMax: ((json['Vents']['Male'] != null) ? json['Vents']['Male']['Max'] as int : null),
+          femaleMin: ((json['Vents']['Female'] != null) ? json['Vents']['Female']['Min'] as int : null),
+          femaleMax: ((json['Vents']['Female'] != null) ? json['Vents']['Female']['Max'] as int : null),
+          bothMin: ((json['Vents']['Both'] != null) ? json['Vents']['Both']['Min'] as int : null),
+          bothMax: ((json['Vents']['Both'] != null) ? json['Vents']['Both']['Max'] as int : null),
+      ),
+      subcaudals: new SpeciesDataSubcaudals(
+        maleMin: ((json['Subcaudals']['Male'] != null) ? json['Vents']['Male']['Min'] as int : null),
+        maleMax: ((json['Subcaudals']['Male'] != null) ? json['Vents']['Male']['Max'] as int : null),
+        femaleMin: ((json['Subcaudals']['Female'] != null) ? json['Vents']['Female']['Min'] as int : null),
+        femaleMax: ((json['Subcaudals']['Female'] != null) ? json['Vents']['Female']['Max'] as int : null),
+        bothMin: ((json['Subcaudals']['Both'] != null) ? json['Vents']['Both']['Min'] as int : null),
+        bothMax: ((json['Subcaudals']['Both'] != null) ? json['Vents']['Both']['Max'] as int : null),
+      ),
+      tail: new SpeciesDataTail(
+          isGradual: json['Tail']['Gradual'] as bool,
+          isIntermediate: json['Tail']['Intermediate'] as bool,
+          isAbrupt: json['Tail']['Abrupt'] as bool
+      ),
       notes: json['Notes'] as String,
       image: json['Image'] as String,
       description: json['Description'] as String
@@ -154,20 +172,24 @@ class SpeciesDataVents {
   int maleMax;
   int femaleMin;
   int femaleMax;
-  SpeciesDataVents({this.maleMin, this.maleMax, this.femaleMin, this.femaleMax});
+  int bothMin;
+  int bothMax;
+  SpeciesDataVents({this.maleMin, this.maleMax, this.femaleMin, this.femaleMax, this.bothMin, this.bothMax});
 }
 class SpeciesDataSubcaudals {
   int maleMin;
   int maleMax;
   int femaleMin;
   int femaleMax;
-  SpeciesDataSubcaudals({this.maleMin, this.maleMax, this.femaleMin, this.femaleMax});
+  int bothMin;
+  int bothMax;
+  SpeciesDataSubcaudals({this.maleMin, this.maleMax, this.femaleMin, this.femaleMax, this.bothMin, this.bothMax});
 }
 class SpeciesDataTail {
-  bool isGradually;
-  bool isSomewhatAbruptly;
-  bool isAbruptly;
-  SpeciesDataTail({this.isGradually, this.isSomewhatAbruptly, this.isAbruptly});
+  bool isGradual;
+  bool isIntermediate;
+  bool isAbrupt;
+  SpeciesDataTail({this.isGradual, this.isIntermediate, this.isAbrupt});
 }
 
 

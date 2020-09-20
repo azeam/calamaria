@@ -7,9 +7,12 @@ import 'selectedOptions.dart';
 import '../main.dart';
 
 class SpeciesResult extends StatelessWidget {
-  final List<Species> species;
+  List<Species> species;
   final SelectedOptions filter;
-  SpeciesResult({Key key, this.species, this.filter}) : super(key: key);
+  SpeciesResult({Key key, this.species, this.filter}) : super(key: key) {
+    //debugPrint('test');
+    species.sort((a, b) => (new SpeciesLikelihood(b, this.filter).getPercentage()).compareTo((new SpeciesLikelihood(a, this.filter).getPercentage())));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,7 @@ class SpeciesResult extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            PageSpeciesInfo(index)
+                            PageSpeciesInfo(species[index].specieId)
                     ),
                   );
                 }
@@ -54,14 +57,5 @@ class SpeciesResult extends StatelessWidget {
             );
         }
     );
-  }
-
-
-  List<Species> parseJson(String response) {
-    if(response == null) {
-      return [];
-    }
-    final parsed = json.decode(response.toString()).cast<Map<String, dynamic>>();
-    return parsed.map<Species>((json) => new Species.fromJSON(json)).toList();
   }
 }

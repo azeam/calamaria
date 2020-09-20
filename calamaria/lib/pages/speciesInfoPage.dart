@@ -21,7 +21,7 @@ class PageState_SpeciesInfoPage extends State<PageSpeciesInfo> {
             child: new FutureBuilder(
                 future: DefaultAssetBundle.of(context).loadString('assets/species.json'),
                 builder: (context, snapshot) {
-                  List<Species> species = parseJson(snapshot.data.toString());
+                  List<Species> species = parseJson(snapshot.data);
                   return species.isNotEmpty
                       ? new SpeciesInfo(species: species, speciesId: this.speciesId)
                       : new Center(child: new CircularProgressIndicator());

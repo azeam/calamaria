@@ -30,8 +30,19 @@ class SpeciesLikelihood extends StatelessWidget {
     calcPoints(filterData['sUpperLabials'], species.upperLabials);
     calcPoints(filterData['sLowerLabials'], species.lowerLabials);
     calcPoints(filterData['sPreocular'], species.preocular);
-    //calcPoints([filterData['sPostocular'], filterData['sPostFused']], species.postocular);
-    //calcPoints(filterData['sSSEP'], species.ssep);
+    calcPoints([filterData['sPostocular'], filterData['sPostFused']], species.postocular);
+    calcPoints(filterData['sSSEP'], species.ssep);
+
+
+
+
+    calcPoints([filterData['sHemipenes'], filterData['sVents']], species.vents);
+    calcPoints([filterData['sHemipenes'], filterData['sSubcaudals']], species.subcaudals);
+
+
+
+
+    calcPoints(filterData['sEyeDiam'], species.eyeDiameter);
 
 
     //calcPointsListMatch(filterData['sULTouchingEye'], species.upperLabialsTouchingEye);
@@ -50,15 +61,11 @@ class SpeciesLikelihood extends StatelessWidget {
       return;
     }
 
-    if(addToMaxPoints) {
-      this.maxPoints += 1;
-    }
+
 
     if(speciesData is List) {
       if(speciesData.contains(filter)) {
-        this.points += 1;
-      } else {
-        this.points -= 1;
+        this.points += 10;
       }
     }
     if(speciesData is SpeciesDataMental) {
@@ -68,11 +75,97 @@ class SpeciesLikelihood extends StatelessWidget {
       calcPoints(true, (filter) ? speciesData.isPresent : speciesData.isAbsent, false);
     }
     if(speciesData is SpeciesDataPostocular) {
-      calcPoints(true, (filter[0]) ? speciesData.isPresent : speciesData.isAbsent, false);
-      calcPoints(filter[1],  speciesData.isFused, false);
+      if(filter[0] == null && filter[1] == null) {
+        return;
+      }
+      if(filter[0] != null) {
+        calcPoints(true, ((filter[0]) ? speciesData.isPresent : speciesData.isAbsent), false);
+      }
+      if(filter[1] != null) {
+        calcPoints((filter[1]), speciesData.isFused, false);
+      }
+    }
+    if(speciesData is SpeciesDataSSEP) {
+      switch(filter) {
+        case 4:
+          if(speciesData.isFour) { this.points += 10; }
+          break;
+        case 5:
+          if(speciesData.isFive) { this.points += 10; }
+          break;
+        case 6:
+          if(speciesData.isSix) { this.points += 10; }
+          break;
+      }
+    }
+    if(speciesData is SpeciesDataEyeDiameter) {
+      switch(filter) {
+        case 'smaller':
+          if(speciesData.isSmaller) { this.points += 10; }
+          break;
+        case 'larger':
+          if(speciesData.isLarger) { this.points += 10; }
+          break;
+        case 'equal':
+          if(speciesData.isEqual) { this.points += 10; }
+          break;
+      }
+    }
+    if(speciesData is SpeciesDataTail) {
+      switch(filter) {
+        case 'gradual':
+          if(speciesData.isGradual) { this.points += 10; }
+          break;
+        case 'intermediate':
+          if(speciesData.isIntermediate) { this.points += 10; }
+          break;
+        case 'abrupt':
+          if(speciesData.isAbrupt) { this.points += 10; }
+          break;
+      }
     }
 
+    if(speciesData is SpeciesDataTail) {
+      switch(filter) {
+        case 'gradual':
+          if(speciesData.isGradual) { this.points += 10; }
+          break;
+        case 'intermediate':
+          if(speciesData.isIntermediate) { this.points += 10; }
+          break;
+        case 'abrupt':
+          if(speciesData.isAbrupt) { this.points += 10; }
+          break;
+      }
+    }
 
+    if(speciesData is SpeciesDataVents || speciesData is SpeciesDataSubcaudals) {
+      if(filter[1]==null) {
+        return;
+      }
+      if(filter[0]==null) {
+        if (filter[1] >= speciesData.bothMin && filter[1] <= speciesData.bothMax) {
+          this.points += 10;
+        }
+      } else {
+        if (!filter[0] && speciesData.femaleMin != null &&
+            speciesData.femaleMax != null) {
+          if (filter[1] >= speciesData.femaleMin && filter[1] <= speciesData.femaleMax) {
+            this.points += 10;
+          }
+        }
+        if (filter[0]) {
+          if (filter[1] >= speciesData.maleMin && filter[1] <= speciesData.maleMax) {
+            this.points += 10;
+          }
+        }
+      }
+    }
+
+    debugPrint(filter.toString());
+    if(addToMaxPoints) {
+      this.maxPoints += 10;
+    }
   }
 
   Color getColor() {
