@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:calamaria/classes/selectedOptions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -234,11 +236,12 @@ class IdPageState extends State<IdPage> {
               Divider(height: 15.0, color: Colors.transparent),
               Text(options.pageDescription, style: TextStyle(fontSize: 14)),
               Divider(height: 15.0, color: Colors.transparent),
-              SvgPicture.asset(
-                options.mainImg,
-                color: Colors.black,
-                matchTextDirection: false,
-              ),
+              (_page == 5)
+                  ? Image(image: AssetImage(options.mainImg))
+                  : SvgPicture.asset(
+                      options.mainImg,
+                      matchTextDirection: false,
+                    ),
               Divider(height: 15.0, color: Colors.transparent),
               (_page != 8)
                   ? Column(
@@ -323,10 +326,8 @@ class IdPageState extends State<IdPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => PageListSpecies(sel)
-                    ),
+                        builder: (context) => PageListSpecies(sel)),
                   );
-
                 },
               ),
             ),
