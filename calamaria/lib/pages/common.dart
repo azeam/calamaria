@@ -3,6 +3,7 @@ import '../classes/selectedOptions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:swipedetector/swipedetector.dart';
 
 import '../main.dart';
 
@@ -16,6 +17,13 @@ Widget navFAB(BuildContext context, Widget next) {
           CupertinoPageRoute(builder: (context) => next),
         );
       });
+}
+
+SwipeConfiguration swipeConfig() {
+  return SwipeConfiguration(
+      horizontalSwipeMaxHeightThreshold: 50.0,
+      horizontalSwipeMinDisplacement: 10.0,
+      horizontalSwipeMinVelocity: 100.0);
 }
 
 Widget navBar(BuildContext context, bool isIdPage) {

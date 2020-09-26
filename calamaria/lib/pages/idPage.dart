@@ -319,25 +319,17 @@ class IdPageState extends State<IdPage> {
           ),
         ),
         onSwipeLeft: () {
-          SelectedOptions sel = SelectedOptions();
           (_page != 8)
               ? Navigator.push(
                   context,
                   CupertinoPageRoute(builder: (context) => IdPage(_page + 1)),
                 )
-              : Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                      builder: (context) => PageListSpecies(sel)),
-                );
+              : _listResults(context);
         },
         onSwipeRight: () {
           (_page != 1) ? Navigator.pop(context) : print("test");
         },
-        swipeConfiguration: SwipeConfiguration(
-            horizontalSwipeMaxHeightThreshold: 50.0,
-            horizontalSwipeMinDisplacement: 10.0,
-            horizontalSwipeMinVelocity: 100.0),
+        swipeConfiguration: swipeConfig(),
       ),
       bottomNavigationBar: navBar(context, true),
       floatingActionButton: (_page != 8)
@@ -347,16 +339,19 @@ class IdPageState extends State<IdPage> {
                 child: Icon(Icons.done),
                 backgroundColor: Colors.green,
                 onPressed: () {
-                  SelectedOptions sel = SelectedOptions();
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                        builder: (context) => PageListSpecies(sel)),
-                  );
+                  _listResults(context);
                 },
               ),
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+    );
+  }
+
+  void _listResults(BuildContext context) {
+    SelectedOptions sel = SelectedOptions();
+    Navigator.push(
+      context,
+      CupertinoPageRoute(builder: (context) => PageListSpecies(sel)),
     );
   }
 }
