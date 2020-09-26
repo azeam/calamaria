@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:swipedetector/swipedetector.dart';
+
 import '../classes/selectedOptions.dart';
 import '../classes/formPageOptions.dart';
 import '../main.dart';
@@ -225,115 +227,118 @@ class IdPageState extends State<IdPage> {
       appBar: AppBar(
         title: Text("Calamaria of Borneo (" + _page.toString() + " of 8)"),
       ),
-      body: GestureDetector(
-          child: Container(
-            height: MediaQuery.of(context).size.height + 1,
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Divider(height: 8.0, color: Colors.transparent),
-                  Text(options.pageHeading,
-                      style: Theme.of(context).textTheme.headline5),
-                  Divider(height: 15.0, color: Colors.transparent),
-                  Text(options.pageDescription, style: TextStyle(fontSize: 14)),
-                  Divider(height: 15.0, color: Colors.transparent),
-                  (_page == 5)
-                      ? Image(image: AssetImage(options.mainImg))
-                      : (_page == 6 || _page == 8)
-                          ? SizedBox.shrink()
-                          : SvgPicture.asset(
-                              options.mainImg,
-                              matchTextDirection: false,
+      body: SwipeDetector(
+        child: Container(
+          height: MediaQuery.of(context).size.height + 1,
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Divider(height: 8.0, color: Colors.transparent),
+                Text(options.pageHeading,
+                    style: Theme.of(context).textTheme.headline5),
+                Divider(height: 15.0, color: Colors.transparent),
+                Text(options.pageDescription, style: TextStyle(fontSize: 14)),
+                Divider(height: 15.0, color: Colors.transparent),
+                (_page == 5)
+                    ? Image(image: AssetImage(options.mainImg))
+                    : (_page == 6 || _page == 8)
+                        ? SizedBox.shrink()
+                        : SvgPicture.asset(
+                            options.mainImg,
+                            matchTextDirection: false,
+                          ),
+                Divider(height: 15.0, color: Colors.transparent),
+                (_page != 8)
+                    ? Column(
+                        children: [
+                          Text(
+                            options.questions[0],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
                             ),
-                  Divider(height: 15.0, color: Colors.transparent),
-                  (_page != 8)
-                      ? Column(
-                          children: [
-                            Text(
-                              options.questions[0],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                              ),
+                          ),
+                          radioRow(_firstGroup, 1, options, _page),
+                        ],
+                      )
+                    : Column(children: [
+                        Divider(height: 10.0, color: Colors.transparent),
+                        inputRow(_firstInput, 0, options),
+                        Divider(height: 10.0, color: Colors.transparent),
+                        inputRow(_secondInput, 1, options),
+                      ]),
+                (_page == 1 || _page == 3)
+                    ? Column(
+                        children: [
+                          Text(
+                            options.questions[1],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
                             ),
-                            radioRow(_firstGroup, 1, options, _page),
-                          ],
-                        )
-                      : Column(children: [
+                          ),
+                          radioRow(_secondGroup, 2, options, _page),
+                        ],
+                      )
+                    : SizedBox.shrink(),
+                (_page == 3)
+                    ? Column(
+                        children: [
+                          Text(
+                            options.questions[2],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                          radioRow(_thirdGroup, 3, options, _page),
                           Divider(height: 10.0, color: Colors.transparent),
-                          inputRow(_firstInput, 0, options),
+                        ],
+                      )
+                    : SizedBox.shrink(),
+                (_page == 1)
+                    ? Column(
+                        children: [
+                          Text(
+                            options.questions[2],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                          checkRow(3, options),
                           Divider(height: 10.0, color: Colors.transparent),
-                          inputRow(_secondInput, 1, options),
-                        ]),
-                  (_page == 1 || _page == 3)
-                      ? Column(
-                          children: [
-                            Text(
-                              options.questions[1],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                            radioRow(_secondGroup, 2, options, _page),
-                          ],
-                        )
-                      : SizedBox.shrink(),
-                  (_page == 3)
-                      ? Column(
-                          children: [
-                            Text(
-                              options.questions[2],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                            radioRow(_thirdGroup, 3, options, _page),
-                            Divider(height: 10.0, color: Colors.transparent),
-                          ],
-                        )
-                      : SizedBox.shrink(),
-                  (_page == 1)
-                      ? Column(
-                          children: [
-                            Text(
-                              options.questions[2],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                            checkRow(3, options),
-                            Divider(height: 10.0, color: Colors.transparent),
-                          ],
-                        )
-                      : SizedBox.shrink(), // something empty, can't be null
-                  Divider(height: 35.0, color: Colors.transparent),
-                ],
-              ),
+                        ],
+                      )
+                    : SizedBox.shrink(), // something empty, can't be null
+                Divider(height: 35.0, color: Colors.transparent),
+              ],
             ),
           ),
-          onHorizontalDragUpdate: (details) {
-            if (details.delta.dx < 0) {
-              SelectedOptions sel = SelectedOptions();
-              (_page != 8)
-                  ? Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => IdPage(_page + 1)),
-                    )
-                  : Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => PageListSpecies(sel)),
-                    );
-            } else if (details.delta.dx > 0) {
-              (_page != 1) ? Navigator.pop(context) : print("test");
-            }
-          }),
+        ),
+        onSwipeLeft: () {
+          SelectedOptions sel = SelectedOptions();
+          (_page != 8)
+              ? Navigator.push(
+                  context,
+                  CupertinoPageRoute(builder: (context) => IdPage(_page + 1)),
+                )
+              : Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                      builder: (context) => PageListSpecies(sel)),
+                );
+        },
+        onSwipeRight: () {
+          (_page != 1) ? Navigator.pop(context) : print("test");
+        },
+        swipeConfiguration: SwipeConfiguration(
+            horizontalSwipeMaxHeightThreshold: 50.0,
+            horizontalSwipeMinDisplacement: 10.0,
+            horizontalSwipeMinVelocity: 100.0),
+      ),
       bottomNavigationBar: navBar(context, true),
       floatingActionButton: (_page != 8)
           ? navFAB(context, IdPage(_page + 1))
