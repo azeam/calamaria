@@ -229,7 +229,6 @@ class IdPageState extends State<IdPage> {
       ),
       body: SwipeDetector(
         child: Container(
-          height: MediaQuery.of(context).size.height + 1,
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: SingleChildScrollView(
             child: Column(

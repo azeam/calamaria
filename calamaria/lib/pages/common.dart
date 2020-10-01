@@ -7,6 +7,13 @@ import 'package:swipedetector/swipedetector.dart';
 
 import '../main.dart';
 
+SwipeConfiguration swipeConfig() {
+  return SwipeConfiguration(
+      horizontalSwipeMaxHeightThreshold: 50.0,
+      horizontalSwipeMinDisplacement: 10.0,
+      horizontalSwipeMinVelocity: 100.0);
+}
+
 Widget navFAB(BuildContext context, Widget next) {
   return FloatingActionButton(
       child: Icon(Icons.arrow_forward),
@@ -17,13 +24,6 @@ Widget navFAB(BuildContext context, Widget next) {
           CupertinoPageRoute(builder: (context) => next),
         );
       });
-}
-
-SwipeConfiguration swipeConfig() {
-  return SwipeConfiguration(
-      horizontalSwipeMaxHeightThreshold: 50.0,
-      horizontalSwipeMinDisplacement: 10.0,
-      horizontalSwipeMinVelocity: 100.0);
 }
 
 Widget navBar(BuildContext context, bool isIdPage) {
