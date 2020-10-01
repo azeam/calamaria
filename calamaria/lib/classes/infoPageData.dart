@@ -57,7 +57,7 @@ class InfoPageData {
                 internasal scales and 15 dorsal scale rows. We will look closer at Pseudorabdion soon, but we start 
                 with something more urgent.
               </p>
-              <h3>Deadly lookalikes</h3>
+              <h3><span>Deadly lookalikes</span></h3>
             </div>
           """;
         this.icon = 'assets/icons/head-question.svg';

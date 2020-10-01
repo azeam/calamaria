@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_html/style.dart';
 
 import '../classes/infoPageData.dart';
 import '../main.dart';
@@ -27,8 +27,17 @@ class InfoPageState extends State<InfoPage> {
               Divider(height: 15.0, color: Colors.transparent),
               Html(
                 data: page.pageDescription,
+                style: {
+                  "span": Style(
+                    color: Colors.red,
+//                  backgroundColor: Color.fromARGB(0x50, 0xee, 0xee, 0xee),
+                  ),
+                },
                 onImageTap: (src) {
-                  // Display the image in large form.
+                  // TODO: maximize image
+                },
+                onLinkTap: (url) {
+                  // TODO: open link
                 },
               ),
               Divider(height: 35.0, color: Colors.transparent),
