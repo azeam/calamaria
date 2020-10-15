@@ -4,19 +4,21 @@ import 'package:flutter/foundation.dart';
 class Species {
   final int specieId;
   final String scientificName;
-  final List upperLabials;
-  final List lowerLabials;
-  final List upperLabialsTouchingEye;
 
+  final SpeciesDataUpperLabials upperLabials;
+  final SpeciesDataLowerLabials lowerLabials;
+  final SpeciesDataUpperLabialsTouchingEye upperLabialsTouchingEye;
   final SpeciesDataMental mental;
   final SpeciesDataPreocular preocular;
   final SpeciesDataSupraocular supraocular;
   final SpeciesDataPostocular postocular;
+  final SpeciesDataPostocularFused postocularfused;
   final SpeciesDataSSEP ssep;
   final SpeciesDataEyeDiameter eyeDiameter;
   final SpeciesDataVents vents;
   final SpeciesDataSubcaudals subcaudals;
   final SpeciesDataTail tail;
+
 
   final String notes;
   final String image;
@@ -32,6 +34,7 @@ class Species {
       this.preocular,
       this.supraocular,
       this.postocular,
+      this.postocularfused,
       this.ssep,
       this.eyeDiameter,
       this.vents,
@@ -83,22 +86,29 @@ class Species {
     var species = new Species(
         specieId: json['id'] as int,
         scientificName: json['ScientificName'] as String,
-        upperLabials: json['UpperLabials'] as List,
-        lowerLabials: json['LowerLabials'] as List,
-        upperLabialsTouchingEye: json['ULTouchingEye'] as List,
+        upperLabials: new SpeciesDataUpperLabials(
+            list: json['UpperLabials'] as List
+        ),
+        lowerLabials: new SpeciesDataLowerLabials(
+            list: json['LowerLabials'] as List
+        ),
+        upperLabialsTouchingEye: new SpeciesDataUpperLabialsTouchingEye(
+            list: json['ULTouchingEye'] as List
+        ),
         mental: new SpeciesDataMental(
             isTouching: json['Mental']['Touching'] as bool,
             isNotTouching: json['Mental']['NotTouching']),
         preocular: new SpeciesDataPreocular(
             isPresent: json['Preocular']['Present'] as bool,
-            isAbsent: json['Preocular']['IsAbsent'] as bool),
+            isAbsent: json['Preocular']['Absent'] as bool),
         supraocular: new SpeciesDataSupraocular(
-            isPresent: json['Preocular']['Present'] as bool,
-            isAbsent: json['Preocular']['IsAbsent'] as bool),
+            isPresent: json['Supraocular']['Present'] as bool,
+            isAbsent: json['Supraocular']['Absent'] as bool),
         postocular: new SpeciesDataPostocular(
-            isPresent: json['Preocular']['Present'] as bool,
-            isAbsent: json['Preocular']['IsAbsent'] as bool,
-            isFused: json['Preocular']['Fused'] as bool),
+            isPresent: json['Postocular']['Present'] as bool,
+            isAbsent: json['Postocular']['Absent'] as bool),
+        postocularfused: new SpeciesDataPostocularFused(
+            isFused: json['Postocular']['Fused'] as bool),
         ssep: new SpeciesDataSSEP(
             isFour: json['SSEP']['4'] as bool,
             isFive: json['SSEP']['5'] as bool,
@@ -159,16 +169,61 @@ class Species {
   }
 }
 
+
+class SpeciesDataUpperLabials {
+  final List list;
+  SpeciesDataUpperLabials({this.list});
+
+  bool isHit(value) {
+    if(this.list.contains(value)) {
+      return true;
+    }
+    return false;
+  }
+}
+
+class SpeciesDataLowerLabials {
+  final List list;
+  SpeciesDataLowerLabials({this.list});
+
+  bool isHit(value) {
+    if(this.list.contains(value)) {
+      return true;
+    }
+    return false;
+  }
+}
+
+class SpeciesDataUpperLabialsTouchingEye {
+  final List list;
+  SpeciesDataUpperLabialsTouchingEye({this.list});
+
+  bool isHit(value) {
+    if(listEquals(this.list, value)) {
+      return true;
+    }
+    return false;
+  }
+}
+
 class SpeciesDataMental {
   final bool isTouching;
   final bool isNotTouching;
   SpeciesDataMental({this.isTouching, this.isNotTouching});
+
+  bool isHit(value) {
+    return (value) ? this.isTouching : this.isNotTouching;
+  }
 }
 
 class SpeciesDataPreocular {
   bool isPresent;
   bool isAbsent;
   SpeciesDataPreocular({this.isPresent, this.isAbsent});
+
+  bool isHit(value) {
+    return (value) ? this.isPresent : this.isAbsent;
+  }
 }
 
 class SpeciesDataSupraocular {
@@ -180,8 +235,19 @@ class SpeciesDataSupraocular {
 class SpeciesDataPostocular {
   bool isPresent;
   bool isAbsent;
+  SpeciesDataPostocular({this.isPresent, this.isAbsent});
+
+  bool isHit(value) {
+    return (value) ? this.isPresent : this.isAbsent;
+  }
+}
+class SpeciesDataPostocularFused {
   bool isFused;
-  SpeciesDataPostocular({this.isPresent, this.isAbsent, this.isFused});
+  SpeciesDataPostocularFused({this.isFused});
+
+  bool isHit(value) {
+    return (value == this.isFused);
+  }
 }
 
 class SpeciesDataSSEP {
@@ -189,6 +255,36 @@ class SpeciesDataSSEP {
   bool isFive;
   bool isSix;
   SpeciesDataSSEP({this.isFour, this.isFive, this.isSix});
+
+  bool isHit(filter) {
+    switch(filter) {
+      case 4:
+        if(this.isFour) { return true; }
+        break;
+      case 5:
+        if(this.isFive) { return true; }
+        break;
+      case 6:
+        if(this.isSix) { return true; }
+        break;
+    }
+    return false;
+  }
+
+  bool isUncertain(value) {
+    switch(value) {
+      case 4:
+        if(this.isFour == null) { return true; }
+        break;
+      case 5:
+        if(this.isFive == null) { return true; }
+        break;
+      case 6:
+        if(this.isSix == null) { return true; }
+        break;
+    }
+    return false;
+  }
 }
 
 class SpeciesDataEyeDiameter {
@@ -196,6 +292,21 @@ class SpeciesDataEyeDiameter {
   bool isEqual;
   bool isLarger;
   SpeciesDataEyeDiameter({this.isSmaller, this.isEqual, this.isLarger});
+
+  bool isHit(filter) {
+    switch(filter) {
+      case 'smaller':
+        if(this.isSmaller) { return true; }
+        break;
+      case 'larger':
+        if(this.isLarger) { return true; }
+        break;
+      case 'equal':
+        if(this.isEqual) { return true; }
+        break;
+    }
+    return false;
+  }
 }
 
 class SpeciesDataVents {
@@ -212,6 +323,8 @@ class SpeciesDataVents {
       this.femaleMax,
       this.bothMin,
       this.bothMax});
+
+
 }
 
 class SpeciesDataSubcaudals {
@@ -235,6 +348,21 @@ class SpeciesDataTail {
   bool isIntermediate;
   bool isAbrupt;
   SpeciesDataTail({this.isGradual, this.isIntermediate, this.isAbrupt});
+
+  bool isHit(filter) {
+    switch(filter) {
+      case 'gradual':
+        if(this.isGradual) { return true; }
+        break;
+      case 'intermediate':
+        if(this.isIntermediate) { return true; }
+        break;
+      case 'abrupt':
+        if(this.isAbrupt) { return true; }
+        break;
+    }
+    return false;
+  }
 }
 
 /*

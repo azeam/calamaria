@@ -1,4 +1,5 @@
 import 'dart:convert';
+import '../classes/species.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
@@ -29,23 +30,17 @@ class SpeciesLikelihood extends StatelessWidget {
 
     calcPoints(filterData['sUpperLabials'], species.upperLabials);
     calcPoints(filterData['sLowerLabials'], species.lowerLabials);
+    calcPoints(filterData['sULTouchingEye'], species.upperLabialsTouchingEye);
     calcPoints(filterData['sPreocular'], species.preocular);
-    calcPoints([filterData['sPostocular'], filterData['sPostFused']], species.postocular);
+    debugPrint('postocular: '+species.postocular.toString());
+    calcPoints(filterData['sPostocular'], species.postocular);
+    //calcPoints(filterData['sPostFused'], species.postocularfused);
     calcPoints(filterData['sSSEP'], species.ssep);
-
-
-
+    calcPoints(filterData['sEyeDiam'], species.eyeDiameter);
 
     calcPoints([filterData['sHemipenes'], filterData['sVents']], species.vents);
     calcPoints([filterData['sHemipenes'], filterData['sSubcaudals']], species.subcaudals);
 
-
-
-
-    calcPoints(filterData['sEyeDiam'], species.eyeDiameter);
-
-
-    //calcPointsListMatch(filterData['sULTouchingEye'], species.upperLabialsTouchingEye);
 
     if(this.points <= 0 || this.maxPoints == 0) {
       return 0;
@@ -56,86 +51,28 @@ class SpeciesLikelihood extends StatelessWidget {
     return percentage;
   }
 
+
+
+
+
   void calcPoints(filter, speciesData, [addToMaxPoints = true]) {
     if(filter == null) {
       return;
     }
 
-
-
-    if(speciesData is List) {
-      if(speciesData.contains(filter)) {
+    if(speciesData is SpeciesDataEyeDiameter
+        || speciesData is SpeciesDataTail
+        || speciesData is SpeciesDataSSEP
+        || speciesData is SpeciesDataPostocularFused
+        || speciesData is SpeciesDataPostocular
+        || speciesData is SpeciesDataPreocular
+        || speciesData is SpeciesDataMental
+        || speciesData is SpeciesDataUpperLabials
+        || speciesData is SpeciesDataLowerLabials
+        || speciesData is SpeciesDataUpperLabialsTouchingEye
+    ) {
+      if(speciesData.isHit(filter)) {
         this.points += 10;
-      }
-    }
-    if(speciesData is SpeciesDataMental) {
-      calcPoints(true, (filter) ? speciesData.isTouching : speciesData.isNotTouching, false);
-    }
-    if(speciesData is SpeciesDataPreocular) {
-      calcPoints(true, (filter) ? speciesData.isPresent : speciesData.isAbsent, false);
-    }
-    if(speciesData is SpeciesDataPostocular) {
-      if(filter[0] == null && filter[1] == null) {
-        return;
-      }
-      if(filter[0] != null) {
-        calcPoints(true, ((filter[0]) ? speciesData.isPresent : speciesData.isAbsent), false);
-      }
-      if(filter[1] != null) {
-        calcPoints((filter[1]), speciesData.isFused, false);
-      }
-    }
-    if(speciesData is SpeciesDataSSEP) {
-      switch(filter) {
-        case 4:
-          if(speciesData.isFour) { this.points += 10; }
-          break;
-        case 5:
-          if(speciesData.isFive) { this.points += 10; }
-          break;
-        case 6:
-          if(speciesData.isSix) { this.points += 10; }
-          break;
-      }
-    }
-    if(speciesData is SpeciesDataEyeDiameter) {
-      switch(filter) {
-        case 'smaller':
-          if(speciesData.isSmaller) { this.points += 10; }
-          break;
-        case 'larger':
-          if(speciesData.isLarger) { this.points += 10; }
-          break;
-        case 'equal':
-          if(speciesData.isEqual) { this.points += 10; }
-          break;
-      }
-    }
-    if(speciesData is SpeciesDataTail) {
-      switch(filter) {
-        case 'gradual':
-          if(speciesData.isGradual) { this.points += 10; }
-          break;
-        case 'intermediate':
-          if(speciesData.isIntermediate) { this.points += 10; }
-          break;
-        case 'abrupt':
-          if(speciesData.isAbrupt) { this.points += 10; }
-          break;
-      }
-    }
-
-    if(speciesData is SpeciesDataTail) {
-      switch(filter) {
-        case 'gradual':
-          if(speciesData.isGradual) { this.points += 10; }
-          break;
-        case 'intermediate':
-          if(speciesData.isIntermediate) { this.points += 10; }
-          break;
-        case 'abrupt':
-          if(speciesData.isAbrupt) { this.points += 10; }
-          break;
       }
     }
 
@@ -162,7 +99,7 @@ class SpeciesLikelihood extends StatelessWidget {
       }
     }
 
-    debugPrint(filter.toString());
+    //debugPrint(filter.toString());
     if(addToMaxPoints) {
       this.maxPoints += 10;
     }
