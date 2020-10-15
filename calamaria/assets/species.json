@@ -8,7 +8,8 @@
     "Mental":  {"Touching":  true, "NotTouching":  false},
     "Preocular": {"Present":  true, "Absent":  false},
     "Supraocular": {"Present":  true, "Absent":  false},
-    "Postocular": {"Present":  true, "Absent":  false, "Fused":  false},
+    "Postocular": {"Present":  true, "Absent":  false},
+    "PostocularFused": {"Fused":  false},
     "SSEP": {"4":  false, "5":  false, "6":  true},
     "EyeDiam": {"Smaller":  false, "Equal":  false, "Larger": true},
     "Vents": {
@@ -35,7 +36,8 @@
     "Mental":  {"Touching":  false, "NotTouching":  true},
     "Preocular": {"Present":  true, "Absent":  false},
     "Supraocular": {"Present":  true, "Absent":  false},
-    "Postocular": {"Present":  true, "Absent":  false, "Fused":  false},
+    "Postocular": {"Present":  true, "Absent":  false},
+    "PostocularFused": {"Fused":  false},
     "SSEP": {"4":  false, "5":  true, "6":  false},
     "EyeDiam": {"Smaller":  true, "Equal":  false, "Larger": false},
     "Vents": {
@@ -62,7 +64,8 @@
     "Mental":  {"Touching":  true, "NotTouching":  false},
     "Preocular": {"Present":  true, "Absent":  false},
     "Supraocular": {"Present":  true, "Absent":  false},
-    "Postocular": {"Present":  true, "Absent":  false, "Fused":  false},
+    "Postocular": {"Present":  true, "Absent":  false},
+    "PostocularFused": {"Fused":  false},
     "SSEP": {"4":  false, "5":  false, "6":  true},
     "EyeDiam": {"Smaller":  false, "Equal":  true, "Larger": true},
     "Vents": {
@@ -74,6 +77,62 @@
       "Male": {"Min":  20, "Max":  26},
       "Female": {"Min":  13, "Max":  21},
       "Both":{"Min":  13, "Max":  26}
+    },
+    "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
+    "Notes": "",
+    "Image": "c_borneensis.jpg",
+    "Description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+  },
+  {
+    "id":3,
+    "ScientificName":"Calamaria everetti",
+    "UpperLabials": [5],
+    "LowerLabials":  [5],
+    "ULTouchingEye":  [3,4],
+    "Mental":  {"Touching":  false, "NotTouching":  true},
+    "Preocular": {"Present":  true, "Absent":  false},
+    "Supraocular": {"Present":  true, "Absent":  false},
+    "Postocular": {"Present":  true, "Absent":  false},
+    "PostocularFused": {"Fused":  false},
+    "SSEP": {"4":  null, "5":  true, "6":  null},
+    "EyeDiam": {"Smaller":  false, "Equal":  false, "Larger": true},
+    "Vents": {
+      "Male": {"Min":  140, "Max":  157},
+      "Female": {"Min":  136, "Max":  155},
+      "Both":{"Min":  136, "Max":  157}
+    },
+    "Subcaudals": {
+      "Male": {"Min":  20, "Max":  22},
+      "Female": {"Min":  16, "Max":  25},
+      "Both":{"Min":  16, "Max":  25}
+    },
+    "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
+    "Notes": "",
+    "Image": "c_borneensis.jpg",
+    "Description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+  },
+  {
+    "id":4,
+    "ScientificName":"Calamaria grabowskyi",
+    "UpperLabials": [5],
+    "LowerLabials":  [5],
+    "ULTouchingEye":  [3,4],
+    "Mental":  {"Touching":  true, "NotTouching":  false},
+    "Preocular": {"Present":  true, "Absent":  false},
+    "Supraocular": {"Present":  true, "Absent":  false},
+    "Postocular": {"Present":  true, "Absent":  false},
+    "PostocularFused": {"Fused":  false},
+    "SSEP": {"4":  true, "5":  true, "6":  true},
+    "EyeDiam": {"Smaller":  false, "Equal":  false, "Larger": true},
+    "Vents": {
+      "Male": {"Min":  150, "Max":  186},
+      "Female": {"Min":  164, "Max":  190},
+      "Both":{"Min":  150, "Max":  190}
+    },
+    "Subcaudals": {
+      "Male": {"Min":  23, "Max":  29},
+      "Female": {"Min":  20, "Max":  28},
+      "Both":{"Min":  20, "Max":  28}
     },
     "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
     "Notes": "",
