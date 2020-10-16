@@ -100,6 +100,18 @@ class InfoPageData {
         this.images.add("assets/labialscales.svg");
         this.icon = 'assets/icons/read.svg';
         break;
+      case 11:
+        this.pageHeading = 'Ethics and regulations';
+        this.pageDescription = 'Blabla';
+        this.images.add("assets/labialscales.svg");
+        this.icon = 'assets/icons/balance.svg';
+        break;
+      case 12:
+        this.pageHeading = 'Glossary';
+        this.pageDescription = 'Blabla';
+        this.images.add("assets/labialscales.svg");
+        this.icon = 'assets/icons/book-bookmarked.svg';
+        break;
     }
   }
 

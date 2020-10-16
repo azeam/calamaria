@@ -24,7 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.18.1
-  swipedetector: ^1.2.0
+  swipedetector:
+    git: https://github.com/azeam/swipedetector.git # forked to remove prints and update sdk version requirements
   flutter_html: ^1.0.2
 
   # The following adds the Cupertino Icons font to your application.

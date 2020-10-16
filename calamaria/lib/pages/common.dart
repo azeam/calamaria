@@ -10,7 +10,7 @@ import '../main.dart';
 SwipeConfiguration swipeConfig() {
   return SwipeConfiguration(
       horizontalSwipeMaxHeightThreshold: 50.0,
-      horizontalSwipeMinDisplacement: 10.0,
+      horizontalSwipeMinDisplacement: 1.0,
       horizontalSwipeMinVelocity: 100.0);
 }
 
@@ -117,7 +117,7 @@ Widget bottomDrawer(BuildContext context) {
   InfoPageData data = new InfoPageData();
   return Drawer(
     child: ListView.builder(
-        itemCount: 11,
+        itemCount: 13,
         itemBuilder: (BuildContext context, int index) {
           data.setData(index);
           return ListTile(
