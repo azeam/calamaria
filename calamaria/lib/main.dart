@@ -1,3 +1,6 @@
+import 'package:photo_view/photo_view.dart';
+
+import 'pages/fullScreenImg.dart';
 import 'pages/listSpecies.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -55,4 +58,11 @@ class PageSpeciesInfo extends StatefulWidget {
   @override
   PageState_SpeciesInfoPage createState() =>
       PageState_SpeciesInfoPage(speciesId);
+}
+
+class FullScreenImageScreen extends StatefulWidget {
+  FullScreenImageScreen({Key key, this.photoUrl}) : super(key: key);
+  final String photoUrl;
+  @override
+  FullScreenImage createState() => FullScreenImage();
 }

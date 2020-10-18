@@ -58,6 +58,7 @@ class InfoPageData {
                 with something more urgent.
               </p>
               <h3><span>Deadly lookalikes</span></h3>
+              <img src="asset:assets/infoimages/hemipenis_test.jpg" alt="hemipenis">
             </div>
           """;
         this.icon = 'assets/icons/head-question.svg';

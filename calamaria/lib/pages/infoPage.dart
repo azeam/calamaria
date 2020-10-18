@@ -35,6 +35,12 @@ class InfoPageState extends State<InfoPage> {
                 },
                 onImageTap: (src) {
                   // TODO: maximize image
+                  var path = src.split(":")[1]; // remove "asset:"
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              FullScreenImageScreen(photoUrl: path)));
                 },
                 onLinkTap: (url) {
                   // TODO: open link
