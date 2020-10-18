@@ -131,12 +131,15 @@ Widget bottomDrawer(BuildContext context) {
               ),
               title: htmlNormalText(data.getHeading(), context),
               onTap: () {
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => index == 0
                           ? Calamaria()
-                          : index == 1 ? PageListSpecies() : InfoPage(index)),
+                          : index == 1
+                              ? PageListSpecies()
+                              : InfoPage(index)),
                 );
               });
         }),
@@ -164,15 +167,16 @@ Widget htmlNormalText(String data, BuildContext context) {
     onImageTap: (src) {
       var path;
       src.startsWith("asset:") // remove "asset:" from local images
-          ? path = src.split(":")[1]
-          : path = src; // remove "asset:" from local images
+          ? path = src.split("asset:")[1]
+          : path = src;
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => FullScreenImage(photoUrl: path)));
     },
     onLinkTap: (url) {
-      // TODO: open link
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => WebViewPage(url: url)));
     },
   );
 }

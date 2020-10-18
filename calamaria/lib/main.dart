@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:photo_view/photo_view.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import 'pages/fullScreenImg.dart';
 import 'pages/listSpecies.dart';
@@ -8,6 +11,7 @@ import 'pages/idPage.dart';
 import 'pages/infoPage.dart';
 import 'pages/speciesInfoPage.dart';
 import 'classes/selectedOptions.dart';
+import 'pages/webView.dart';
 
 void main() => runApp(Calamaria());
 
@@ -65,4 +69,12 @@ class FullScreenImage extends StatefulWidget {
   final String photoUrl;
   @override
   FullScreenImageState createState() => FullScreenImageState();
+}
+
+class WebViewPage extends StatefulWidget {
+  WebViewPage({Key key, this.url}) : super(key: key);
+  final String url;
+
+  @override
+  WebViewState createState() => WebViewState();
 }

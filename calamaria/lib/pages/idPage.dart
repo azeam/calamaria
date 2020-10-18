@@ -149,10 +149,14 @@ class IdPageState extends State<IdPage> {
                     child: Checkbox(
                         value: i == 0
                             ? _firstCheck
-                            : i == 1 ? _secondCheck : _thirdCheck,
+                            : i == 1
+                                ? _secondCheck
+                                : _thirdCheck,
                         onChanged: i == 0
                             ? _handleFirstCheck
-                            : i == 1 ? _handleSecondCheck : _handleThirdCheck),
+                            : i == 1
+                                ? _handleSecondCheck
+                                : _handleThirdCheck),
                   ),
                   optionText(options.checkOp[i]),
                 ]),
@@ -179,7 +183,9 @@ class IdPageState extends State<IdPage> {
                   groupValue: group,
                   onChanged: row == 1
                       ? _handleFirstRow
-                      : row == 2 ? _handleSecondRow : _handleThirdRow,
+                      : row == 2
+                          ? _handleSecondRow
+                          : _handleThirdRow,
                 ),
               ),
               optionText(options.radioOp[i]),
