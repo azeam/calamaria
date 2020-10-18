@@ -60,9 +60,9 @@ class PageSpeciesInfo extends StatefulWidget {
       PageState_SpeciesInfoPage(speciesId);
 }
 
-class FullScreenImageScreen extends StatefulWidget {
-  FullScreenImageScreen({Key key, this.photoUrl}) : super(key: key);
+class FullScreenImage extends StatefulWidget {
+  FullScreenImage({Key key, this.photoUrl}) : super(key: key);
   final String photoUrl;
   @override
-  FullScreenImage createState() => FullScreenImage();
+  FullScreenImageState createState() => FullScreenImageState();
 }
