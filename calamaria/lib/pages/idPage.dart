@@ -236,7 +236,7 @@ class IdPageState extends State<IdPage> {
                 Text(options.pageHeading,
                     style: Theme.of(context).textTheme.headline5),
                 Divider(height: 8.0, color: Colors.transparent),
-                htmlNormalText(options.pageDescription),
+                htmlNormalText(options.pageDescription, context),
                 Divider(height: 15.0, color: Colors.transparent),
                 (_page == 5 || _page == 6)
                     ? Image(image: AssetImage(options.mainImg))

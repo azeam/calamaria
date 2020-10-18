@@ -15,7 +15,7 @@ class InfoPageData {
       case 2:
         this.pageHeading = 'About this app';
         this.pageDescription =
-            // don't intend or first char will have whitespace before
+            // don't indent or first char will have whitespace before
             """This app is meant to help you identify Calamaria spp. (that is, Reed Snakes) you might come across on Borneo.
               <br><br>
                 These <a href="test">test</a> small and obscure snakes are often very difficult to identify just from their ’looks’. For several of 
@@ -51,15 +51,18 @@ class InfoPageData {
               <br><br>
                 All Calamaria share two scale characters that are rare among snakes and, when occurring together, 
                 are unique among Bornean snakes:
+                <br><br>
               <ul>
                 <li>They have only 13 rows of dorsal scales around the body.</li>
                 <li>They lack internasal scales, which (in most snakes) sit between the rostral and 
                 the prefrontal scales.</li>
               </ul>
+                <br><br>
                 The above separates them from the similar-looking snakes of the genus Pseudorabdion, which have 
                 internasal scales and 15 dorsal scale rows. We will look closer at Pseudorabdion soon, but we start 
                 with something more urgent.
-              <h3>Deadly lookalikes</h3>
+
+              <h3>DEADLY LOOKALIKES</h3>
               <img src="asset:assets/infoimages/hemipenis_test.jpg" alt="hemipenis">
           """;
         this.icon = 'assets/icons/head-question.svg';

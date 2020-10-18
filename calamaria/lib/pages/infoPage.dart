@@ -20,26 +20,7 @@ class InfoPageState extends State<InfoPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Divider(height: 8.0, color: Colors.transparent),
-              Html(
-                data: page.pageDescription,
-                style: {
-                  "span": Style(
-                    color: Colors.red,
-//                  backgroundColor: Color.fromARGB(0x50, 0xee, 0xee, 0xee),
-                  ),
-                },
-                onImageTap: (src) {
-                  var path = src.split(":")[1]; // remove "asset:"
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              FullScreenImage(photoUrl: path)));
-                },
-                onLinkTap: (url) {
-                  // TODO: open link
-                },
-              ),
+              htmlNormalText(page.pageDescription, context),
               Divider(height: 35.0, color: Colors.transparent),
             ],
           ),

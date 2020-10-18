@@ -129,7 +129,7 @@ Widget bottomDrawer(BuildContext context) {
                 color: Colors.black,
                 matchTextDirection: false,
               ),
-              title: htmlNormalText(data.getHeading()),
+              title: htmlNormalText(data.getHeading(), context),
               onTap: () {
                 Navigator.push(
                   context,
@@ -152,11 +152,27 @@ Widget htmlAppTitle(String data) {
   }, data: """<h1>""" + data + """</h1>""");
 }
 
-Widget htmlNormalText(String data) {
+Widget htmlNormalText(String data, BuildContext context) {
   return Html(
     style: {
       "div": Style(fontSize: FontSize.large, fontWeight: FontWeight.normal),
+      "h3": Style(
+        color: Colors.red,
+      ),
     },
     data: """<div>""" + data + """</div>""",
+    onImageTap: (src) {
+      var path;
+      src.startsWith("asset:") // remove "asset:" from local images
+          ? path = src.split(":")[1]
+          : path = src; // remove "asset:" from local images
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FullScreenImage(photoUrl: path)));
+    },
+    onLinkTap: (url) {
+      // TODO: open link
+    },
   );
 }
