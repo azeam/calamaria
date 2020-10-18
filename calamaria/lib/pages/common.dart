@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:swipedetector/swipedetector.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../main.dart';
 
@@ -175,8 +176,18 @@ Widget htmlNormalText(String data, BuildContext context) {
               builder: (context) => FullScreenImage(photoUrl: path)));
     },
     onLinkTap: (url) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => WebViewPage(url: url)));
+//      Navigator.push(context,
+//          MaterialPageRoute(builder: (context) => WebViewPage(url: url)));
+      _launchURL(
+          url); // use native browser TODO: change to above if using webview or remove webview page
     },
   );
+}
+
+_launchURL(url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
