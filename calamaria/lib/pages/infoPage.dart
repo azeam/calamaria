@@ -12,9 +12,7 @@ class InfoPageState extends State<InfoPage> {
     InfoPageData page = InfoPageData();
     page.setData(widget.page);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(page.pageTitle),
-      ),
+      appBar: AppBar(title: htmlAppTitle(page.pageHeading)),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 8.0),
         child: SingleChildScrollView(
@@ -22,9 +20,6 @@ class InfoPageState extends State<InfoPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Divider(height: 8.0, color: Colors.transparent),
-              Text(page.pageHeading,
-                  style: Theme.of(context).textTheme.headline5),
-              Divider(height: 15.0, color: Colors.transparent),
               Html(
                 data: page.pageDescription,
                 style: {

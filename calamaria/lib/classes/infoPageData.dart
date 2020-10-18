@@ -1,15 +1,22 @@
 class InfoPageData {
-  final String pageTitle = "Calamaria of Borneo";
   String pageDescription, pageHeading, icon;
   List<String> images = List<String>();
 
   void setData(int index) {
     switch (index) {
+      case 0:
+        this.icon = 'assets/icons/loupe.svg';
+        this.pageHeading = """Identify your <i>Calamaria</i>""";
+        break;
+      case 1:
+        this.icon = 'assets/icons/clipboard-list.svg';
+        this.pageHeading = """Species list and species accounts""";
+        break;
       case 2:
         this.pageHeading = 'About this app';
         this.pageDescription =
             // don't intend or first char will have whitespace before
-            """<div><p>This app is meant to help you identify Calamaria spp. (that is, Reed Snakes) you might come across on Borneo.
+            """This app is meant to help you identify Calamaria spp. (that is, Reed Snakes) you might come across on Borneo.
               <br><br>
                 These <a href="test">test</a> small and obscure snakes are often very difficult to identify just from their ’looks’. For several of 
                 them, no color photographs seem to exist, and no photographs exist of living specimens. Some are only
@@ -30,15 +37,13 @@ class InfoPageData {
                 you try to identify a Calamaria-specimen. You start that identification process via the main menu 
                 link to Identify your Calamaria. On the relevant pages you can erase all entered data by clicking 
                 the red button saying RESTART ID, and start from scratch again.
-              </p>
-            </div>
               """;
         this.icon = 'assets/icons/info-square.svg';
         break;
       case 3:
-        this.pageHeading = 'Is it really a Calamaria?';
+        this.pageHeading = 'Is it really a <i>Calamaria</i>?';
         this.pageDescription =
-            """<div><p>If the snake you’re trying to identify is not a <i>Calamaria</i>, you’ll obviously not going to 
+            """If the snake you’re trying to identify is not a <i>Calamaria</i>, you’ll obviously not going to 
                 find its name with this app. What other snakes in Borneo are at most risk of being mistaken for 
                 <i>Calamaria</i> spp.? First of all, most Calamaria never grow to a length exceeding 50 cm, and most of 
                 them are rarely >35 cm. If ‘your’ snake is larger than (say) 60 cm, it is not a Calamaria. 
@@ -46,20 +51,16 @@ class InfoPageData {
               <br><br>
                 All Calamaria share two scale characters that are rare among snakes and, when occurring together, 
                 are unique among Bornean snakes:
-              </p>
               <ul>
                 <li>They have only 13 rows of dorsal scales around the body.</li>
                 <li>They lack internasal scales, which (in most snakes) sit between the rostral and 
                 the prefrontal scales.</li>
               </ul>
-              <p>
                 The above separates them from the similar-looking snakes of the genus Pseudorabdion, which have 
                 internasal scales and 15 dorsal scale rows. We will look closer at Pseudorabdion soon, but we start 
                 with something more urgent.
-              </p>
-              <h3><span>Deadly lookalikes</span></h3>
+              <h3>Deadly lookalikes</h3>
               <img src="asset:assets/infoimages/hemipenis_test.jpg" alt="hemipenis">
-            </div>
           """;
         this.icon = 'assets/icons/head-question.svg';
         break;

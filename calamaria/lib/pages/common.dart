@@ -1,3 +1,6 @@
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/style.dart';
+
 import '../classes/infoPageData.dart';
 import '../classes/selectedOptions.dart';
 import 'package:flutter/cupertino.dart';
@@ -122,19 +125,11 @@ Widget bottomDrawer(BuildContext context) {
           data.setData(index);
           return ListTile(
               leading: SvgPicture.asset(
-                index == 0
-                    ? "assets/icons/loupe.svg"
-                    : index == 1
-                        ? "assets/icons/clipboard-list.svg"
-                        : data.getIcon(),
+                data.getIcon(),
                 color: Colors.black,
                 matchTextDirection: false,
               ),
-              title: Text(index == 0
-                  ? "Identify your Calamaria"
-                  : index == 1
-                      ? "Species list and species accounts"
-                      : data.getHeading()),
+              title: htmlNormalText(data.getHeading()),
               onTap: () {
                 Navigator.push(
                   context,
@@ -145,5 +140,23 @@ Widget bottomDrawer(BuildContext context) {
                 );
               });
         }),
+  );
+}
+
+Widget htmlAppTitle(String data) {
+  return Html(style: {
+    "h1": Style(
+        color: Colors.white,
+        fontSize: FontSize.xLarge,
+        fontWeight: FontWeight.normal),
+  }, data: """<h1>""" + data + """</h1>""");
+}
+
+Widget htmlNormalText(String data) {
+  return Html(
+    style: {
+      "div": Style(fontSize: FontSize.large, fontWeight: FontWeight.normal),
+    },
+    data: """<div>""" + data + """</div>""",
   );
 }
