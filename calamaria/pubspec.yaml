@@ -28,7 +28,6 @@ dependencies:
   flutter_html: ^1.0.2  # render html 
   photo_view: ^0.10.2   # for full screen images
   url_launcher: ^5.7.5  # for opening urls in native browser
-  flutter_inappwebview: ^4.0.0 # another webview plugin, only one that seems to work with iNaturalist/Android
 
   # flutter_html depends on outdated version of webview_flutter (possibly used if not using native browser?), should be updated soon
   # flutter_html also depends on flutter_svg (used)

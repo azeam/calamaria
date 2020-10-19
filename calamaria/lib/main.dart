@@ -1,8 +1,3 @@
-import 'dart:io';
-
-import 'package:photo_view/photo_view.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-
 import 'pages/fullScreenImg.dart';
 import 'pages/listSpecies.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,14 +6,38 @@ import 'pages/idPage.dart';
 import 'pages/infoPage.dart';
 import 'pages/speciesInfoPage.dart';
 import 'classes/selectedOptions.dart';
-import 'pages/webView.dart';
 
 void main() => runApp(Calamaria());
+
+// TODO: for debugging, can be removed later
+class _NavigatorHistory extends NavigatorObserver {
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic> previousRoute) {
+    print("${route.settings.name} pushed");
+  }
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic> previousRoute) {
+    print("${route.settings.name} popped");
+  }
+
+  @override
+  void didReplace({Route<dynamic> newRoute, Route<dynamic> oldRoute}) {
+    print("${oldRoute.settings.name} is replaced by ${newRoute.settings.name}");
+  }
+
+  @override
+  void didRemove(Route<dynamic> route, Route<dynamic> previousRoute) {
+    print("${route.settings.name} removed");
+  }
+}
 
 class Calamaria extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // TODO: for debugging, can be removed later
+      navigatorObservers: [_NavigatorHistory()],
       title: 'Calamaria of Borneo',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
@@ -69,12 +88,4 @@ class FullScreenImage extends StatefulWidget {
   final String photoUrl;
   @override
   FullScreenImageState createState() => FullScreenImageState();
-}
-
-class WebViewPage extends StatefulWidget {
-  WebViewPage({Key key, this.url}) : super(key: key);
-  final String url;
-
-  @override
-  WebViewState createState() => WebViewState();
 }

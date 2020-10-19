@@ -1,3 +1,5 @@
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 
@@ -18,14 +20,17 @@ SwipeConfiguration swipeConfig() {
       horizontalSwipeMinVelocity: 100.0);
 }
 
-Widget navFAB(BuildContext context, Widget next) {
+Widget navFAB(BuildContext context, Widget next, String id) {
   return FloatingActionButton(
       child: Icon(Icons.arrow_forward),
       backgroundColor: Colors.green[600],
       onPressed: () {
         Navigator.push(
           context,
-          CupertinoPageRoute(builder: (context) => next),
+          CupertinoPageRoute(
+              // TODO: for debugging, can be removed later
+              settings: RouteSettings(name: "idpage" + id),
+              builder: (BuildContext context) => next),
         );
       });
 }
@@ -52,7 +57,8 @@ Widget navBar(BuildContext context, bool isIdPage) {
                   matchTextDirection: false,
                 ),
                 onPressed: () {
-                  showAlert(context);
+                  showAlert(context,
+                      "Do you want to clear all data and restart?", "clear");
                 },
               )
             : SizedBox.shrink(),
@@ -61,10 +67,10 @@ Widget navBar(BuildContext context, bool isIdPage) {
   );
 }
 
-showAlert(BuildContext context) {
+showAlert(BuildContext context, String question, String action) {
   showDialog(
       context: context,
-      builder: (dialogContex) {
+      builder: (dialogContext) {
         return Dialog(
           child: Container(
             margin: EdgeInsets.only(
@@ -74,7 +80,7 @@ showAlert(BuildContext context) {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
-                    "Clear all entered data and restart?",
+                    question,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
@@ -86,7 +92,7 @@ showAlert(BuildContext context) {
                     children: <Widget>[
                       FlatButton(
                         onPressed: () {
-                          Navigator.of(dialogContex).pop();
+                          Navigator.of(dialogContext).pop();
                         },
                         child: Text("Cancel"),
                         color: Colors.blueGrey,
@@ -94,14 +100,11 @@ showAlert(BuildContext context) {
                       ),
                       FlatButton(
                         onPressed: () {
-                          Navigator.of(dialogContex).pop();
-                          SelectedOptions sel = SelectedOptions();
-                          sel.resetData();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Calamaria()),
-                          );
+                          if (action == "clear") {
+                            clearIdPage(dialogContext, context);
+                          } else if (action == "exit") {
+                            SystemNavigator.pop();
+                          }
                         },
                         child: Text("Continue"),
                         color: Colors.blueGrey,
@@ -117,12 +120,22 @@ showAlert(BuildContext context) {
       });
 }
 
+void clearIdPage(BuildContext dialogContext, BuildContext context) {
+  Navigator.of(dialogContext).pop();
+  SelectedOptions sel = SelectedOptions();
+  sel.resetData();
+  SchedulerBinding.instance.addPostFrameCallback((_) async {
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+  });
+}
+
 Widget bottomDrawer(BuildContext context) {
   InfoPageData data = new InfoPageData();
   return Drawer(
     child: ListView.builder(
         itemCount: 13,
-        itemBuilder: (BuildContext context, int index) {
+        itemBuilder: (BuildContext drawerContext, int index) {
           data.setData(index);
           return ListTile(
               leading: SvgPicture.asset(
@@ -132,12 +145,16 @@ Widget bottomDrawer(BuildContext context) {
               ),
               title: htmlNormalText(data.getHeading(), context),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pop(drawerContext);
+                //   if (data.getHeading() != widget.title) {}
                 Navigator.push(
                   context,
                   MaterialPageRoute(
+                      // TODO: for debugging, can be removed later
+                      settings:
+                          RouteSettings(name: "infopage" + index.toString()),
                       builder: (context) => index == 0
-                          ? Calamaria()
+                          ? IdPage(1, title: 'Calamaria of Borneo')
                           : index == 1
                               ? PageListSpecies()
                               : InfoPage(index)),
@@ -167,18 +184,18 @@ Widget htmlNormalText(String data, BuildContext context) {
     data: """<div>""" + data + """</div>""",
     onImageTap: (src) {
       var path;
-      src.startsWith("asset:") // remove "asset:" from local images
-          ? path = src.split("asset:")[1]
-          : path = src;
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => FullScreenImage(photoUrl: path)));
+      // only open local imgs, skip data srcs for eg. external link icon
+      if (src.startsWith("asset:")) {
+        // remove "asset:" from local images
+        path = src.split("asset:")[1];
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => FullScreenImage(photoUrl: path)));
+      }
     },
     onLinkTap: (url) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => WebViewPage(url: url)));
-      //     _launchURL(url); // use native browser TODO: change to above if using webview or remove webview page
+      _launchURL(url);
     },
   );
 }

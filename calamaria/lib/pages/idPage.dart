@@ -223,88 +223,99 @@ class IdPageState extends State<IdPage> {
     FormPageOptions options =
         FormPageOptions(); // init on each build and pass options as arg or lists will keep increasing when going back to page
     options.setData(_page);
-    return Scaffold(
-      appBar: AppBar(
-        title: htmlAppTitle(
-          """Identify your <i>Calamaria</i> (""" +
-              _page.toString() +
-              """ of 8)""",
-        ),
-      ),
-      body: SwipeDetector(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Divider(height: 10.0, color: Colors.transparent),
-                Text(options.pageHeading,
-                    style: Theme.of(context).textTheme.headline5),
-                Divider(height: 8.0, color: Colors.transparent),
-                htmlNormalText(options.pageDescription, context),
-                Divider(height: 15.0, color: Colors.transparent),
-                (_page == 5 || _page == 6)
-                    ? Image(image: AssetImage(options.mainImg))
-                    : (_page == 8)
-                        ? SizedBox.shrink()
-                        : SvgPicture.asset(
-                            options.mainImg,
-                            matchTextDirection: false,
-                          ),
-                Divider(height: 15.0, color: Colors.transparent),
-                (_page != 8)
-                    ? optionRow(options.questions[0],
-                        radioRow(_firstGroup, 1, options, _page))
-                    : Column(children: [
-                        Divider(height: 10.0, color: Colors.transparent),
-                        inputRow(_firstInput, 0, options),
-                        Divider(height: 10.0, color: Colors.transparent),
-                        inputRow(_secondInput, 1, options),
-                      ]),
-                (_page == 1 || _page == 3)
-                    ? optionRow(options.questions[1],
-                        radioRow(_secondGroup, 2, options, _page))
-                    : SizedBox.shrink(),
-                (_page == 3)
-                    ? optionRow(options.questions[2],
-                        radioRow(_thirdGroup, 3, options, _page))
-                    : SizedBox.shrink(),
-                (_page == 1)
-                    ? optionRow(options.questions[2], checkRow(3, options))
-                    : SizedBox.shrink(), // something empty, can't be null
-                Divider(height: 35.0, color: Colors.transparent),
-              ],
+    return WillPopScope(
+        child: Scaffold(
+          appBar: AppBar(
+            title: htmlAppTitle(
+              """Identify your <i>Calamaria</i> (""" +
+                  _page.toString() +
+                  """ of 8)""",
             ),
           ),
-        ),
-        onSwipeLeft: () {
-          (_page != 8)
-              ? Navigator.push(
-                  context,
-                  CupertinoPageRoute(builder: (context) => IdPage(_page + 1)),
-                )
-              : _listResults(context);
-        },
-        onSwipeRight: () {
-          (_page != 1) ? Navigator.pop(context) : print("test");
-        },
-        swipeConfiguration: swipeConfig(),
-      ),
-      bottomNavigationBar: navBar(context, true),
-      floatingActionButton: (_page != 8)
-          ? navFAB(context, IdPage(_page + 1))
-          : Builder(
-              builder: (context) => FloatingActionButton(
-                child: Icon(Icons.done),
-                backgroundColor: Colors.green,
-                onPressed: () {
-                  _listResults(context);
-                },
+          body: SwipeDetector(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Divider(height: 10.0, color: Colors.transparent),
+                    Text(options.pageHeading,
+                        style: Theme.of(context).textTheme.headline5),
+                    Divider(height: 8.0, color: Colors.transparent),
+                    htmlNormalText(options.pageDescription, context),
+                    Divider(height: 15.0, color: Colors.transparent),
+                    (_page == 5 || _page == 6)
+                        ? Image(image: AssetImage(options.mainImg))
+                        : (_page == 8)
+                            ? SizedBox.shrink()
+                            : SvgPicture.asset(
+                                options.mainImg,
+                                matchTextDirection: false,
+                              ),
+                    Divider(height: 15.0, color: Colors.transparent),
+                    (_page != 8)
+                        ? optionRow(options.questions[0],
+                            radioRow(_firstGroup, 1, options, _page))
+                        : Column(children: [
+                            Divider(height: 10.0, color: Colors.transparent),
+                            inputRow(_firstInput, 0, options),
+                            Divider(height: 10.0, color: Colors.transparent),
+                            inputRow(_secondInput, 1, options),
+                          ]),
+                    (_page == 1 || _page == 3)
+                        ? optionRow(options.questions[1],
+                            radioRow(_secondGroup, 2, options, _page))
+                        : SizedBox.shrink(),
+                    (_page == 3)
+                        ? optionRow(options.questions[2],
+                            radioRow(_thirdGroup, 3, options, _page))
+                        : SizedBox.shrink(),
+                    (_page == 1)
+                        ? optionRow(options.questions[2], checkRow(3, options))
+                        : SizedBox.shrink(), // something empty, can't be null
+                    Divider(height: 35.0, color: Colors.transparent),
+                  ],
+                ),
               ),
             ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-    );
+            onSwipeLeft: () {
+              (_page != 8)
+                  ? Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          settings: RouteSettings(
+                              // TODO: for debugging, can be removed later
+                              name: "idpage" + (_page + 1).toString()),
+                          builder: (BuildContext context) => IdPage(_page + 1)),
+                    )
+                  : _listResults(context);
+            },
+            onSwipeRight: () {
+              Navigator.maybePop(context);
+            },
+            swipeConfiguration: swipeConfig(),
+          ),
+          bottomNavigationBar: navBar(context, true),
+          floatingActionButton: (_page != 8)
+              ? navFAB(context, IdPage(_page + 1), (_page + 1).toString())
+              : Builder(
+                  builder: (context) => FloatingActionButton(
+                    child: Icon(Icons.done),
+                    backgroundColor: Colors.green,
+                    onPressed: () {
+                      _listResults(context);
+                    },
+                  ),
+                ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        ),
+        onWillPop: () {
+          if (!Navigator.canPop(context)) {
+            showAlert(context, "Are you sure you want to exit?", "exit");
+          }
+          return Future.value(true);
+        });
   }
 
   void _listResults(BuildContext context) {

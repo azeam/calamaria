@@ -5,11 +5,6 @@ import '../main.dart';
 
 class FullScreenImageState extends State<FullScreenImage> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: PhotoView(
