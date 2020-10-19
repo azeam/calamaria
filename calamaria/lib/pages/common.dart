@@ -176,10 +176,9 @@ Widget htmlNormalText(String data, BuildContext context) {
               builder: (context) => FullScreenImage(photoUrl: path)));
     },
     onLinkTap: (url) {
-//      Navigator.push(context,
-//          MaterialPageRoute(builder: (context) => WebViewPage(url: url)));
-      _launchURL(
-          url); // use native browser TODO: change to above if using webview or remove webview page
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => WebViewPage(url: url)));
+      //     _launchURL(url); // use native browser TODO: change to above if using webview or remove webview page
     },
   );
 }
