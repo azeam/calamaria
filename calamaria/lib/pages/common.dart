@@ -101,7 +101,8 @@ showAlert(BuildContext context, String question, String action) {
                       FlatButton(
                         onPressed: () {
                           if (action == "clear") {
-                            clearIdPage(dialogContext, context);
+                            Navigator.of(dialogContext).pop();
+                            reInitIdPage(context);
                           } else if (action == "exit") {
                             SystemNavigator.pop();
                           }
@@ -120,8 +121,7 @@ showAlert(BuildContext context, String question, String action) {
       });
 }
 
-void clearIdPage(BuildContext dialogContext, BuildContext context) {
-  Navigator.of(dialogContext).pop();
+void reInitIdPage(BuildContext context) {
   SelectedOptions sel = SelectedOptions();
   sel.resetData();
   SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -145,20 +145,23 @@ Widget bottomDrawer(BuildContext context) {
               ),
               title: htmlNormalText(data.getHeading(), context),
               onTap: () {
-                Navigator.pop(drawerContext);
-                //   if (data.getHeading() != widget.title) {}
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      // TODO: for debugging, can be removed later
-                      settings:
-                          RouteSettings(name: "infopage" + index.toString()),
-                      builder: (context) => index == 0
-                          ? IdPage(1, title: 'Calamaria of Borneo')
-                          : index == 1
-                              ? PageListSpecies()
-                              : InfoPage(index)),
-                );
+                Navigator.pop(
+                    drawerContext); // close menu or it will appear when going back
+                // TODO: compare index to current page somehow and don't push if already on page
+                if (index == 0) {
+                  reInitIdPage(
+                      context); // clear data when going to id page from menu
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        // TODO: for debugging, can be removed later
+                        settings:
+                            RouteSettings(name: "infopage" + index.toString()),
+                        builder: (context) =>
+                            index == 1 ? PageListSpecies() : InfoPage(index)),
+                  );
+                }
               });
         }),
   );

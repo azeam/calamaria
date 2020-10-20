@@ -11,13 +11,13 @@ class SelectedOptions {
       sVents,
       sSubcaudals,
       sTail;
-  static List<int> sULTouchingEye = List<int>();
+  static Set<int> sULTouchingEye = Set<int>();
 
   Map<String, dynamic> toJson() {
     return {
       "sUpperLabials": sUpperLabials,
       "sLowerLabials": sLowerLabials,
-      "sULTouchingEye": sULTouchingEye,
+      "sULTouchingEye": sULTouchingEye.toList(), // need to cast for set
       "sMental": sMental == 0 ? true : sMental == 1 ? false : null,
       "sPreocular": sPreocular == 0 ? true : sPreocular == 1 ? false : null,
       "sPostocular": sPostocular == 0 ? true : sPostocular == 1 ? false : null,
@@ -36,7 +36,7 @@ class SelectedOptions {
   }
 
   void resetData() {
-    sULTouchingEye = List<int>();
+    sULTouchingEye = Set<int>();
     sUpperLabials = null;
     sLowerLabials = null;
     sMental = null;

@@ -24,6 +24,27 @@ class IdPageState extends State<IdPage> {
   String _firstInput;
   String _secondInput;
 
+  @override
+  void initState() {
+    super.initState();
+    _page = widget.page;
+    // get saved values for radioboxes and inputs
+    _setGroups();
+    // get saved values for checkboxes, only necessary if not clearing data when going to identify from menu from info page, better to clear before?
+    if (_page == 1) {
+      print(SelectedOptions.sULTouchingEye);
+      if (SelectedOptions.sULTouchingEye.contains(2)) {
+        _handleFirstCheck(true);
+      }
+      if (SelectedOptions.sULTouchingEye.contains(3)) {
+        _handleSecondCheck(true);
+      }
+      if (SelectedOptions.sULTouchingEye.contains(4)) {
+        _handleThirdCheck(true);
+      }
+    }
+  }
+
   void _setGroups() {
     switch (_page) {
       case 1:
@@ -149,14 +170,10 @@ class IdPageState extends State<IdPage> {
                     child: Checkbox(
                         value: i == 0
                             ? _firstCheck
-                            : i == 1
-                                ? _secondCheck
-                                : _thirdCheck,
+                            : i == 1 ? _secondCheck : _thirdCheck,
                         onChanged: i == 0
                             ? _handleFirstCheck
-                            : i == 1
-                                ? _handleSecondCheck
-                                : _handleThirdCheck),
+                            : i == 1 ? _handleSecondCheck : _handleThirdCheck),
                   ),
                   optionText(options.checkOp[i]),
                 ]),
@@ -183,9 +200,7 @@ class IdPageState extends State<IdPage> {
                   groupValue: group,
                   onChanged: row == 1
                       ? _handleFirstRow
-                      : row == 2
-                          ? _handleSecondRow
-                          : _handleThirdRow,
+                      : row == 2 ? _handleSecondRow : _handleThirdRow,
                 ),
               ),
               optionText(options.radioOp[i]),
@@ -218,8 +233,6 @@ class IdPageState extends State<IdPage> {
 
   @override
   Widget build(BuildContext context) {
-    _page = widget.page;
-    _setGroups();
     FormPageOptions options =
         FormPageOptions(); // init on each build and pass options as arg or lists will keep increasing when going back to page
     options.setData(_page);
@@ -317,14 +330,15 @@ class IdPageState extends State<IdPage> {
           return Future.value(true);
         });
   }
+}
 
-  void _listResults(BuildContext context) {
-    SelectedOptions sel = SelectedOptions();
-    Navigator.push(
-      context,
-      CupertinoPageRoute(builder: (context) => PageListSpecies(sel)),
-    );
-  }
+void _listResults(BuildContext context) {
+  SelectedOptions sel = SelectedOptions();
+  print(sel);
+  Navigator.push(
+    context,
+    CupertinoPageRoute(builder: (context) => PageListSpecies(sel)),
+  );
 }
 
 Widget optionText(String text) {
