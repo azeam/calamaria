@@ -108,7 +108,7 @@ class Species {
             isPresent: json['Postocular']['Present'] as bool,
             isAbsent: json['Postocular']['Absent'] as bool),
         postocularfused: new SpeciesDataPostocularFused(
-            isFused: json['Postocular']['Fused'] as bool),
+            isFused: json['PostocularFused']['Fused'] as bool),
         ssep: new SpeciesDataSSEP(
             isFour: json['SSEP']['4'] as bool,
             isFive: json['SSEP']['5'] as bool,
@@ -139,22 +139,22 @@ class Species {
         ),
         subcaudals: new SpeciesDataSubcaudals(
           maleMin: ((json['Subcaudals']['Male'] != null)
-              ? json['Vents']['Male']['Min'] as int
+              ? json['Subcaudals']['Male']['Min'] as int
               : null),
           maleMax: ((json['Subcaudals']['Male'] != null)
-              ? json['Vents']['Male']['Max'] as int
+              ? json['Subcaudals']['Male']['Max'] as int
               : null),
           femaleMin: ((json['Subcaudals']['Female'] != null)
-              ? json['Vents']['Female']['Min'] as int
+              ? json['Subcaudals']['Female']['Min'] as int
               : null),
           femaleMax: ((json['Subcaudals']['Female'] != null)
-              ? json['Vents']['Female']['Max'] as int
+              ? json['Subcaudals']['Female']['Max'] as int
               : null),
           bothMin: ((json['Subcaudals']['Both'] != null)
-              ? json['Vents']['Both']['Min'] as int
+              ? json['Subcaudals']['Both']['Min'] as int
               : null),
           bothMax: ((json['Subcaudals']['Both'] != null)
-              ? json['Vents']['Both']['Max'] as int
+              ? json['Subcaudals']['Both']['Max'] as int
               : null),
         ),
         tail: new SpeciesDataTail(
@@ -198,6 +198,21 @@ class SpeciesDataUpperLabialsTouchingEye {
   final List list;
   SpeciesDataUpperLabialsTouchingEye({this.list});
 
+  Map<String, dynamic> getTableObject(filter, species) {
+    String pickedText = '';
+    String speciesText = list.join(' & ');
+    if(filter is List) {
+      pickedText = filter.join(' & ');
+    }
+
+    return {
+      'Picked': 'Upper labials touching eye: ',
+      'PickedValue': pickedText,
+      'Species': 'Upper labials touching eye:',
+      'SpeciesValue': speciesText
+    };
+  }
+
   bool isHit(value) {
     if(listEquals(this.list, value)) {
       return true;
@@ -210,6 +225,17 @@ class SpeciesDataMental {
   final bool isTouching;
   final bool isNotTouching;
   SpeciesDataMental({this.isTouching, this.isNotTouching});
+
+  Map<String, dynamic> getTableObject(filter, Species species) {
+    String pickedText = filter.toString();
+    String speciesText = species.mental.isTouching.toString();
+    
+    return {
+      'Picked': 'Mental touching anterior chin shields: ',
+      'PickedValue' : pickedText,
+      'Species': 'Mental touching anterior chin shields: ',
+      'SpeciesValue': speciesText};
+    }
 
   bool isHit(value) {
     return (value) ? this.isTouching : this.isNotTouching;
@@ -259,13 +285,13 @@ class SpeciesDataSSEP {
   bool isHit(filter) {
     switch(filter) {
       case 4:
-        if(this.isFour) { return true; }
+        if(this.isFour != null && this.isFour) { return true; }
         break;
       case 5:
-        if(this.isFive) { return true; }
+        if(this.isFive != null && this.isFive) { return true; }
         break;
       case 6:
-        if(this.isSix) { return true; }
+        if(this.isSix != null && this.isSix) { return true; }
         break;
     }
     return false;

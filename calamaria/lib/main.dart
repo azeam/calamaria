@@ -1,3 +1,5 @@
+import 'package:Calamaria/classes/speciesLikelihood.dart';
+
 import 'pages/fullScreenImg.dart';
 import 'pages/listSpecies.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,7 +7,11 @@ import 'package:flutter/material.dart';
 import 'pages/idPage.dart';
 import 'pages/infoPage.dart';
 import 'pages/speciesInfoPage.dart';
+import 'pages/likelihoodInfoPage.dart';
 import 'classes/selectedOptions.dart';
+import 'classes/species.dart';
+import 'classes/speciesLikelihood.dart';
+
 
 void main() => runApp(Calamaria());
 
@@ -81,6 +87,16 @@ class PageSpeciesInfo extends StatefulWidget {
   @override
   PageState_SpeciesInfoPage createState() =>
       PageState_SpeciesInfoPage(speciesId);
+}
+
+class PageLikelihoodInfo extends StatefulWidget {
+  PageLikelihoodInfo(this.species, this.speciesLikelihood);
+  final Species species;
+  final SpeciesLikelihood speciesLikelihood;
+
+  @override
+  PageState_LikelihoodInfoPage createState() =>
+      PageState_LikelihoodInfoPage(species, speciesLikelihood);
 }
 
 class FullScreenImage extends StatefulWidget {

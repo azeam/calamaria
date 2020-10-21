@@ -18,6 +18,9 @@ class SpeciesLikelihood extends StatelessWidget {
   int maxPoints;
   int points;
 
+  List<Map<String, dynamic>> hits = [];
+  List<Map<String, dynamic>> misses = [];
+
   SpeciesLikelihood(this.species, this.filter) {
     filterData = this.filter.toJson();
   }
@@ -28,19 +31,7 @@ class SpeciesLikelihood extends StatelessWidget {
     this.maxPoints = 0;
     this.points = 0;
 
-    calcPoints(filterData['sUpperLabials'], species.upperLabials);
-    calcPoints(filterData['sLowerLabials'], species.lowerLabials);
-    calcPoints(filterData['sULTouchingEye'], species.upperLabialsTouchingEye);
-    calcPoints(filterData['sPreocular'], species.preocular);
-    debugPrint('postocular: '+species.postocular.toString());
-    calcPoints(filterData['sPostocular'], species.postocular);
-    //calcPoints(filterData['sPostFused'], species.postocularfused);
-    calcPoints(filterData['sSSEP'], species.ssep);
-    calcPoints(filterData['sEyeDiam'], species.eyeDiameter);
-
-    calcPoints([filterData['sHemipenes'], filterData['sVents']], species.vents);
-    calcPoints([filterData['sHemipenes'], filterData['sSubcaudals']], species.subcaudals);
-
+    this.calculatePoints();
 
     if(this.points <= 0 || this.maxPoints == 0) {
       return 0;
@@ -51,8 +42,25 @@ class SpeciesLikelihood extends StatelessWidget {
     return percentage;
   }
 
+  void calculatePoints() {
+    //calcPoints(filterData['sUpperLabials'], species.upperLabials);
+
+    //calcPoints(filterData['sLowerLabials'], species.lowerLabials);
+    calcPoints(filterData['sULTouchingEye'], species.upperLabialsTouchingEye);
+
+    //calcPoints(filterData['sPreocular'], species.preocular);
+    //calcPoints(filterData['sPostocular'], species.postocular);
+    //calcPoints(filterData['sPostFused'], species.postocularfused);
+    //calcPoints(filterData['sSSEP'], species.ssep);
+    //calcPoints(filterData['sEyeDiam'], species.eyeDiameter);
+    //calcPoints(filterData['sTail'], species.tail);
+    calcPoints(filterData['sMental'], species.mental);
+
+    //calcPoints([filterData['sHemipenes'], filterData['sVents']], species.vents);
+    //calcPoints([filterData['sHemipenes'], filterData['sSubcaudals']], species.subcaudals);
 
 
+  }
 
 
   void calcPoints(filter, speciesData, [addToMaxPoints = true]) {
@@ -73,6 +81,9 @@ class SpeciesLikelihood extends StatelessWidget {
     ) {
       if(speciesData.isHit(filter)) {
         this.points += 10;
+        this.hits.add(speciesData.getTableObject(filter, species));
+      } else {
+        this.misses.add(speciesData.getTableObject(filter, species));
       }
     }
 
@@ -105,6 +116,7 @@ class SpeciesLikelihood extends StatelessWidget {
     }
   }
 
+
   Color getColor() {
     var colors = [
       Color(0xffb5000b),
@@ -123,8 +135,62 @@ class SpeciesLikelihood extends StatelessWidget {
     return colors[(getPercentage()/10).ceil()];
   }
 
+  Table getTableHits() {
+    List<TableRow> rows = [
+      new TableRow(
+          children: [
+            new Container(
+                color: Colors.black54,
+                padding: EdgeInsets.all(7),
+                child: new Text('You picked', style: TextStyle(color: Colors.white))
+            ),
+            new Container(
+                color: Colors.black54,
+                padding: EdgeInsets.all(7),
+                child: new Text('Species', style: TextStyle(color: Colors.white))
+            )
+          ]
+      )
+    ];
+
+    for(var i = 0; i < this.hits.length; i++) {
+      rows.add(
+        new TableRow(
+            children: [
+              new Container(
+                  padding: EdgeInsets.all(7),
+                child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    new Text(this.hits[i]['Picked'], style: TextStyle()),
+                    new Text(this.hits[i]['PickedValue'], style: TextStyle(fontWeight: FontWeight.bold)),
+                  ]
+                )
+              ),
+              new Container(
+                  padding: EdgeInsets.all(7),
+                  child: new Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        new Text(this.hits[i]['Species'], style: TextStyle()),
+                        new Text(this.hits[i]['SpeciesValue'], style: TextStyle(fontWeight: FontWeight.bold)),
+                      ]
+                  )
+              ),
+            ]
+        )
+      );
+    }
 
 
+
+
+    return new Table(
+      border: TableBorder.all(color: Colors.black54),
+      columnWidths: {1: FractionColumnWidth(.5)},
+      children: rows,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,3 +202,5 @@ class SpeciesLikelihood extends StatelessWidget {
     );
   }
 }
+
+

@@ -47,7 +47,9 @@ class SpeciesResult extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              PageSpeciesInfo(species[index].specieId)),
+                              PageLikelihoodInfo(species[index], new SpeciesLikelihood(species[index], this.filter))
+                              //PageSpeciesInfo(species[index].specieId)
+                       ),
                     );
                   }));
         });
