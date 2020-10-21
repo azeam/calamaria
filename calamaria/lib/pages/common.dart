@@ -2,16 +2,19 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
-
-import '../classes/infoPageData.dart';
-import '../classes/selectedOptions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:swipedetector/swipedetector.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../classes/infoPageData.dart';
+import '../classes/selectedOptions.dart';
+
 import '../main.dart';
+
+String externalUrlIcon =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==";
 
 SwipeConfiguration swipeConfig() {
   return SwipeConfiguration(
@@ -35,7 +38,7 @@ Widget navFAB(BuildContext context, Widget next, String id) {
       });
 }
 
-Widget navBar(BuildContext context, bool isIdPage) {
+Widget navBar(BuildContext context, int curPageMenuIndex) {
   return BottomAppBar(
     color: Colors.blueGrey,
     child: Row(
@@ -45,11 +48,13 @@ Widget navBar(BuildContext context, bool isIdPage) {
           onPressed: () {
             showModalBottomSheet<Null>(
               context: context,
-              builder: (BuildContext context) => bottomDrawer(context),
+              builder: (BuildContext context) =>
+                  bottomDrawer(context, curPageMenuIndex),
             );
           },
         ),
-        (isIdPage)
+        // show trash can on id pages
+        (curPageMenuIndex == 0)
             ? IconButton(
                 icon: SvgPicture.asset(
                   "assets/icons/trash.svg",
@@ -130,7 +135,7 @@ void reInitIdPage(BuildContext context) {
   });
 }
 
-Widget bottomDrawer(BuildContext context) {
+Widget bottomDrawer(BuildContext context, int curPageIndex) {
   InfoPageData data = new InfoPageData();
   return Drawer(
     child: ListView.builder(
@@ -147,20 +152,24 @@ Widget bottomDrawer(BuildContext context) {
               onTap: () {
                 Navigator.pop(
                     drawerContext); // close menu or it will appear when going back
-                // TODO: compare index to current page somehow and don't push if already on page
-                if (index == 0) {
-                  reInitIdPage(
-                      context); // clear data when going to id page from menu
-                } else {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        // TODO: for debugging, can be removed later
-                        settings:
-                            RouteSettings(name: "infopage" + index.toString()),
-                        builder: (context) =>
-                            index == 1 ? PageListSpecies() : InfoPage(index)),
-                  );
+                // only go to page if not already active
+                if (index != curPageIndex) {
+                  if (index == 0) {
+                    reInitIdPage(
+                        context); // clear data when going to id page from menu
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          // TODO: for debugging, can be removed later
+                          settings: index == 1
+                              ? RouteSettings(name: "listspecies")
+                              : RouteSettings(
+                                  name: "infopage" + index.toString()),
+                          builder: (context) =>
+                              index == 1 ? PageListSpecies() : InfoPage(index)),
+                    );
+                  }
                 }
               });
         }),
@@ -173,7 +182,7 @@ Widget htmlAppTitle(String data) {
         color: Colors.white,
         fontSize: FontSize.xLarge,
         fontWeight: FontWeight.normal),
-  }, data: """<h1>""" + data + """</h1>""");
+  }, data: "<h1>" + data + "</h1>");
 }
 
 Widget htmlNormalText(String data, BuildContext context) {
@@ -184,8 +193,8 @@ Widget htmlNormalText(String data, BuildContext context) {
         color: Colors.red,
       ),
     },
-    data: """<div>""" + data + """</div>""",
-    onImageTap: (src) {
+    data: "<div>" + data + "</div>",
+    onImageTap: (src, alt) {
       var path;
       // only open local imgs, skip data srcs for eg. external link icon
       if (src.startsWith("asset:")) {
@@ -194,7 +203,8 @@ Widget htmlNormalText(String data, BuildContext context) {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => FullScreenImage(photoUrl: path)));
+                builder: (context) =>
+                    FullScreenImage(photoUrl: path, title: alt)));
       }
     },
     onLinkTap: (url) {

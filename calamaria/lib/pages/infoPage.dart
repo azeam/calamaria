@@ -24,7 +24,7 @@ class InfoPageState extends State<InfoPage> {
           ),
         ),
       ),
-      bottomNavigationBar: navBar(context, false),
+      bottomNavigationBar: navBar(context, widget.page),
     );
   }
 }

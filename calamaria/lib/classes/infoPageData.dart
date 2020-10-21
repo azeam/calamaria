@@ -1,3 +1,5 @@
+import 'package:Calamaria/pages/common.dart';
+
 class InfoPageData {
   String pageDescription, pageHeading, icon;
   List<String> images = List<String>();
@@ -65,18 +67,23 @@ class InfoPageData {
               <h3>DEADLY LOOKALIKES</h3>
               <br><br>
               <a href="https://www.inaturalist.org/taxa/27495-Calamaria-griswoldi">Link test to iNaturalist</a>
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==">
+              <img src=""" +
+                externalUrlIcon +
+                """>
               <br><br>
               
               <a href="https://github.com/azeam">Link test to github</a>
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==">
-              
+              <img src=""" +
+                externalUrlIcon +
+                """>
               <br><br>
               <a href="https://www.flickr.com/photos/azeam/albums">Link test to flickr</a>
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==">
+              <img src=""" +
+                externalUrlIcon +
+                """>
               
               <br><br>
-              <img src="asset:assets/infoimages/hemipenis_test.jpg" alt="hemipenis">
+              <img src="asset:assets/infoimages/hemipenis_test.jpg" alt="Hemipenis">
           """;
         this.icon = 'assets/icons/head-question.svg';
         break;

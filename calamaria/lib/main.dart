@@ -12,7 +12,6 @@ import 'classes/selectedOptions.dart';
 import 'classes/species.dart';
 import 'classes/speciesLikelihood.dart';
 
-
 void main() => runApp(Calamaria());
 
 // TODO: for debugging, can be removed later
@@ -100,8 +99,9 @@ class PageLikelihoodInfo extends StatefulWidget {
 }
 
 class FullScreenImage extends StatefulWidget {
-  FullScreenImage({Key key, this.photoUrl}) : super(key: key);
+  FullScreenImage({Key key, this.photoUrl, this.title}) : super(key: key);
   final String photoUrl;
+  final String title;
   @override
   FullScreenImageState createState() => FullScreenImageState();
 }

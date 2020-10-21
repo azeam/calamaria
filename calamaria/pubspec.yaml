@@ -25,7 +25,8 @@ dependencies:
     sdk: flutter
   swipedetector:        # swipe left/right between id pages
     git: https://github.com/azeam/swipedetector.git # forked to remove prints and update sdk version requirements
-  flutter_html: ^1.0.2  # render html 
+  flutter_html:         # render html 
+    git: https://github.com/azeam/flutter_html.git  # forked to get alt attribute to use as title in fullscreen
   photo_view: ^0.10.2   # for full screen images
   url_launcher: ^5.7.5  # for opening urls in native browser
 

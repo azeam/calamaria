@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -30,7 +31,7 @@ class IdPageState extends State<IdPage> {
     _page = widget.page;
     // get saved values for radioboxes and inputs
     _setGroups();
-    // get saved values for checkboxes, only necessary if not clearing data when going to identify from menu from info page, better to clear before?
+    // get saved values for checkboxes, should only be necessary if not clearing data when going to identify from menu from info page, but better safe than sorry
     if (_page == 1) {
       print(SelectedOptions.sULTouchingEye);
       if (SelectedOptions.sULTouchingEye.contains(2)) {
@@ -74,6 +75,7 @@ class IdPageState extends State<IdPage> {
       case 8:
         _firstInput = SelectedOptions.sVents.toString();
         _secondInput = SelectedOptions.sSubcaudals.toString();
+        break;
     }
   }
 
@@ -124,6 +126,7 @@ class IdPageState extends State<IdPage> {
         break;
       case 7:
         SelectedOptions.sTail = value;
+        break;
     }
   }
 
@@ -309,7 +312,7 @@ class IdPageState extends State<IdPage> {
             },
             swipeConfiguration: swipeConfig(),
           ),
-          bottomNavigationBar: navBar(context, true),
+          bottomNavigationBar: navBar(context, 0),
           floatingActionButton: (_page != 8)
               ? navFAB(context, IdPage(_page + 1), (_page + 1).toString())
               : Builder(
@@ -324,7 +327,9 @@ class IdPageState extends State<IdPage> {
           floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         ),
         onWillPop: () {
-          if (!Navigator.canPop(context)) {
+          // not possible to programmatically exit app on iOS
+          // TODO: test this on iOS, should something else be done when you can not go back?
+          if (!Navigator.canPop(context) && Platform.isAndroid) {
             showAlert(context, "Are you sure you want to exit?", "exit");
           }
           return Future.value(true);
