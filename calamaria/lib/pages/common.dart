@@ -10,7 +10,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../classes/infoPageData.dart';
 import '../classes/selectedOptions.dart';
-
 import '../main.dart';
 
 String externalUrlIcon =
@@ -166,8 +165,9 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
                               ? RouteSettings(name: "listspecies")
                               : RouteSettings(
                                   name: "infopage" + index.toString()),
-                          builder: (context) =>
-                              index == 1 ? PageListSpecies() : InfoPage(index)),
+                          builder: (context) => index == 1
+                              ? PageListSpecies()
+                              : InfoPage(page: index)),
                     );
                   }
                 }

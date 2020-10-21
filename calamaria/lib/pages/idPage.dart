@@ -173,10 +173,14 @@ class IdPageState extends State<IdPage> {
                     child: Checkbox(
                         value: i == 0
                             ? _firstCheck
-                            : i == 1 ? _secondCheck : _thirdCheck,
+                            : i == 1
+                                ? _secondCheck
+                                : _thirdCheck,
                         onChanged: i == 0
                             ? _handleFirstCheck
-                            : i == 1 ? _handleSecondCheck : _handleThirdCheck),
+                            : i == 1
+                                ? _handleSecondCheck
+                                : _handleThirdCheck),
                   ),
                   optionText(options.checkOp[i]),
                 ]),
@@ -203,7 +207,9 @@ class IdPageState extends State<IdPage> {
                   groupValue: group,
                   onChanged: row == 1
                       ? _handleFirstRow
-                      : row == 2 ? _handleSecondRow : _handleThirdRow,
+                      : row == 2
+                          ? _handleSecondRow
+                          : _handleThirdRow,
                 ),
               ),
               optionText(options.radioOp[i]),
@@ -303,7 +309,8 @@ class IdPageState extends State<IdPage> {
                           settings: RouteSettings(
                               // TODO: for debugging, can be removed later
                               name: "idpage" + (_page + 1).toString()),
-                          builder: (BuildContext context) => IdPage(_page + 1)),
+                          builder: (BuildContext context) =>
+                              IdPage(page: _page + 1)),
                     )
                   : _listResults(context);
             },
@@ -314,7 +321,7 @@ class IdPageState extends State<IdPage> {
           ),
           bottomNavigationBar: navBar(context, 0),
           floatingActionButton: (_page != 8)
-              ? navFAB(context, IdPage(_page + 1), (_page + 1).toString())
+              ? navFAB(context, IdPage(page: _page + 1), (_page + 1).toString())
               : Builder(
                   builder: (context) => FloatingActionButton(
                     child: Icon(Icons.done),
@@ -328,7 +335,6 @@ class IdPageState extends State<IdPage> {
         ),
         onWillPop: () {
           // not possible to programmatically exit app on iOS
-          // TODO: test this on iOS, should something else be done when you can not go back?
           if (!Navigator.canPop(context) && Platform.isAndroid) {
             showAlert(context, "Are you sure you want to exit?", "exit");
           }

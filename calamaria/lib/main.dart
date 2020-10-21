@@ -1,13 +1,13 @@
-import 'package:Calamaria/classes/speciesLikelihood.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'pages/fullScreenImg.dart';
 import 'pages/listSpecies.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'pages/idPage.dart';
 import 'pages/infoPage.dart';
 import 'pages/speciesInfoPage.dart';
 import 'pages/likelihoodInfoPage.dart';
+
 import 'classes/selectedOptions.dart';
 import 'classes/species.dart';
 import 'classes/speciesLikelihood.dart';
@@ -47,13 +47,13 @@ class Calamaria extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: IdPage(1, title: 'Calamaria of Borneo'),
+      home: IdPage(page: 1, title: 'Calamaria of Borneo'),
     );
   }
 }
 
 class IdPage extends StatefulWidget {
-  IdPage(this.page, {Key key, this.title}) : super(key: key);
+  IdPage({Key key, this.title, this.page}) : super(key: key);
   final String title;
   final int page;
   @override
@@ -72,7 +72,7 @@ class PageListSpecies extends StatefulWidget {
 }
 
 class InfoPage extends StatefulWidget {
-  InfoPage(this.page, {Key key, this.title}) : super(key: key);
+  InfoPage({Key key, this.title, this.page}) : super(key: key);
   final String title;
   final int page;
   @override
