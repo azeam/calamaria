@@ -1,4 +1,4 @@
-import 'package:Calamaria/pages/common.dart';
+import '../pages/common.dart';
 
 class InfoPageData {
   String pageDescription, pageHeading, icon;
