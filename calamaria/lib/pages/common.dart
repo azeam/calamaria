@@ -25,7 +25,7 @@ SwipeConfiguration swipeConfig() {
 Widget navFAB(BuildContext context, Widget next, String id) {
   return FloatingActionButton(
       child: Icon(Icons.arrow_forward),
-      backgroundColor: Colors.green[600],
+      backgroundColor: Colors.blueGrey[700],
       onPressed: () {
         Navigator.push(
           context,
@@ -141,37 +141,39 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
         itemCount: 13,
         itemBuilder: (BuildContext drawerContext, int index) {
           data.setData(index);
-          return ListTile(
-              leading: SvgPicture.asset(
-                data.getIcon(),
-                color: Colors.black,
-                matchTextDirection: false,
-              ),
-              title: htmlNormalText(data.getHeading(), context),
-              onTap: () {
-                Navigator.pop(
-                    drawerContext); // close menu or it will appear when going back
-                // only go to page if not already active
-                if (index != curPageIndex) {
-                  if (index == 0) {
-                    reInitIdPage(
-                        context); // clear data when going to id page from menu
-                  } else {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          // TODO: for debugging, can be removed later
-                          settings: index == 1
-                              ? RouteSettings(name: "listspecies")
-                              : RouteSettings(
-                                  name: "infopage" + index.toString()),
-                          builder: (context) => index == 1
-                              ? PageListSpecies()
-                              : InfoPage(page: index)),
-                    );
-                  }
-                }
-              });
+          return Container(
+              color: (index != curPageIndex) ? null : Colors.blueGrey[100],
+              child: ListTile(
+                  leading: SvgPicture.asset(
+                    data.getIcon(),
+                    color: Colors.black,
+                    matchTextDirection: false,
+                  ),
+                  title: htmlNormalText(data.getHeading(), context),
+                  onTap: () {
+                    Navigator.pop(
+                        drawerContext); // close menu or it will appear when going back
+                    // only go to page if not already active
+                    if (index != curPageIndex) {
+                      if (index == 0) {
+                        reInitIdPage(
+                            context); // clear data when going to id page from menu
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              // TODO: for debugging, can be removed later
+                              settings: index == 1
+                                  ? RouteSettings(name: "listspecies")
+                                  : RouteSettings(
+                                      name: "infopage" + index.toString()),
+                              builder: (context) => index == 1
+                                  ? PageListSpecies()
+                                  : InfoPage(page: index)),
+                        );
+                      }
+                    }
+                  }));
         }),
   );
 }

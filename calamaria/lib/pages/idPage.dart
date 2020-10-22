@@ -33,7 +33,6 @@ class IdPageState extends State<IdPage> {
     _setGroups();
     // get saved values for checkboxes, should only be necessary if not clearing data when going to identify from menu from info page, but better safe than sorry
     if (_page == 1) {
-      print(SelectedOptions.sULTouchingEye);
       if (SelectedOptions.sULTouchingEye.contains(2)) {
         _handleFirstCheck(true);
       }
@@ -325,7 +324,7 @@ class IdPageState extends State<IdPage> {
               : Builder(
                   builder: (context) => FloatingActionButton(
                     child: Icon(Icons.done),
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.blueGrey[700],
                     onPressed: () {
                       _listResults(context);
                     },
@@ -345,7 +344,7 @@ class IdPageState extends State<IdPage> {
 
 void _listResults(BuildContext context) {
   SelectedOptions sel = SelectedOptions();
-  print(sel);
+  print(sel.toJson());
   Navigator.push(
     context,
     CupertinoPageRoute(builder: (context) => PageListSpecies(sel)),
