@@ -41,6 +41,7 @@ class Calamaria extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       // TODO: for debugging, can be removed later
       navigatorObservers: [_NavigatorHistory()],
       title: 'Calamaria of Borneo',

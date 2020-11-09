@@ -191,6 +191,10 @@ Widget htmlNormalText(String data, BuildContext context) {
   return Html(
     style: {
       "div": Style(fontSize: FontSize.large, fontWeight: FontWeight.normal),
+      "figcaption": Style(
+          fontSize: FontSize.small,
+          fontWeight: FontWeight.normal,
+          fontFamily: 'Merriweather'),
       "h3": Style(
         color: Colors.red,
       ),
