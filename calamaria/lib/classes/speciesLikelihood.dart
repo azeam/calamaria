@@ -20,6 +20,7 @@ class SpeciesLikelihood extends StatelessWidget {
 
   List<Map<String, dynamic>> hits = [];
   List<Map<String, dynamic>> misses = [];
+  List<String> uncertains = [];
 
   SpeciesLikelihood(this.species, this.filter) {
     filterData = this.filter.toJson();
@@ -32,7 +33,8 @@ class SpeciesLikelihood extends StatelessWidget {
     this.points = 0;
 
     this.calculatePoints();
-
+    debugPrint('POINTS:'+this.points.toString());
+    debugPrint('MAX-POINTS:'+this.maxPoints.toString());
     if(this.points <= 0 || this.maxPoints == 0) {
       return 0;
     } else {
@@ -43,77 +45,48 @@ class SpeciesLikelihood extends StatelessWidget {
   }
 
   void calculatePoints() {
-    //calcPoints(filterData['sUpperLabials'], species.upperLabials);
+    calcPoints(filterData['sUpperLabials'], species.upperLabials);
 
-    //calcPoints(filterData['sLowerLabials'], species.lowerLabials);
+    calcPoints(filterData['sLowerLabials'], species.lowerLabials);
     calcPoints(filterData['sULTouchingEye'], species.upperLabialsTouchingEye);
 
-    //calcPoints(filterData['sPreocular'], species.preocular);
-    //calcPoints(filterData['sPostocular'], species.postocular);
-    //calcPoints(filterData['sPostFused'], species.postocularfused);
-    //calcPoints(filterData['sSSEP'], species.ssep);
-    //calcPoints(filterData['sEyeDiam'], species.eyeDiameter);
-    //calcPoints(filterData['sTail'], species.tail);
+    calcPoints(filterData['sPreocular'], species.preocular);
+    calcPoints(filterData['sPostocular'], species.postocular);
+    calcPoints(filterData['sPostFused'], species.postocularfused);
+    calcPoints(filterData['sSSEP'], species.ssep);
+    calcPoints(filterData['sEyeDiam'], species.eyeDiameter);
+    calcPoints(filterData['sTail'], species.tail);
     calcPoints(filterData['sMental'], species.mental);
 
-    //calcPoints([filterData['sHemipenes'], filterData['sVents']], species.vents);
-    //calcPoints([filterData['sHemipenes'], filterData['sSubcaudals']], species.subcaudals);
-
-
+    bool hemipenes = filterData['sHemipenes'] ?? false;
+    if(filterData['sVents'] != null) {
+      calcPoints([hemipenes, filterData['sVents']], species.vents);
+    }
+    if(filterData['sSubcaudals'] != null) {
+      calcPoints([hemipenes, filterData['sSubcaudals']], species.subcaudals);
+    }
   }
 
 
-  void calcPoints(filter, speciesData, [addToMaxPoints = true]) {
-    if(filter == null) {
+  void calcPoints(filter, speciesData) {
+    if(filter == null || (filter is List && (filter.length <= 0))) {
       return;
     }
 
-    if(speciesData is SpeciesDataEyeDiameter
-        || speciesData is SpeciesDataTail
-        || speciesData is SpeciesDataSSEP
-        || speciesData is SpeciesDataPostocularFused
-        || speciesData is SpeciesDataPostocular
-        || speciesData is SpeciesDataPreocular
-        || speciesData is SpeciesDataMental
-        || speciesData is SpeciesDataUpperLabials
-        || speciesData is SpeciesDataLowerLabials
-        || speciesData is SpeciesDataUpperLabialsTouchingEye
-    ) {
-      if(speciesData.isHit(filter)) {
+    if(speciesData.isUncertain(filter)) {
+      this.uncertains.add(speciesData.uncertainText);
+      debugPrint(this.uncertains.toString());
+    } else {
+      if (speciesData.isHit(filter)) {
         this.points += 10;
         this.hits.add(speciesData.getTableObject(filter, species));
       } else {
+        //this.points -= 10;
         this.misses.add(speciesData.getTableObject(filter, species));
       }
     }
 
-    if(speciesData is SpeciesDataVents || speciesData is SpeciesDataSubcaudals) {
-      if(filter[1]==null) {
-        return;
-      }
-      if(filter[0]==null) {
-        if (filter[1] >= speciesData.bothMin && filter[1] <= speciesData.bothMax) {
-          this.points += 10;
-        }
-      } else {
-        if (!filter[0] && speciesData.femaleMin != null &&
-            speciesData.femaleMax != null) {
-          if (filter[1] >= speciesData.femaleMin && filter[1] <= speciesData.femaleMax) {
-            this.points += 10;
-          }
-        }
-        if (filter[0]) {
-          if (filter[1] >= speciesData.maleMin && filter[1] <= speciesData.maleMax) {
-            this.points += 10;
-          }
-        }
-      }
-    }
-
-    //debugPrint(filter.toString());
-    if(addToMaxPoints) {
-      this.maxPoints += 10;
-    }
+    this.maxPoints += 10;
   }
 
 
@@ -135,50 +108,119 @@ class SpeciesLikelihood extends StatelessWidget {
     return colors[(getPercentage()/10).ceil()];
   }
 
+  Column getUncertains() {
+    List<Widget> columns = [];
+    for(var i = 0; i < this.uncertains.length; i++) {
+      columns.add(
+          new Container(
+              child: new Row(
+                  children: [
+                    new Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                          Icons.warning,
+                          color: Colors.indigoAccent,
+                          size: 24.0
+                        )
+                    ),
+                    Flexible(child: new Text(this.uncertains[i]))
+                  ]
+              )
+          )
+      );
+    }
+    debugPrint(columns.toString());
+    return Column(
+      children: columns
+    );
+  }
+
+  bool isAnyUncertain() {
+    this.maxPoints = 0;
+    this.points = 0;
+    this.calculatePoints();
+    return (this.uncertains.length > 0);
+  }
+
+  Container getUncertainIcon() {
+    if(!this.isAnyUncertain()) {
+      return new Container();
+    }
+
+    return new Container(
+        padding: EdgeInsets.only(right: 5),
+        child: new Icon(
+            Icons.warning,
+            color: Colors.indigoAccent,
+            size: 24.0
+        )
+    );
+  }
+
   Table getTableHits() {
+    return this.getTable(this.hits);
+  }
+
+  Table getTableMisses() {
+    return this.getTable(this.misses);
+  }
+
+  Table getTable(data) {
     List<TableRow> rows = [
       new TableRow(
           children: [
             new Container(
                 color: Colors.black54,
                 padding: EdgeInsets.all(7),
-                child: new Text('You picked', style: TextStyle(color: Colors.white))
+                child: new Text('Type', style: TextStyle(color: Colors.white))
             ),
             new Container(
                 color: Colors.black54,
                 padding: EdgeInsets.all(7),
                 child: new Text('Species', style: TextStyle(color: Colors.white))
+            ),
+            new Container(
+                color: Colors.black54,
+                padding: EdgeInsets.all(7),
+                child: new Text('Picked', style: TextStyle(color: Colors.white))
             )
           ]
       )
     ];
 
-    for(var i = 0; i < this.hits.length; i++) {
+    for(var i = 0; i < data.length; i++) {
       rows.add(
-        new TableRow(
-            children: [
-              new Container(
-                  padding: EdgeInsets.all(7),
-                child: new Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    new Text(this.hits[i]['Picked'], style: TextStyle()),
-                    new Text(this.hits[i]['PickedValue'], style: TextStyle(fontWeight: FontWeight.bold)),
-                  ]
-                )
-              ),
-              new Container(
-                  padding: EdgeInsets.all(7),
-                  child: new Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        new Text(this.hits[i]['Species'], style: TextStyle()),
-                        new Text(this.hits[i]['SpeciesValue'], style: TextStyle(fontWeight: FontWeight.bold)),
-                      ]
-                  )
-              ),
-            ]
-        )
+          new TableRow(
+              children: [
+                new Container(
+                    padding: EdgeInsets.all(7),
+                    child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          new Text(data[i]['Label'], style: TextStyle()),
+                        ]
+                    )
+                ),
+                new Container(
+                    padding: EdgeInsets.all(7),
+                    child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          new Text(data[i]['SpeciesValue'], style: TextStyle(fontWeight: FontWeight.bold)),
+                        ]
+                    )
+                ),
+                new Container(
+                    padding: EdgeInsets.all(7),
+                    child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          new Text(data[i]['PickedValue'], style: TextStyle(fontWeight: FontWeight.bold))
+                        ]
+                    )
+                ),
+              ]
+          )
       );
     }
 
@@ -187,18 +229,27 @@ class SpeciesLikelihood extends StatelessWidget {
 
     return new Table(
       border: TableBorder.all(color: Colors.black54),
-      columnWidths: {1: FractionColumnWidth(.5)},
+      columnWidths: {
+        0: FlexColumnWidth(6),
+        1: FlexColumnWidth(3),
+        2: FlexColumnWidth(3),
+      },
       children: rows,
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return new Row(children: [
+      this.getUncertainIcon(),
+      new Container(
         width: 60,
         color:  getColor(),
         padding: const EdgeInsets.all(3.0),
         child: new Text(getPercentage().toString()+'%', textAlign: TextAlign.center)
+      )
+    ]
     );
   }
 }

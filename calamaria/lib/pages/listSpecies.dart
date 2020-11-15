@@ -16,7 +16,7 @@ class PageState_ListSpecies extends State<PageListSpecies> {
     //debugPrint(this.filter);
     return Scaffold(
       appBar: AppBar(
-        title: Text('List species'),
+        title: Text('Results'),
       ),
       body: Container(
         child: new Center(

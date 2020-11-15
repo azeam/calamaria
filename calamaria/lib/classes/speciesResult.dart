@@ -21,8 +21,8 @@ class SpeciesResult extends StatelessWidget {
     return new ListView.builder(
         itemCount: species == null ? 0 : species.length,
         itemBuilder: (BuildContext context, int index) {
-          return new Card(
-              child: new GestureDetector(
+          return new GestureDetector(
+              child: new Card(
                   child: new Container(
                       child: new Row(
                         children: [
@@ -42,16 +42,17 @@ class SpeciesResult extends StatelessWidget {
                         ],
                       ),
                       padding: const EdgeInsets.all(15.0)),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              PageLikelihoodInfo(species[index], new SpeciesLikelihood(species[index], this.filter))
-                              //PageSpeciesInfo(species[index].specieId)
-                       ),
-                    );
-                  }));
+                  ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          PageLikelihoodInfo(species[index], new SpeciesLikelihood(species[index], this.filter))
+                    //PageSpeciesInfo(species[index].specieId)
+                  ),
+                );
+              });
         });
   }
 }
