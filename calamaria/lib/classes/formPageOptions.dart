@@ -48,16 +48,12 @@ class FormPageOptions {
         this.radioOp.add("No");
         this.mainImg = 'assets/formimages/ocularscales.svg';
         this.pageDescription =
-            """All Bornean <i>Calamaria</i> have a supraocular scale sitting above the eye. 
-            Most also have a postocular (a small scale just behind the eye). 
-            However, in some the postocular may be seamlessly fused with the supralabial – 
-            if so, that single, merged scale is called supraocular (and the postocular is considered absent). 
+            """All Bornean <i>Calamaria</i> have a supraocular scale sitting above the eye. Most also have 
+            a postocular (a small scale just behind the eye), and the majority have a preocular 
+            (a small scale just in front of the eye).
             <br><br>
-            Here you focus on these scales plus the presence/absence of a preocular (a small scale 
-            sitting in front of the eye). 
-            <br><br>
-            The pre- and postoculars can be very small, so make sure you use a good hand lens – 
-            or even better, a very good macro lens on your camera – to document their presence/absence!""";
+            The pre- and postocular can be very small, so make sure you use a good hand lens - 
+            or even better, a very good macro lens on your camera - to document their presence/absence.""";
         this.pageHeading = 'Scales around the eye';
         break;
       case 4:
