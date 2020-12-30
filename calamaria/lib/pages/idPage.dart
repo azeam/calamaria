@@ -20,7 +20,6 @@ class IdPageState extends State<IdPage> {
   int _page;
   int _firstGroup;
   int _secondGroup;
-  int _thirdGroup;
 
   String _firstInput;
   String _secondInput;
@@ -57,7 +56,6 @@ class IdPageState extends State<IdPage> {
       case 3:
         _firstGroup = SelectedOptions.sPreocular;
         _secondGroup = SelectedOptions.sPostocular;
-        _thirdGroup = SelectedOptions.sPostFused;
         break;
       case 4:
         _firstGroup = SelectedOptions.sSSEP;
@@ -139,14 +137,6 @@ class IdPageState extends State<IdPage> {
         : SelectedOptions.sPostocular = value;
   }
 
-  // only page 3
-  void _handleThirdRow(int value) {
-    setState(() {
-      _thirdGroup = value;
-    });
-    SelectedOptions.sPostFused = value;
-  }
-
   // only page 8 has inputs
   void _handleFirstInput(String value) {
     SelectedOptions.sVents = int.parse(value);
@@ -204,11 +194,7 @@ class IdPageState extends State<IdPage> {
                       ? int.parse(options.radioOp[i])
                       : i, // get val from text
                   groupValue: group,
-                  onChanged: row == 1
-                      ? _handleFirstRow
-                      : row == 2
-                          ? _handleSecondRow
-                          : _handleThirdRow,
+                  onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
                 ),
               ),
               optionText(options.radioOp[i]),
@@ -287,10 +273,6 @@ class IdPageState extends State<IdPage> {
                     (_page == 1 || _page == 3)
                         ? optionRow(options.questions[1],
                             radioRow(_secondGroup, 2, options, _page))
-                        : SizedBox.shrink(),
-                    (_page == 3)
-                        ? optionRow(options.questions[2],
-                            radioRow(_thirdGroup, 3, options, _page))
                         : SizedBox.shrink(),
                     (_page == 1)
                         ? optionRow(options.questions[2], checkRow(3, options))

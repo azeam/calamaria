@@ -44,7 +44,6 @@ class FormPageOptions {
       case 3:
         this.questions.add('Preocular present?');
         this.questions.add('Postocular present?');
-        this.questions.add('Postocular fused with supraocular?');
         this.radioOp.add("Yes");
         this.radioOp.add("No");
         this.mainImg = 'assets/formimages/ocularscales.svg';
