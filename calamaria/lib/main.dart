@@ -48,7 +48,7 @@ class Calamaria extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: IdPage(page: 1, title: 'Calamaria of Borneo'),
+      home: InfoPage(page: 12),
     );
   }
 }
@@ -73,8 +73,7 @@ class PageListSpecies extends StatefulWidget {
 }
 
 class InfoPage extends StatefulWidget {
-  InfoPage({Key key, this.title, this.page}) : super(key: key);
-  final String title;
+  InfoPage({Key key, this.page}) : super(key: key);
   final int page;
   @override
   InfoPageState createState() => InfoPageState();

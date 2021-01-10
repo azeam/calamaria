@@ -128,10 +128,11 @@ showAlert(BuildContext context, String question, String action) {
 void reInitIdPage(BuildContext context) {
   SelectedOptions sel = SelectedOptions();
   sel.resetData();
-  SchedulerBinding.instance.addPostFrameCallback((_) async {
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
-  });
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (context) => IdPage(page: 1, title: 'Calamaria of Borneo')),
+  );
 }
 
 Widget bottomDrawer(BuildContext context, int curPageIndex) {
@@ -156,8 +157,7 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
                     // only go to page if not already active
                     if (index != curPageIndex) {
                       if (index == 0) {
-                        reInitIdPage(
-                            context); // clear data when going to id page from menu
+                        reInitIdPage(context);
                       } else {
                         Navigator.push(
                           context,
