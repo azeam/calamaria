@@ -14,28 +14,7 @@ import 'classes/speciesLikelihood.dart';
 
 void main() => runApp(Calamaria());
 
-// TODO: for debugging, can be removed later
-class _NavigatorHistory extends NavigatorObserver {
-  @override
-  void didPush(Route<dynamic> route, Route<dynamic> previousRoute) {
-    print("${route.settings.name} pushed");
-  }
-
-  @override
-  void didPop(Route<dynamic> route, Route<dynamic> previousRoute) {
-    print("${route.settings.name} popped");
-  }
-
-  @override
-  void didReplace({Route<dynamic> newRoute, Route<dynamic> oldRoute}) {
-    print("${oldRoute.settings.name} is replaced by ${newRoute.settings.name}");
-  }
-
-  @override
-  void didRemove(Route<dynamic> route, Route<dynamic> previousRoute) {
-    print("${route.settings.name} removed");
-  }
-}
+final RouteObserver<PageRoute> routeObserver = new RouteObserver<PageRoute>();
 
 class Calamaria extends StatelessWidget {
   @override
@@ -43,7 +22,7 @@ class Calamaria extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // TODO: for debugging, can be removed later
-      navigatorObservers: [_NavigatorHistory()],
+      navigatorObservers: <NavigatorObserver>[routeObserver],
       title: 'Calamaria of Borneo',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,

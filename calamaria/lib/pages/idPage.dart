@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -12,7 +11,7 @@ import '../classes/formPageOptions.dart';
 import '../main.dart';
 import 'common.dart';
 
-class IdPageState extends State<IdPage> {
+class IdPageState extends State<IdPage> with RouteAware {
   bool _firstCheck = false;
   bool _secondCheck = false;
   bool _thirdCheck = false;
@@ -24,24 +23,49 @@ class IdPageState extends State<IdPage> {
   String _firstInput;
   String _secondInput;
 
+  FormPageOptions options;
+
   @override
   void initState() {
     super.initState();
     _page = widget.page;
-    // get saved values for radioboxes and inputs
+    options = FormPageOptions();
+    options.setData(_page);
     _setGroups();
-    // get saved values for checkboxes, should only be necessary if not clearing data when going to identify from menu from info page, but better safe than sorry
-    if (_page == 1) {
-      if (SelectedOptions.sULTouchingEye.contains(2)) {
-        _handleFirstCheck(true);
-      }
-      if (SelectedOptions.sULTouchingEye.contains(3)) {
-        _handleSecondCheck(true);
-      }
-      if (SelectedOptions.sULTouchingEye.contains(4)) {
-        _handleThirdCheck(true);
-      }
-    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context));
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  /* clear entered data when going back in some rare cases 
+  (go to id page -> enter data -> go to other page -> go to id page (will clear data) -> 
+  go back until the first time on id page = without this the entered data will be displayed even though it is not
+  actually there anymore)
+  this is not a very good solution because it will rebuild the page on every pop, but I found it annoying and 
+  I've tried pretty much everything to solve it and this is what works */
+  void didPopNext() {
+    options = FormPageOptions();
+    options.setData(_page);
+    _setGroups();
+    SelectedOptions.sULTouchingEye.contains(2)
+        ? _handleFirstCheck(true)
+        : _handleFirstCheck(false);
+    SelectedOptions.sULTouchingEye.contains(3)
+        ? _handleSecondCheck(true)
+        : _handleSecondCheck(false);
+    SelectedOptions.sULTouchingEye.contains(4)
+        ? _handleThirdCheck(true)
+        : _handleThirdCheck(false);
+    build(context);
   }
 
   void _setGroups() {
@@ -146,6 +170,15 @@ class IdPageState extends State<IdPage> {
     SelectedOptions.sSubcaudals = int.parse(value);
   }
 
+  void _listResults(BuildContext context) {
+    SelectedOptions sel = SelectedOptions();
+    print(sel.toJson());
+    Navigator.push(
+      context,
+      CupertinoPageRoute(builder: (context) => PageListSpecies(sel)),
+    );
+  }
+
   Widget checkRow(int row, FormPageOptions options) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -225,134 +258,111 @@ class IdPageState extends State<IdPage> {
     );
   }
 
+  Widget optionText(String text) {
+    return Text(
+      text,
+      style: TextStyle(fontSize: 16.0),
+    );
+  }
+
+  Widget optionRow(String question, Widget widget) {
+    return Column(
+      children: [
+        Text(
+          question,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18.0,
+          ),
+        ),
+        widget,
+        Divider(height: 10.0, color: Colors.transparent),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    FormPageOptions options =
-        FormPageOptions(); // init on each build and pass options as arg or lists will keep increasing when going back to page
-    options.setData(_page);
-    return WillPopScope(
-        child: Scaffold(
-          appBar: AppBar(
-            title: htmlAppTitle(
-              """Identify your <i>Calamaria</i> (""" +
-                  _page.toString() +
-                  """ of 8)""",
-            ),
-          ),
-          body: SwipeDetector(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Divider(height: 10.0, color: Colors.transparent),
-                    Text(options.pageHeading,
-                        style: Theme.of(context).textTheme.headline5),
-                    Divider(height: 8.0, color: Colors.transparent),
-                    htmlNormalText(options.pageDescription, context),
-                    Divider(height: 15.0, color: Colors.transparent),
-                    (_page == 5 || _page == 6)
-                        ? Image(image: AssetImage(options.mainImg))
-                        : (_page == 8)
-                            ? SizedBox.shrink()
-                            : SvgPicture.asset(
-                                options.mainImg,
-                                matchTextDirection: false,
-                              ),
-                    Divider(height: 15.0, color: Colors.transparent),
-                    (_page != 8)
-                        ? optionRow(options.questions[0],
-                            radioRow(_firstGroup, 1, options, _page))
-                        : Column(children: [
-                            Divider(height: 10.0, color: Colors.transparent),
-                            inputRow(_firstInput, 0, options),
-                            Divider(height: 10.0, color: Colors.transparent),
-                            inputRow(_secondInput, 1, options),
-                          ]),
-                    (_page == 1 || _page == 3)
-                        ? optionRow(options.questions[1],
-                            radioRow(_secondGroup, 2, options, _page))
-                        : SizedBox.shrink(),
-                    (_page == 1)
-                        ? optionRow(options.questions[2], checkRow(3, options))
-                        : SizedBox.shrink(), // something empty, can't be null
-                    Divider(height: 35.0, color: Colors.transparent),
-                  ],
-                ),
-              ),
-            ),
-            onSwipeLeft: () {
-              (_page != 8)
-                  ? Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          settings: RouteSettings(
-                              // TODO: for debugging, can be removed later
-                              name: "idpage" + (_page + 1).toString()),
-                          builder: (BuildContext context) =>
-                              IdPage(page: _page + 1)),
-                    )
-                  : _listResults(context);
-            },
-            onSwipeRight: () {
-              Navigator.maybePop(context);
-            },
-            swipeConfiguration: swipeConfig(),
-          ),
-          bottomNavigationBar: navBar(context, 0),
-          floatingActionButton: (_page != 8)
-              ? navFAB(context, IdPage(page: _page + 1), (_page + 1).toString())
-              : Builder(
-                  builder: (context) => FloatingActionButton(
-                    child: Icon(Icons.done),
-                    backgroundColor: Colors.blueGrey[700],
-                    onPressed: () {
-                      _listResults(context);
-                    },
-                  ),
-                ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        ),
-        onWillPop: () {
-          // not possible to programmatically exit app on iOS
-          if (!Navigator.canPop(context) && Platform.isAndroid) {
-            showAlert(context, "Are you sure you want to exit?", "exit");
-          }
-          return Future.value(true);
-        });
-  }
-}
-
-void _listResults(BuildContext context) {
-  SelectedOptions sel = SelectedOptions();
-  print(sel.toJson());
-  Navigator.push(
-    context,
-    CupertinoPageRoute(builder: (context) => PageListSpecies(sel)),
-  );
-}
-
-Widget optionText(String text) {
-  return Text(
-    text,
-    style: TextStyle(fontSize: 16.0),
-  );
-}
-
-Widget optionRow(String question, Widget widget) {
-  return Column(
-    children: [
-      Text(
-        question,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18.0,
+    return Scaffold(
+      appBar: AppBar(
+        title: htmlAppTitle(
+          "Identify your <i>Calamaria</i> (" + _page.toString() + " of 8)",
         ),
       ),
-      widget,
-      Divider(height: 10.0, color: Colors.transparent),
-    ],
-  );
+      body: SwipeDetector(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Divider(height: 10.0, color: Colors.transparent),
+                Text(options.pageHeading,
+                    style: Theme.of(context).textTheme.headline5),
+                Divider(height: 8.0, color: Colors.transparent),
+                htmlNormalText(options.pageDescription, context),
+                Divider(height: 15.0, color: Colors.transparent),
+                (_page == 5 || _page == 6)
+                    ? Image(image: AssetImage(options.mainImg))
+                    : (_page == 8)
+                        ? SizedBox.shrink()
+                        : SvgPicture.asset(
+                            options.mainImg,
+                            matchTextDirection: false,
+                          ),
+                Divider(height: 15.0, color: Colors.transparent),
+                (_page != 8)
+                    ? optionRow(options.questions[0],
+                        radioRow(_firstGroup, 1, options, _page))
+                    : Column(children: [
+                        Divider(height: 10.0, color: Colors.transparent),
+                        inputRow(_firstInput, 0, options),
+                        Divider(height: 10.0, color: Colors.transparent),
+                        inputRow(_secondInput, 1, options),
+                      ]),
+                (_page == 1 || _page == 3)
+                    ? optionRow(options.questions[1],
+                        radioRow(_secondGroup, 2, options, _page))
+                    : SizedBox.shrink(),
+                (_page == 1)
+                    ? optionRow(options.questions[2], checkRow(3, options))
+                    : SizedBox.shrink(), // something empty, can't be null
+                Divider(height: 35.0, color: Colors.transparent),
+              ],
+            ),
+          ),
+        ),
+        onSwipeLeft: () {
+          (_page != 8)
+              ? Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                      settings: RouteSettings(
+                          // TODO: for debugging, can be removed later
+                          name: "idpage" + (_page + 1).toString()),
+                      builder: (BuildContext context) =>
+                          IdPage(page: _page + 1)))
+              : _listResults(context);
+        },
+        onSwipeRight: () {
+          Navigator.maybePop(context);
+        },
+        swipeConfiguration: swipeConfig(),
+      ),
+      bottomNavigationBar: navBar(context, 0),
+      floatingActionButton: (_page != 8)
+          ? navFAB(context, IdPage(page: _page + 1), (_page + 1).toString())
+          : Builder(
+              builder: (context) => FloatingActionButton(
+                child: Icon(Icons.done),
+                backgroundColor: Colors.blueGrey[700],
+                onPressed: () {
+                  _listResults(context);
+                },
+              ),
+            ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+    );
+  }
 }

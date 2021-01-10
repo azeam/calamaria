@@ -1,4 +1,3 @@
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
@@ -11,6 +10,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../classes/infoPageData.dart';
 import '../classes/selectedOptions.dart';
 import '../main.dart';
+
+IdPage idPage = new IdPage();
 
 String externalUrlIcon =
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==";
@@ -26,15 +27,13 @@ Widget navFAB(BuildContext context, Widget next, String id) {
   return FloatingActionButton(
       child: Icon(Icons.arrow_forward),
       backgroundColor: Colors.blueGrey[700],
-      onPressed: () {
-        Navigator.push(
-          context,
-          CupertinoPageRoute(
-              // TODO: for debugging, can be removed later
-              settings: RouteSettings(name: "idpage" + id),
-              builder: (BuildContext context) => next),
-        );
-      });
+      onPressed: () => Navigator.push(
+            context,
+            CupertinoPageRoute(
+                // TODO: for debugging, can be removed later
+                settings: RouteSettings(name: "idpage" + id),
+                builder: (BuildContext context) => next),
+          ));
 }
 
 Widget navBar(BuildContext context, int curPageMenuIndex) {
@@ -170,7 +169,9 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
                               builder: (context) => index == 1
                                   ? PageListSpecies()
                                   : InfoPage(page: index)),
-                        );
+                        ).then((value) {
+                          //reBuild();
+                        });
                       }
                     }
                   }));
