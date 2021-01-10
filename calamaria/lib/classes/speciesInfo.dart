@@ -22,12 +22,12 @@ class SpeciesInfo extends StatelessWidget {
     String htmlData = await rootBundle.loadString(htmlFile);
     Map<String, String> headlinesToRender;
 
-    final headline = htmlData.split('<h4>');
+    final headline = htmlData.split('[section]');
     headlinesToRender = {
-      "mainHeadline": headline[0],
+      "": "", // empty index for title listview, better to set from json in build
       for (int i = 1; i < headline.length; i++)
-        headline[i].split('</h4>')[0]:
-            headline[i].split('<h4>')[0].split('</h4>')[1].trim()
+        headline[i].split('[/section]')[0]:
+            headline[i].split('[section]')[0].split('[/section]')[1].trim()
     };
     return headlinesToRender;
   }
@@ -58,7 +58,15 @@ class SpeciesInfo extends StatelessWidget {
                   itemCount: data.length + 1,
                   itemBuilder: (BuildContext context, int index) {
                     if (index == 0) {
-                      return htmlNormalText(data[keysList[index]], context);
+                      return htmlNormalText(
+                          "<h2><i>" +
+                              species[this.speciesId]
+                                  .scientificName
+                                  .toString() +
+                              "</i> " +
+                              species[this.speciesId].author.toString() +
+                              "</h2>",
+                          context);
                     } else if (index == data.length) {
                       return Divider(height: 35.0, color: Colors.transparent);
                     } else {

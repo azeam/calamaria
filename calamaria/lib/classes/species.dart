@@ -22,6 +22,7 @@ class Species {
   final String description;
   final String notes;
   final String image;
+  final String author;
 
   Species(
       {this.specieId,
@@ -41,7 +42,8 @@ class Species {
       this.tail,
       this.notes,
       this.image,
-      this.description});
+      this.description,
+      this.author});
 
   /*
   "Mental":  {"Touching":  true, "NotTouching":  false},
@@ -160,6 +162,7 @@ class Species {
       notes: json['Notes'] as String,
       image: json['Image'] as String,
       description: json['Description'] as String,
+      author: json['Author'] as String,
     );
 
     return species;

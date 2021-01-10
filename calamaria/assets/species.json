@@ -25,7 +25,8 @@
     "Tail": {"Gradual":  false, "Intermediate":  false, "Abrupt":  true},
     "Notes": "ERROR in SoB2:  the sole known specimen is a MALE (I&M 1965:208)!",
     "Image": "c_schlegeli.jpg",
-    "Description": "c_battersbyi.html"
+    "Description": "c_battersbyi.html",
+    "Author": "L."
   },
   {
     "id":1,
@@ -53,7 +54,8 @@
     "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
     "Notes": "",
     "Image": "c_bicolor.jpg",
-    "Description": "c_battersbyi.html"
+    "Description": "c_battersbyi.html",
+    "Author": "L."
   },
   {
     "id":2,
@@ -81,7 +83,8 @@
     "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
     "Notes": "",
     "Image": "c_borneensis.jpg",
-    "Description": "c_battersbyi.html"
+    "Description": "c_battersbyi.html",
+    "Author": "L."
   },
   {
     "id":3,
@@ -109,7 +112,8 @@
     "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
     "Notes": "",
     "Image": "c_borneensis.jpg",
-    "Description": "c_battersbyi.html"
+    "Description": "c_battersbyi.html",
+    "Author": "L."
   },
   {
     "id":4,
@@ -137,6 +141,7 @@
     "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
     "Notes": "",
     "Image": "c_borneensis.jpg",
-    "Description": "c_battersbyi.html"
+    "Description": "c_battersbyi.html",
+    "Author": "L."
   }
 ]
