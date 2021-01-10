@@ -14,6 +14,7 @@ class InfoPageState extends State<InfoPage> {
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 8.0),
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[

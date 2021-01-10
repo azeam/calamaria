@@ -29,6 +29,8 @@ dependencies:
     git: https://github.com/azeam/flutter_html.git  # forked to get alt attribute from images to use as title in fullscreen
   photo_view: ^0.10.2   # for full screen images
   url_launcher: ^5.7.5  # for opening urls in native browser
+  expandable: ^4.1.4    # expand sections under species account
+
 
   # flutter_html also depends on flutter_svg (used)
   # works without manually adding those dependencies, not sure what best practice is, kept below for reference

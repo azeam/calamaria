@@ -19,10 +19,11 @@ class Species {
   final SpeciesDataSubcaudals subcaudals;
   final SpeciesDataTail tail;
 
+  final Map<String, dynamic> description;
 
   final String notes;
   final String image;
-  final String description;
+  final String author;
 
   Species(
       {this.specieId,
@@ -42,7 +43,8 @@ class Species {
       this.tail,
       this.notes,
       this.image,
-      this.description});
+      this.description,
+      this.author});
 
   /*
   "Mental":  {"Touching":  true, "NotTouching":  false},
@@ -84,91 +86,89 @@ class Species {
   factory Species.fromJSON(Map<String, dynamic> json,
       [Map<String, dynamic> likelihoodJson]) {
     var species = new Species(
-        specieId: json['id'] as int,
-        scientificName: json['ScientificName'] as String,
-        upperLabials: new SpeciesDataUpperLabials(
-            list: json['UpperLabials'] as List
-        ),
-        lowerLabials: new SpeciesDataLowerLabials(
-            list: json['LowerLabials'] as List
-        ),
-        upperLabialsTouchingEye: new SpeciesDataUpperLabialsTouchingEye(
-            list: json['ULTouchingEye'] as List
-        ),
-        mental: new SpeciesDataMental(
-            isTouching: json['Mental']['Touching'] as bool,
-            isNotTouching: json['Mental']['NotTouching']),
-        preocular: new SpeciesDataPreocular(
-            isPresent: json['Preocular']['Present'] as bool,
-            isAbsent: json['Preocular']['Absent'] as bool),
-        supraocular: new SpeciesDataSupraocular(
-            isPresent: json['Supraocular']['Present'] as bool,
-            isAbsent: json['Supraocular']['Absent'] as bool),
-        postocular: new SpeciesDataPostocular(
-            isPresent: json['Postocular']['Present'] as bool,
-            isAbsent: json['Postocular']['Absent'] as bool),
-        postocularfused: new SpeciesDataPostocularFused(
-            isFused: json['PostocularFused']['Fused'] as bool),
-        ssep: new SpeciesDataSSEP(
-            isFour: json['SSEP']['4'] as bool,
-            isFive: json['SSEP']['5'] as bool,
-            isSix: json['SSEP']['6'] as bool),
-        eyeDiameter: new SpeciesDataEyeDiameter(
-            isEqual: json['EyeDiam']['Equal'] as bool,
-            isSmaller: json['EyeDiam']['Smaller'] as bool,
-            isLarger: json['EyeDiam']['Larger'] as bool),
-        vents: new SpeciesDataVents(
-          maleMin: ((json['Vents']['Male'] != null)
-              ? json['Vents']['Male']['Min'] as int
-              : null),
-          maleMax: ((json['Vents']['Male'] != null)
-              ? json['Vents']['Male']['Max'] as int
-              : null),
-          femaleMin: ((json['Vents']['Female'] != null)
-              ? json['Vents']['Female']['Min'] as int
-              : null),
-          femaleMax: ((json['Vents']['Female'] != null)
-              ? json['Vents']['Female']['Max'] as int
-              : null),
-          bothMin: ((json['Vents']['Both'] != null)
-              ? json['Vents']['Both']['Min'] as int
-              : null),
-          bothMax: ((json['Vents']['Both'] != null)
-              ? json['Vents']['Both']['Max'] as int
-              : null),
-        ),
-        subcaudals: new SpeciesDataSubcaudals(
-          maleMin: ((json['Subcaudals']['Male'] != null)
-              ? json['Subcaudals']['Male']['Min'] as int
-              : null),
-          maleMax: ((json['Subcaudals']['Male'] != null)
-              ? json['Subcaudals']['Male']['Max'] as int
-              : null),
-          femaleMin: ((json['Subcaudals']['Female'] != null)
-              ? json['Subcaudals']['Female']['Min'] as int
-              : null),
-          femaleMax: ((json['Subcaudals']['Female'] != null)
-              ? json['Subcaudals']['Female']['Max'] as int
-              : null),
-          bothMin: ((json['Subcaudals']['Both'] != null)
-              ? json['Subcaudals']['Both']['Min'] as int
-              : null),
-          bothMax: ((json['Subcaudals']['Both'] != null)
-              ? json['Subcaudals']['Both']['Max'] as int
-              : null),
-        ),
-        tail: new SpeciesDataTail(
-            isGradual: json['Tail']['Gradual'] as bool,
-            isIntermediate: json['Tail']['Intermediate'] as bool,
-            isAbrupt: json['Tail']['Abrupt'] as bool),
-        notes: json['Notes'] as String,
-        image: json['Image'] as String,
-        description: json['Description'] as String);
+      specieId: json['id'] as int,
+      scientificName: json['ScientificName'] as String,
+      upperLabials:
+          new SpeciesDataUpperLabials(list: json['UpperLabials'] as List),
+      lowerLabials:
+          new SpeciesDataLowerLabials(list: json['LowerLabials'] as List),
+      upperLabialsTouchingEye: new SpeciesDataUpperLabialsTouchingEye(
+          list: json['ULTouchingEye'] as List),
+      mental: new SpeciesDataMental(
+          isTouching: json['Mental']['Touching'] as bool,
+          isNotTouching: json['Mental']['NotTouching']),
+      preocular: new SpeciesDataPreocular(
+          isPresent: json['Preocular']['Present'] as bool,
+          isAbsent: json['Preocular']['Absent'] as bool),
+      supraocular: new SpeciesDataSupraocular(
+          isPresent: json['Supraocular']['Present'] as bool,
+          isAbsent: json['Supraocular']['Absent'] as bool),
+      postocular: new SpeciesDataPostocular(
+          isPresent: json['Postocular']['Present'] as bool,
+          isAbsent: json['Postocular']['Absent'] as bool),
+      postocularfused: new SpeciesDataPostocularFused(
+          isFused: json['PostocularFused']['Fused'] as bool),
+      ssep: new SpeciesDataSSEP(
+          isFour: json['SSEP']['4'] as bool,
+          isFive: json['SSEP']['5'] as bool,
+          isSix: json['SSEP']['6'] as bool),
+      eyeDiameter: new SpeciesDataEyeDiameter(
+          isEqual: json['EyeDiam']['Equal'] as bool,
+          isSmaller: json['EyeDiam']['Smaller'] as bool,
+          isLarger: json['EyeDiam']['Larger'] as bool),
+      vents: new SpeciesDataVents(
+        maleMin: ((json['Vents']['Male'] != null)
+            ? json['Vents']['Male']['Min'] as int
+            : null),
+        maleMax: ((json['Vents']['Male'] != null)
+            ? json['Vents']['Male']['Max'] as int
+            : null),
+        femaleMin: ((json['Vents']['Female'] != null)
+            ? json['Vents']['Female']['Min'] as int
+            : null),
+        femaleMax: ((json['Vents']['Female'] != null)
+            ? json['Vents']['Female']['Max'] as int
+            : null),
+        bothMin: ((json['Vents']['Both'] != null)
+            ? json['Vents']['Both']['Min'] as int
+            : null),
+        bothMax: ((json['Vents']['Both'] != null)
+            ? json['Vents']['Both']['Max'] as int
+            : null),
+      ),
+      subcaudals: new SpeciesDataSubcaudals(
+        maleMin: ((json['Subcaudals']['Male'] != null)
+            ? json['Subcaudals']['Male']['Min'] as int
+            : null),
+        maleMax: ((json['Subcaudals']['Male'] != null)
+            ? json['Subcaudals']['Male']['Max'] as int
+            : null),
+        femaleMin: ((json['Subcaudals']['Female'] != null)
+            ? json['Subcaudals']['Female']['Min'] as int
+            : null),
+        femaleMax: ((json['Subcaudals']['Female'] != null)
+            ? json['Subcaudals']['Female']['Max'] as int
+            : null),
+        bothMin: ((json['Subcaudals']['Both'] != null)
+            ? json['Subcaudals']['Both']['Min'] as int
+            : null),
+        bothMax: ((json['Subcaudals']['Both'] != null)
+            ? json['Subcaudals']['Both']['Max'] as int
+            : null),
+      ),
+      tail: new SpeciesDataTail(
+          isGradual: json['Tail']['Gradual'] as bool,
+          isIntermediate: json['Tail']['Intermediate'] as bool,
+          isAbrupt: json['Tail']['Abrupt'] as bool),
+      notes: json['Notes'] as String,
+      image: json['Image'] as String,
+      description: json['Description'],
+      author: json['Author'] as String,
+    );
 
     return species;
   }
 }
-
 
 class SpeciesDataUpperLabials {
   final List list;
@@ -177,19 +177,19 @@ class SpeciesDataUpperLabials {
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
     String speciesText = list.join(' & ');
-    if(filter is List) {
+    if (filter is List) {
       pickedText = filter.join(' & ');
     }
 
     return {
       'Label': 'Upper labials',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
 
   bool isHit(value) {
-    if(this.list.contains(value)) {
+    if (this.list.contains(value)) {
       return true;
     }
     return false;
@@ -207,19 +207,19 @@ class SpeciesDataLowerLabials {
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
     String speciesText = list.join(' & ');
-    if(filter is List) {
+    if (filter is List) {
       pickedText = filter.join(' & ');
     }
 
     return {
       'Label': 'Lower labials',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
 
   bool isHit(value) {
-    if(this.list.contains(value)) {
+    if (this.list.contains(value)) {
       return true;
     }
     return false;
@@ -236,9 +236,9 @@ class SpeciesDataUpperLabialsTouchingEye {
 
   Map<String, dynamic> getTableObject(filter, species) {
     String pickedText = filter.join(' & ');
-    debugPrint(filter.toString()+' - ');
+    debugPrint(filter.toString() + ' - ');
     String speciesText = list.join(' & ');
-    if(filter is List) {
+    if (filter is List) {
       pickedText = filter.join(' & ');
     }
 
@@ -250,7 +250,7 @@ class SpeciesDataUpperLabialsTouchingEye {
   }
 
   bool isHit(value) {
-    if(listEquals(this.list, value)) {
+    if (listEquals(this.list, value)) {
       return true;
     }
     return false;
@@ -269,10 +269,10 @@ class SpeciesDataMental {
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
     String speciesText = species.mental.isTouching.toString();
-    
+
     return {
       'Label': 'Mental touching chin shields',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
@@ -297,7 +297,7 @@ class SpeciesDataPreocular {
 
     return {
       'Label': 'Preocular present',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
@@ -322,7 +322,7 @@ class SpeciesDataSupraocular {
 
     return {
       'Label': 'Supraocular present',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
@@ -347,7 +347,7 @@ class SpeciesDataPostocular {
 
     return {
       'Label': 'Postocular present',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
@@ -360,6 +360,7 @@ class SpeciesDataPostocular {
     return false;
   }
 }
+
 class SpeciesDataPostocularFused {
   bool isFused;
   SpeciesDataPostocularFused({this.isFused});
@@ -369,9 +370,9 @@ class SpeciesDataPostocularFused {
     String speciesText = species.postocularfused.isFused.toString();
 
     return {
-    'Label': 'Postocular fused',
-    'PickedValue' : pickedText,
-    'SpeciesValue': speciesText
+      'Label': 'Postocular fused',
+      'PickedValue': pickedText,
+      'SpeciesValue': speciesText
     };
   }
 
@@ -390,48 +391,67 @@ class SpeciesDataSSEP {
   bool isSix;
   SpeciesDataSSEP({this.isFour, this.isFive, this.isSix});
 
-  String uncertainText = 'Number of scales around paraparietal uncertain for this species.';
+  String uncertainText =
+      'Number of scales around paraparietal uncertain for this species.';
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
     List<String> speciesTextArray = [];
-    if(this.isFour != null && this.isFour) { speciesTextArray.add('4'); }
-    if(this.isFive != null && this.isFive) { speciesTextArray.add('5'); }
-    if(this.isSix != null && this.isSix) { speciesTextArray.add('6'); }
+    if (this.isFour != null && this.isFour) {
+      speciesTextArray.add('4');
+    }
+    if (this.isFive != null && this.isFive) {
+      speciesTextArray.add('5');
+    }
+    if (this.isSix != null && this.isSix) {
+      speciesTextArray.add('6');
+    }
     String speciesText = speciesTextArray.join(' & ');
 
     return {
       'Label': 'Scales around paraparietal',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
 
   bool isHit(filter) {
-    switch(filter) {
+    switch (filter) {
       case 4:
-        if(this.isFour != null && this.isFour) { return true; }
+        if (this.isFour != null && this.isFour) {
+          return true;
+        }
         break;
       case 5:
-        if(this.isFive != null && this.isFive) { return true; }
+        if (this.isFive != null && this.isFive) {
+          return true;
+        }
         break;
       case 6:
-        if(this.isSix != null && this.isSix) { return true; }
+        if (this.isSix != null && this.isSix) {
+          return true;
+        }
         break;
     }
     return false;
   }
 
   bool isUncertain(value) {
-    switch(value) {
+    switch (value) {
       case 4:
-        if(this.isFour == null) { return true; }
+        if (this.isFour == null) {
+          return true;
+        }
         break;
       case 5:
-        if(this.isFive == null) { return true; }
+        if (this.isFive == null) {
+          return true;
+        }
         break;
       case 6:
-        if(this.isSix == null) { return true; }
+        if (this.isSix == null) {
+          return true;
+        }
         break;
     }
     return false;
@@ -447,28 +467,40 @@ class SpeciesDataEyeDiameter {
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
     List<String> speciesTextArray = [];
-    if(this.isSmaller) { speciesTextArray.add('smaller'); }
-    if(this.isEqual) { speciesTextArray.add('equal'); }
-    if(this.isLarger) { speciesTextArray.add('larger'); }
+    if (this.isSmaller) {
+      speciesTextArray.add('smaller');
+    }
+    if (this.isEqual) {
+      speciesTextArray.add('equal');
+    }
+    if (this.isLarger) {
+      speciesTextArray.add('larger');
+    }
     String speciesText = speciesTextArray.join(' or ');
 
     return {
       'Label': 'Eye diameter',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
 
   bool isHit(filter) {
-    switch(filter) {
+    switch (filter) {
       case 'smaller':
-        if(this.isSmaller) { return true; }
+        if (this.isSmaller) {
+          return true;
+        }
         break;
       case 'larger':
-        if(this.isLarger) { return true; }
+        if (this.isLarger) {
+          return true;
+        }
         break;
       case 'equal':
-        if(this.isEqual) { return true; }
+        if (this.isEqual) {
+          return true;
+        }
         break;
     }
     return false;
@@ -494,33 +526,34 @@ class SpeciesDataVents {
       this.bothMin,
       this.bothMax});
 
-
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter[1].toString();
     bool hemipenes = filter[0];
     String speciesText = '';
 
-    if(hemipenes) {
-      speciesText = 'Males: '+this.maleMin.toString()+'-'+this.maleMax.toString();
+    if (hemipenes) {
+      speciesText =
+          'Males: ' + this.maleMin.toString() + '-' + this.maleMax.toString();
     } else {
-      speciesText = ''+this.bothMin.toString()+'-'+this.bothMax.toString();
+      speciesText =
+          '' + this.bothMin.toString() + '-' + this.bothMax.toString();
     }
 
     return {
       'Label': 'Ventrals',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
 
   bool isHit(filter) {
     bool hemipenes = filter[0];
-    if(hemipenes) {
-      if(filter[1] >= this.maleMin && filter[1] <= this.maleMax) {
+    if (hemipenes) {
+      if (filter[1] >= this.maleMin && filter[1] <= this.maleMax) {
         return true;
       }
     } else {
-      if(filter[1] >= this.bothMin && filter[1] <= this.bothMax) {
+      if (filter[1] >= this.bothMin && filter[1] <= this.bothMax) {
         return true;
       }
     }
@@ -552,27 +585,29 @@ class SpeciesDataSubcaudals {
     bool hemipenes = filter[0];
     String speciesText = '';
 
-    if(hemipenes) {
-      speciesText = 'Males: '+this.maleMin.toString()+'-'+this.maleMax.toString();
+    if (hemipenes) {
+      speciesText =
+          'Males: ' + this.maleMin.toString() + '-' + this.maleMax.toString();
     } else {
-      speciesText = ''+this.bothMin.toString()+'-'+this.bothMax.toString();
+      speciesText =
+          '' + this.bothMin.toString() + '-' + this.bothMax.toString();
     }
 
     return {
       'Label': 'Subcaudals',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
 
   bool isHit(filter) {
     bool hemipenes = filter[0];
-    if(hemipenes) {
-      if(filter[1] >= this.maleMin && filter[1] <= this.maleMax) {
+    if (hemipenes) {
+      if (filter[1] >= this.maleMin && filter[1] <= this.maleMax) {
         return true;
       }
     } else {
-      if(filter[1] >= this.bothMin && filter[1] <= this.bothMax) {
+      if (filter[1] >= this.bothMin && filter[1] <= this.bothMax) {
         return true;
       }
     }
@@ -593,28 +628,40 @@ class SpeciesDataTail {
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
     List<String> speciesTextArray = [];
-    if(this.isGradual) { speciesTextArray.add('gradual'); }
-    if(this.isIntermediate) { speciesTextArray.add('intermediate'); }
-    if(this.isAbrupt) { speciesTextArray.add('abrupt'); }
+    if (this.isGradual) {
+      speciesTextArray.add('gradual');
+    }
+    if (this.isIntermediate) {
+      speciesTextArray.add('intermediate');
+    }
+    if (this.isAbrupt) {
+      speciesTextArray.add('abrupt');
+    }
     String speciesText = speciesTextArray.join(' or ');
 
     return {
       'Label': 'Tail tapering',
-      'PickedValue' : pickedText,
+      'PickedValue': pickedText,
       'SpeciesValue': speciesText
     };
   }
 
   bool isHit(filter) {
-    switch(filter) {
+    switch (filter) {
       case 'gradual':
-        if(this.isGradual) { return true; }
+        if (this.isGradual) {
+          return true;
+        }
         break;
       case 'intermediate':
-        if(this.isIntermediate) { return true; }
+        if (this.isIntermediate) {
+          return true;
+        }
         break;
       case 'abrupt':
-        if(this.isAbrupt) { return true; }
+        if (this.isAbrupt) {
+          return true;
+        }
         break;
     }
     return false;

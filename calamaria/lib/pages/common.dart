@@ -198,6 +198,7 @@ Widget htmlNormalText(String data, BuildContext context) {
       "h3": Style(
         color: Colors.red,
       ),
+      "h2": Style(fontWeight: FontWeight.normal)
     },
     data: "<div>" + data + "</div>",
     onImageTap: (src, alt) {
@@ -214,7 +215,13 @@ Widget htmlNormalText(String data, BuildContext context) {
       }
     },
     onLinkTap: (url) {
-      _launchURL(url);
+      if (url.startsWith("http")) {
+        _launchURL(url);
+      } else {
+        // TODO: open "local link"
+//        Navigator.push(context,
+//            MaterialPageRoute(builder: (context) => url));
+      }
     },
   );
 }
