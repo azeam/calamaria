@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
+import 'package:flutter/services.dart';
 import 'species.dart';
 import '../pages/common.dart';
 
@@ -15,38 +16,59 @@ class SpeciesInfo extends StatelessWidget {
     _expandableController.expanded = true;
   }
 
+  Future<Map<String, String>> _splitData() async {
+    String htmlFile = "assets/speciesdescriptions/" +
+        species[this.speciesId].description.toString();
+    String htmlData = await rootBundle.loadString(htmlFile);
+    Map<String, String> headlinesToRender;
+
+    final headline = htmlData.split('<h4>');
+    headlinesToRender = {
+      "mainHeadline": headline[0],
+      for (int i = 1; i < headline.length; i++)
+        headline[i].split('</h4>')[0]:
+            headline[i].split('<h4>')[0].split('</h4>')[1].trim()
+    };
+    return headlinesToRender;
+  }
+
   SpeciesInfo({Key key, this.species, this.speciesId}) : super(key: key);
 
-  List<Widget> categories(data, BuildContext context) {
-    List<Widget> children = [];
-    children.add(htmlNormalText(
-        "<h2><i>" + data.scientificName + "</i> " + data.author + "</h2>",
-        context));
-    data.description.keys.forEach(
-      (key) => {
-        children.add(
-          ExpandablePanel(
-            controller: children.length == 1
-                ? _expandableController
-                : null, // expand first category by default TODO: not sure if wanted, otherwise remove all expand/-controller
-            header: htmlNormalText("<strong>" + key + "</strong>", context),
-            collapsed: null,
-            expanded: htmlNormalText('${data.description[key]}', context),
-          ),
-        )
-      },
+  Widget categories(headline, data, BuildContext context) {
+    return ExpandablePanel(
+      header: htmlNormalText("<strong>" + headline + "</strong>", context),
+      collapsed: null,
+      expanded: htmlNormalText(data, context),
     );
-    children.add(Divider(height: 35.0, color: Colors.transparent));
-
-    return children;
   }
 
   @override
   Widget build(BuildContext context) {
     _expand();
-    return ListView(
-        physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(horizontal: 8.0),
-        children: categories(species[this.speciesId], context));
+    return Container(
+      child: FutureBuilder(
+          future: _splitData(),
+          builder: (context, AsyncSnapshot<Map<String, String>> snapshot) {
+            if (snapshot.data != null) {
+              Map<String, String> data = Map.from(snapshot.data);
+              var keysList = data.keys.toList();
+              return ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  itemCount: data.length + 1,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index == 0) {
+                      return htmlNormalText(data[keysList[index]], context);
+                    } else if (index == data.length) {
+                      return Divider(height: 35.0, color: Colors.transparent);
+                    } else {
+                      return categories(
+                          keysList[index], data[keysList[index]], context);
+                    }
+                  });
+            }
+            return Text("No data found");
+          }),
+    );
   }
 }

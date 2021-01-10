@@ -19,11 +19,9 @@ class Species {
   final SpeciesDataSubcaudals subcaudals;
   final SpeciesDataTail tail;
 
-  final Map<String, dynamic> description;
-
+  final String description;
   final String notes;
   final String image;
-  final String author;
 
   Species(
       {this.specieId,
@@ -43,8 +41,7 @@ class Species {
       this.tail,
       this.notes,
       this.image,
-      this.description,
-      this.author});
+      this.description});
 
   /*
   "Mental":  {"Touching":  true, "NotTouching":  false},
@@ -162,8 +159,7 @@ class Species {
           isAbrupt: json['Tail']['Abrupt'] as bool),
       notes: json['Notes'] as String,
       image: json['Image'] as String,
-      description: json['Description'],
-      author: json['Author'] as String,
+      description: json['Description'] as String,
     );
 
     return species;
