@@ -73,10 +73,31 @@ flutter:
   assets:
     - assets/
     - assets/icons/
-    - assets/speciesimages/
     - assets/formimages/
     - assets/infoimages/
     - assets/speciesdescriptions/
+    - assets/speciesimages/
+    - assets/speciesimages/bicolor/
+    - assets/speciesimages/borneensis/
+    - assets/speciesimages/cf_gracillima/
+    - assets/speciesimages/everetti/
+    - assets/speciesimages/grabowskyi/
+    - assets/speciesimages/gracillima/
+    - assets/speciesimages/griswoldi/
+    - assets/speciesimages/hilleniusi/
+    - assets/speciesimages/lateralis/
+    - assets/speciesimages/leucogaster/
+    - assets/speciesimages/lovii_lovii/
+    - assets/speciesimages/lumbricoidea/
+    - assets/speciesimages/lumholtzi/
+    - assets/speciesimages/melanota/
+    - assets/speciesimages/modesta/
+    - assets/speciesimages/prakkei/
+    - assets/speciesimages/rebentischi/
+    - assets/speciesimages/schlegeli/
+    - assets/speciesimages/schmidti/
+    - assets/speciesimages/suluensis/
+    - assets/speciesimages/virgulata/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

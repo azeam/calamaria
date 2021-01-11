@@ -43,7 +43,7 @@ class InfoPageData {
               <br><br>
                 Perhaps most obscure and therefore easiest to mistake for a harmless snake is the Banded Coral Snake (<i>Calliophis intestinalis</i>). It is slender and usually less than 50 cm long. Like in <i>Calamaria</i> spp. the head is not very distinct from the neck. Its coloration varies much, but essentially the dorsal side (i.e., the back) of the snake is striped. It sometimes has a red mid-dorsal stripe, but other specimens have just brownish, greyish or black stripes on the back. It sometimes has a reddish head, sometimes not. The belly is distinctly barred with black on either a cream-colored or a red background. The belly is therefore very similar to that of <i>Calamaria lumbricoidea</i>, which has a cream-colored belly with black crossbars. Both may have a reddish head. When harassed, the Banded Coral Snake often raises the tail in an arch, showing the underside of the tail. No <i>Calamaria</i> does that.
               <br><br>
-              <img src="asset:assets/infoimages/bellies.jpg" alt="Belly comparison between <i>Calamaria lumbricoidea</i> and <i>Calliophis intestinalis</i>">
+              <img src="asset:assets/infoimages/isitreally1warning1.jpg" alt="Belly comparison between <i>Calamaria lumbricoidea</i> and <i>Calliophis intestinalis</i>">
               <figcaption>Bellies of <i>Calamaria lumbricoidea</i> (left) and the cream-colored belly morph of <i>Calliophis intestinalis</i> (right).
               <br><br>
                 Photo © Björn Lardner
@@ -53,7 +53,7 @@ class InfoPageData {
               <br><br>
                 The Bornean subspecies of the Blue Coral Snake (<i>Calliophis bivirgatus tetrataenia</i>) is not blue, but black with four thin, white stripes on the back and sides of the body. Its head, tail, and belly are bright red. Although it can reach a length of 1.8 m, juveniles are about the size of a <i>Calamaria</i>.
               <br><br>
-              <img src="asset:assets/infoimages/lookalikes.jpg" alt="<i>Calliophis bivirgatus tetrataenia</i> (below) and <i>Calamaria schlegeli</i>">
+              <img src="asset:assets/infoimages/isitreally2warning2.jpg" alt="<i>Calliophis bivirgatus tetrataenia</i> (below) and <i>Calamaria schlegeli</i>">
               <figcaption>The dangerously venomous <i>Calliophis bivirgatus tetrataenia</i> (below) and the red-headed color form of the harmless <i>Calamaria schlegeli</i> top).
               <br><br>
                 Photo (top) © Sam Howard, photo (bottom) © Björn Lardner
@@ -74,20 +74,20 @@ class InfoPageData {
                 Once you have confirmed beyond doubt that you are not dealing with a deadly snake, the trickiest part is to say if it is a <i>Calamaria</i> or a <i>Pseudorabdion</i>. There are four species of <i>Pseudorabdion</i> known from Borneo. They have 15 rows of dorsal scales (not 13), which can be very difficult to count in a tiny snake that constantly moves. Look instead for two internasals sitting between the rostral and the prefrontals (image below) – internasals are present in <i>Pseudorabdion</i> and in most other snakes, but absent in <i>Calamaria</i>. You may need a good magnifier to see such small scales! With some experience, the shape of the head can also be a clue: all <i>Pseudorabdion</i> have a rather narrow and pointed, almost wedge-shaped, head, but only a few <i>Calamaria</i> spp. (e.g. <i>Calamaria leucogaster</i>) have such a pointed head. All <i>Pseudorabdion</i> have tails that taper gradually; that is true also for some, but not all, <i>Calamaria</i>.
               <br><br>
 
-              <img src="asset:assets/infoimages/internasals.jpg" alt="<i>Pseudorabdion</i> internasal scales">
+              <img src="asset:assets/infoimages/isitreally3.jpg" alt="<i>Pseudorabdion</i> internasal scales">
               <figcaption><i>Pseudorabdion</i> spp. have two internasal scales between the rostral (R) and the prefrontals (PF).
                 (In <i>Calamaria</i> spp. the prefrontals are seamlessly fused with the internasals, and called prefrontals.)
               </figcaption>
               <br><br>
 
-              <img src="asset:assets/infoimages/p_collaris.jpg" alt="<i>Pseudorabdion collaris</i>">
+              <img src="asset:assets/infoimages/isitreally4.jpg" alt="<i>Pseudorabdion collaris</i>">
               <figcaption><i>Pseudorabdion collaris</i> has a scalation reminiscent of <i>Calamaria</i> spp. It is common around the Mount Kinabalu park headquarters, where it lives side by side with the similarly colored <i>Calamaria schmidti</i>. The latter has a shorter and blunter tail, and lacks internasals.
               <br><br>
                 Photo © Björn Lardner
               </figcaption>
               <br><br>
 
-              <img src="asset:assets/infoimages/p_albonuchalis.jpg" alt="<i>Pseudorabdion albonuchalis</i>">
+              <img src="asset:assets/infoimages/isitreally5.jpg" alt="<i>Pseudorabdion albonuchalis</i>">
               <figcaption><i>Pseudorabdion albonuchalis</i> may have a red, yellow, or white collar. It is common at low altitudes. Its tail is long and gradually tapering; similar to the tail of <i>Calamaria schlegeli</i>.
               <br><br>
                 Photo © Björn Lardner
@@ -97,7 +97,7 @@ class InfoPageData {
               Of course, a small snake can be something else than <i>Calamaria</i> or <i>Pseudorabdion</i> (or a dangerous elapid such as the Banded Coral Snake). Most snakes have internasals, so start there. If the snake lacks internasals, then look for smooth dorsal scales in 13 rows, and a head that is hardly distinct from the neck. Don’t mistake blind snakes (family Typhlopidae) for <i>Calamaria</i> – they have eyes that sit under a glossy head shield; at least 20 rows of scales around the body; and they do not have broad ventral scales like most other snakes (including <i>Calamaria</i> spp.) do.
               <br><br>
 
-              <img src="asset:assets/infoimages/r_olivaceus.jpg" alt="<i>Rhamphotyphlops olivaceus</i>">
+              <img src="asset:assets/infoimages/isitreally6.jpg" alt="<i>Rhamphotyphlops olivaceus</i>">
               <figcaption><i>Rhamphotyphlops olivaceus</i> is one of several blind snakes in Borneo. Notice the very large rostral scale that reaches far up on the forehead.
               <br><br>
                 Photo © Björn Lardner
@@ -128,6 +128,12 @@ class InfoPageData {
               <img src=""" +
                 externalUrlIcon +
                 """>
+              <br><br>
+              <img src="asset:assets/infoimages/isitreally7.jpg" alt="<i>Calliophis intestinalis</i>">
+              <figcaption>Calliophis intestinalis from Poring Hot Springs (ca 500 m ASL) in Kinabalu Park, Sabah, featuring a red mid-dorsal stripe.
+              <br><br>
+                Photo © Björn Lardner
+              </figcaption>
               """;
 
         this.icon = 'assets/icons/head-question.svg';
