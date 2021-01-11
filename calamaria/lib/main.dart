@@ -33,8 +33,7 @@ class Calamaria extends StatelessWidget {
 }
 
 class IdPage extends StatefulWidget {
-  IdPage({Key key, this.title, this.page}) : super(key: key);
-  final String title;
+  IdPage({Key key, this.page}) : super(key: key);
   final int page;
   @override
   IdPageState createState() => IdPageState();

@@ -10,12 +10,6 @@ class SpeciesInfo extends StatelessWidget {
   final List<Species> species;
   final int speciesId;
 
-  ExpandableController _expandableController = ExpandableController();
-
-  void _expand() {
-    _expandableController.expanded = true;
-  }
-
   Future<Map<String, String>> _splitData() async {
     String htmlFile = "assets/speciesdescriptions/" +
         species[this.speciesId].description.toString();
@@ -36,6 +30,9 @@ class SpeciesInfo extends StatelessWidget {
 
   Widget categories(headline, data, BuildContext context) {
     return ExpandablePanel(
+//      theme: ExpandableThemeData(
+//        iconSize: 45,
+//      ),
       header: htmlNormalText("<strong>" + headline + "</strong>", context),
       collapsed: null,
       expanded: htmlNormalText(data, context),
@@ -44,7 +41,6 @@ class SpeciesInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _expand();
     return Container(
       child: FutureBuilder(
           future: _splitData(),

@@ -128,10 +128,10 @@ void reInitIdPage(BuildContext context) {
   SelectedOptions sel = SelectedOptions();
   sel.resetData();
   Navigator.push(
-    context,
-    MaterialPageRoute(
-        builder: (context) => IdPage(page: 1, title: 'Calamaria of Borneo')),
-  );
+      context,
+      MaterialPageRoute(
+        builder: (context) => IdPage(page: 1),
+      ));
 }
 
 Widget bottomDrawer(BuildContext context, int curPageIndex) {
@@ -169,9 +169,7 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
                               builder: (context) => index == 1
                                   ? PageListSpecies()
                                   : InfoPage(page: index)),
-                        ).then((value) {
-                          //reBuild();
-                        });
+                        );
                       }
                     }
                   }));
@@ -201,7 +199,7 @@ Widget htmlNormalText(String data, BuildContext context) {
       ),
       "h2": Style(fontWeight: FontWeight.normal)
     },
-    data: "<div>" + data + "</div>",
+    data: data,
     onImageTap: (src, alt) {
       var path;
       // only open local imgs, skip data srcs for eg. external link icon
@@ -220,8 +218,10 @@ Widget htmlNormalText(String data, BuildContext context) {
         _launchURL(url);
       } else {
         // TODO: open "local link"
-//        Navigator.push(context,
-//            MaterialPageRoute(builder: (context) => url));
+//        Navigator.push(
+//            context,
+//            MaterialPageRoute(
+//                builder: (context) => InfoPage(page: int.parse(url))));
       }
     },
   );

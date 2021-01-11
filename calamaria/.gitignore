@@ -1,3 +1,7 @@
+# copyrighted images
+assets/infoimages/
+assets/speciesimages/
+
 # Miscellaneous
 *.class
 *.log
