@@ -1,0 +1,1 @@
+const infoEthics = """tmp""";

@@ -1,0 +1,1 @@
+const infoPhotos = """tmp""";

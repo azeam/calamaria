@@ -13,7 +13,7 @@ import '../main.dart';
 
 IdPage idPage = new IdPage();
 
-String externalUrlIcon =
+const externalUrlIcon =
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==";
 
 SwipeConfiguration swipeConfig() {
@@ -206,7 +206,7 @@ Widget htmlNormalText(String data, BuildContext context) {
       }
     },
     onLinkTap: (url) {
-      if (url.startsWith("http")) {
+      if (url.startsWith("http") || url.startsWith("mailto")) {
         _launchURL(url);
       } else {
         // TODO: open "local link"

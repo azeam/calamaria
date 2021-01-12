@@ -1,3 +1,4 @@
+import 'package:calamaria/classes/infoPages/version.dart';
 import 'package:flutter/material.dart';
 
 import '../classes/infoPageData.dart';
@@ -19,7 +20,9 @@ class InfoPageState extends State<InfoPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Divider(height: 8.0, color: Colors.transparent),
-              htmlNormalText(page.pageDescription, context),
+              page.pageHeading == "Version & update info"
+                  ? versionPage(context)
+                  : htmlNormalText(page.pageDescription, context),
               Divider(height: 35.0, color: Colors.transparent),
             ],
           ),
