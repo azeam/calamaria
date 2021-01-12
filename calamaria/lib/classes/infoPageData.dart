@@ -15,12 +15,18 @@ class InfoPageData {
         this.pageHeading = """Species list and species accounts""";
         break;
       case 2:
-        this.pageHeading = 'Glossary';
+        this.pageHeading = 'Warning!';
+        this.pageDescription = 'Blabla';
+        this.images.add("assets/labialscales.svg");
+        this.icon = 'assets/icons/tombstone.svg';
+        break;
+      case 3:
+        this.pageHeading = 'Glossary and scale terminology';
         this.pageDescription = 'Blabla';
         this.images.add("assets/labialscales.svg");
         this.icon = 'assets/icons/book-bookmarked.svg';
         break;
-      case 3:
+      case 4:
         this.pageHeading = 'Is it really a <i>Calamaria</i>?';
         this.pageDescription =
             """If the snake you’re trying to identify is not a <i>Calamaria</i>, you are obviously not going to find its name with this app. What other snakes in Borneo are at most risk of being mistaken for <i>Calamaria</i> spp.? First of all, most <i>Calamaria</i> never grow to a length exceeding 50 cm, and the majority of them are rarely >35 cm. But all snakes are born small, so how to tell them apart?
@@ -36,12 +42,14 @@ class InfoPageData {
                 The above separates them from the similar-looking snakes of the genus <i>Pseudorabdion</i>. We will look closer at <i>Pseudorabdion</i> soon, but we start with something more urgent.
               <br><br>
               
-              <h3>DEADLY LOOKALIKES</h3>
+              <h3>DANGEROUS LOOKALIKES</h3>
               
               <br><br>
-                Snakes of the family Elapidae possess a highly neurotoxic venom. Never try to handle them – they can kill you. Indeed; never handle ANY snake unless you are ABSOLUTELY sure it is harmless! (While a bite from a <i>Calamaria</i> often draws blood and can be painful, it is not really harmful unless the wound gets infected.)
+                Snakes of the family Elapidae usually possess a neurotoxic venom. Never try to handle them – a bite may kill you. Indeed; never handle ANY snake unless you are ABSOLUTELY sure it is harmless! (While a bite from a <i>Calamaria</i> often draws blood and can be painful, it is not really harmful unless the wound gets infected.)
               <br><br>
-                Perhaps most obscure and therefore easiest to mistake for a harmless snake is the Banded Coral Snake (<i>Calliophis intestinalis</i>). It is slender and usually less than 50 cm long. Like in <i>Calamaria</i> spp. the head is not very distinct from the neck. Its coloration varies much, but essentially the dorsal side (i.e., the back) of the snake is striped. It sometimes has a red mid-dorsal stripe, but other specimens have just brownish, greyish or black stripes on the back. It sometimes has a reddish head, sometimes not. The belly is distinctly barred with black on either a cream-colored or a red background. The belly is therefore very similar to that of <i>Calamaria lumbricoidea</i>, which has a cream-colored belly with black crossbars. Both may have a reddish head. When harassed, the Banded Coral Snake often raises the tail in an arch, showing the underside of the tail. No <i>Calamaria</i> does that.
+                Perhaps most obscure and therefore easiest to mistake for a harmless snake is the Banded Coral Snake (<i>Calliophis intestinalis</i>) and its recently (in late 2020) resurrected sister taxon <i>Calliophis nigrotaeniata</i>. They are slender and usually less than 50 cm long. Like in <i>Calamaria</i> spp. the head is not very distinct from the neck. Their coloration varies much, but essentially the dorsal side (i.e., the back) of the snake is striped. There may be a red mid-dorsal stripe, but other specimens have just brownish, greyish or black stripes on the back. The head is sometimes reddish, sometimes not. The belly is distinctly barred with black on either a cream-colored or a red background. The belly may therefore be very similar to that of <i>Calamaria lumbricoidea</i>, which has a cream-colored belly with black crossbars. Both may have a reddish head. When harassed, <i>Calliophis</i> spp. often raise the tail in an arch, showing the underside of the tail. No <i>Calamaria</i> does that. Although the venom of <i>Calliophis intestinalis</i> seems not as deadly as <a href="https://pubmed.ncbi.nlm.nih.gov/30243938/">previously suspected</a><img src=""" +
+                externalUrlIcon +
+                """>, very few people have tested this new assumption and a bite should be avoided at all cost. 
               <br><br>
               <img src="asset:assets/infoimages/isitreally1warning1.jpg" alt="Belly comparison between <i>Calamaria lumbricoidea</i> and <i>Calliophis intestinalis</i>">
               <figcaption>Bellies of <i>Calamaria lumbricoidea</i> (left) and the cream-colored belly morph of <i>Calliophis intestinalis</i> (right).
@@ -49,12 +57,12 @@ class InfoPageData {
                 Photo © Björn Lardner
               </figcaption>
               <br><br>
-                Two even more deadly elapid snakes have red heads and red tails, and could potentially be mistaken for red-headed specimens of <i>Calamaria schlegeli</i> and possibly <i>Calamaria lumbricoidea</i>.
+                Two deadlier elapid snakes have red heads and red tails, and could potentially be mistaken for red-headed specimens of <i>Calamaria schlegeli</i> and possibly <i>Calamaria lumbricoidea</i>.
               <br><br>
                 The Bornean subspecies of the Blue Coral Snake (<i>Calliophis bivirgatus tetrataenia</i>) is not blue, but black with four thin, white stripes on the back and sides of the body. Its head, tail, and belly are bright red. Although it can reach a length of 1.8 m, juveniles are about the size of a <i>Calamaria</i>.
               <br><br>
               <img src="asset:assets/infoimages/isitreally2warning2.jpg" alt="<i>Calliophis bivirgatus tetrataenia</i> (below) and <i>Calamaria schlegeli</i>">
-              <figcaption>The dangerously venomous <i>Calliophis bivirgatus tetrataenia</i> (below) and the red-headed color form of the harmless <i>Calamaria schlegeli</i> top).
+              <figcaption>The dangerously venomous <i>Calliophis bivirgatus tetrataenia</i> (bottom) and the red-headed color form of the harmless <i>Calamaria schlegeli</i> top).
               <br><br>
                 Photo (top) © Sam Howard, photo (bottom) © Björn Lardner
               </figcaption>
@@ -81,7 +89,7 @@ class InfoPageData {
               <br><br>
 
               <img src="asset:assets/infoimages/isitreally4.jpg" alt="<i>Pseudorabdion collaris</i>">
-              <figcaption><i>Pseudorabdion collaris</i> has a scalation reminiscent of <i>Calamaria</i> spp. It is common around the Mount Kinabalu park headquarters, where it lives side by side with the similarly colored <i>Calamaria schmidti</i>. The latter has a shorter and blunter tail, and lacks internasals.
+              <figcaption><i>Pseudorabdion collaris</i> has a scalation reminiscent of <i>Calamaria</i> spp. It is common around the Mount Kinabalu park headquarters, where it lives side by side with the similarly colored <i>Calamaria schmidti</i>. The latter has a shorter and blunter tail, a somewhat broader head, and lacks internasals.
               <br><br>
                 Photo © Björn Lardner
               </figcaption>
@@ -98,7 +106,7 @@ class InfoPageData {
               <br><br>
 
               <img src="asset:assets/infoimages/isitreally6.jpg" alt="<i>Rhamphotyphlops olivaceus</i>">
-              <figcaption><i>Rhamphotyphlops olivaceus</i> is one of several blind snakes in Borneo. Notice the very large rostral scale that reaches far up on the forehead.
+              <figcaption><i>Rhamphotyphlops olivaceus</i> is one of several blind snakes in Borneo. Notice the very large rostral scale that reaches far up on the snout.
               <br><br>
                 Photo © Björn Lardner
               </figcaption>
@@ -106,7 +114,19 @@ class InfoPageData {
               
               Links to photos showing some of the dangerous lookalikes:<br><br>
 
-              <a href="https://www.inaturalist.org/observations/28028904"><i>Calliophis intestinalis</i></a>
+              <a href="https://www.inaturalist.org/observations/45130029"><i>Calliophis intestinalis</i></a>
+              <img src=""" +
+                externalUrlIcon +
+                """>
+              <br>
+
+              <a href="https://www.inaturalist.org/observations/28028904"><i>Calliophis cf. intestinalis</i></a>
+              <img src=""" +
+                externalUrlIcon +
+                """>
+              <br>
+
+              <a href="https://www.inaturalist.org/observations/38791669"><i>Calliophis nigrotaeniata</i></a>
               <img src=""" +
                 externalUrlIcon +
                 """>
@@ -138,51 +158,57 @@ class InfoPageData {
 
         this.icon = 'assets/icons/head-question.svg';
         break;
-      case 4:
+      case 5:
         this.pageHeading = 'How to take photos for ID';
         this.pageDescription = 'Blabla';
         this.images.add("assets/labialscales.svg");
         this.icon = 'assets/icons/camera-time2.svg';
         break;
-      case 5:
+      case 6:
         this.pageHeading = 'How to sex a snake';
         this.pageDescription = 'Blabla';
         this.images.add("assets/labialscales.svg");
         this.icon = 'assets/icons/gender.svg';
         break;
-      case 6:
+      case 7:
         this.pageHeading = 'Share your novel records';
         this.pageDescription = 'Blabla';
         this.icon = 'assets/icons/share2.svg';
         break;
-      case 7:
-        this.pageHeading = 'Report bugs & inconsistencies';
+      case 8:
+        this.pageHeading = 'Report bugs & errors';
         this.pageDescription = 'Blabla';
         this.icon = 'assets/icons/bug2.svg';
         break;
-      case 8:
+      case 9:
         this.pageHeading = 'Version and update info';
         this.pageDescription = 'Blabla';
         this.icon = 'assets/icons/drawer-sync.svg';
         break;
-      case 9:
-        this.pageHeading = 'Copyright info';
+      case 10:
+        this.pageHeading = 'Acknowledgments & photo credits';
         this.pageDescription = 'Copyright info';
         this.icon = 'assets/icons/copyright.svg';
         break;
-      case 10:
+      case 11:
         this.pageHeading = 'Further reading';
         this.pageDescription = 'Blabla';
         this.images.add("assets/labialscales.svg");
         this.icon = 'assets/icons/read.svg';
         break;
-      case 11:
+      case 12:
         this.pageHeading = 'Ethics and regulations';
         this.pageDescription = 'Blabla';
         this.images.add("assets/labialscales.svg");
         this.icon = 'assets/icons/balance.svg';
         break;
-      case 12:
+      case 13:
+        this.pageHeading = '<i>Calamaria</i> ecology';
+        this.pageDescription = 'Blabla';
+        this.images.add("assets/labialscales.svg");
+        this.icon = 'assets/icons/recycle2.svg';
+        break;
+      case 14:
         this.pageHeading = 'Welcome to the app';
         this.pageDescription =
             // don't indent or first char will have whitespace before

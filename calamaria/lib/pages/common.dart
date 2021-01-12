@@ -29,10 +29,7 @@ Widget navFAB(BuildContext context, Widget next, String id) {
       backgroundColor: Colors.blueGrey[700],
       onPressed: () => Navigator.push(
             context,
-            CupertinoPageRoute(
-                // TODO: for debugging, can be removed later
-                settings: RouteSettings(name: "idpage" + id),
-                builder: (BuildContext context) => next),
+            CupertinoPageRoute(builder: (BuildContext context) => next),
           ));
 }
 
@@ -138,7 +135,7 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
   InfoPageData data = new InfoPageData();
   return Drawer(
     child: ListView.builder(
-        itemCount: 13,
+        itemCount: 15,
         itemBuilder: (BuildContext drawerContext, int index) {
           data.setData(index);
           return Container(
@@ -161,11 +158,6 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              // TODO: for debugging, can be removed later
-                              settings: index == 1
-                                  ? RouteSettings(name: "listspecies")
-                                  : RouteSettings(
-                                      name: "infopage" + index.toString()),
                               builder: (context) => index == 1
                                   ? PageListSpecies()
                                   : InfoPage(page: index)),

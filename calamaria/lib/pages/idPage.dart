@@ -338,9 +338,6 @@ class IdPageState extends State<IdPage> with RouteAware {
               ? Navigator.push(
                   context,
                   CupertinoPageRoute(
-                      settings: RouteSettings(
-                          // TODO: for debugging, can be removed later
-                          name: "idpage" + (_page + 1).toString()),
                       builder: (BuildContext context) =>
                           IdPage(page: _page + 1)))
               : _listResults(context);
