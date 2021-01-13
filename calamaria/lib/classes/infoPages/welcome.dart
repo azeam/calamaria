@@ -24,7 +24,7 @@ const infoWelcome =
     <p>We hope that this app will increase interest in and knowledge of these poorly known and often overlooked snakes. We also hope that you carefully document with photographs and field notes any <i>Calamaria</i> specimens you come across, and then share your findings (and questions) with others.
     </p>
 
-    <p>But before you head out in the field looking for <i>Calamaria</i>, please read the <a href="2">Warning!</a> page and the <a href="3">Ethics and regulations</a> page (both found under the Main Menu).</p>
+    <p>But before you head out in the field looking for <i>Calamaria</i>, please read the <a href="Warning!">Warning!</a> page and the <a href="Ethics and regulations">Ethics and regulations</a> page (both found under the Main Menu).</p>
 
     <p>Enjoy!</p>
 

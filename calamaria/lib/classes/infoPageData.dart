@@ -1,94 +1,94 @@
-import 'infoPages/bugs.dart';
-import 'infoPages/copyright.dart';
-import 'infoPages/ecology.dart';
-import 'infoPages/ethics.dart';
-import 'infoPages/glossary.dart';
-import 'infoPages/isItReally.dart';
-import 'infoPages/photos.dart';
-import 'infoPages/reading.dart';
-import 'infoPages/sex.dart';
-import 'infoPages/share.dart';
-import 'infoPages/warning.dart';
-import 'infoPages/welcome.dart';
+import "infoPages/bugs.dart";
+import "infoPages/copyright.dart";
+import "infoPages/ecology.dart";
+import "infoPages/ethics.dart";
+import "infoPages/glossary.dart";
+import "infoPages/isItReally.dart";
+import "infoPages/photos.dart";
+import "infoPages/reading.dart";
+import "infoPages/sex.dart";
+import "infoPages/share.dart";
+import "infoPages/warning.dart";
+import "infoPages/welcome.dart";
 
 class InfoPageData {
   String pageDescription, pageHeading, icon;
 
-  void setData(int index) {
+  /* 
+    very messy data... workaround to be able to make links using the heading as href
+    instead of index in order to prevent breaking links if the menu changes 
+    (while keeping the index to set active menu element color etc.)
+    headings, icons and data index must be kept in the correct order though
+  */
+  List<String> headings = [
+    "Identify your <i>Calamaria</i>",
+    "Species list and species accounts",
+    "Warning!",
+    "Ethics and regulations",
+    "Glossary and scale terminology",
+    "Is it really a <i>Calamaria</i>?",
+    "<i>Calamaria</i> ecology",
+    "How to take photos for ID",
+    "How to sex a snake",
+    "Share your novel records",
+    "Report bugs and errors",
+    "Version and update info",
+    "Acknowledgments and photo credits",
+    "Further reading",
+    "Welcome to the app"
+  ];
+
+  List<String> icons = [
+    "loupe.svg",
+    "clipboard-list.svg",
+    "tombstone.svg",
+    "balance.svg",
+    "book-bookmarked.svg",
+    "head-question.svg",
+    "recycle2.svg",
+    "camera-time2.svg",
+    "gender.svg",
+    "share2.svg",
+    "bug2.svg",
+    "drawer-sync.svg",
+    "copyright.svg",
+    "read.svg",
+    "info-square.svg"
+  ];
+
+  String getData(index) {
     switch (index) {
-      case 0:
-        this.icon = 'assets/icons/loupe.svg';
-        this.pageHeading = """Identify your <i>Calamaria</i>""";
-        break;
-      case 1:
-        this.icon = 'assets/icons/clipboard-list.svg';
-        this.pageHeading = """Species list and species accounts""";
-        break;
       case 2:
-        this.pageHeading = 'Warning!';
-        this.pageDescription = infoWarning;
-        this.icon = 'assets/icons/tombstone.svg';
-        break;
+        return infoWarning;
       case 3:
-        this.pageHeading = 'Ethics & regulations';
-        this.pageDescription = infoEthics;
-        this.icon = 'assets/icons/balance.svg';
-        break;
+        return infoEthics;
       case 4:
-        this.pageHeading = 'Glossary and scale terminology';
-        this.pageDescription = infoGlossary;
-        this.icon = 'assets/icons/book-bookmarked.svg';
-        break;
+        return infoGlossary;
       case 5:
-        this.pageHeading = 'Is it really a <i>Calamaria</i>?';
-        this.pageDescription = infoIsItReally;
-        this.icon = 'assets/icons/head-question.svg';
-        break;
+        return infoIsItReally;
       case 6:
-        this.pageHeading = '<i>Calamaria</i> ecology';
-        this.pageDescription = infoEcology;
-        this.icon = 'assets/icons/recycle2.svg';
-        break;
+        return infoEcology;
       case 7:
-        this.pageHeading = 'How to take photos for ID';
-        this.pageDescription = infoPhotos;
-        this.icon = 'assets/icons/camera-time2.svg';
-        break;
+        return infoPhotos;
       case 8:
-        this.pageHeading = 'How to sex a snake';
-        this.pageDescription = infoSex;
-        this.icon = 'assets/icons/gender.svg';
-        break;
+        return infoSex;
       case 9:
-        this.pageHeading = 'Share your novel records';
-        this.pageDescription = infoShare;
-        this.icon = 'assets/icons/share2.svg';
-        break;
+        return infoShare;
       case 10:
-        this.pageHeading = 'Report bugs & errors';
-        this.pageDescription = infoBugs;
-        this.icon = 'assets/icons/bug2.svg';
-        break;
-      case 11:
-        this.pageHeading = 'Version & update info';
-        this.icon = 'assets/icons/drawer-sync.svg';
-        break;
+        return infoBugs;
       case 12:
-        this.pageHeading = 'Acknowledgments & photo credits';
-        this.pageDescription = infoCopyright;
-        this.icon = 'assets/icons/copyright.svg';
-        break;
+        return infoCopyright;
       case 13:
-        this.pageHeading = 'Further reading';
-        this.pageDescription = infoReading;
-        this.icon = 'assets/icons/read.svg';
-        break;
+        return infoReading;
       case 14:
-        this.pageHeading = 'Welcome to the app';
-        this.pageDescription = infoWelcome;
-        this.icon = 'assets/icons/info-square.svg';
-        break;
+        return infoWelcome;
     }
+    return "Not found";
+  }
+
+  void setData(int index) {
+    this.pageHeading = headings[index];
+    this.icon = "assets/icons/" + icons[index];
   }
 
   String getHeading() {

@@ -206,6 +206,7 @@ Widget htmlNormalText(String data, BuildContext context) {
       }
     },
     onLinkTap: (url) {
+      print("Url " + url);
       if (url.startsWith("http") || url.startsWith("mailto")) {
         _launchURL(url);
       } else if (url == "idPage") {
@@ -218,7 +219,7 @@ Widget htmlNormalText(String data, BuildContext context) {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => InfoPage(page: int.parse(url))));
+                builder: (context) => InfoPage(pageHeading: url)));
       }
     },
   );
