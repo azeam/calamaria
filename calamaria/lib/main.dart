@@ -27,7 +27,7 @@ class Calamaria extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: InfoPage(page: 14),
+      home: InfoPage(pageLinkText: "welcome"),
     );
   }
 }

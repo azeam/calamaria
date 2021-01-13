@@ -71,7 +71,7 @@ class SpeciesInfo extends StatelessWidget {
                     }
                   });
             }
-            return Text("No data found");
+            return Center(child: CircularProgressIndicator());
           }),
     );
   }

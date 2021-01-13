@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'infoPages/copyright.dart';
 import 'infoPages/version.dart';
 import '../classes/infoPageData.dart';
 import '../main.dart';
@@ -46,16 +47,19 @@ class InfoPageState extends State<InfoPage> {
               page.pageHeading == "Version and update info"
                   ? versionPage(
                       context) // needs to be async to get app version, can't read as html
-                  : Container(
-                      child: FutureBuilder(
-                          future: _readFile(dataSrc),
-                          builder: (context, AsyncSnapshot<String> snapshot) {
-                            if (snapshot.data != null) {
-                              return htmlNormalText(snapshot.data, context);
-                            }
-                            return Text("No data found");
-                          }),
-                    ),
+                  : page.pageHeading == "Acknowledgments and photo credits"
+                      ? copyrightPage(context)
+                      : Container(
+                          child: FutureBuilder(
+                              future: _readFile(dataSrc),
+                              builder:
+                                  (context, AsyncSnapshot<String> snapshot) {
+                                if (snapshot.data != null) {
+                                  return htmlNormalText(snapshot.data, context);
+                                }
+                                return CircularProgressIndicator();
+                              }),
+                        ),
               Divider(height: 35.0, color: Colors.transparent),
             ],
           ),

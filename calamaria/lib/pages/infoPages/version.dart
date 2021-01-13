@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:calamaria/pages/common.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:package_info/package_info.dart';
 
@@ -22,7 +23,7 @@ Future<String> _getVersion() async {
   If you want to get in touch with us — maybe you want to discuss the identity of a snake you have photographed, let us know of a range extension, or ask about the code used in the app — try sending an email to <a href="mailto:calamariaofborneo@gmail.com">calamariaofborneo@gmail.com</a>.
   We might not check that email account very often, but we will check it eventually!
   <br><br>
-  If you would like to cite this app, here is a suggested format:
+  If you would like to cite this app, here is a suggested format:<br><br>
   Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iPhone. Version """ +
       version +
       """. Available via XXXXXXXXXXXXXXXXXXXXXXXXXXXX.""";
@@ -37,7 +38,7 @@ Widget versionPage(BuildContext context) {
           if (snapshot.data != null) {
             return htmlNormalText(snapshot.data, context);
           }
-          return Text("No data found");
+          return Center(child: CircularProgressIndicator());
         }),
   );
 }

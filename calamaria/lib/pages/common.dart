@@ -186,7 +186,7 @@ Widget htmlNormalText(String data, BuildContext context) {
           fontSize: FontSize.small,
           fontWeight: FontWeight.normal,
           fontFamily: 'Merriweather'),
-      "h3": Style(
+      "span": Style(
         color: Colors.red,
       ),
       "h2": Style(fontWeight: FontWeight.normal)

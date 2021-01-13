@@ -7,12 +7,12 @@ const data = """{
       {
         "heading": "Identify your <i>Calamaria</i>",
         "icon": "loupe.svg",
-        "data": ""
+        "data": "idPage"
       },
       {
         "heading": "Species list and species accounts",
         "icon": "clipboard-list.svg",
-        "data": ""
+        "data": "speciesPage"
       },
       {
         "heading": "Warning!",
