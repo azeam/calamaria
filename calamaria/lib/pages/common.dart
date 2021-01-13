@@ -181,7 +181,15 @@ Widget htmlAppTitle(String data) {
 Widget htmlNormalText(String data, BuildContext context) {
   return Html(
     style: {
-      "div": Style(fontSize: FontSize.large, fontWeight: FontWeight.normal),
+      "p": Style(
+          fontSize: FontSize.large,
+          fontWeight: FontWeight.normal,
+          lineHeight: 1.2),
+      "li": Style(
+        fontSize: FontSize.large,
+        fontWeight: FontWeight.normal,
+        lineHeight: 1.2,
+      ),
       "figcaption": Style(
           fontSize: FontSize.small,
           fontWeight: FontWeight.normal,

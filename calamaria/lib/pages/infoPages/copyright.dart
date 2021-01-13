@@ -16,8 +16,7 @@ Future<String> _getVersion() async {
       """<p>The data used in this app come mostly from the 300-page monograph by Inger & Marx (1965), “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus Calamaria” (Fieldiana: Zoology, volume 49). Both Robert F. (Bob) Inger (1920 – 2019) and Hymen Marx (1925 – 2009) worked at the Field Museum of Natural History in Chicago for decades. Bob had a focus on amphibians and reptiles of Borneo for much of his research career, and was already in his lifetime a legend among students of Southeast Asian herpetology. He did field work in Malaysian Borneo from the 1950’s until 2007 – indeed; he was still conducting field work in his mid-eighties! – and continued to publish papers and books until shortly before his death at age 98.
 </p>
 
-<p>
-You can read more about their lives and careers here:<br>
+<p>You can read more about their lives and careers here:<br>
 <a href="https://static1.squarespace.com/static/570d1ea37da24f381ca53c95/t/5efccb7689ed241f061df928/1593625465913/ct2020068.pdf">Obituary R. F. Inger</a>
 <img src="asset:assets/icons/external.png"><br>
 <a href="https://www.researchgate.net/publication/232683634_Hymen_Marx_1925-2007">Obituary H. Marx</a>

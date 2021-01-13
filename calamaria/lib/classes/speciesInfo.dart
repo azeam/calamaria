@@ -33,7 +33,8 @@ class SpeciesInfo extends StatelessWidget {
 //      theme: ExpandableThemeData(
 //        iconSize: 45,
 //      ),
-      header: htmlNormalText("<strong>" + headline + "</strong>", context),
+      header:
+          htmlNormalText("<p><strong>" + headline + "</strong></p>", context),
       collapsed: null,
       expanded: htmlNormalText(data, context),
     );
