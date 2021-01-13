@@ -1,23 +1,31 @@
 const infoWelcome =
-    """This app is meant to help you identify Calamaria spp. (that is, Reed Snakes) you might come across on Borneo.
+    """<h2>Welcome to the <i>Calamaria</i> of Borneo phone app!</h2>
+    <p>This free phone app is meant to help you identify Reed Snakes of the genus <i>Calamaria</i> that you might come across on Borneo. These small and obscure snakes are often very difficult to identify just from their ’looks’. For several of them, no photographs seem to exist of living specimens. Some are only known from one or a handful specimens, often collected more than a century ago. Some look different when young from when fully grown, and adults of the same species may come in different colors and patterns.
+    </p>
+    
+    <img src="asset:assets/infoimages/welcome1.jpg" alt="<i>Calamaria griswoldi</i>">
+    <figcaption><i>Calamaria griswoldi</i> at Kinabalu Park headquarters, ca 1550 m ASL, Sabah. (Tap on photo to enlarge it.)
     <br><br>
-      These <a href="test">test</a> small and obscure snakes are often very difficult to identify just from their ’looks’. For several of 
-      them, no color photographs seem to exist, and no photographs exist of living specimens. Some are only
-      known from one or a handful specimens, often collected more than a century ago. 
-      Some look different when young from when fully grown, and adults of the same species may come in 
-      different patterns.
-    <br><br>
-      Because we still have limited knowledge of what these snakes may look like, the only way to 
-      properly identify many of them is to look at details in their scalation. The multi-character 
-      identification algorithm we use in this app looks primarily at their scales, and ignores the snake’s 
-      color and pattern. Once you get a suggestion of likely candidate species, based on the characters 
-      you have entered, you can go to the relevant species account and read what is known of the species’ 
-      color and pattern, its known geographical and altitudinal range, and other tidbits. For many species we 
-      also show photos contributed by friends of ours.\n\ṇThere are two types of pages within this app. 
-      Some just contain the info in the page you see, and do not link to other pages in the app. 
-      You can access all those pages via the Main Menu in the upper right corner of the screen. 
-      Other pages are interconnected and linked; these have to do with data you enter in the app when 
-      you try to identify a Calamaria-specimen. You start that identification process via the main menu 
-      link to Identify your Calamaria. On the relevant pages you can erase all entered data by clicking 
-      the red button saying RESTART ID, and start from scratch again.
+      Photo © Björn Lardner
+    </figcaption>
+    
+    <p>Because we still have limited knowledge of what these snakes may look like in life, <strong>the only way to properly identify many of them is to look at details in their scalation</strong>. The multi-character identification algorithm we use in this app looks primarily at their scales, and ignores the snake’s color and pattern. It works even if you cannot score all characters asked for, which can be useful if you try to identify a snake from a photo. Of course, the more characters you enter, the higher the chance that you do not end up with many equally-supported species suggestions. Once you get a suggestion of likely candidate species, based on the characters you have entered, you can go to the relevant species accounts and read what is known about the species’ color and pattern, further details on their scalation, their known range, and other tidbits. We also mention taxa that are easily mistaken for one another, and how to tell them apart.
+    </p>
+    
+    <p>Do not just check up the best matching species after you have entered data and been given a ranked list of candidate species. Instead check several of the top-ranked species that the app suggests your snake shares many characters with! Your focal snake may exhibit morphological deviations from “the norm” for its species, causing its true identity to end up below the top-ranked species. Also, for several taxa only few specimens have been properly documented and we have limited knowledge of the full (true) ranges of ventral and subcaudal counts – this may erroneously result in a mis-match and potentially lead you away from the correct identification.</p>
+
+    <p>Most of the species account pages include several photos. Indeed, this app offers an unprecedented collection of <i>Calamaria</i> photos from Borneo, kindly contributed by a large number of people. The numerous illustrations offer a valuable complement to the verbal descriptions and scale characters that <i>Calamaria</i>-afficionados in Borneo have, so far, been relying on. <strong>Note that you can tap on photos in the species accounts to enlarge them and look closer at details in a snake’s scalation.</strong></p>
+
+    <p>There are two types of pages within this app. Some just contain the info in the page you see, and do not link to other pages in the app. You can access all those pages via the Main Menu in the lower left corner of the screen. Other pages are interconnected and linked; these have to do with data you enter in the app when you try to identify a <i>Calamaria</i>-specimen. You start that identification process via the main menu link to <a href="idPage">Identify your <i>Calamaria</i></a>. You can erase all entered data and start from scratch again.</p>
+
+    <p>The list of <i>Calamaria</i> species known from Borneo has remained unchanged since 1965, when Robert F. Inger and Hymen Marx wrote “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus <i>Calamaria</i>”. Nobody has yet used molecular methods to try and reveal phylogenetic relationships among the species occurring on Borneo. (Such work is underway for <i>Calamaria</i> of nearby regions.) We anticipate that analyses of this kind may reveal hidden diversity among the currently known Bornean forms, with the potential for new species to be described. Hopefully such studies will address in a rigorous manner if geographic variation may just represent continuous clines, rather than discrete and “step-wise” differences in genotypes. That requires substantial sampling, which is not easily done. It is perhaps even more likely that populations of taxa currently thought to occupy both Borneo and neighboring regions (Sumatra, Java, etc.) will be split into separate species – like was the case for e.g. the pitviper <i>Tropidolaemus wagleri</i>.
+    </p>
+
+    <p>We hope that this app will increase interest in and knowledge of these poorly known and often overlooked snakes. We also hope that you carefully document with photographs and field notes any <i>Calamaria</i> specimens you come across, and then share your findings (and questions) with others.
+    </p>
+
+    <p>But before you head out in the field looking for <i>Calamaria</i>, please read the <a href="2">Warning!</a> page and the <a href="3">Ethics and regulations</a> page (both found under the Main Menu).</p>
+
+    <p>Enjoy!</p>
+
     """;

@@ -208,12 +208,17 @@ Widget htmlNormalText(String data, BuildContext context) {
     onLinkTap: (url) {
       if (url.startsWith("http") || url.startsWith("mailto")) {
         _launchURL(url);
+      } else if (url == "idPage") {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => IdPage(page: 1)));
+      } else if (url == "speciesPage") {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PageListSpecies()));
       } else {
-        // TODO: open "local link"
-//        Navigator.push(
-//            context,
-//            MaterialPageRoute(
-//                builder: (context) => InfoPage(page: int.parse(url))));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => InfoPage(page: int.parse(url))));
       }
     },
   );
