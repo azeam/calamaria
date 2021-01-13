@@ -1,1 +1,0 @@
-const infoGlossary = """tmp""";

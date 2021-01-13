@@ -142,11 +142,11 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
               color: (index != curPageIndex) ? null : Colors.blueGrey[100],
               child: ListTile(
                   leading: SvgPicture.asset(
-                    data.getIcon(),
+                    data.icon,
                     color: Colors.black,
                     matchTextDirection: false,
                   ),
-                  title: htmlNormalText(data.getHeading(), context),
+                  title: htmlNormalText(data.pageHeading, context),
                   onTap: () {
                     Navigator.pop(
                         drawerContext); // close menu or it will appear when going back
@@ -194,8 +194,8 @@ Widget htmlNormalText(String data, BuildContext context) {
     data: data,
     onImageTap: (src, alt) {
       var path;
-      // only open local imgs, skip data srcs for eg. external link icon
-      if (src.startsWith("asset:")) {
+      // only open local imgs, skip data src for external link icon
+      if (src != ("asset:assets/icons/external.png")) {
         // remove "asset:" from local images
         path = src.split("asset:")[1];
         Navigator.push(
@@ -206,7 +206,6 @@ Widget htmlNormalText(String data, BuildContext context) {
       }
     },
     onLinkTap: (url) {
-      print("Url " + url);
       if (url.startsWith("http") || url.startsWith("mailto")) {
         _launchURL(url);
       } else if (url == "idPage") {
@@ -219,7 +218,7 @@ Widget htmlNormalText(String data, BuildContext context) {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => InfoPage(pageHeading: url)));
+                builder: (context) => InfoPage(pageLinkText: url)));
       }
     },
   );

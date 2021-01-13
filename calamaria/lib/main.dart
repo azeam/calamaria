@@ -51,9 +51,9 @@ class PageListSpecies extends StatefulWidget {
 }
 
 class InfoPage extends StatefulWidget {
-  InfoPage({Key key, this.page, this.pageHeading}) : super(key: key);
+  InfoPage({Key key, this.page, this.pageLinkText}) : super(key: key);
   final int page;
-  final String pageHeading;
+  final String pageLinkText;
   @override
   InfoPageState createState() => InfoPageState();
 }

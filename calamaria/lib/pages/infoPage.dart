@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+import 'infoPages/version.dart';
 import '../classes/infoPageData.dart';
-import '../classes/infoPages/version.dart';
 import '../main.dart';
 import 'common.dart';
 
 InfoPageData page = InfoPageData();
 int index;
-String data;
+String dataSrc;
 
 class InfoPageState extends State<InfoPage> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     if (widget.page != null) {
       index = widget.page;
     } else {
-      index =
-          page.headings.indexWhere((heading) => heading == widget.pageHeading);
-      print("heading found at index " + index.toString());
+      // no index set (no menu link), find item in json and get index from there
+      index = page.getJsonAsList().indexWhere(
+          (linkText) => linkText.toString().contains(widget.pageLinkText));
     }
     page.setData(index);
-    if (index != -1) {
-      data = page.getData(index);
-    } else {
-      data = "Not found";
-    }
+    dataSrc = page.getData(index);
+  }
+
+  Future<String> _readFile(String path) async {
+    String htmlFile = "assets/infopages/" + path + ".html";
+    String htmlData = await rootBundle.loadString(htmlFile);
+    return htmlData;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: htmlAppTitle(page.pageHeading)),
       body: Container(
@@ -36,8 +44,18 @@ class InfoPageState extends State<InfoPage> {
             children: <Widget>[
               Divider(height: 8.0, color: Colors.transparent),
               page.pageHeading == "Version and update info"
-                  ? versionPage(context)
-                  : htmlNormalText(data, context),
+                  ? versionPage(
+                      context) // needs to be async to get app version, can't read as html
+                  : Container(
+                      child: FutureBuilder(
+                          future: _readFile(dataSrc),
+                          builder: (context, AsyncSnapshot<String> snapshot) {
+                            if (snapshot.data != null) {
+                              return htmlNormalText(snapshot.data, context);
+                            }
+                            return Text("No data found");
+                          }),
+                    ),
               Divider(height: 35.0, color: Colors.transparent),
             ],
           ),
