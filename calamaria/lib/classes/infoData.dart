@@ -1,16 +1,15 @@
 class Info {
   String heading, icon, data;
-  int index;
 
-  Info(this.heading, this.icon, this.data, this.index);
+  Info(this.heading, this.icon, this.data);
 
   factory Info.fromJson(dynamic json) {
     return Info(json['heading'] as String, json['icon'] as String,
-        json['data'] as String, json['index'] as int);
+        json['data'] as String);
   }
 
   @override
   String toString() {
-    return '{ ${this.heading}, ${this.icon}, ${this.data}, ${this.index} }';
+    return '{ ${this.heading}, ${this.icon}, ${this.data} }';
   }
 }

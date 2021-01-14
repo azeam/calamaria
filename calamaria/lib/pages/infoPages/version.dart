@@ -26,7 +26,7 @@ Future<String> _getVersion() async {
   </p>
   
   <p>If you would like to cite this app, here is a suggested format:<br><br>
-  Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iPhone. Version """ +
+  Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iOS. Version """ +
       version +
       """. Available via XXXXXXXXXXXXXXXXXXXXXXXXXXXX.</p>""";
   return text;
@@ -40,7 +40,10 @@ Widget versionPage(BuildContext context) {
           if (snapshot.data != null) {
             return htmlNormalText(snapshot.data, context);
           }
-          return Center(child: CircularProgressIndicator());
+          return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Center(child: CircularProgressIndicator()));
         }),
   );
 }

@@ -135,18 +135,18 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
   InfoPageData data = new InfoPageData();
   return Drawer(
     child: ListView.builder(
-        itemCount: 15,
+        itemCount: data.getMenuSize(),
         itemBuilder: (BuildContext drawerContext, int index) {
           data.setData(index);
           return Container(
               color: (index != curPageIndex) ? null : Colors.blueGrey[100],
               child: ListTile(
                   leading: SvgPicture.asset(
-                    data.icon,
+                    data.getIcon(),
                     color: Colors.black,
                     matchTextDirection: false,
                   ),
-                  title: htmlNormalText(data.pageHeading, context),
+                  title: htmlNormalText(data.getHeading(), context),
                   onTap: () {
                     Navigator.pop(
                         drawerContext); // close menu or it will appear when going back
@@ -186,6 +186,11 @@ Widget htmlNormalText(String data, BuildContext context) {
           fontWeight: FontWeight.normal,
           lineHeight: 1.2),
       "li": Style(
+        fontSize: FontSize.large,
+        fontWeight: FontWeight.normal,
+        lineHeight: 1.2,
+      ),
+      "a": Style(
         fontSize: FontSize.large,
         fontWeight: FontWeight.normal,
         lineHeight: 1.2,

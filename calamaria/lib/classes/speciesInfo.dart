@@ -72,7 +72,10 @@ class SpeciesInfo extends StatelessWidget {
                     }
                   });
             }
-            return Center(child: CircularProgressIndicator());
+            return Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: Center(child: CircularProgressIndicator()));
           }),
     );
   }

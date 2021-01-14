@@ -58,12 +58,13 @@ Toni Herpandes
 
 <p>Photos from I. Sidik, E. Wostl and E. N. Smith were obtained through support from the US National Science Foundation (grant DEB-1146324).
 <br><br>
-Alan Resetar at the Field Museum kindly assisted BL with specimens for photographs appearing in this app.<br>
+Alan Resetar at the Field Museum kindly assisted BL with specimens for photographs appearing in this app.
+<br><br>
 We also wish to thank all the people with whom we have discussed Calamaria identification over the years, in particular Sam Howard, Attila Kobori, Benjamin Karin, Shavez Cheema, Rob Stuebing, and the late Bob Inger.
 </p>
 
 <p>We hope that this app will inspire more people to create identification “e-keys” based on multi-character matrices. If you would like to cite this app, here is a suggested format:<br><br>
-  Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iPhone. Version """ +
+  Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iOS. Version """ +
           version +
           """. Available via XXXXXXXXXXXXXXXXXXXXXXXXXXXX.
 </p>
@@ -83,7 +84,10 @@ Widget copyrightPage(BuildContext context) {
           if (snapshot.data != null) {
             return htmlNormalText(snapshot.data, context);
           }
-          return Center(child: CircularProgressIndicator());
+          return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Center(child: CircularProgressIndicator()));
         }),
   );
 }

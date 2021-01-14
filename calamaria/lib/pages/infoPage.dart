@@ -19,8 +19,9 @@ class InfoPageState extends State<InfoPage> {
       index = widget.page;
     } else {
       // no index set (no menu link), find item in json and get index from there
-      index = page.getJsonAsList().indexWhere(
-          (linkText) => linkText.toString().contains(widget.pageLinkText));
+      index = page
+          .getLinkTexts()
+          .indexWhere((linkText) => linkText.toString() == widget.pageLinkText);
     }
     page.setData(index);
     dataSrc = page.getData(index);
@@ -57,7 +58,11 @@ class InfoPageState extends State<InfoPage> {
                                 if (snapshot.data != null) {
                                   return htmlNormalText(snapshot.data, context);
                                 }
-                                return CircularProgressIndicator();
+                                return Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height,
+                                    child: Center(
+                                        child: CircularProgressIndicator()));
                               }),
                         ),
               Divider(height: 35.0, color: Colors.transparent),

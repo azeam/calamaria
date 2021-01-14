@@ -94,8 +94,24 @@ class InfoPageData {
     this.pageHeading = this.menuItems[index].heading.toString();
   }
 
-  List<Info> getJsonAsList() {
-    return menuItems;
+  String getHeading() {
+    return this.pageHeading;
+  }
+
+  String getIcon() {
+    return this.icon;
+  }
+
+  int getMenuSize() {
+    return this.menuItems.length;
+  }
+
+  List<String> getLinkTexts() {
+    List<String> linkTexts = [];
+    for (int i = 0; i < this.menuItems.length; i++) {
+      linkTexts.add(this.menuItems[i].data.toString());
+    }
+    return linkTexts;
   }
 
   String getData(int index) {

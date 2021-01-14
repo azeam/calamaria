@@ -1,8 +1,8 @@
 class FormPageOptions {
   String mainImg, pageDescription, pageHeading;
-  List<String> questions = List<String>();
-  List<String> radioOp = List<String>();
-  List<String> checkOp = List<String>();
+  List<String> questions = [];
+  List<String> radioOp = [];
+  List<String> checkOp = [];
 
   void setData(int page) {
     switch (page) {
