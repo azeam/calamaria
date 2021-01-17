@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'infoData.dart';
+import 'info.dart';
 
 const data = """{
     "menuItems": [

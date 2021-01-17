@@ -7,9 +7,4 @@ class Info {
     return Info(json['heading'] as String, json['icon'] as String,
         json['data'] as String);
   }
-
-  @override
-  String toString() {
-    return '{ ${this.heading}, ${this.icon}, ${this.data} }';
-  }
 }

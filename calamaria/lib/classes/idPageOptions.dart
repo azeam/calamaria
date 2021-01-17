@@ -1,21 +1,17 @@
-class FormPageOptions {
+class IdPageOptions {
   String mainImg, pageDescription, pageHeading;
-  List<String> questions = [];
-  List<String> radioOp = [];
-  List<String> checkOp = [];
+  List<String> questions, radioOp, checkOp;
 
   void setData(int page) {
     switch (page) {
       case 1:
-        this.questions.add('Number of upper labials:');
-        this.questions.add('Number of lower labials:');
-        this.questions.add('Which upper labials touch the eye?');
-        this.radioOp.add("4");
-        this.radioOp.add("5");
-        this.radioOp.add("6");
-        this.checkOp.add("2nd");
-        this.checkOp.add("3rd");
-        this.checkOp.add("4th");
+        this.questions = [
+          "Number of upper labials",
+          "Number of lower labials",
+          "Which upper labials touch the eye?"
+        ];
+        this.radioOp = ["4", "5", "6"];
+        this.checkOp = ["2nd", "3rd", "4th"];
         this.mainImg = 'assets/formimages/labialscales.svg';
         this.pageDescription =
             """Bornean <i>Calamaria</i> have either 4 or 5 (in one species sometimes 6) upper labials (UL), and 4 or 5 
@@ -28,9 +24,8 @@ class FormPageOptions {
         this.pageHeading = 'Upper and lower labials';
         break;
       case 2:
-        this.questions.add('Mental touching the anterior chin shields?');
-        this.radioOp.add("Yes");
-        this.radioOp.add("No");
+        this.questions = ['Mental touching the anterior chin shields?'];
+        this.radioOp = ["Yes", "No"];
         this.mainImg = 'assets/formimages/mental.svg';
         this.pageDescription =
             """The mental is the scale at the front of the lower jaw, just below where the tongue comes out. 
@@ -42,10 +37,8 @@ class FormPageOptions {
         this.pageHeading = 'Mental scale vs. chin shields';
         break;
       case 3:
-        this.questions.add('Preocular present?');
-        this.questions.add('Postocular present?');
-        this.radioOp.add("Yes");
-        this.radioOp.add("No");
+        this.questions = ['Preocular present?', 'Postocular present?'];
+        this.radioOp = ["Yes", "No"];
         this.mainImg = 'assets/formimages/ocularscales.svg';
         this.pageDescription =
             """All Bornean <i>Calamaria</i> have a supraocular scale sitting above the eye. Most also have 
@@ -57,10 +50,8 @@ class FormPageOptions {
         this.pageHeading = 'Scales around the eye';
         break;
       case 4:
-        this.questions.add('Number of scales touching the paraparietal?');
-        this.radioOp.add("4");
-        this.radioOp.add("5");
-        this.radioOp.add("6");
+        this.questions = ['Number of scales touching the paraparietal?'];
+        this.radioOp = ["4", "5", "6"];
         this.mainImg = 'assets/formimages/paraparietalscales.svg';
         this.pageDescription =
             """The paraparietal (PP) sits behind/below the parietal on the rear side of the head. 
@@ -72,10 +63,8 @@ class FormPageOptions {
         this.pageHeading = 'Scales around the paraparietal';
         break;
       case 5:
-        this.questions.add('Relative eye size');
-        this.radioOp.add("Smaller");
-        this.radioOp.add("Equal");
-        this.radioOp.add("Larger");
+        this.questions = ['Relative eye size'];
+        this.radioOp = ["Smaller", "Equal", "Larger"];
         this.mainImg = 'assets/formimages/eyesize.png';
         this.pageDescription =
             """The size of the eye varies among <i>Calamaria</i> spp. Here you compare the eye diameter with 
@@ -89,9 +78,8 @@ class FormPageOptions {
         this.pageHeading = 'Relative size of the eye';
         break;
       case 6:
-        this.questions.add('Hemipenes seen?');
-        this.radioOp.add("Yes");
-        this.radioOp.add("No");
+        this.questions = ['Hemipenes seen?'];
+        this.radioOp = ["Yes", "No"];
         this.mainImg = 'assets/formimages/hemipenis.jpg';
         this.pageDescription =
             """Knowing the sex of the snake can help narrowing down the number of candidate species. 
@@ -105,10 +93,8 @@ class FormPageOptions {
         this.pageHeading = 'Hemipenes seen?';
         break;
       case 7:
-        this.questions.add('Tail tapering?');
-        this.radioOp.add("Gradual");
-        this.radioOp.add("Intermediate");
-        this.radioOp.add("Abrupt");
+        this.questions = ['Tail tapering?'];
+        this.radioOp = ["Gradual", "Intermediate", "Abrupt"];
         this.mainImg = 'assets/formimages/tailshape.svg';
         this.pageDescription =
             """This is not about the tail length – it is about where on the tail it starts to get 
@@ -122,8 +108,10 @@ class FormPageOptions {
         this.pageHeading = 'Shape of the tail / tail tip';
         break;
       case 8:
-        this.questions.add('Enter the number of ventrals:');
-        this.questions.add('Enter the number of subcaudals:');
+        this.questions = [
+          'Enter the number of ventrals:',
+          'Enter the number of subcaudals:'
+        ];
         this.mainImg = 'assets/formimages/paraparietalscales.svg';
         this.pageDescription =
             """It is virtually impossible to count how many ventral scales a living <i>Calamaria</i> 

@@ -23,7 +23,7 @@ SwipeConfiguration swipeConfig() {
       horizontalSwipeMinVelocity: 100.0);
 }
 
-Widget navFAB(BuildContext context, Widget next, String id) {
+Widget navFAB(BuildContext context, Widget next) {
   return FloatingActionButton(
       child: Icon(Icons.arrow_forward),
       backgroundColor: Colors.blueGrey[700],
@@ -178,23 +178,17 @@ Widget htmlAppTitle(String data) {
   }, data: "<h1>" + data + "</h1>");
 }
 
+Style defaultTextStyle() {
+  return Style(
+      fontSize: FontSize.large, fontWeight: FontWeight.normal, lineHeight: 1.2);
+}
+
 Widget htmlNormalText(String data, BuildContext context) {
   return Html(
     style: {
-      "p": Style(
-          fontSize: FontSize.large,
-          fontWeight: FontWeight.normal,
-          lineHeight: 1.2),
-      "li": Style(
-        fontSize: FontSize.large,
-        fontWeight: FontWeight.normal,
-        lineHeight: 1.2,
-      ),
-      "a": Style(
-        fontSize: FontSize.large,
-        fontWeight: FontWeight.normal,
-        lineHeight: 1.2,
-      ),
+      "p": defaultTextStyle(),
+      "li": defaultTextStyle(),
+      "a": defaultTextStyle(),
       "figcaption": Style(
           fontSize: FontSize.small,
           fontWeight: FontWeight.normal,
@@ -208,7 +202,8 @@ Widget htmlNormalText(String data, BuildContext context) {
     onImageTap: (src, alt) {
       var path;
       // only open local imgs, skip data src for external link icon
-      if (src != ("asset:assets/icons/external.png")) {
+      if (src != ("asset:assets/icons/external.png") &&
+          src.startsWith("asset")) {
         // remove "asset:" from local images
         path = src.split("asset:")[1];
         Navigator.push(

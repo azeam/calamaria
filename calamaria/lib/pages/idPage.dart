@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 import '../classes/selectedOptions.dart';
-import '../classes/formPageOptions.dart';
+import '../classes/idPageOptions.dart';
 import '../main.dart';
 import 'common.dart';
 
@@ -23,13 +23,13 @@ class IdPageState extends State<IdPage> with RouteAware {
   String _firstInput;
   String _secondInput;
 
-  FormPageOptions options;
+  IdPageOptions options;
 
   @override
   void initState() {
     super.initState();
     _page = widget.page;
-    options = FormPageOptions();
+    options = IdPageOptions();
     options.setData(_page);
     _setGroups();
   }
@@ -53,7 +53,7 @@ class IdPageState extends State<IdPage> with RouteAware {
   this is not a very good solution because it will rebuild the page on every pop, but I found it annoying and 
   I've tried pretty much everything to solve it and this is what works */
   void didPopNext() {
-    options = FormPageOptions();
+    options = IdPageOptions();
     options.setData(_page);
     _setGroups();
     SelectedOptions.sULTouchingEye.contains(2)
@@ -179,7 +179,7 @@ class IdPageState extends State<IdPage> with RouteAware {
     );
   }
 
-  Widget checkRow(int row, FormPageOptions options) {
+  Widget checkRow(int row, IdPageOptions options) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -211,7 +211,7 @@ class IdPageState extends State<IdPage> with RouteAware {
     );
   }
 
-  Widget radioRow(int group, int row, FormPageOptions options, int page) {
+  Widget radioRow(int group, int row, IdPageOptions options, int page) {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       for (int i = 0; i < options.radioOp.length; i++)
         Padding(
@@ -237,7 +237,7 @@ class IdPageState extends State<IdPage> with RouteAware {
     ]);
   }
 
-  Widget inputRow(String group, int row, FormPageOptions options) {
+  Widget inputRow(String group, int row, IdPageOptions options) {
     return Container(
       width: 280.0,
       child: TextField(
@@ -350,7 +350,7 @@ class IdPageState extends State<IdPage> with RouteAware {
       ),
       bottomNavigationBar: navBar(context, 0),
       floatingActionButton: (_page != 8)
-          ? navFAB(context, IdPage(page: _page + 1), (_page + 1).toString())
+          ? navFAB(context, IdPage(page: _page + 1))
           : Builder(
               builder: (context) => FloatingActionButton(
                 child: Icon(Icons.done),

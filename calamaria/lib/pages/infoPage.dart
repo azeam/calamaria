@@ -27,9 +27,9 @@ class InfoPageState extends State<InfoPage> {
     dataSrc = page.getData(index);
   }
 
-  Future<String> _readFile(String path) async {
-    String htmlFile = "assets/infopages/" + path + ".html";
-    String htmlData = await rootBundle.loadString(htmlFile);
+  Future<String> _readFile(String filename) async {
+    String path = "assets/infopages/" + filename + ".html";
+    String htmlData = await rootBundle.loadString(path);
     return htmlData;
   }
 
@@ -45,10 +45,10 @@ class InfoPageState extends State<InfoPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Divider(height: 8.0, color: Colors.transparent),
-              page.pageHeading == "Version and update info"
+              dataSrc == "version"
                   ? versionPage(
                       context) // needs to be async to get app version, can't read as html
-                  : page.pageHeading == "Acknowledgments and photo credits"
+                  : dataSrc == "copyright"
                       ? copyrightPage(context)
                       : Container(
                           child: FutureBuilder(
