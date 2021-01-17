@@ -54,8 +54,8 @@
     "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
     "Notes": "",
     "Image": "c_bicolor.jpg",
-    "Description": "c_battersbyi.html",
-    "Author": "L."
+    "Description": "c_bicolor.html",
+    "Author": "Duméril, Bibron & Duméril 1854"
   },
   {
     "id":2,
@@ -83,8 +83,8 @@
     "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
     "Notes": "",
     "Image": "c_borneensis.jpg",
-    "Description": "c_battersbyi.html",
-    "Author": "L."
+    "Description": "c_borneensis.html",
+    "Author": "Bleeker 1860"
   },
   {
     "id":3,
@@ -112,8 +112,8 @@
     "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
     "Notes": "",
     "Image": "c_borneensis.jpg",
-    "Description": "c_battersbyi.html",
-    "Author": "L."
+    "Description": "c_everetti.html",
+    "Author": "Boulenger 1893"
   },
   {
     "id":4,
@@ -141,7 +141,7 @@
     "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
     "Notes": "",
     "Image": "c_borneensis.jpg",
-    "Description": "c_battersbyi.html",
-    "Author": "L."
+    "Description": "c_grabowskyi.html",
+    "Author": "Fischer 1885"
   }
 ]
