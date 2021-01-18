@@ -183,12 +183,23 @@ Style defaultTextStyle() {
       fontSize: FontSize.large, fontWeight: FontWeight.normal, lineHeight: 1.2);
 }
 
+Widget loading(BuildContext context) {
+  return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Center(child: CircularProgressIndicator()));
+}
+
 Widget htmlNormalText(String data, BuildContext context) {
   return Html(
     style: {
       "p": defaultTextStyle(),
       "li": defaultTextStyle(),
       "a": defaultTextStyle(),
+      "font": Style(
+          fontSize: FontSize.large,
+          fontWeight: FontWeight.normal,
+          fontFamily: 'Merriweather'),
       "figcaption": Style(
           fontSize: FontSize.small,
           fontWeight: FontWeight.normal,

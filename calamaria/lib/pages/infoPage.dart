@@ -58,11 +58,7 @@ class InfoPageState extends State<InfoPage> {
                                 if (snapshot.data != null) {
                                   return htmlNormalText(snapshot.data, context);
                                 }
-                                return Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height,
-                                    child: Center(
-                                        child: CircularProgressIndicator()));
+                                return loading(context);
                               }),
                         ),
               Divider(height: 35.0, color: Colors.transparent),

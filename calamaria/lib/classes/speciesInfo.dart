@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/services.dart';
 import 'species.dart';
 import '../pages/common.dart';
@@ -29,15 +27,15 @@ class SpeciesInfo extends StatelessWidget {
   SpeciesInfo({Key key, this.species, this.speciesId}) : super(key: key);
 
   Widget categories(headline, data, BuildContext context) {
-    return ExpandablePanel(
-//      theme: ExpandableThemeData(
-//        iconSize: 45,
-//      ),
-      header:
-          htmlNormalText("<p><strong>" + headline + "</strong></p>", context),
-      collapsed: null,
-      expanded: htmlNormalText(data, context),
-    );
+    return ListTileTheme(
+        key: PageStorageKey(
+            headline), // required to not auto collapse outside view
+        contentPadding: EdgeInsets.all(0),
+        child: ExpansionTile(
+            maintainState: true,
+            title: htmlNormalText(
+                "<p><strong>" + headline + "</strong></p>", context),
+            children: [htmlNormalText(data, context)]));
   }
 
   @override
@@ -60,9 +58,9 @@ class SpeciesInfo extends StatelessWidget {
                               species[this.speciesId]
                                   .scientificName
                                   .toString() +
-                              "</i> " +
+                              "</i> <font> " +
                               species[this.speciesId].author.toString() +
-                              "</h2>",
+                              "</font></h2>",
                           context);
                     } else if (index == data.length) {
                       return Divider(height: 35.0, color: Colors.transparent);
@@ -72,10 +70,7 @@ class SpeciesInfo extends StatelessWidget {
                     }
                   });
             }
-            return Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                child: Center(child: CircularProgressIndicator()));
+            return loading(context);
           }),
     );
   }

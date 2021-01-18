@@ -1,45 +1,48 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../classes/species.dart';
 //import 'package:calamaria/classes/speciesList.dart';
 //import 'package:calamaria/classes/speciesResult.dart';
 import '../classes/speciesInfo.dart';
 import '../main.dart';
+import 'common.dart';
 
 class PageState_SpeciesInfoPage extends State<PageSpeciesInfo> {
   final int speciesId;
+  List<Species> species;
   PageState_SpeciesInfoPage(this.speciesId);
+  String title = "";
+
+  void initState() {
+    super.initState();
+    loadJson();
+  }
+
+  // load everything on init and set state in order to get species name for title (+ species list to pass)
+  // instead of using multiple futurebuilders
+  loadJson() async {
+    String data = await rootBundle.loadString('assets/species.json');
+    final parsed = json.decode(data).cast<Map<String, dynamic>>();
+    setState(() => {
+          species = parsed
+              .map<Species>((json) => new Species.fromJSON(json))
+              .toList(),
+          title = species[this.speciesId].scientificName.toString(),
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Species info'),
-      ),
+      appBar: AppBar(title: htmlAppTitle("<i>" + title + "</i>")),
       body: Container(
-        child: new Center(
-            child: new FutureBuilder(
-                future: DefaultAssetBundle.of(context)
-                    .loadString('assets/species.json'),
-                builder: (context, snapshot) {
-                  List<Species> species = parseJson(snapshot.data);
-                  return species.isNotEmpty
-                      ? new SpeciesInfo(
-                          species: species, speciesId: this.speciesId)
-                      : new Center(child: new CircularProgressIndicator());
-                })),
+        child: Center(
+            child: species != null
+                ? SpeciesInfo(species: species, speciesId: this.speciesId)
+                : loading(context)),
       ),
-      //bottomNavigationBar: navBar(context),
-      //floatingActionButton: navFAB(context, SecondIdPage()),
-      //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: navBar(context, 1),
     );
-  }
-
-  List<Species> parseJson(String response) {
-    if (response == null) {
-      return [];
-    }
-    final parsed = json.decode(response).cast<Map<String, dynamic>>();
-    return parsed.map<Species>((json) => new Species.fromJSON(json)).toList();
   }
 }
