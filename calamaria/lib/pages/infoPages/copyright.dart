@@ -9,7 +9,7 @@ Future<List<String>> _getText() async {
   String version = packageInfo.version;
 
   String text =
-      """<p>The data used in this app come mostly from the 300-page monograph by Inger & Marx (1965), “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus Calamaria” (Fieldiana: Zoology, volume 49). Both Robert F. (Bob) Inger (1920 – 2019) and Hymen Marx (1925 – 2009) worked at the Field Museum of Natural History in Chicago for decades. Bob had a focus on amphibians and reptiles of Borneo for much of his research career, and was already in his lifetime a legend among students of Southeast Asian herpetology. He did field work in Malaysian Borneo from the 1950’s until 2007 – indeed; he was still conducting field work in his mid-eighties! – and continued to publish papers and books until shortly before his death at age 98.
+      """<p>The data used in this app come mostly from the 300-page monograph by Inger & Marx (1965), “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus <i>Calamaria</i>” (Fieldiana: Zoology, volume 49). Both Robert F. (Bob) Inger (1920 – 2019) and Hymen Marx (1925 – 2009) worked at the Field Museum of Natural History in Chicago for decades. Bob had a focus on amphibians and reptiles of Borneo for much of his research career, and was already in his lifetime a legend among students of Southeast Asian herpetology. He did field work in Malaysian Borneo from the 1950’s until 2007 – indeed; he was still conducting field work in his mid-eighties! – and continued to publish papers and books until shortly before his death at age 98.
 </p>
 
 <p>You can read more about their lives and careers here:<br>
@@ -56,7 +56,7 @@ Toni Herpandes
 <br><br>
 Alan Resetar at the Field Museum kindly assisted BL with specimens for photographs appearing in this app.
 <br><br>
-We also wish to thank all the people with whom we have discussed Calamaria identification over the years, in particular Sam Howard, Attila Kobori, Benjamin Karin, Shavez Cheema, Rob Stuebing, and the late Bob Inger.
+We also wish to thank all the people with whom we have discussed <i>Calamaria</i> identification over the years, in particular Sam Howard, Attila Kobori, Benjamin Karin, Shavez Cheema, Rob Stuebing, and the late Bob Inger.
 </p>
 
 <p>We hope that this app will inspire more people to create identification “e-keys” based on multi-character matrices. If you would like to cite this app, here is a suggested format (tap text to copy):</p>

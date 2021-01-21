@@ -233,6 +233,10 @@ Widget htmlNormalText(String data, BuildContext context) {
       } else if (url == "speciesPage") {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => PageListSpecies()));
+      } else if (url.startsWith("speciesIndex")) {
+        int index = int.parse(url.split("speciesIndex")[1]);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PageSpeciesInfo(index)));
       } else {
         Navigator.push(
             context,
