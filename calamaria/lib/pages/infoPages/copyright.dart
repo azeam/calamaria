@@ -1,17 +1,13 @@
-import 'dart:io';
-
 import 'package:calamaria/pages/common.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:package_info/package_info.dart';
 
-Future<String> _getVersion() async {
+Future<List<String>> _getText() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
   String version = packageInfo.version;
-  String os = Platform.operatingSystem;
-  if (os == "android") {
-    os = os[0].toUpperCase() + os.substring(1);
-  }
+
   String text =
       """<p>The data used in this app come mostly from the 300-page monograph by Inger & Marx (1965), “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus Calamaria” (Fieldiana: Zoology, volume 49). Both Robert F. (Bob) Inger (1920 – 2019) and Hymen Marx (1925 – 2009) worked at the Field Museum of Natural History in Chicago for decades. Bob had a focus on amphibians and reptiles of Borneo for much of his research career, and was already in his lifetime a legend among students of Southeast Asian herpetology. He did field work in Malaysian Borneo from the 1950’s until 2007 – indeed; he was still conducting field work in his mid-eighties! – and continued to publish papers and books until shortly before his death at age 98.
 </p>
@@ -63,28 +59,59 @@ Alan Resetar at the Field Museum kindly assisted BL with specimens for photograp
 We also wish to thank all the people with whom we have discussed Calamaria identification over the years, in particular Sam Howard, Attila Kobori, Benjamin Karin, Shavez Cheema, Rob Stuebing, and the late Bob Inger.
 </p>
 
-<p>We hope that this app will inspire more people to create identification “e-keys” based on multi-character matrices. If you would like to cite this app, here is a suggested format:<br><br>
-  Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iOS. Version """ +
-          version +
-          """. Available via XXXXXXXXXXXXXXXXXXXXXXXXXXXX.
-</p>
+<p>We hope that this app will inspire more people to create identification “e-keys” based on multi-character matrices. If you would like to cite this app, here is a suggested format (tap text to copy):</p>
 
-<p>Sweden, MONTH 2021,<br>
-Björn, Dennis and Anders
-</p>
   """;
-  return text;
+  String quote =
+      """Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iOS. Version """ +
+          version +
+          """. Available via http://play.google.com/store/apps/details?id=com.azeam.calamaria and http://apple.""";
+
+  String end = """<p>Sweden, March 2021,<br>
+Björn, Dennis and Anders
+</p>""";
+
+  return [text, quote, end];
 }
 
 Widget copyrightPage(BuildContext context) {
   return Container(
-    child: FutureBuilder(
-        future: _getVersion(),
-        builder: (context, AsyncSnapshot<String> snapshot) {
-          if (snapshot.data != null) {
-            return htmlNormalText(snapshot.data, context);
-          }
-          return loading(context);
-        }),
+    child: Column(children: [
+      FutureBuilder(
+          future: _getText(),
+          builder: (context, AsyncSnapshot<List<String>> snapshot) {
+            if (snapshot.data != null) {
+              return Column(children: [
+                htmlNormalText(snapshot.data[0], context),
+                Card(
+                    child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SelectableText.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: snapshot.data[1],
+                                  style: TextStyle(fontSize: 15)),
+                            ],
+                          ),
+                          onTap: () {
+                            Clipboard.setData(
+                                new ClipboardData(text: snapshot.data[1]));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: const Text('Copied to clipboard'),
+                              duration: const Duration(seconds: 2),
+                              action: SnackBarAction(
+                                label: 'Close',
+                                onPressed: () {},
+                              ),
+                            ));
+                          },
+                        ))),
+                htmlNormalText(snapshot.data[2], context)
+              ]);
+            }
+            return loading(context);
+          }),
+    ]),
   );
 }

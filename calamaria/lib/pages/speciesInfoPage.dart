@@ -24,19 +24,21 @@ class PageState_SpeciesInfoPage extends State<PageSpeciesInfo> {
   loadJson() async {
     String data = await rootBundle.loadString('assets/species.json');
     final parsed = json.decode(data).cast<Map<String, dynamic>>();
-    species = parsed.map<Species>((json) => Species.fromJSON(json)).toList();
-    title = species[this.speciesId].scientificName.toString();
+    this.species =
+        parsed.map<Species>((json) => Species.fromJSON(json)).toList();
+    this.title =
+        "<i>" + this.species[this.speciesId].scientificName.toString() + "</i>";
     setState(() => {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: htmlAppTitle("<i>" + title + "</i>")),
+      appBar: AppBar(title: htmlAppTitle(this.title)),
       body: Container(
         child: Center(
             child: species != null
-                ? SpeciesInfo(species: species, speciesId: this.speciesId)
+                ? SpeciesInfo(species: this.species, speciesId: this.speciesId)
                 : loading(context)),
       ),
       bottomNavigationBar: navBar(context, 1),

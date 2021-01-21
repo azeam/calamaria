@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:calamaria/pages/common.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:package_info/package_info.dart';
 
-Future<String> _getVersion() async {
+Future<List<String>> _getText() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
   String version = packageInfo.version;
   String os = Platform.operatingSystem;
@@ -14,7 +15,7 @@ Future<String> _getVersion() async {
   }
   String text = """<p>This is version """ +
       version +
-      """ of the "Calamaria of Borneo" app for """ +
+      """ of the "<i>Calamaria</i> of Borneo" app for """ +
       os +
       """.</p>
   
@@ -24,23 +25,54 @@ Future<String> _getVersion() async {
   <p>If you want to get in touch with us — maybe you want to discuss the identity of a snake you have photographed, let us know of a range extension, or ask about the code used in the app — try sending an email to <a href="mailto:calamariaofborneo@gmail.com">calamariaofborneo@gmail.com</a>.
   We might not check that email account very often, but we will check it eventually!
   </p>
-  
-  <p>If you would like to cite this app, here is a suggested format:<br><br>
-  Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iOS. Version """ +
-      version +
-      """. Available via XXXXXXXXXXXXXXXXXXXXXXXXXXXX.</p>""";
-  return text;
+  <p>If you would like to cite this app, here is a suggested format (tap text to copy):</p>
+  """;
+
+  String quote =
+      """Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iOS. Version """ +
+          version +
+          """. Available via http://play.google.com/store/apps/details?id=com.azeam.calamaria and http://apple.""";
+
+  return [text, quote];
 }
 
 Widget versionPage(BuildContext context) {
   return Container(
-    child: FutureBuilder(
-        future: _getVersion(),
-        builder: (context, AsyncSnapshot<String> snapshot) {
-          if (snapshot.data != null) {
-            return htmlNormalText(snapshot.data, context);
-          }
-          return loading(context);
-        }),
+    child: Column(children: [
+      FutureBuilder(
+          future: _getText(),
+          builder: (context, AsyncSnapshot<List<String>> snapshot) {
+            if (snapshot.data != null) {
+              return Column(children: [
+                htmlNormalText(snapshot.data[0], context),
+                Card(
+                    child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SelectableText.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: snapshot.data[1],
+                                  style: TextStyle(fontSize: 15)),
+                            ],
+                          ),
+                          onTap: () {
+                            Clipboard.setData(
+                                new ClipboardData(text: snapshot.data[1]));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: const Text('Copied to clipboard'),
+                              duration: const Duration(seconds: 2),
+                              action: SnackBarAction(
+                                label: 'Close',
+                                onPressed: () {},
+                              ),
+                            ));
+                          },
+                        ))),
+              ]);
+            }
+            return loading(context);
+          }),
+    ]),
   );
 }

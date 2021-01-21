@@ -214,7 +214,7 @@ Widget htmlNormalText(String data, BuildContext context) {
       var path;
       // only open local imgs, skip data src for external link icon
       if (src != ("asset:assets/icons/external.png") &&
-          src.startsWith("asset")) {
+          src.startsWith("asset:")) {
         // remove "asset:" from local images
         path = src.split("asset:")[1];
         Navigator.push(
