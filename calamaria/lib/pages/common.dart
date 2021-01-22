@@ -183,6 +183,34 @@ Style defaultTextStyle() {
       fontSize: FontSize.large, fontWeight: FontWeight.normal, lineHeight: 1.2);
 }
 
+Widget card(String data, BuildContext context) {
+  return Card(
+    color: Colors.blueGrey[50],
+    child: InkWell(
+        onTap: () {
+          Clipboard.setData(new ClipboardData(text: data));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: const Text('Copied to clipboard'),
+            duration: const Duration(seconds: 2),
+            action: SnackBarAction(
+              label: 'Close',
+              onPressed: () {},
+            ),
+          ));
+        },
+        splashColor: Colors.blueGrey[300],
+        child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(text: data, style: TextStyle(fontSize: 15)),
+                ],
+              ),
+            ))),
+  );
+}
+
 Widget loading(BuildContext context) {
   return Container(
       width: MediaQuery.of(context).size.width,
@@ -207,7 +235,17 @@ Widget htmlNormalText(String data, BuildContext context) {
       "span": Style(
         color: Colors.red,
       ),
-      "h2": Style(fontWeight: FontWeight.normal)
+      "h2": Style(fontWeight: FontWeight.normal),
+      "td": Style(padding: EdgeInsets.only(top: 6, bottom: 6)),
+      "th": data.contains("glossary below") // fix padding on glossary page
+          ? Style(padding: EdgeInsets.only(top: 6))
+          : Style(padding: EdgeInsets.only(bottom: 6)),
+      "tr": data.contains("glossary below")
+          ? Style(
+              border: Border(
+                  bottom: BorderSide(color: Theme.of(context).dividerColor)))
+          : null,
+      "table": Style(margin: EdgeInsets.only(top: 46))
     },
     data: data,
     onImageTap: (src, alt) {

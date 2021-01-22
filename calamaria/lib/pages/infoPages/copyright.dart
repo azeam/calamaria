@@ -9,7 +9,7 @@ Future<List<String>> _getText() async {
   String version = packageInfo.version;
 
   String text =
-      """<p>The data used in this app come mostly from the 300-page monograph by Inger & Marx (1965), “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus <i>Calamaria</i>” (Fieldiana: Zoology, volume 49). Both Robert F. (Bob) Inger (1920 – 2019) and Hymen Marx (1925 – 2009) worked at the Field Museum of Natural History in Chicago for decades. Bob had a focus on amphibians and reptiles of Borneo for much of his research career, and was already in his lifetime a legend among students of Southeast Asian herpetology. He did field work in Malaysian Borneo from the 1950’s until 2007 – indeed; he was still conducting field work in his mid-eighties! – and continued to publish papers and books until shortly before his death at age 98.
+      """<p>The data used in this app come mostly from the 300-page monograph by Inger & Marx (1965), “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus <i>Calamaria</i>” (Fieldiana: Zoology, volume 49). Both Robert F. (Bob) Inger (1920 - 2019) and Hymen Marx (1925 - 2009) worked at the Field Museum of Natural History in Chicago for decades. Bob had a focus on amphibians and reptiles of Borneo for much of his research career, and was already in his lifetime a legend among students of Southeast Asian herpetology. He did field work in Malaysian Borneo from the 1950’s until 2007 - indeed; he was still conducting field work in his mid-eighties! - and continued to publish papers and books until shortly before his death at age 98.
 </p>
 
 <p>You can read more about their lives and careers here:<br>
@@ -63,7 +63,7 @@ We also wish to thank all the people with whom we have discussed <i>Calamaria</i
 
   """;
   String quote =
-      """Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iOS. Version """ +
+      """Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo - a free cell phone app for Android and iOS. Version """ +
           version +
           """. Available via http://play.google.com/store/apps/details?id=com.azeam.calamaria and http://apple.""";
 
@@ -83,30 +83,7 @@ Widget copyrightPage(BuildContext context) {
             if (snapshot.data != null) {
               return Column(children: [
                 htmlNormalText(snapshot.data[0], context),
-                Card(
-                    child: Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SelectableText.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                  text: snapshot.data[1],
-                                  style: TextStyle(fontSize: 15)),
-                            ],
-                          ),
-                          onTap: () {
-                            Clipboard.setData(
-                                new ClipboardData(text: snapshot.data[1]));
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: const Text('Copied to clipboard'),
-                              duration: const Duration(seconds: 2),
-                              action: SnackBarAction(
-                                label: 'Close',
-                                onPressed: () {},
-                              ),
-                            ));
-                          },
-                        ))),
+                card(snapshot.data[1], context),
                 htmlNormalText(snapshot.data[2], context)
               ]);
             }

@@ -4,6 +4,7 @@ import 'package:calamaria/pages/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_html/style.dart';
 import 'package:package_info/package_info.dart';
 
 Future<List<String>> _getText() async {
@@ -29,7 +30,7 @@ Future<List<String>> _getText() async {
   """;
 
   String quote =
-      """Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo – a free cell phone app for Android and iOS. Version """ +
+      """Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo - a free cell phone app for Android and iOS. Version """ +
           version +
           """. Available via http://play.google.com/store/apps/details?id=com.azeam.calamaria and http://apple.""";
 
@@ -45,30 +46,7 @@ Widget versionPage(BuildContext context) {
             if (snapshot.data != null) {
               return Column(children: [
                 htmlNormalText(snapshot.data[0], context),
-                Card(
-                    child: Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: SelectableText.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                  text: snapshot.data[1],
-                                  style: TextStyle(fontSize: 15)),
-                            ],
-                          ),
-                          onTap: () {
-                            Clipboard.setData(
-                                new ClipboardData(text: snapshot.data[1]));
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: const Text('Copied to clipboard'),
-                              duration: const Duration(seconds: 2),
-                              action: SnackBarAction(
-                                label: 'Close',
-                                onPressed: () {},
-                              ),
-                            ));
-                          },
-                        ))),
+                card(snapshot.data[1], context)
               ]);
             }
             return loading(context);

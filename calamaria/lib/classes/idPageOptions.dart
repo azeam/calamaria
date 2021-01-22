@@ -55,7 +55,7 @@ class IdPageOptions {
         this.mainImg = 'assets/formimages/paraparietalscales.svg';
         this.pageDescription =
             """The paraparietal (PP) sits behind/below the parietal on the rear side of the head. 
-            <i>Calamaria</i> species differ in how many scales may surround (and touch) the paraparietal – 
+            <i>Calamaria</i> species differ in how many scales may surround (and touch) the paraparietal - 
             it may be 4, 5 or 6 scales.
             <br><br>
             In the example shown below, there are 5 scales around the paraparietal. 
@@ -85,7 +85,7 @@ class IdPageOptions {
             """Knowing the sex of the snake can help narrowing down the number of candidate species. 
             But sexing a small snake is difficult unless you are an expert. [See link under Main Menu.]
             <br><br>
-            Here we ask you to say if – or if not – you observed one or two hemipenes stick out from the snake’s cloaca. 
+            Here we ask you to say if - or if not - you observed one or two hemipenes stick out from the snake’s cloaca. 
             This sometimes happens if a male snake coils tightly around your finger and gives it a squeeze.
             <br><br>
             If you answer ”NO”, the algorithm will consider both sexes’ ventral and subcaudal counts 
@@ -97,7 +97,7 @@ class IdPageOptions {
         this.radioOp = ["Gradual", "Intermediate", "Abrupt"];
         this.mainImg = 'assets/formimages/tailshape.svg';
         this.pageDescription =
-            """This is not about the tail length – it is about where on the tail it starts to get 
+            """This is not about the tail length - it is about where on the tail it starts to get 
             narrower, and how abruptly (steeply) it then narrows down. We say that the tail tapers 
             gradually for much of the tail’s length, or abruptly near the end, or something 
             inbetween those states.
@@ -115,7 +115,7 @@ class IdPageOptions {
         this.mainImg = 'assets/formimages/paraparietalscales.svg';
         this.pageDescription =
             """It is virtually impossible to count how many ventral scales a living <i>Calamaria</i> 
-            specimen has – they move too much! It is easier with road-killed specimens unless they are 
+            specimen has - they move too much! It is easier with road-killed specimens unless they are 
             too damaged. Best is to photograph the snake from below (see advice on how to do that 
             under the Main Menu) and count scales from the photo.
             <br><br>
