@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -53,15 +55,32 @@ class SpeciesInfo extends StatelessWidget {
                   itemCount: data.length + 1,
                   itemBuilder: (BuildContext context, int index) {
                     if (index == 0) {
-                      return htmlNormalText(
-                          "<h2><i>" +
-                              species[this.speciesId]
-                                  .scientificName
-                                  .toString() +
-                              "</i> <font> " +
-                              species[this.speciesId].author.toString() +
-                              "</font></h2>",
-                          context);
+                      return Text.rich(TextSpan(children: [
+                        WidgetSpan(
+                          child: Container(
+                              padding:
+                                  EdgeInsets.only(top: 24, left: 8, bottom: 24),
+                              child: Text.rich(TextSpan(children: [
+                                TextSpan(
+                                    text: species[this.speciesId]
+                                            .scientificName
+                                            .toString() +
+                                        " ",
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        fontStyle: FontStyle.italic)),
+                                TextSpan(
+                                    text: species[this.speciesId]
+                                        .author
+                                        .toString(),
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontFeatures: [
+                                          FontFeature.enable('smcp')
+                                        ]))
+                              ]))),
+                        )
+                      ]));
                     } else if (index == data.length) {
                       return Divider(height: 35.0, color: Colors.transparent);
                     } else {

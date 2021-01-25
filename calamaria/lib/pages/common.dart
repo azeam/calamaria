@@ -220,13 +220,15 @@ Widget htmlNormalText(String data, BuildContext context) {
       "li": defaultTextStyle(),
       "a": defaultTextStyle(),
       "font": Style(
+          // used for author name
           fontSize: FontSize.large,
           fontWeight: FontWeight.normal,
           fontFamily: 'Merriweather'),
       "figcaption": Style(
           fontSize: FontSize.small,
           fontWeight: FontWeight.normal,
-          fontFamily: 'Merriweather'),
+          fontFamily: 'Merriweather',
+          padding: EdgeInsets.only(bottom: 20)),
       "span": Style(
         color: Colors.red,
       ),

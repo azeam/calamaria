@@ -19,15 +19,11 @@ class SpeciesList extends StatelessWidget {
                           child: new Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
-                                new Text(species[index].scientificName.toString(),
-                                  style: new TextStyle(
-                                      fontSize: 16.0,
-                                      color: Colors.lightBlueAccent
-                                  )
-                                ),
-                            ]
-                          )
-                      ),
+                            new Text(species[index].scientificName.toString(),
+                                style: new TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.lightBlueAccent)),
+                          ])),
                       padding: const EdgeInsets.all(15.0)),
                   onTap: () {
                     Navigator.push(
