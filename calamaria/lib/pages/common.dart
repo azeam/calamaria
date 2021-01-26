@@ -11,6 +11,11 @@ import '../classes/infoPageData.dart';
 import '../classes/selectedOptions.dart';
 import '../main.dart';
 
+// set global bool to handle species list/id page links in menu
+// depending on how you enter (id sequence started)
+// TODO: test better
+bool enableSameMenu = true;
+
 SwipeConfiguration swipeConfig() {
   return SwipeConfiguration(
       horizontalSwipeMaxHeightThreshold: 50.0,
@@ -38,13 +43,13 @@ Widget navBar(BuildContext context, int curPageMenuIndex) {
           onPressed: () {
             showModalBottomSheet<Null>(
               context: context,
-              builder: (BuildContext context) =>
+              builder: (BuildContext bottomContext) =>
                   bottomDrawer(context, curPageMenuIndex),
             );
           },
         ),
         // show trash can on id pages
-        (curPageMenuIndex == 0)
+        (curPageMenuIndex == 0 || enableSameMenu == false)
             ? IconButton(
                 icon: SvgPicture.asset(
                   "assets/icons/trash.svg",
@@ -95,11 +100,12 @@ showAlert(BuildContext context, String question, String action) {
                       ),
                       FlatButton(
                         onPressed: () {
+                          enableSameMenu = true;
                           if (action == "clear") {
                             Navigator.of(dialogContext).pop();
                             reInitIdPage(context);
-                          } else if (action == "exit") {
-                            SystemNavigator.pop();
+                          } else if (action == "clearSpecies") {
+                            _listAllSpecies(context);
                           }
                         },
                         child: Text("Continue"),
@@ -126,6 +132,11 @@ void reInitIdPage(BuildContext context) {
       ));
 }
 
+void _listAllSpecies(BuildContext context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => PageListSpecies()));
+}
+
 Widget bottomDrawer(BuildContext context, int curPageIndex) {
   InfoPageData data = new InfoPageData();
   return Drawer(
@@ -145,17 +156,32 @@ Widget bottomDrawer(BuildContext context, int curPageIndex) {
                   onTap: () {
                     Navigator.pop(
                         drawerContext); // close menu or it will appear when going back
+                    if (!enableSameMenu) {
+                      if (index == 0) {
+                        showAlert(
+                            context,
+                            "Do you want to clear all data and restart?",
+                            "clear");
+                      } else if (index == 1) {
+                        showAlert(
+                            context,
+                            "Leave species results and show all species?",
+                            "clearSpecies");
+                      } else {
+                        enableSameMenu = true;
+                      }
+                    }
                     // only go to page if not already active
-                    if (index != curPageIndex) {
+                    if (index != curPageIndex && enableSameMenu) {
                       if (index == 0) {
                         reInitIdPage(context);
+                      } else if (index == 1) {
+                        _listAllSpecies(context);
                       } else {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => index == 1
-                                  ? PageListSpecies()
-                                  : InfoPage(page: index)),
+                              builder: (context) => InfoPage(page: index)),
                         );
                       }
                     }

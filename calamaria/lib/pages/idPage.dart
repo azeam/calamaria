@@ -173,6 +173,7 @@ class IdPageState extends State<IdPage> with RouteAware {
   void _listResults(BuildContext context) {
     SelectedOptions sel = SelectedOptions();
     print(sel.toJson());
+    enableSameMenu = false;
     Navigator.push(
       context,
       CupertinoPageRoute(builder: (context) => PageListSpecies(sel)),

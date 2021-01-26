@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../classes/species.dart';
 import '../classes/speciesList.dart';
 import '../classes/speciesResult.dart';
+import 'common.dart';
 import 'speciesInfoPage.dart';
 import '../main.dart';
 
@@ -33,9 +34,7 @@ class PageState_ListSpecies extends State<PageListSpecies> {
                       : new Center(child: new CircularProgressIndicator());
                 })),
       ),
-      //bottomNavigationBar: navBar(context),
-      //floatingActionButton: navFAB(context, SecondIdPage()),
-      //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: navBar(context, 1),
     );
   }
 
