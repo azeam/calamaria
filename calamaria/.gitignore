@@ -1,6 +1,8 @@
 # copyrighted images
 assets/infoimages/
 assets/speciesimages/
+assets/infoimages
+assets/speciesimages
 
 # Miscellaneous
 *.class

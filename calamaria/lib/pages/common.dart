@@ -201,7 +201,9 @@ Widget htmlAppTitle(String data) {
 
 Style defaultTextStyle() {
   return Style(
-      fontSize: FontSize.large, fontWeight: FontWeight.normal, lineHeight: 1.2);
+      fontSize: FontSize.large,
+      fontWeight: FontWeight.normal,
+      lineHeight: LineHeight.rem(1.2));
 }
 
 Widget card(String data, BuildContext context) {

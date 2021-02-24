@@ -33,9 +33,7 @@ dependencies:
 
 
   # flutter_html also depends on flutter_svg (used)
-  # works without manually adding those dependencies, not sure what best practice is, kept below for reference
-
-  # flutter_svg: ^0.18.1
+  flutter_svg: ^0.20.0-nullsafety.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -44,7 +42,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.8.0
+  # below breaks atm, but should only be required for generating icons (already done) and be safe to comment out
+  # flutter_launcher_icons: ^0.8.0  
 
 flutter_icons:
   ios: true
