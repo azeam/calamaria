@@ -10,10 +10,10 @@ class SpeciesResult extends StatelessWidget {
   List<Species> species;
   final SelectedOptions filter;
   SpeciesResult({Key key, this.species, this.filter}) : super(key: key) {
-    //debugPrint('test');
+
     species.sort((a, b) => (new SpeciesLikelihood(b, this.filter)
-            .getPercentage())
-        .compareTo((new SpeciesLikelihood(a, this.filter).getPercentage())));
+            .getSort())
+        .compareTo((new SpeciesLikelihood(a, this.filter).getSort())));
   }
 
   @override

@@ -95,45 +95,46 @@ class Species {
           list: json['ULTouchingEye'] as List),
       mental: new SpeciesDataMental(
           isTouching: json['Mental']['Touching'] as bool,
-          isNotTouching: json['Mental']['NotTouching']),
+          isNotTouching: json['Mental']['NotTouching'] as bool,
+          isTouchingUncertain: ((json['Mental']['TouchingUncertain'] != null) ? json['Mental']['TouchingUncertain'] as bool : false)
+      ),
       preocular: new SpeciesDataPreocular(
           isPresent: json['Preocular']['Present'] as bool,
-          isAbsent: json['Preocular']['Absent'] as bool),
+          isAbsent: json['Preocular']['Absent'] as bool
+      ),
       supraocular: new SpeciesDataSupraocular(
           isPresent: json['Supraocular']['Present'] as bool,
-          isAbsent: json['Supraocular']['Absent'] as bool),
+          isAbsent: json['Supraocular']['Absent'] as bool
+      ),
       postocular: new SpeciesDataPostocular(
           isPresent: json['Postocular']['Present'] as bool,
-          isAbsent: json['Postocular']['Absent'] as bool),
+          isAbsent: json['Postocular']['Absent'] as bool,
+          isPresentUncertain: (((json['Postocular']['Present'] == null) ? true : false) as bool),
+          isAbsentUncertain: (((json['Postocular']['Absent'] == null) ? true : false) as bool)
+      ),
       postocularfused: new SpeciesDataPostocularFused(
-          isFused: json['PostocularFused']['Fused'] as bool),
+          isFused: json['PostocularFused']['Fused'] as bool
+      ),
       ssep: new SpeciesDataSSEP(
           isFour: json['SSEP']['4'] as bool,
           isFive: json['SSEP']['5'] as bool,
-          isSix: json['SSEP']['6'] as bool),
+          isSix: json['SSEP']['6'] as bool
+      ),
       eyeDiameter: new SpeciesDataEyeDiameter(
           isEqual: json['EyeDiam']['Equal'] as bool,
           isSmaller: json['EyeDiam']['Smaller'] as bool,
-          isLarger: json['EyeDiam']['Larger'] as bool),
+          isLarger: json['EyeDiam']['Larger'] as bool,
+          isEqualUncertain: (((json['EyeDiam']['Equal'] == null) ? true : false) as bool),
+          isSmallerUncertain: (((json['EyeDiam']['Smaller'] == null) ? true : false) as bool),
+          isLargerUncertain: (((json['EyeDiam']['Larger'] == null) ? true : false) as bool)
+      ),
       vents: new SpeciesDataVents(
-        maleMin: ((json['Vents']['Male'] != null)
-            ? json['Vents']['Male']['Min'] as int
-            : null),
-        maleMax: ((json['Vents']['Male'] != null)
-            ? json['Vents']['Male']['Max'] as int
-            : null),
-        femaleMin: ((json['Vents']['Female'] != null)
-            ? json['Vents']['Female']['Min'] as int
-            : null),
-        femaleMax: ((json['Vents']['Female'] != null)
-            ? json['Vents']['Female']['Max'] as int
-            : null),
-        bothMin: ((json['Vents']['Both'] != null)
-            ? json['Vents']['Both']['Min'] as int
-            : null),
-        bothMax: ((json['Vents']['Both'] != null)
-            ? json['Vents']['Both']['Max'] as int
-            : null),
+        maleMin: ((json['Vents']['Male'] != null) ? json['Vents']['Male']['Min'] as int : null),
+        maleMax: ((json['Vents']['Male'] != null) ? json['Vents']['Male']['Max'] as int : null),
+        femaleMin: ((json['Vents']['Female'] != null) ? json['Vents']['Female']['Min'] as int : null),
+        femaleMax: ((json['Vents']['Female'] != null) ? json['Vents']['Female']['Max'] as int : null),
+        bothMin: ((json['Vents']['Both'] != null) ? json['Vents']['Both']['Min'] as int : null),
+        bothMax: ((json['Vents']['Both'] != null) ? json['Vents']['Both']['Max'] as int : null),
       ),
       subcaudals: new SpeciesDataSubcaudals(
         maleMin: ((json['Subcaudals']['Male'] != null)
@@ -249,10 +250,14 @@ class SpeciesDataUpperLabialsTouchingEye {
   }
 
   bool isHit(value) {
-    if (listEquals(this.list, value)) {
-      return true;
+    bool isHit = false;
+    for (var i=0; i<this.list.length; i++) {
+      if(listEquals(this.list[i], value.toList()) || listEquals(this.list[i], value.reversed.toList())) {
+        isHit = true;
+      }
     }
-    return false;
+
+    return isHit;
   }
 
   bool isUncertain(value) {
@@ -261,13 +266,17 @@ class SpeciesDataUpperLabialsTouchingEye {
 }
 
 class SpeciesDataMental {
-  final bool isTouching;
-  final bool isNotTouching;
-  SpeciesDataMental({this.isTouching, this.isNotTouching});
+  bool isTouching;
+  bool isNotTouching;
+  bool isTouchingUncertain;
+  SpeciesDataMental({this.isTouching, this.isNotTouching, this.isTouchingUncertain});
+
+  String uncertainText =
+      'Mentals touching anterior is uncertain for this species.';
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
-    String speciesText = species.mental.isTouching.toString();
+    String speciesText = (species.mental.isTouchingUncertain && filter) ? 'Uncertain' : species.mental.isTouching.toString();
 
     return {
       'Label': 'Mental touching chin shields',
@@ -281,6 +290,9 @@ class SpeciesDataMental {
   }
 
   bool isUncertain(value) {
+    if(value && this.isTouchingUncertain) {
+      return true;
+    }
     return false;
   }
 }
@@ -338,7 +350,11 @@ class SpeciesDataSupraocular {
 class SpeciesDataPostocular {
   bool isPresent;
   bool isAbsent;
-  SpeciesDataPostocular({this.isPresent, this.isAbsent});
+  bool isPresentUncertain;
+  bool isAbsentUncertain;
+  SpeciesDataPostocular({this.isPresent, this.isAbsent, this.isPresentUncertain, this.isAbsentUncertain});
+
+  String uncertainText = 'Postocular uncertain for this species.';
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
@@ -356,6 +372,12 @@ class SpeciesDataPostocular {
   }
 
   bool isUncertain(value) {
+    if(value && this.isPresentUncertain) {
+      return true;
+    }
+    if(!value && this.isAbsentUncertain) {
+      return true;
+    }
     return false;
   }
 }
@@ -461,18 +483,24 @@ class SpeciesDataEyeDiameter {
   bool isSmaller;
   bool isEqual;
   bool isLarger;
-  SpeciesDataEyeDiameter({this.isSmaller, this.isEqual, this.isLarger});
+  bool isEqualUncertain;
+  bool isSmallerUncertain;
+  bool isLargerUncertain;
+  SpeciesDataEyeDiameter({this.isSmaller, this.isEqual, this.isLarger, this.isEqualUncertain, this.isSmallerUncertain, this.isLargerUncertain});
+
+  String uncertainText =
+      'Eye diameter uncertain or hard to measure on this species.';
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
     List<String> speciesTextArray = [];
-    if (this.isSmaller) {
+    if (this.isSmaller != null && this.isSmaller) {
       speciesTextArray.add('smaller');
     }
-    if (this.isEqual) {
+    if (this.isEqual != null && this.isEqual) {
       speciesTextArray.add('equal');
     }
-    if (this.isLarger) {
+    if (this.isLarger != null && this.isLarger) {
       speciesTextArray.add('larger');
     }
     String speciesText = speciesTextArray.join(' or ');
@@ -487,17 +515,17 @@ class SpeciesDataEyeDiameter {
   bool isHit(filter) {
     switch (filter) {
       case 'smaller':
-        if (this.isSmaller) {
+        if (this.isSmaller != null && this.isSmaller) {
           return true;
         }
         break;
       case 'larger':
-        if (this.isLarger) {
+        if (this.isLarger != null && this.isLarger) {
           return true;
         }
         break;
       case 'equal':
-        if (this.isEqual) {
+        if (this.isEqual != null && this.isEqual) {
           return true;
         }
         break;
@@ -506,6 +534,13 @@ class SpeciesDataEyeDiameter {
   }
 
   bool isUncertain(value) {
+    if((value=='smaller' && this.isSmallerUncertain) ||
+      (value=='larger' && this.isLargerUncertain) ||
+      (value=='equal' && this.isEqualUncertain)
+    ) {
+      return true;
+    }
+
     return false;
   }
 }
@@ -524,6 +559,9 @@ class SpeciesDataVents {
       this.femaleMax,
       this.bothMin,
       this.bothMax});
+
+  String uncertainText =
+      'Ventral count uncertain for this species.';
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter[1].toString();
@@ -548,10 +586,12 @@ class SpeciesDataVents {
   bool isHit(filter) {
     bool hemipenes = filter[0];
     if (hemipenes) {
+      if(this.maleMin == null || this.maleMax == null) { return false; }
       if (filter[1] >= this.maleMin && filter[1] <= this.maleMax) {
         return true;
       }
     } else {
+      if(this.bothMin == null || this.bothMax == null) { return false; }
       if (filter[1] >= this.bothMin && filter[1] <= this.bothMax) {
         return true;
       }
@@ -560,6 +600,13 @@ class SpeciesDataVents {
   }
 
   bool isUncertain(value) {
+    bool hemipenes = value[0];
+    if(hemipenes) {
+      if(this.maleMin == null || this.maleMax == null) { return true; }
+    } else {
+      if(this.bothMin == null || this.bothMax == null) { return true; }
+    }
+
     return false;
   }
 }
@@ -602,11 +649,11 @@ class SpeciesDataSubcaudals {
   bool isHit(filter) {
     bool hemipenes = filter[0];
     if (hemipenes) {
-      if (filter[1] >= this.maleMin && filter[1] <= this.maleMax) {
+      if (this.maleMin!= null && this.maleMax != null && filter[1] >= this.maleMin && filter[1] <= this.maleMax) {
         return true;
       }
     } else {
-      if (filter[1] >= this.bothMin && filter[1] <= this.bothMax) {
+      if (this.bothMin!= null && this.bothMax != null && filter[1] >= this.bothMin && filter[1] <= this.bothMax) {
         return true;
       }
     }

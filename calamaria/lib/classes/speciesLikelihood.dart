@@ -33,8 +33,8 @@ class SpeciesLikelihood extends StatelessWidget {
     this.points = 0;
 
     this.calculatePoints();
-    debugPrint('POINTS:'+this.points.toString());
-    debugPrint('MAX-POINTS:'+this.maxPoints.toString());
+    //debugPrint('POINTS:'+this.points.toString());
+    //debugPrint('MAX-POINTS:'+this.maxPoints.toString());
     if(this.points <= 0 || this.maxPoints == 0) {
       return 0;
     } else {
@@ -42,6 +42,11 @@ class SpeciesLikelihood extends StatelessWidget {
     }
 
     return percentage;
+  }
+
+  int getSort() {
+    int isAnyUncertain = (this.isAnyUncertain()) ? 1 : 0;
+    return this.getPercentage()+isAnyUncertain;
   }
 
   void calculatePoints() {
@@ -75,7 +80,7 @@ class SpeciesLikelihood extends StatelessWidget {
 
     if(speciesData.isUncertain(filter)) {
       this.uncertains.add(speciesData.uncertainText);
-      debugPrint(this.uncertains.toString());
+      //debugPrint(this.uncertains.toString());
     } else {
       if (speciesData.isHit(filter)) {
         this.points += 10;
@@ -129,7 +134,7 @@ class SpeciesLikelihood extends StatelessWidget {
           )
       );
     }
-    debugPrint(columns.toString());
+    //debugPrint(columns.toString());
     return Column(
       children: columns
     );

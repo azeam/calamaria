@@ -1,147 +1,1640 @@
 [
   {
-    "id":0,
-    "ScientificName":"Calamaria battersbyi",
-    "UpperLabials": [4],
-    "LowerLabials":  [5],
-    "ULTouchingEye":  [2,3],
-    "Mental":  {"Touching":  true, "NotTouching":  false},
-    "Preocular": {"Present":  true, "Absent":  false},
-    "Supraocular": {"Present":  true, "Absent":  false},
-    "Postocular": {"Present":  true, "Absent":  false},
-    "PostocularFused": {"Fused":  false},
-    "SSEP": {"4":  false, "5":  false, "6":  true},
-    "EyeDiam": {"Smaller":  false, "Equal":  false, "Larger": true},
+    "id": 0,
+    "ScientificName": "Calamaria battersbyi",
+    "UpperLabials": [
+      4
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [2, 3]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": false,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": false,
+      "Larger": true
+    },
     "Vents": {
-      "Male": {"Min":  171, "Max":  171},
+      "Male": {
+        "Min": 171,
+        "Max": 171
+      },
       "Female": null,
-      "Both":{"Min":  171, "Max":  171}
+      "Both": {
+        "Min": 171,
+        "Max": 171
+      }
     },
     "Subcaudals": {
-      "Male": {"Min":  16, "Max":  16},
+      "Male": {
+        "Min": 16,
+        "Max": 16
+      },
       "Female": null,
-      "Both":{"Min":  16, "Max":  16}
+      "Both": {
+        "Min": 16,
+        "Max": 16
+      }
     },
-    "Tail": {"Gradual":  false, "Intermediate":  false, "Abrupt":  true},
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": false,
+      "Abrupt": true
+    },
     "Notes": "ERROR in SoB2:  the sole known specimen is a MALE (I&M 1965:208)!",
     "Image": "c_schlegeli.jpg",
     "Description": "c_battersbyi.html",
     "Author": "Inger & Marx 1965"
   },
   {
-    "id":1,
-    "ScientificName":"Calamaria bicolor",
-    "UpperLabials": [5],
-    "LowerLabials":  [5],
-    "ULTouchingEye":  [3,4],
-    "Mental":  {"Touching":  false, "NotTouching":  true},
-    "Preocular": {"Present":  true, "Absent":  false},
-    "Supraocular": {"Present":  true, "Absent":  false},
-    "Postocular": {"Present":  true, "Absent":  false},
-    "PostocularFused": {"Fused":  false},
-    "SSEP": {"4":  false, "5":  true, "6":  false},
-    "EyeDiam": {"Smaller":  true, "Equal":  false, "Larger": false},
+    "id": 1,
+    "ScientificName": "Calamaria bicolor",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true,
+      "TouchingUncertain": true
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": false,
+      "Larger": false
+    },
     "Vents": {
-      "Male": {"Min":  139, "Max":  169},
-      "Female": {"Min":  149, "Max":  161},
-      "Both":{"Min":  139, "Max":  169}
+      "Male": {
+        "Min": 139,
+        "Max": 169
+      },
+      "Female": {
+        "Min": 149,
+        "Max": 161
+      },
+      "Both": {
+        "Min": 139,
+        "Max": 169
+      }
     },
     "Subcaudals": {
-      "Male": {"Min":  21, "Max":  28},
-      "Female": {"Min":  18, "Max":  21},
-      "Both":{"Min":  21, "Max":  28}
+      "Male": {
+        "Min": 21,
+        "Max": 28
+      },
+      "Female": {
+        "Min": 18,
+        "Max": 21
+      },
+      "Both": {
+        "Min": 21,
+        "Max": 28
+      }
     },
-    "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": false,
+      "Abrupt": false
+    },
     "Notes": "",
     "Image": "c_bicolor.jpg",
     "Description": "c_bicolor.html",
     "Author": "Duméril, Bibron & Duméril 1854"
   },
   {
-    "id":2,
-    "ScientificName":"Calamaria borneensis",
-    "UpperLabials": [4],
-    "LowerLabials":  [4],
-    "ULTouchingEye":  [2,3],
-    "Mental":  {"Touching":  true, "NotTouching":  false},
-    "Preocular": {"Present":  true, "Absent":  false},
-    "Supraocular": {"Present":  true, "Absent":  false},
-    "Postocular": {"Present":  true, "Absent":  false},
-    "PostocularFused": {"Fused":  false},
-    "SSEP": {"4":  false, "5":  false, "6":  true},
-    "EyeDiam": {"Smaller":  false, "Equal":  true, "Larger": true},
+    "id": 2,
+    "ScientificName": "Calamaria borneensis",
+    "UpperLabials": [
+      4
+    ],
+    "LowerLabials": [
+      4
+    ],
+    "ULTouchingEye": [
+      [2, 3]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": false,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": true,
+      "Larger": true
+    },
     "Vents": {
-      "Male": {"Min":  126, "Max":  169},
-      "Female": {"Min":  159, "Max":  192},
-      "Both":{"Min":  126, "Max":  192}
+      "Male": {
+        "Min": 126,
+        "Max": 169
+      },
+      "Female": {
+        "Min": 159,
+        "Max": 192
+      },
+      "Both": {
+        "Min": 126,
+        "Max": 192
+      }
     },
     "Subcaudals": {
-      "Male": {"Min":  20, "Max":  26},
-      "Female": {"Min":  13, "Max":  21},
-      "Both":{"Min":  13, "Max":  26}
+      "Male": {
+        "Min": 20,
+        "Max": 26
+      },
+      "Female": {
+        "Min": 13,
+        "Max": 21
+      },
+      "Both": {
+        "Min": 13,
+        "Max": 26
+      }
     },
-    "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": false,
+      "Abrupt": false
+    },
     "Notes": "",
     "Image": "c_borneensis.jpg",
     "Description": "c_borneensis.html",
     "Author": "Bleeker 1860"
   },
   {
-    "id":3,
-    "ScientificName":"Calamaria everetti",
-    "UpperLabials": [5],
-    "LowerLabials":  [5],
-    "ULTouchingEye":  [3,4],
-    "Mental":  {"Touching":  false, "NotTouching":  true},
-    "Preocular": {"Present":  true, "Absent":  false},
-    "Supraocular": {"Present":  true, "Absent":  false},
-    "Postocular": {"Present":  true, "Absent":  false},
-    "PostocularFused": {"Fused":  false},
-    "SSEP": {"4":  null, "5":  true, "6":  null},
-    "EyeDiam": {"Smaller":  false, "Equal":  false, "Larger": true},
+    "id": 3,
+    "ScientificName": "Calamaria everetti",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": null,
+      "5": true,
+      "6": null
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": false,
+      "Larger": true
+    },
     "Vents": {
-      "Male": {"Min":  140, "Max":  157},
-      "Female": {"Min":  136, "Max":  155},
-      "Both":{"Min":  136, "Max":  157}
+      "Male": {
+        "Min": 140,
+        "Max": 157
+      },
+      "Female": {
+        "Min": 136,
+        "Max": 155
+      },
+      "Both": {
+        "Min": 136,
+        "Max": 157
+      }
     },
     "Subcaudals": {
-      "Male": {"Min":  20, "Max":  22},
-      "Female": {"Min":  16, "Max":  25},
-      "Both":{"Min":  16, "Max":  25}
+      "Male": {
+        "Min": 20,
+        "Max": 22
+      },
+      "Female": {
+        "Min": 16,
+        "Max": 25
+      },
+      "Both": {
+        "Min": 16,
+        "Max": 25
+      }
     },
-    "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": false,
+      "Abrupt": false
+    },
     "Notes": "",
     "Image": "c_borneensis.jpg",
     "Description": "c_everetti.html",
     "Author": "Boulenger 1893"
   },
   {
-    "id":4,
-    "ScientificName":"Calamaria grabowskyi",
-    "UpperLabials": [5],
-    "LowerLabials":  [5],
-    "ULTouchingEye":  [3,4],
-    "Mental":  {"Touching":  true, "NotTouching":  false},
-    "Preocular": {"Present":  true, "Absent":  false},
-    "Supraocular": {"Present":  true, "Absent":  false},
-    "Postocular": {"Present":  true, "Absent":  false},
-    "PostocularFused": {"Fused":  false},
-    "SSEP": {"4":  true, "5":  true, "6":  true},
-    "EyeDiam": {"Smaller":  false, "Equal":  false, "Larger": true},
+    "id": 4,
+    "ScientificName": "Calamaria grabowskyi",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": true,
+      "5": true,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": false,
+      "Larger": true
+    },
     "Vents": {
-      "Male": {"Min":  150, "Max":  186},
-      "Female": {"Min":  164, "Max":  190},
-      "Both":{"Min":  150, "Max":  190}
+      "Male": {
+        "Min": 150,
+        "Max": 186
+      },
+      "Female": {
+        "Min": 164,
+        "Max": 190
+      },
+      "Both": {
+        "Min": 150,
+        "Max": 190
+      }
     },
     "Subcaudals": {
-      "Male": {"Min":  23, "Max":  29},
-      "Female": {"Min":  20, "Max":  28},
-      "Both":{"Min":  20, "Max":  28}
+      "Male": {
+        "Min": 23,
+        "Max": 29
+      },
+      "Female": {
+        "Min": 20,
+        "Max": 28
+      },
+      "Both": {
+        "Min": 20,
+        "Max": 28
+      }
     },
-    "Tail": {"Gradual":  true, "Intermediate":  false, "Abrupt":  false},
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": false,
+      "Abrupt": false
+    },
     "Notes": "",
     "Image": "c_borneensis.jpg",
     "Description": "c_grabowskyi.html",
     "Author": "Fischer 1885"
+  },
+  {
+    "id": 5,
+    "ScientificName": "Calamaria gracillima",
+    "UpperLabials": [
+      4
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [2, 3]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": false,
+      "Absent": true
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": null,
+      "Absent": true
+    },
+    "PostocularFused": {
+      "Fused": true
+    },
+    "SSEP": {
+      "4": false,
+      "5": false,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": false,
+      "Larger": false
+    },
+    "Vents": {
+      "Male": {
+        "Min": 295,
+        "Max": 295
+      },
+      "Female": {
+        "Min": 290,
+        "Max": 304
+      },
+      "Both": {
+        "Min": 290,
+        "Max": 304
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 15,
+        "Max": 15
+      },
+      "Female": {
+        "Min": 12,
+        "Max": 13
+      },
+      "Both": {
+        "Min": 12,
+        "Max": 15
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": false,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_gracillima.jpg",
+    "Description": "c_gracillima.html",
+    "Author": ""
+  },
+  {
+    "id": 6,
+    "ScientificName": "Calamaria griswoldi",
+    "UpperLabials": [
+      5,
+      6
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": true,
+      "Larger": true
+    },
+    "Vents": {
+      "Male": {
+        "Min": 155,
+        "Max": 179
+      },
+      "Female": {
+        "Min": 183,
+        "Max": 192
+      },
+      "Both": {
+        "Min": 155,
+        "Max": 192
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 16,
+        "Max": 18
+      },
+      "Female": {
+        "Min": 13,
+        "Max": 16
+      },
+      "Both": {
+        "Min": 13,
+        "Max": 18
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": false,
+      "Abrupt": false
+    },
+    "Notes": "",
+    "Image": "c_griswoldi.jpg",
+    "Description": "c_griswoldi.html",
+    "Author": ""
+  },
+  {
+    "id": 7,
+    "ScientificName": "Calamaria hilleniusi",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": false,
+      "Larger": false
+    },
+    "Vents": {
+      "Male": {
+        "Min": 147,
+        "Max": 155
+      },
+      "Female": {
+        "Min": 154,
+        "Max": 161
+      },
+      "Both": {
+        "Min": 147,
+        "Max": 161
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 18,
+        "Max": 21
+      },
+      "Female": {
+        "Min": 14,
+        "Max": 16
+      },
+      "Both": {
+        "Min": 14,
+        "Max": 21
+      }
+    },
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": false,
+      "Abrupt": false
+    },
+    "Notes": "",
+    "Image": "c_hilleniusi.jpg",
+    "Description": "c_hilleniusi.html",
+    "Author": ""
+  },
+  {
+    "id": 8,
+    "ScientificName": "Calamaria lateralis",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": null
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": false,
+      "Larger": false
+    },
+    "Vents": {
+      "Male": {
+        "Min": 146,
+        "Max": 146
+      },
+      "Female": {
+        "Min": 150,
+        "Max": 151
+      },
+      "Both": {
+        "Min": 146,
+        "Max": 151
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 23,
+        "Max": 23
+      },
+      "Female": {
+        "Min": 16,
+        "Max": 18
+      },
+      "Both": {
+        "Min": 16,
+        "Max": 23
+      }
+    },
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": false,
+      "Abrupt": false
+    },
+    "Notes": "",
+    "Image": "c_lateralis.jpg",
+    "Description": "c_lateralis.html",
+    "Author": ""
+  },
+  {
+    "id": 9,
+    "ScientificName": "Calamaria leucogaster",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": false,
+      "Larger": true
+    },
+    "Vents": {
+      "Male": {
+        "Min": 127,
+        "Max": 146
+      },
+      "Female": {
+        "Min": 130,
+        "Max": 157
+      },
+      "Both": {
+        "Min": 127,
+        "Max": 157
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 21,
+        "Max": 24
+      },
+      "Female": {
+        "Min": 14,
+        "Max": 19
+      },
+      "Both": {
+        "Min": 14,
+        "Max": 24
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": true,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_leucogaster.jpg",
+    "Description": "c_leucogaster.html",
+    "Author": ""
+  },
+  {
+    "id": 10,
+    "ScientificName": "Calamaria lovii lovii",
+    "UpperLabials": [
+      4
+    ],
+    "LowerLabials": [
+      4,
+      5
+    ],
+    "ULTouchingEye": [
+      [2, 3],[3]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": false,
+      "Absent": true
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": null
+    },
+    "PostocularFused": {
+      "Fused": null
+    },
+    "SSEP": {
+      "4": false,
+      "5": false,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": false,
+      "Larger": false
+    },
+    "Vents": {
+      "Male": {
+        "Min": 190,
+        "Max": 222
+      },
+      "Female": {
+        "Min": 218,
+        "Max": 254
+      },
+      "Both": {
+        "Min": 190,
+        "Max": 254
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 17,
+        "Max": 26
+      },
+      "Female": {
+        "Min": 11,
+        "Max": 18
+      },
+      "Both": {
+        "Min": 11,
+        "Max": 26
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": true,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_lovii_lovii.jpg",
+    "Description": "c_lovii_lovii.html",
+    "Author": ""
+  },
+  {
+    "id": 11,
+    "ScientificName": "Calamaria lumbricoidea",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": true,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": true,
+      "Larger": true
+    },
+    "Vents": {
+      "Male": {
+        "Min": 144,
+        "Max": 181
+      },
+      "Female": {
+        "Min": 137,
+        "Max": 200
+      },
+      "Both": {
+        "Min": 137,
+        "Max": 200
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 19,
+        "Max": 26
+      },
+      "Female": {
+        "Min": 14,
+        "Max": 21
+      },
+      "Both": {
+        "Min": 14,
+        "Max": 26
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": false,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_lumbricoidea.jpg",
+    "Description": "c_lumbricoidea.html",
+    "Author": ""
+  },
+  {
+    "id": 12,
+    "ScientificName": "Calamaria lumholtzi",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": true
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": false,
+      "Larger": false
+    },
+    "Vents": {
+      "Male": null,
+      "Female": {
+        "Min": 167,
+        "Max": 171
+      },
+      "Both": {
+        "Min": 167,
+        "Max": 171
+      }
+    },
+    "Subcaudals": {
+      "Male": null,
+      "Female": {
+        "Min": 13,
+        "Max": 15
+      },
+      "Both": {
+        "Min": 13,
+        "Max": 15
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": true,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_lumholtzi.jpg",
+    "Description": "c_lumholtzi.html",
+    "Author": ""
+  },
+  {
+    "id": 13,
+    "ScientificName": "Calamaria melanota",
+    "UpperLabials": [
+      4
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [2, 3]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": false,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": true,
+      "Larger": false
+    },
+    "Vents": {
+      "Male": {
+        "Min": 121,
+        "Max": 142
+      },
+      "Female": {
+        "Min": 131,
+        "Max": 154
+      },
+      "Both": {
+        "Min": 121,
+        "Max": 154
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 23,
+        "Max": 26
+      },
+      "Female": {
+        "Min": 16,
+        "Max": 20
+      },
+      "Both": {
+        "Min": 16,
+        "Max": 26
+      }
+    },
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": true,
+      "Abrupt": false
+    },
+    "Notes": "",
+    "Image": "c_melanota.jpg",
+    "Description": "c_melanota.html",
+    "Author": ""
+  },
+  {
+    "id": 14,
+    "ScientificName": "Calamaria modesta",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": null,
+      "Equal": true,
+      "Larger": null
+    },
+    "Vents": {
+      "Male": {
+        "Min": 131,
+        "Max": 179
+      },
+      "Female": {
+        "Min": 152,
+        "Max": 202
+      },
+      "Both": {
+        "Min": 131,
+        "Max": 202
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 19,
+        "Max": 29
+      },
+      "Female": {
+        "Min": 12,
+        "Max": 20
+      },
+      "Both": {
+        "Min": 12,
+        "Max": 29
+      }
+    },
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": false,
+      "Abrupt": false
+    },
+    "Notes": "",
+    "Image": "c_modesta.jpg",
+    "Description": "c_modesta.html",
+    "Author": ""
+  },
+  {
+    "id": 15,
+    "ScientificName": "Calamaria prakkei",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": false,
+      "Larger": true
+    },
+    "Vents": {
+      "Male": {
+        "Min": 126,
+        "Max": 132
+      },
+      "Female": {
+        "Min": 142,
+        "Max": 144
+      },
+      "Both": {
+        "Min": 126,
+        "Max": 144
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 31,
+        "Max": 32
+      },
+      "Female": {
+        "Min": 24,
+        "Max": 25
+      },
+      "Both": {
+        "Min": 24,
+        "Max": 32
+      }
+    },
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": true,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_prakkei.jpg",
+    "Description": "c_prakkei.html",
+    "Author": ""
+  },
+  {
+    "id": 16,
+    "ScientificName": "Calamaria rebentischi",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": false,
+      "Absent": true
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": false,
+      "Larger": false
+    },
+    "Vents": {
+      "Male": {
+        "Min": 140,
+        "Max": 140
+      },
+      "Female": null,
+      "Both": {
+        "Min": 140,
+        "Max": 140
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 29,
+        "Max": 29
+      },
+      "Female": null,
+      "Both": {
+        "Min": 29,
+        "Max": 29
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": false,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_rebentischi.jpg",
+    "Description": "c_rebentischi.html",
+    "Author": ""
+  },
+  {
+    "id": 17,
+    "ScientificName": "Calamaria schlegeli",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": true
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": false,
+      "Larger": false
+    },
+    "Vents": {
+      "Male": {
+        "Min": 129,
+        "Max": 161
+      },
+      "Female": {
+        "Min": 136,
+        "Max": 180
+      },
+      "Both": {
+        "Min": 129,
+        "Max": 180
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 25,
+        "Max": 52
+      },
+      "Female": {
+        "Min": 19,
+        "Max": 37
+      },
+      "Both": {
+        "Min": 19,
+        "Max": 52
+      }
+    },
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": false,
+      "Abrupt": false
+    },
+    "Notes": "",
+    "Image": "c_schlegeli.jpg",
+    "Description": "c_schlegeli.html",
+    "Author": ""
+  },
+  {
+    "id": 18,
+    "ScientificName": "Calamaria schmidti",
+    "UpperLabials": [
+      4
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [2, 3]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": false,
+      "Absent": true
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": false,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": true,
+      "Equal": false,
+      "Larger": false
+    },
+    "Vents": {
+      "Male": null,
+      "Female": {
+        "Min": 144,
+        "Max": 144
+      },
+      "Both": {
+        "Min": 144,
+        "Max": 144
+      }
+    },
+    "Subcaudals": {
+      "Male": null,
+      "Female": {
+        "Min": 14,
+        "Max": 14
+      },
+      "Both": {
+        "Min": 14,
+        "Max": 14
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": false,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_schmidti.jpg",
+    "Description": "c_schmidti.html",
+    "Author": ""
+  },
+  {
+    "id": 19,
+    "ScientificName": "Calamaria suluensis",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": true,
+      "NotTouching": false
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": false
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": false,
+      "Larger": true
+    },
+    "Vents": {
+      "Male": {
+        "Min": 129,
+        "Max": 138
+      },
+      "Female": {
+        "Min": 142,
+        "Max": 168
+      },
+      "Both": {
+        "Min": 129,
+        "Max": 168
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 18,
+        "Max": 20
+      },
+      "Female": {
+        "Min": 15,
+        "Max": 26
+      },
+      "Both": {
+        "Min": 15,
+        "Max": 26
+      }
+    },
+    "Tail": {
+      "Gradual": true,
+      "Intermediate": false,
+      "Abrupt": false
+    },
+    "Notes": "",
+    "Image": "c_suluensis.jpg",
+    "Description": "c_suluensis.html",
+    "Author": ""
+  },
+  {
+    "id": 20,
+    "ScientificName": "Calamaria virgulata",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": true,
+      "Larger": true
+    },
+    "Vents": {
+      "Male": {
+        "Min": 178,
+        "Max": 183
+      },
+      "Female": {
+        "Min": 194,
+        "Max": 205
+      },
+      "Both": {
+        "Min": 178,
+        "Max": 205
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 18,
+        "Max": 18
+      },
+      "Female": {
+        "Min": 9,
+        "Max": 16
+      },
+      "Both": {
+        "Min": 9,
+        "Max": 18
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": true,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_virgulata.jpg",
+    "Description": "c_virgulata.html",
+    "Author": ""
   }
 ]
