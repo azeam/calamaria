@@ -54,33 +54,40 @@ class SpeciesInfo extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   itemCount: data.length + 1,
                   itemBuilder: (BuildContext context, int index) {
-                    if (index == 0) {
+                    if (index == 0 &&
+                        species[this.speciesId].scientificName !=
+                            "Calamaria cf. gracillima") {
                       return Text.rich(TextSpan(children: [
                         WidgetSpan(
-                          child: Container(
-                              padding:
-                                  EdgeInsets.only(top: 24, left: 8, bottom: 24),
-                              child: Text.rich(TextSpan(children: [
-                                TextSpan(
-                                    text: species[this.speciesId]
-                                            .scientificName
-                                            .toString() +
-                                        " ",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        fontStyle: FontStyle.italic)),
-                                TextSpan(
-                                    text: species[this.speciesId]
-                                        .author
-                                        .toString(),
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontFeatures: [
-                                          FontFeature.enable('smcp')
-                                        ]))
-                              ]))),
-                        )
+                            child: Container(
+                                padding: EdgeInsets.only(
+                                    top: 24, left: 8, bottom: 24),
+                                child: Text.rich(TextSpan(children: [
+                                  TextSpan(
+                                      text: species[this.speciesId]
+                                              .scientificName
+                                              .toString() +
+                                          " ",
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontStyle: FontStyle.italic)),
+                                  TextSpan(
+                                      text: species[this.speciesId]
+                                          .author
+                                          .toString(),
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontFeatures: [
+                                            FontFeature.enable('smcp')
+                                          ]))
+                                ]))))
                       ]));
+                    } else if (index == 0 &&
+                        species[this.speciesId].scientificName ==
+                            "Calamaria cf. gracillima") {
+                      return htmlNormalText(
+                          "<h2><i>Calamaria</i> cf. <i>gracillima</i></h2>",
+                          context);
                     } else if (index == data.length) {
                       return Divider(height: 35.0, color: Colors.transparent);
                     } else {

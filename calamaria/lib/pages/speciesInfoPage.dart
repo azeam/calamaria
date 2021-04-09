@@ -26,8 +26,12 @@ class PageState_SpeciesInfoPage extends State<PageSpeciesInfo> {
     final parsed = json.decode(data).cast<Map<String, dynamic>>();
     this.species =
         parsed.map<Species>((json) => Species.fromJSON(json)).toList();
-    this.title =
-        "<i>" + this.species[this.speciesId].scientificName.toString() + "</i>";
+    this.title = this.species[this.speciesId].scientificName.toString() ==
+            "Calamaria cf. gracillima"
+        ? "<i>Calamaria</i> " + "cf. " + "<i>gracillima</i>"
+        : "<i>" +
+            this.species[this.speciesId].scientificName.toString() +
+            "</i>";
     setState(() => {});
   }
 

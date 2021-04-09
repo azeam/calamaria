@@ -10,9 +10,7 @@ class SpeciesResult extends StatelessWidget {
   List<Species> species;
   final SelectedOptions filter;
   SpeciesResult({Key key, this.species, this.filter}) : super(key: key) {
-
-    species.sort((a, b) => (new SpeciesLikelihood(b, this.filter)
-            .getSort())
+    species.sort((a, b) => (new SpeciesLikelihood(b, this.filter).getSort())
         .compareTo((new SpeciesLikelihood(a, this.filter).getSort())));
   }
 
@@ -21,8 +19,9 @@ class SpeciesResult extends StatelessWidget {
     return new ListView.builder(
         itemCount: species == null ? 0 : species.length,
         itemBuilder: (BuildContext context, int index) {
-          return new GestureDetector(
-              child: new Card(
+          if (species[index].scientificName != "Calamaria cf. gracillima") {
+            return new GestureDetector(
+                child: new Card(
                   child: new Container(
                       child: new Row(
                         children: [
@@ -34,7 +33,8 @@ class SpeciesResult extends StatelessWidget {
                                       species[index].scientificName.toString(),
                                       style: new TextStyle(
                                           fontSize: 16.0,
-                                          color: Colors.lightBlueAccent)),
+                                          color: Colors.lightBlueAccent,
+                                          fontStyle: FontStyle.italic)),
                                 ]),
                           ),
                           new SpeciesLikelihood(species[index], this.filter)
@@ -42,17 +42,20 @@ class SpeciesResult extends StatelessWidget {
                         ],
                       ),
                       padding: const EdgeInsets.all(15.0)),
-                  ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          PageLikelihoodInfo(species[index], new SpeciesLikelihood(species[index], this.filter))
-                    //PageSpeciesInfo(species[index].specieId)
-                  ),
-                );
-              });
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PageLikelihoodInfo(species[index],
+                            new SpeciesLikelihood(species[index], this.filter))
+                        //PageSpeciesInfo(species[index].specieId)
+                        ),
+                  );
+                });
+          } else {
+            return SizedBox.shrink();
+          }
         });
   }
 }

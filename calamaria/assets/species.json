@@ -1636,5 +1636,84 @@
     "Image": "c_virgulata.jpg",
     "Description": "c_virgulata.html",
     "Author": ""
+  },
+  {
+    "id": 21,
+    "ScientificName": "Calamaria cf. gracillima",
+    "UpperLabials": [
+      5
+    ],
+    "LowerLabials": [
+      5
+    ],
+    "ULTouchingEye": [
+      [3, 4]
+    ],
+    "Mental": {
+      "Touching": false,
+      "NotTouching": true
+    },
+    "Preocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Supraocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "Postocular": {
+      "Present": true,
+      "Absent": false
+    },
+    "PostocularFused": {
+      "Fused": false
+    },
+    "SSEP": {
+      "4": false,
+      "5": true,
+      "6": true
+    },
+    "EyeDiam": {
+      "Smaller": false,
+      "Equal": true,
+      "Larger": true
+    },
+    "Vents": {
+      "Male": {
+        "Min": 178,
+        "Max": 183
+      },
+      "Female": {
+        "Min": 194,
+        "Max": 205
+      },
+      "Both": {
+        "Min": 178,
+        "Max": 205
+      }
+    },
+    "Subcaudals": {
+      "Male": {
+        "Min": 18,
+        "Max": 18
+      },
+      "Female": {
+        "Min": 9,
+        "Max": 16
+      },
+      "Both": {
+        "Min": 9,
+        "Max": 18
+      }
+    },
+    "Tail": {
+      "Gradual": false,
+      "Intermediate": true,
+      "Abrupt": true
+    },
+    "Notes": "",
+    "Image": "c_cf_gracillima.jpg",
+    "Description": "c_cf_gracillima.html",
+    "Author": ""
   }
 ]
