@@ -21,6 +21,9 @@ class SpeciesLikelihood extends StatelessWidget {
   List<Map<String, dynamic>> hits = [];
   List<Map<String, dynamic>> misses = [];
   List<String> uncertains = [];
+  List<String> uncertainsLow = [];
+  List<String> uncertainsHigh = [];
+  List<String> warnings = [];
 
   SpeciesLikelihood(this.species, this.filter) {
     filterData = this.filter.toJson();
@@ -33,6 +36,7 @@ class SpeciesLikelihood extends StatelessWidget {
     this.points = 0;
 
     this.calculatePoints();
+
     //debugPrint('POINTS:'+this.points.toString());
     //debugPrint('MAX-POINTS:'+this.maxPoints.toString());
     if(this.points <= 0 || this.maxPoints == 0) {
@@ -50,37 +54,54 @@ class SpeciesLikelihood extends StatelessWidget {
   }
 
   void calculatePoints() {
-    calcPoints(filterData['sUpperLabials'], species.upperLabials);
-
-    calcPoints(filterData['sLowerLabials'], species.lowerLabials);
-    calcPoints(filterData['sULTouchingEye'], species.upperLabialsTouchingEye);
-
-    calcPoints(filterData['sPreocular'], species.preocular);
-    calcPoints(filterData['sPostocular'], species.postocular);
-    calcPoints(filterData['sPostFused'], species.postocularfused);
-    calcPoints(filterData['sSSEP'], species.ssep);
-    calcPoints(filterData['sEyeDiam'], species.eyeDiameter);
-    calcPoints(filterData['sTail'], species.tail);
-    calcPoints(filterData['sMental'], species.mental);
+    calcPoints(filterData['sUpperLabials'], species.upperLabials, species.uncertains);
+    calcPoints(filterData['sLowerLabials'], species.lowerLabials, species.uncertains);
+    calcPoints(filterData['sULTouchingEye'], species.upperLabialsTouchingEye, species.uncertains);
+    calcPoints(filterData['sPreocular'], species.preocular, species.uncertains);
+    calcPoints(filterData['sPostocular'], species.postocular, species.uncertains);
+    calcPoints(filterData['sSSEP'], species.ssep, species.uncertains);
+    calcPoints(filterData['sEyeDiam'], species.eyeDiameter, species.uncertains);
+    calcPoints(filterData['sTail'], species.tail, species.uncertains);
+    calcPoints(filterData['sMental'], species.mental, species.uncertains);
 
     bool hemipenes = filterData['sHemipenes'] ?? false;
     if(filterData['sVents'] != null) {
-      calcPoints([hemipenes, filterData['sVents']], species.vents);
+      calcPoints([hemipenes, filterData['sVents']], species.vents, species.uncertains);
     }
     if(filterData['sSubcaudals'] != null) {
-      calcPoints([hemipenes, filterData['sSubcaudals']], species.subcaudals);
+      calcPoints([hemipenes, filterData['sSubcaudals']], species.subcaudals, species.uncertains);
+    }
+
+  }
+
+  void processWarnings(filter, speciesData, warnings) {
+    String uncertainKey = speciesData.GetUncertainKey(filter);
+    SpeciesWarning warning = getWarning(uncertainKey, warnings);
+    if(warning != null) {
+      this.warnings.add(warning.Text);
     }
   }
 
-
-  void calcPoints(filter, speciesData) {
+  void calcPoints(filter, speciesData, uncertains) {
     if(filter == null || (filter is List && (filter.length <= 0))) {
       return;
     }
+    this.processWarnings(filter, speciesData, species.warnings);
 
-    if(speciesData.isUncertain(filter)) {
-      this.uncertains.add(speciesData.uncertainText);
-      //debugPrint(this.uncertains.toString());
+    String uncertainKey = speciesData.GetUncertainKey(filter);
+    SpeciesUncertain uncertain = getUncertain(uncertainKey, uncertains);
+
+    if(uncertain != null) {
+      if(uncertain.Level == 1) {
+        this.uncertainsLow.add(uncertain.Text);
+      }
+      if(uncertain.Level == 2) {
+        this.uncertains.add(uncertain.Text);
+      }
+      if(uncertain.Level == 3) {
+        this.uncertainsHigh.add(uncertain.Text);
+      }
+      this.points += uncertain.Points;
     } else {
       if (speciesData.isHit(filter)) {
         this.points += 10;
@@ -93,6 +114,14 @@ class SpeciesLikelihood extends StatelessWidget {
 
     this.maxPoints += 10;
   }
+
+  SpeciesUncertain getUncertain(key, uncertains) {
+    return uncertains.firstWhere((element) => element.Type == key, orElse: () => null);
+  }
+  SpeciesWarning getWarning(key, warnings) {
+    return warnings.firstWhere((element) => (element.Type.contains(key) == true), orElse: () => null);
+  }
+
 
 
   Color getColor() {
@@ -115,6 +144,26 @@ class SpeciesLikelihood extends StatelessWidget {
 
   Column getUncertains() {
     List<Widget> columns = [];
+    for(var i = 0; i < this.uncertainsHigh.length; i++) {
+      columns.add(
+          new Container(
+              child: new Row(
+                  children: [
+                    new Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                            Icons.warning,
+                            color: Colors.red,
+                            size: 24.0
+                        )
+                    ),
+                    Flexible(child: new Text(this.uncertainsHigh[i]))
+                  ]
+              )
+          )
+      );
+    }
+
     for(var i = 0; i < this.uncertains.length; i++) {
       columns.add(
           new Container(
@@ -134,9 +183,58 @@ class SpeciesLikelihood extends StatelessWidget {
           )
       );
     }
+
+    for(var i = 0; i < this.uncertainsLow.length; i++) {
+      columns.add(
+          new Container(
+              child: new Row(
+                  children: [
+                    new Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                            Icons.warning,
+                            color: Colors.yellow,
+                            size: 24.0
+                        )
+                    ),
+                    Flexible(child: new Text(this.uncertainsLow[i]))
+                  ]
+              )
+          )
+      );
+    }
+
+
     //debugPrint(columns.toString());
     return Column(
       children: columns
+    );
+  }
+
+  Column getWarnings() {
+    List<Widget> columns = [];
+    for(var i = 0; i < this.warnings.length; i++) {
+      columns.add(
+          new Container(
+              child: new Row(
+                  children: [
+                    new Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                            Icons.warning,
+                            color: Colors.indigoAccent,
+                            size: 24.0
+                        )
+                    ),
+                    Flexible(child: new Text(this.warnings[i]))
+                  ]
+              )
+          )
+      );
+    }
+
+    return Column(
+        children: columns
     );
   }
 
@@ -144,7 +242,11 @@ class SpeciesLikelihood extends StatelessWidget {
     this.maxPoints = 0;
     this.points = 0;
     this.calculatePoints();
-    return (this.uncertains.length > 0);
+    return (this.uncertains.length > 0) || (this.uncertainsLow.length > 0) || (this.uncertainsHigh.length > 0);
+  }
+
+  bool isAnyWarnings() {
+    return (this.warnings.length > 0);
   }
 
   Container getUncertainIcon() {
@@ -152,11 +254,20 @@ class SpeciesLikelihood extends StatelessWidget {
       return new Container();
     }
 
+    Color color = Colors.indigoAccent;
+    int highestLevel = 0;
+    if(this.uncertains.length > 0) {
+      color = Colors.yellow;
+    }
+    if(this.uncertainsHigh.length > 0) {
+      color = Colors.red;
+    }
+
     return new Container(
         padding: EdgeInsets.only(right: 5),
         child: new Icon(
             Icons.warning,
-            color: Colors.indigoAccent,
+            color: color,
             size: 24.0
         )
     );

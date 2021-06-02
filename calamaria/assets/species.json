@@ -27,9 +27,6 @@
       "Present": true,
       "Absent": false
     },
-    "PostocularFused": {
-      "Fused": false
-    },
     "SSEP": {
       "4": false,
       "5": false,
@@ -45,7 +42,7 @@
         "Min": 171,
         "Max": 171
       },
-      "Female": null,
+      "Female": {"Min":  0, "Max":  0},
       "Both": {
         "Min": 171,
         "Max": 171
@@ -56,7 +53,7 @@
         "Min": 16,
         "Max": 16
       },
-      "Female": null,
+      "Female": {"Min":  0, "Max":  0},
       "Both": {
         "Min": 16,
         "Max": 16
@@ -67,8 +64,13 @@
       "Intermediate": false,
       "Abrupt": true
     },
-    "Notes": "ERROR in SoB2:  the sole known specimen is a MALE (I&M 1965:208)!",
-    "Image": "c_schlegeli.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals very poorly known in males, and unknown in females.","Points":6},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals very poorly known in males, and unknown in females.","Points":6},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals very poorly known in males, and unknown in females.","Points":6},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals very poorly known in males, and unknown in females.","Points":6}
+    ],
+    "Warnings": [],
     "Description": "c_battersbyi.html",
     "Author": "Inger & Marx 1965"
   },
@@ -100,9 +102,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": false,
@@ -138,17 +137,22 @@
         "Max": 21
       },
       "Both": {
-        "Min": 21,
+        "Min": 18,
         "Max": 28
       }
     },
     "Tail": {
-      "Gradual": true,
-      "Intermediate": false,
+      "Gradual": false,
+      "Intermediate": true,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_bicolor.jpg",
+    "Uncertains": [
+      {"Type":"MentalsTouchingAnterior", "Level":1, "Text":"Rarely, the mental touches the anterior chin shields.","Points":1},
+      {"Type":"VentsBoth", "Level":2, "Text":"Number of ventrals in females is not well known.","Points":2},
+      {"Type":"SubcaudalsBoth", "Level":2, "Text":"Number of subcaudals in females is not well known.","Points":3},
+      {"Type":"TailTaperingGradual", "Level":1, "Text":"Tail is not supposed to taper gradually, but more rapidly near the end.","Points":3}
+    ],
+    "Warnings": [],
     "Description": "c_bicolor.html",
     "Author": "Duméril, Bibron & Duméril 1854"
   },
@@ -179,9 +183,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": false,
@@ -226,8 +227,8 @@
       "Intermediate": false,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_borneensis.jpg",
+    "Uncertains": [],
+    "Warnings": [],
     "Description": "c_borneensis.html",
     "Author": "Bleeker 1860"
   },
@@ -259,13 +260,10 @@
       "Present": true,
       "Absent": false
     },
-    "PostocularFused": {
-      "Fused": false
-    },
     "SSEP": {
-      "4": null,
+      "4": false,
       "5": true,
-      "6": null
+      "6": false
     },
     "EyeDiam": {
       "Smaller": false,
@@ -305,8 +303,15 @@
       "Intermediate": false,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_borneensis.jpg",
+    "Uncertains": [
+      {"Type":"SSEP4", "Level":1, "Text":"Usually 5 scales surround the paraparietal.","Points":3},
+      {"Type":"SSEP6", "Level":1, "Text":"Usually 5 scales surround the paraparietal.","Points":3},
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals in males is poorly known.","Points":4},
+      {"Type":"VentsBoth", "Level":2, "Text":"Number of ventrals is rather poorly known.","Points":2},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals in males is poorly known.","Points":5},
+      {"Type":"SubcaudalsBoth", "Level":2, "Text":"Number of subcaudals is rather poorly known.","Points":2}
+    ],
+    "Warnings": [],
     "Description": "c_everetti.html",
     "Author": "Boulenger 1893"
   },
@@ -337,9 +342,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": true,
@@ -384,8 +386,8 @@
       "Intermediate": false,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_borneensis.jpg",
+    "Uncertains": [],
+    "Warnings": [],
     "Description": "c_grabowskyi.html",
     "Author": "Fischer 1885"
   },
@@ -414,11 +416,8 @@
       "Absent": false
     },
     "Postocular": {
-      "Present": null,
+      "Present": false,
       "Absent": true
-    },
-    "PostocularFused": {
-      "Fused": true
     },
     "SSEP": {
       "4": false,
@@ -463,8 +462,15 @@
       "Intermediate": false,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_gracillima.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals in males is very poorly known.","Points":6},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals is poorly known.","Points":5},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals in males is very poorly known.","Points":6},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals is poorly known.","Points":5}
+    ],
+    "Warnings": [
+      {"Type":["PostocularPresent"], "Text":"Beware that the supraocular might extend a bit down behind the eye, without being considered a [separate] postocular."}
+    ],
     "Description": "c_gracillima.html",
     "Author": ""
   },
@@ -496,9 +502,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": false,
@@ -539,12 +542,17 @@
       }
     },
     "Tail": {
-      "Gradual": false,
+      "Gradual": true,
       "Intermediate": false,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_griswoldi.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals is somewhat poorly known.","Points":5},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals is somewhat poorly known.","Points":5},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals is somewhat poorly known.","Points":5},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals is somewhat poorly known.","Points":5}
+    ],
+    "Warnings": [],
     "Description": "c_griswoldi.html",
     "Author": ""
   },
@@ -575,9 +583,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": false,
@@ -622,8 +627,13 @@
       "Intermediate": false,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_hilleniusi.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals is poorly known.","Points":4},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals is poorly known.","Points":4},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals is poorly known.","Points":4},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals is poorly known.","Points":4}
+    ],
+    "Warnings": [],
     "Description": "c_hilleniusi.html",
     "Author": ""
   },
@@ -654,9 +664,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": null
     },
     "SSEP": {
       "4": false,
@@ -701,8 +708,13 @@
       "Intermediate": false,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_lateralis.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals is very poorly known in either sex.","Points":6},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals is very poorly known in either sex.","Points":5},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals is very poorly known in either sex.","Points":6},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals is very poorly known in either sex.","Points":5}
+    ],
+    "Warnings": [],
     "Description": "c_lateralis.html",
     "Author": ""
   },
@@ -733,9 +745,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": false,
@@ -780,8 +789,11 @@
       "Intermediate": true,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_leucogaster.jpg",
+    "Uncertains": [
+      {"Type":"SSEP4", "Level":1, "Text":"Usually 5 scales surround the paraparietal.","Points":2},
+      {"Type":"SSEP6", "Level":1, "Text":"Usually 5 scales surround the paraparietal.","Points":2}
+    ],
+    "Warnings": [],
     "Description": "c_leucogaster.html",
     "Author": ""
   },
@@ -812,10 +824,7 @@
     },
     "Postocular": {
       "Present": true,
-      "Absent": null
-    },
-    "PostocularFused": {
-      "Fused": null
+      "Absent": false
     },
     "SSEP": {
       "4": false,
@@ -860,8 +869,10 @@
       "Intermediate": true,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_lovii_lovii.jpg",
+    "Uncertains": [
+      {"Type":"PostocularAbsent", "Level":1, "Text":"Very rarely the postocular may be fused with the supraocular, and then by definition there is no [separate] postocular).","Points":1}
+    ],
+    "Warnings": [],
     "Description": "c_lovii_lovii.html",
     "Author": ""
   },
@@ -892,9 +903,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": true,
@@ -939,8 +947,8 @@
       "Intermediate": false,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_lumbricoidea.jpg",
+    "Uncertains": [],
+    "Warnings": [],
     "Description": "c_lumbricoidea.html",
     "Author": ""
   },
@@ -972,9 +980,6 @@
       "Present": true,
       "Absent": false
     },
-    "PostocularFused": {
-      "Fused": false
-    },
     "SSEP": {
       "4": false,
       "5": true,
@@ -986,7 +991,7 @@
       "Larger": false
     },
     "Vents": {
-      "Male": null,
+      "Male": {"Min":  0, "Max":  0},
       "Female": {
         "Min": 167,
         "Max": 171
@@ -997,7 +1002,7 @@
       }
     },
     "Subcaudals": {
-      "Male": null,
+      "Male": {"Min":  0, "Max":  0},
       "Female": {
         "Min": 13,
         "Max": 15
@@ -1012,8 +1017,13 @@
       "Intermediate": true,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_lumholtzi.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals very poorly known in females, and unknown in males.","Points":5},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals very poorly known in females, and unknown in males.","Points":5},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals very poorly known in females, and unknown in males.","Points":5},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals very poorly known in females, and unknown in males.","Points":5}
+    ],
+    "Warnings": [],
     "Description": "c_lumholtzi.html",
     "Author": ""
   },
@@ -1044,9 +1054,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": false,
@@ -1091,8 +1098,8 @@
       "Intermediate": true,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_melanota.jpg",
+    "Uncertains": [],
+    "Warnings": [],
     "Description": "c_melanota.html",
     "Author": ""
   },
@@ -1124,18 +1131,15 @@
       "Present": true,
       "Absent": false
     },
-    "PostocularFused": {
-      "Fused": false
-    },
     "SSEP": {
       "4": false,
       "5": true,
       "6": true
     },
     "EyeDiam": {
-      "Smaller": null,
+      "Smaller": false,
       "Equal": true,
-      "Larger": null
+      "Larger": false
     },
     "Vents": {
       "Male": {
@@ -1170,8 +1174,13 @@
       "Intermediate": false,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_modesta.jpg",
+    "Uncertains": [
+      {"Type":"EyeSmaller", "Level":1, "Text":"Eye may be slightly smaller or slightly larger than the eye-mouth distance.","Points":4},
+      {"Type":"EyeLarger", "Level":1, "Text":"Eye may be slightly smaller or slightly larger than the eye-mouth distance.","Points":4}
+    ],
+    "Warnings": [
+      {"Type":["VentsBoth","VentsMale","SubcaudalsMale","SubcaudalsBoth"], "Text":"Beware: These ventral and subcaudal data cover all populations; not just specimens from Borneo!"}
+    ],
     "Description": "c_modesta.html",
     "Author": ""
   },
@@ -1202,9 +1211,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": false,
@@ -1249,8 +1255,13 @@
       "Intermediate": true,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_prakkei.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":2, "Text":"Number of ventrals is somewhat poorly known in males.","Points":2},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals is somewhat poorly known in males and very poorly known in females.","Points":5},
+      {"Type":"SubcaudalsMale", "Level":2, "Text":"Number of subcaudals is somewhat poorly known in males.","Points":2},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals is somewhat poorly known in males and very poorly known in females.","Points":5}
+    ],
+    "Warnings": [],
     "Description": "c_prakkei.html",
     "Author": ""
   },
@@ -1282,9 +1293,6 @@
       "Present": true,
       "Absent": false
     },
-    "PostocularFused": {
-      "Fused": false
-    },
     "SSEP": {
       "4": false,
       "5": true,
@@ -1300,7 +1308,7 @@
         "Min": 140,
         "Max": 140
       },
-      "Female": null,
+      "Female": {"Min":  0, "Max":  0},
       "Both": {
         "Min": 140,
         "Max": 140
@@ -1311,7 +1319,7 @@
         "Min": 29,
         "Max": 29
       },
-      "Female": null,
+      "Female": {"Min":  0, "Max":  0},
       "Both": {
         "Min": 29,
         "Max": 29
@@ -1322,8 +1330,13 @@
       "Intermediate": false,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_rebentischi.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals very poorly known in males, and unknown in females.","Points":6},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals very poorly known in males, and unknown in females.","Points":6},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals very poorly known in males, and unknown in females.","Points":6},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals very poorly known in males, and unknown in females.","Points":6}
+    ],
+    "Warnings": [],
     "Description": "c_rebentischi.html",
     "Author": ""
   },
@@ -1354,9 +1367,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": false,
@@ -1401,8 +1411,10 @@
       "Intermediate": false,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_schlegeli.jpg",
+    "Uncertains": [],
+    "Warnings": [
+      {"Type":["VentsBoth","VentsMale","SubcaudalsMale","SubcaudalsBoth"], "Text":"Beware: These ventral and subcaudal data cover all populations; not just specimens from Borneo!"}
+    ],
     "Description": "c_schlegeli.html",
     "Author": ""
   },
@@ -1434,9 +1446,6 @@
       "Present": true,
       "Absent": false
     },
-    "PostocularFused": {
-      "Fused": false
-    },
     "SSEP": {
       "4": false,
       "5": false,
@@ -1448,7 +1457,7 @@
       "Larger": false
     },
     "Vents": {
-      "Male": null,
+      "Male": {"Min":  0, "Max":  0},
       "Female": {
         "Min": 144,
         "Max": 144
@@ -1459,7 +1468,7 @@
       }
     },
     "Subcaudals": {
-      "Male": null,
+      "Male": {"Min":  0, "Max":  0},
       "Female": {
         "Min": 14,
         "Max": 14
@@ -1474,8 +1483,13 @@
       "Intermediate": false,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_schmidti.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals very poorly known in females, and unknown in males.","Points":6},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals very poorly known in females, and unknown in males.","Points":6},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals very poorly known in females, and unknown in males.","Points":6},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals very poorly known in females, and unknown in males.","Points":6}
+    ],
+    "Warnings": [],
     "Description": "c_schmidti.html",
     "Author": ""
   },
@@ -1506,9 +1520,6 @@
     "Postocular": {
       "Present": true,
       "Absent": false
-    },
-    "PostocularFused": {
-      "Fused": false
     },
     "SSEP": {
       "4": false,
@@ -1553,8 +1564,13 @@
       "Intermediate": false,
       "Abrupt": false
     },
-    "Notes": "",
-    "Image": "c_suluensis.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":2, "Text":"Number of ventrals is somewhat poorly known in males.","Points":2},
+      {"Type":"VentsBoth", "Level":2, "Text":"Number of ventrals is somewhat poorly known in males.","Points":1},
+      {"Type":"SubcaudalsMale", "Level":2, "Text":"Number of subcaudals is somewhat poorly known in males.","Points":2},
+      {"Type":"SubcaudalsBoth", "Level":2, "Text":"Number of subcaudals is somewhat poorly known in males.","Points":1}
+    ],
+    "Warnings": [],
     "Description": "c_suluensis.html",
     "Author": ""
   },
@@ -1586,9 +1602,6 @@
       "Present": true,
       "Absent": false
     },
-    "PostocularFused": {
-      "Fused": false
-    },
     "SSEP": {
       "4": false,
       "5": true,
@@ -1632,8 +1645,13 @@
       "Intermediate": true,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_virgulata.jpg",
+    "Uncertains": [
+      {"Type":"VentsMale", "Level":2, "Text":"Number of ventrals is very poorly known in males.","Points":5},
+      {"Type":"VentsBoth", "Level":2, "Text":"Number of ventrals is very poorly known in males and somewhat poorly known in females.","Points":4},
+      {"Type":"SubcaudalsMale", "Level":2, "Text":"Number of subcaudals is very poorly known in males.","Points":6},
+      {"Type":"SubcaudalsBoth", "Level":2, "Text":"Number of subcaudals is very poorly known in males and somewhat poorly known in females.","Points":4}
+    ],
+    "Warnings": [],
     "Description": "c_virgulata.html",
     "Author": ""
   },
@@ -1665,9 +1683,6 @@
       "Present": true,
       "Absent": false
     },
-    "PostocularFused": {
-      "Fused": false
-    },
     "SSEP": {
       "4": false,
       "5": true,
@@ -1711,8 +1726,8 @@
       "Intermediate": true,
       "Abrupt": true
     },
-    "Notes": "",
-    "Image": "c_cf_gracillima.jpg",
+    "Uncertains": [],
+    "Warnings": [],
     "Description": "c_cf_gracillima.html",
     "Author": ""
   }
