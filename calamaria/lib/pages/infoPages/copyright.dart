@@ -41,6 +41,7 @@ Mark O’Shea<br>
 Mark Read<br>
 Nayana Wijayathilaka<br>
 Otto Bylén Claesson<br>
+Patrick Campbell<br>
 Paul Hogan<br>
 Robert B. Stuebing<br>
 Rose Ragai<br>

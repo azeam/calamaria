@@ -206,6 +206,14 @@ Style defaultTextStyle() {
       lineHeight: LineHeight.rem(1.2));
 }
 
+Style figCaptionTextStyle() {
+  return Style(
+      fontSize: FontSize.small,
+      fontWeight: FontWeight.normal,
+      fontFamily: 'Merriweather',
+      padding: EdgeInsets.only(bottom: 20));
+}
+
 Widget card(String data, BuildContext context) {
   return Card(
     color: Colors.blueGrey[50],
@@ -252,11 +260,8 @@ Widget htmlNormalText(String data, BuildContext context) {
           fontSize: FontSize.large,
           fontWeight: FontWeight.normal,
           fontFamily: 'Merriweather'),
-      "figcaption": Style(
-          fontSize: FontSize.small,
-          fontWeight: FontWeight.normal,
-          fontFamily: 'Merriweather',
-          padding: EdgeInsets.only(bottom: 20)),
+      "figcaption": figCaptionTextStyle(),
+      "figcaption a": figCaptionTextStyle(),
       "span": Style(
         color: Colors.red,
       ),

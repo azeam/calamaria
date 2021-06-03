@@ -472,7 +472,7 @@
       {"Type":["PostocularPresent"], "Text":"Beware that the supraocular might extend a bit down behind the eye, without being considered a [separate] postocular."}
     ],
     "Description": "c_gracillima.html",
-    "Author": ""
+    "Author": "(Günther 1872)"
   },
   {
     "id": 6,
@@ -554,7 +554,7 @@
     ],
     "Warnings": [],
     "Description": "c_griswoldi.html",
-    "Author": ""
+    "Author": "Loveridge 1938"
   },
   {
     "id": 7,
@@ -635,7 +635,7 @@
     ],
     "Warnings": [],
     "Description": "c_hilleniusi.html",
-    "Author": ""
+    "Author": "Inger & Marx 1965"
   },
   {
     "id": 8,
@@ -716,7 +716,7 @@
     ],
     "Warnings": [],
     "Description": "c_lateralis.html",
-    "Author": ""
+    "Author": "Mocquard 1890"
   },
   {
     "id": 9,
@@ -795,7 +795,7 @@
     ],
     "Warnings": [],
     "Description": "c_leucogaster.html",
-    "Author": ""
+    "Author": "Bleeker 1860"
   },
   {
     "id": 10,
@@ -874,7 +874,7 @@
     ],
     "Warnings": [],
     "Description": "c_lovii_lovii.html",
-    "Author": ""
+    "Author": "Boulenger 1887"
   },
   {
     "id": 11,
@@ -950,7 +950,7 @@
     "Uncertains": [],
     "Warnings": [],
     "Description": "c_lumbricoidea.html",
-    "Author": ""
+    "Author": "H. Boie 1827"
   },
   {
     "id": 12,
@@ -1025,7 +1025,7 @@
     ],
     "Warnings": [],
     "Description": "c_lumholtzi.html",
-    "Author": ""
+    "Author": "Andersson 1923"
   },
   {
     "id": 13,
@@ -1101,7 +1101,7 @@
     "Uncertains": [],
     "Warnings": [],
     "Description": "c_melanota.html",
-    "Author": ""
+    "Author": "Jan 1862"
   },
   {
     "id": 14,
@@ -1182,7 +1182,7 @@
       {"Type":["VentsBoth","VentsMale","SubcaudalsMale","SubcaudalsBoth"], "Text":"Beware: These ventral and subcaudal data cover all populations; not just specimens from Borneo!"}
     ],
     "Description": "c_modesta.html",
-    "Author": ""
+    "Author": "Duméril, Bibron & Duméril 1854"
   },
   {
     "id": 15,
@@ -1263,7 +1263,7 @@
     ],
     "Warnings": [],
     "Description": "c_prakkei.html",
-    "Author": ""
+    "Author": "Lidt de Jeude 1893"
   },
   {
     "id": 16,
@@ -1338,7 +1338,7 @@
     ],
     "Warnings": [],
     "Description": "c_rebentischi.html",
-    "Author": ""
+    "Author": "Bleeker 1860"
   },
   {
     "id": 17,
@@ -1416,7 +1416,7 @@
       {"Type":["VentsBoth","VentsMale","SubcaudalsMale","SubcaudalsBoth"], "Text":"Beware: These ventral and subcaudal data cover all populations; not just specimens from Borneo!"}
     ],
     "Description": "c_schlegeli.html",
-    "Author": ""
+    "Author": "Duméril, Bibron & Duméril 1854"
   },
   {
     "id": 18,
@@ -1491,7 +1491,7 @@
     ],
     "Warnings": [],
     "Description": "c_schmidti.html",
-    "Author": ""
+    "Author": "Marx & Inger 1955"
   },
   {
     "id": 19,
@@ -1572,7 +1572,7 @@
     ],
     "Warnings": [],
     "Description": "c_suluensis.html",
-    "Author": ""
+    "Author": "Taylor 1922"
   },
   {
     "id": 20,
@@ -1653,7 +1653,7 @@
     ],
     "Warnings": [],
     "Description": "c_virgulata.html",
-    "Author": ""
+    "Author": "Boie 1827"
   },
   {
     "id": 21,
