@@ -20,6 +20,7 @@ class SpeciesLikelihood extends StatelessWidget {
 
   List<Map<String, dynamic>> hits = [];
   List<Map<String, dynamic>> misses = [];
+  List<Map<String, dynamic>> missesUncertain = [];
   List<String> uncertains = [];
   List<String> uncertainsLow = [];
   List<String> uncertainsHigh = [];
@@ -91,26 +92,33 @@ class SpeciesLikelihood extends StatelessWidget {
     String uncertainKey = speciesData.GetUncertainKey(filter);
     SpeciesUncertain uncertain = getUncertain(uncertainKey, uncertains);
 
-    if(uncertain != null) {
-      if(uncertain.Level == 1) {
-        this.uncertainsLow.add(uncertain.Text);
-      }
-      if(uncertain.Level == 2) {
-        this.uncertains.add(uncertain.Text);
-      }
-      if(uncertain.Level == 3) {
-        this.uncertainsHigh.add(uncertain.Text);
-      }
-      this.points += uncertain.Points;
-    } else {
+    var pointTableItem = speciesData.getTableObject(filter, species);
+
       if (speciesData.isHit(filter)) {
         this.points += 10;
-        this.hits.add(speciesData.getTableObject(filter, species));
+        pointTableItem['Points'] = 10;
+        this.hits.add(pointTableItem);
       } else {
         //this.points -= 10;
-        this.misses.add(speciesData.getTableObject(filter, species));
+        if(uncertain != null) {
+          if(uncertain.Level == 1) {
+            this.uncertainsLow.add(uncertain.Text);
+          }
+          if(uncertain.Level == 2) {
+            this.uncertains.add(uncertain.Text);
+          }
+          if(uncertain.Level == 3) {
+            this.uncertainsHigh.add(uncertain.Text);
+          }
+          this.points += uncertain.Points;
+          pointTableItem['Points'] = uncertain.Points;
+          this.missesUncertain.add(pointTableItem);
+        } else {
+          pointTableItem['Points'] = 0;
+          this.misses.add(pointTableItem);
+        }
       }
-    }
+
 
     this.maxPoints += 10;
   }
@@ -173,7 +181,7 @@ class SpeciesLikelihood extends StatelessWidget {
                         padding: EdgeInsets.only(right: 10),
                         child: Icon(
                           Icons.warning,
-                          color: Colors.indigoAccent,
+                          color: Colors.yellow,
                           size: 24.0
                         )
                     ),
@@ -193,7 +201,7 @@ class SpeciesLikelihood extends StatelessWidget {
                         padding: EdgeInsets.only(right: 10),
                         child: Icon(
                             Icons.warning,
-                            color: Colors.yellow,
+                            color: Colors.indigoAccent,
                             size: 24.0
                         )
                     ),
@@ -281,24 +289,42 @@ class SpeciesLikelihood extends StatelessWidget {
     return this.getTable(this.misses);
   }
 
+  Table getTableUncertain() {
+    return this.getTable(this.missesUncertain);
+  }
+
   Table getTable(data) {
+    if(data.length <= 0) {
+      return new Table(children: [
+        new TableRow(children: [
+          new Container(
+            child: new Text('-')
+          )
+        ])
+      ]);
+    }
     List<TableRow> rows = [
       new TableRow(
           children: [
             new Container(
                 color: Colors.black54,
                 padding: EdgeInsets.all(7),
-                child: new Text('Type', style: TextStyle(color: Colors.white))
+                child: new Text('Type', style: TextStyle(color: Colors.white, fontSize: 12))
             ),
             new Container(
                 color: Colors.black54,
                 padding: EdgeInsets.all(7),
-                child: new Text('Species', style: TextStyle(color: Colors.white))
+                child: new Text('Species', style: TextStyle(color: Colors.white, fontSize: 12))
             ),
             new Container(
                 color: Colors.black54,
                 padding: EdgeInsets.all(7),
-                child: new Text('Picked', style: TextStyle(color: Colors.white))
+                child: new Text('Picked', style: TextStyle(color: Colors.white, fontSize: 12))
+            ),
+            new Container(
+                color: Colors.black54,
+                padding: EdgeInsets.all(7),
+                child: new Text('Points', style: TextStyle(color: Colors.white, fontSize: 12))
             )
           ]
       )
@@ -335,6 +361,15 @@ class SpeciesLikelihood extends StatelessWidget {
                         ]
                     )
                 ),
+                new Container(
+                    padding: EdgeInsets.all(7),
+                    child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          new Text(((data[i]['Points'] != null && data[i]['Points'] > 0) ? '+'+data[i]['Points'].toString() : '0'), style: TextStyle(fontWeight: FontWeight.bold))
+                        ]
+                    )
+                )
               ]
           )
       );
@@ -346,9 +381,10 @@ class SpeciesLikelihood extends StatelessWidget {
     return new Table(
       border: TableBorder.all(color: Colors.black54),
       columnWidths: {
-        0: FlexColumnWidth(6),
-        1: FlexColumnWidth(3),
-        2: FlexColumnWidth(3),
+        0: FlexColumnWidth(10),
+        1: FlexColumnWidth(6),
+        2: FlexColumnWidth(4),
+        3: FlexColumnWidth(3),
       },
       children: rows,
     );
