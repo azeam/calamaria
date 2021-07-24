@@ -547,10 +547,10 @@
       "Abrupt": false
     },
     "Uncertains": [
-      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals is somewhat poorly known.","Points":5},
-      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals is somewhat poorly known.","Points":5},
-      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals is somewhat poorly known.","Points":5},
-      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals is somewhat poorly known.","Points":5}
+      {"Type":"VentsMale", "Level":2, "Text":"Number of ventrals is somewhat poorly known.","Points":2},
+      {"Type":"VentsBoth", "Level":2, "Text":"Number of ventrals is somewhat poorly known.","Points":2},
+      {"Type":"SubcaudalsMale", "Level":2, "Text":"Number of subcaudals is somewhat poorly known.","Points":2},
+      {"Type":"SubcaudalsBoth", "Level":2, "Text":"Number of subcaudals is somewhat poorly known.","Points":2}
     ],
     "Warnings": [],
     "Description": "c_griswoldi.html",

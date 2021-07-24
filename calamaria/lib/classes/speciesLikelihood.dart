@@ -37,9 +37,6 @@ class SpeciesLikelihood extends StatelessWidget {
     this.points = 0;
 
     this.calculatePoints();
-
-    //debugPrint('POINTS:'+this.points.toString());
-    //debugPrint('MAX-POINTS:'+this.maxPoints.toString());
     if(this.points <= 0 || this.maxPoints == 0) {
       return 0;
     } else {
@@ -112,6 +109,7 @@ class SpeciesLikelihood extends StatelessWidget {
           }
           this.points += uncertain.Points;
           pointTableItem['Points'] = uncertain.Points;
+          pointTableItem['Level'] = uncertain.Level;
           this.missesUncertain.add(pointTableItem);
         } else {
           pointTableItem['Points'] = 0;
@@ -150,70 +148,39 @@ class SpeciesLikelihood extends StatelessWidget {
     return colors[(getPercentage()/10).ceil()];
   }
 
+  List<Widget> getUncertainNotices(arrayUncertains, color) {
+    List<Widget> columns = [];
+    for(var i = 0; i < arrayUncertains.length; i++) {
+      columns.add(
+          new Container(
+              child: new Row(
+                  children: [
+                    new Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                            Icons.warning,
+                            color: color,
+                            size: 24.0
+                        )
+                    ),
+                    Flexible(child: new Text(arrayUncertains[i]))
+                  ]
+              )
+          )
+      );
+    }
+    return columns;
+  }
+
   Column getUncertains() {
     List<Widget> columns = [];
-    for(var i = 0; i < this.uncertainsHigh.length; i++) {
-      columns.add(
-          new Container(
-              child: new Row(
-                  children: [
-                    new Container(
-                        padding: EdgeInsets.only(right: 10),
-                        child: Icon(
-                            Icons.warning,
-                            color: Colors.red,
-                            size: 24.0
-                        )
-                    ),
-                    Flexible(child: new Text(this.uncertainsHigh[i]))
-                  ]
-              )
-          )
-      );
-    }
 
-    for(var i = 0; i < this.uncertains.length; i++) {
-      columns.add(
-          new Container(
-              child: new Row(
-                  children: [
-                    new Container(
-                        padding: EdgeInsets.only(right: 10),
-                        child: Icon(
-                          Icons.warning,
-                          color: Colors.yellow,
-                          size: 24.0
-                        )
-                    ),
-                    Flexible(child: new Text(this.uncertains[i]))
-                  ]
-              )
-          )
-      );
-    }
+    columns = [
+      ...getUncertainNotices(this.uncertainsHigh, Colors.red),
+      ...getUncertainNotices(this.uncertains, Colors.amberAccent),
+      ...getUncertainNotices(this.uncertainsLow, Colors.indigoAccent)
+    ];
 
-    for(var i = 0; i < this.uncertainsLow.length; i++) {
-      columns.add(
-          new Container(
-              child: new Row(
-                  children: [
-                    new Container(
-                        padding: EdgeInsets.only(right: 10),
-                        child: Icon(
-                            Icons.warning,
-                            color: Colors.indigoAccent,
-                            size: 24.0
-                        )
-                    ),
-                    Flexible(child: new Text(this.uncertainsLow[i]))
-                  ]
-              )
-          )
-      );
-    }
-
-
-    //debugPrint(columns.toString());
     return Column(
       children: columns
     );
@@ -257,18 +224,21 @@ class SpeciesLikelihood extends StatelessWidget {
     return (this.warnings.length > 0);
   }
 
-  Container getUncertainIcon() {
-    if(!this.isAnyUncertain()) {
-      return new Container();
-    }
-
-    Color color = Colors.indigoAccent;
-    int highestLevel = 0;
-    if(this.uncertains.length > 0) {
-      color = Colors.yellow;
-    }
-    if(this.uncertainsHigh.length > 0) {
-      color = Colors.red;
+  Container getUncertainIcon(level, [iconSize = 24.0]) {
+    Color color = Colors.purple;
+    switch(level) {
+      case 1:
+        color = Colors.indigoAccent;
+        break;
+      case 2:
+        color = Colors.amberAccent;
+        break;
+      case 3:
+        color = Colors.red;
+        break;
+      case 0:
+        return new Container();
+        break;
     }
 
     return new Container(
@@ -276,9 +246,18 @@ class SpeciesLikelihood extends StatelessWidget {
         child: new Icon(
             Icons.warning,
             color: color,
-            size: 24.0
-        )
+            size: iconSize,
+        ),
+        width: iconSize
+
     );
+  }
+
+  int getHighestUncertainLevel() {
+    if(this.uncertainsHigh.length > 0) return 3;
+    if(this.uncertains.length > 0) return 2;
+    if(this.uncertainsLow.length > 0) return 1;
+    return 0;
   }
 
   Table getTableHits() {
@@ -286,12 +265,13 @@ class SpeciesLikelihood extends StatelessWidget {
   }
 
   Table getTableMisses() {
-    return this.getTable(this.misses);
+    return this.getTable([...this.misses, ...this.missesUncertain]);
   }
-
+/*
   Table getTableUncertain() {
     return this.getTable(this.missesUncertain);
   }
+ */
 
   Table getTable(data) {
     if(data.length <= 0) {
@@ -331,6 +311,14 @@ class SpeciesLikelihood extends StatelessWidget {
     ];
 
     for(var i = 0; i < data.length; i++) {
+      var icon;
+      if(data[i]['Level'] != null && data[i]['Level'] > 0) {
+        icon = getUncertainIcon(data[i]['Level'], 16.0);
+        icon = Align(
+            alignment: Alignment.bottomRight,
+            child: icon
+        );
+      }
       rows.add(
           new TableRow(
               children: [
@@ -339,7 +327,12 @@ class SpeciesLikelihood extends StatelessWidget {
                     child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          new Text(data[i]['Label'], style: TextStyle()),
+                            Stack(
+                            children: [
+                              new Text(data[i]['Label'], style: TextStyle()),
+                              ((icon != null) ? icon : new Container())
+                            ]
+                            )
                         ]
                     )
                 ),
@@ -393,14 +386,16 @@ class SpeciesLikelihood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String percentage = getPercentage().toString();
     return new Row(children: [
-      this.getUncertainIcon(),
+      //this.getUncertainIcon(this.getHighestUncertainLevel()),
       new Container(
         width: 60,
         color:  getColor(),
         padding: const EdgeInsets.all(3.0),
-        child: new Text(getPercentage().toString()+'%', textAlign: TextAlign.center)
-      )
+        child: new Text(percentage+'%', textAlign: TextAlign.center)
+      ),
+
     ]
     );
   }

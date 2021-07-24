@@ -80,6 +80,7 @@ class PageState_LikelihoodInfoPage extends State<PageLikelihoodInfo> {
                           margin: new EdgeInsets.only(top: 20.0),
                           child: speciesLikelihood.getWarnings()
                       ),
+                      /*
                       new Container(
                           margin: new EdgeInsets.only(top: 20.0),
                           child: new Text('Uncertain',
@@ -87,6 +88,7 @@ class PageState_LikelihoodInfoPage extends State<PageLikelihoodInfo> {
                                     fontSize: 20, fontWeight: FontWeight.bold)),
                           ),
                       speciesLikelihood.getTableUncertain(),
+                      */
                       new Container(
                           margin: new EdgeInsets.only(top: 20.0),
                           child: new Text('Misses',
