@@ -116,7 +116,7 @@
     "Vents": {
       "Male": {
         "Min": 139,
-        "Max": 169
+        "Max": 167
       },
       "Female": {
         "Min": 149,
@@ -124,7 +124,7 @@
       },
       "Both": {
         "Min": 139,
-        "Max": 169
+        "Max": 167
       }
     },
     "Subcaudals": {
