@@ -1646,10 +1646,10 @@
       "Abrupt": true
     },
     "Uncertains": [
-      {"Type":"VentsMale", "Level":2, "Text":"Number of ventrals is very poorly known in males.","Points":5},
-      {"Type":"VentsBoth", "Level":2, "Text":"Number of ventrals is very poorly known in males and somewhat poorly known in females.","Points":4},
-      {"Type":"SubcaudalsMale", "Level":2, "Text":"Number of subcaudals is very poorly known in males.","Points":6},
-      {"Type":"SubcaudalsBoth", "Level":2, "Text":"Number of subcaudals is very poorly known in males and somewhat poorly known in females.","Points":4}
+      {"Type":"VentsMale", "Level":3, "Text":"Number of ventrals is very poorly known in males.","Points":5},
+      {"Type":"VentsBoth", "Level":3, "Text":"Number of ventrals is very poorly known in males and somewhat poorly known in females.","Points":4},
+      {"Type":"SubcaudalsMale", "Level":3, "Text":"Number of subcaudals is very poorly known in males.","Points":6},
+      {"Type":"SubcaudalsBoth", "Level":3, "Text":"Number of subcaudals is very poorly known in males and somewhat poorly known in females.","Points":4}
     ],
     "Warnings": [],
     "Description": "c_virgulata.html",

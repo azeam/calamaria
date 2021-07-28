@@ -48,7 +48,7 @@ class SpeciesLikelihood extends StatelessWidget {
 
   int getSort() {
     int isAnyUncertain = (this.isAnyUncertain()) ? 1 : 0;
-    return this.getPercentage()+isAnyUncertain;
+    return (this.getPercentage()*1000)+isAnyUncertain;
   }
 
   void calculatePoints() {
