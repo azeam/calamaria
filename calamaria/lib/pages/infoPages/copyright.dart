@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:calamaria/pages/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +9,14 @@ import 'package:package_info/package_info.dart';
 Future<List<String>> _getText() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
   String version = packageInfo.version;
+  String os = Platform.operatingSystem;
+  String url = "";
+  if (os == "android") {
+    os = os[0].toUpperCase() + os.substring(1);
+    url = "http://play.google.com/store/apps/details?id=com.azeam.calamaria";
+  } else {
+    url = "http://"; // TODO: add apple url
+  }
 
   String text =
       """<p>The data used in this app come mostly from the 300-page monograph by Inger & Marx (1965), “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus <i>Calamaria</i>” (Fieldiana: Zoology, volume 49). Both Robert F. (Bob) Inger (1920 - 2019) and Hymen Marx (1925 - 2009) worked at the Field Museum of Natural History in Chicago for decades. Bob had a focus on amphibians and reptiles of Borneo for much of his research career, and was already in his lifetime a legend among students of Southeast Asian herpetology. He did field work in Malaysian Borneo from the 1950’s until 2007 - indeed; he was still conducting field work in his mid-eighties! - and continued to publish papers and books until shortly before his death at age 98.
@@ -39,6 +49,7 @@ Kenneth Chin<br>
 Law Ing Sind<br>
 Mark O’Shea<br>
 Mark Read<br>
+Murphy Ng Tze Koh<br>
 Nayana Wijayathilaka<br>
 Otto Bylén Claesson<br>
 Patrick Campbell<br>
@@ -64,11 +75,14 @@ We also wish to thank all the people with whom we have discussed <i>Calamaria</i
 
   """;
   String quote =
-      """Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo - a free cell phone app for Android and iOS. Version """ +
+      """Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo - a free cell phone app for """ +
+          os +
+          """. Version """ +
           version +
-          """. Available via http://play.google.com/store/apps/details?id=com.azeam.calamaria and http://apple.""";
+          """. Available via """ +
+          url;
 
-  String end = """<p>Sweden, March 2021,<br>
+  String end = """<p>Sweden, August 2021,<br>
 Björn, Dennis and Anders
 </p>""";
 
