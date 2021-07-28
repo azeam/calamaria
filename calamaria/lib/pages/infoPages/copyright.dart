@@ -1,25 +1,11 @@
-import 'dart:io';
-
 import 'package:calamaria/pages/common.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:package_info/package_info.dart';
 
-Future<List<String>> _getText() async {
-  PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  String version = packageInfo.version;
-  String os = Platform.operatingSystem;
-  String url = "";
-  if (os == "android") {
-    os = os[0].toUpperCase() + os.substring(1);
-    url = "http://play.google.com/store/apps/details?id=com.azeam.calamaria";
-  } else {
-    url = "http://"; // TODO: add apple url
-  }
+import 'getQuote.dart';
 
-  String text =
-      """<p>The data used in this app come mostly from the 300-page monograph by Inger & Marx (1965), “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus <i>Calamaria</i>” (Fieldiana: Zoology, volume 49). Both Robert F. (Bob) Inger (1920 - 2019) and Hymen Marx (1925 - 2009) worked at the Field Museum of Natural History in Chicago for decades. Bob had a focus on amphibians and reptiles of Borneo for much of his research career, and was already in his lifetime a legend among students of Southeast Asian herpetology. He did field work in Malaysian Borneo from the 1950’s until 2007 - indeed; he was still conducting field work in his mid-eighties! - and continued to publish papers and books until shortly before his death at age 98.
+String _text =
+    """<p>The data used in this app come mostly from the 300-page monograph by Inger & Marx (1965), “The Systematics and Evolution of the Oriental Colubrid Snakes of the Genus <i>Calamaria</i>” (Fieldiana: Zoology, volume 49). Both Robert F. (Bob) Inger (1920 - 2019) and Hymen Marx (1925 - 2009) worked at the Field Museum of Natural History in Chicago for decades. Bob had a focus on amphibians and reptiles of Borneo for much of his research career, and was already in his lifetime a legend among students of Southeast Asian herpetology. He did field work in Malaysian Borneo from the 1950’s until 2007 - indeed; he was still conducting field work in his mid-eighties! - and continued to publish papers and books until shortly before his death at age 98.
 </p>
 
 <p>You can read more about their lives and careers here:<br>
@@ -74,32 +60,22 @@ We also wish to thank all the people with whom we have discussed <i>Calamaria</i
 <p>We hope that this app will inspire more people to create identification “e-keys” based on multi-character matrices. If you would like to cite this app, here is a suggested format (tap text to copy):</p>
 
   """;
-  String quote =
-      """Lardner, B., Hägg, D., and Larsson, A. (2021). Calamaria of Borneo - a free cell phone app for """ +
-          os +
-          """. Version """ +
-          version +
-          """. Available via """ +
-          url;
 
-  String end = """<p>Sweden, August 2021,<br>
+String _endText = """<p>Sweden, August 2021,<br>
 Björn, Dennis and Anders
 </p>""";
-
-  return [text, quote, end];
-}
 
 Widget copyrightPage(BuildContext context) {
   return Container(
     child: Column(children: [
       FutureBuilder(
-          future: _getText(),
+          future: getQuote(),
           builder: (context, AsyncSnapshot<List<String>> snapshot) {
             if (snapshot.data != null) {
               return Column(children: [
-                htmlNormalText(snapshot.data[0], context),
+                htmlNormalText(_text, context),
                 card(snapshot.data[1], context),
-                htmlNormalText(snapshot.data[2], context)
+                htmlNormalText(_endText, context)
               ]);
             }
             return loading(context);
