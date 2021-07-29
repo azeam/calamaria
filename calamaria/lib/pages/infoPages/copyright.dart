@@ -19,6 +19,7 @@ String _text =
 </p>
 
 <p>Anton Sorokin<br>
+Azrie Alliamat<br>
 Benjamin Karin<br>
 Chien C. Lee<br>
 Christian Langner<br>
