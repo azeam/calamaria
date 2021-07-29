@@ -376,7 +376,7 @@ class SpeciesLikelihood extends StatelessWidget {
       columnWidths: {
         0: FlexColumnWidth(10),
         1: FlexColumnWidth(6),
-        2: FlexColumnWidth(4),
+        2: FlexColumnWidth(3),
         3: FlexColumnWidth(3),
       },
       children: rows,
