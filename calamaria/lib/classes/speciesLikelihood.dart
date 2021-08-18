@@ -75,7 +75,7 @@ class SpeciesLikelihood extends StatelessWidget {
   void processWarnings(filter, speciesData, warnings) {
     String uncertainKey = speciesData.GetUncertainKey(filter);
     SpeciesWarning warning = getWarning(uncertainKey, warnings);
-    if(warning != null) {
+    if(warning != null && !this.warnings.contains(warning.Text)) {
       this.warnings.add(warning.Text);
     }
   }
@@ -289,22 +289,22 @@ class SpeciesLikelihood extends StatelessWidget {
             new Container(
                 color: Colors.black54,
                 padding: EdgeInsets.all(7),
-                child: new Text('Type', style: TextStyle(color: Colors.white, fontSize: 12))
+                child: new Text('Type', style: TextStyle(color: Colors.white, fontSize: 11))
             ),
             new Container(
                 color: Colors.black54,
                 padding: EdgeInsets.all(7),
-                child: new Text('Species', style: TextStyle(color: Colors.white, fontSize: 12))
+                child: new Text('Species', style: TextStyle(color: Colors.white, fontSize: 11))
             ),
             new Container(
                 color: Colors.black54,
                 padding: EdgeInsets.all(7),
-                child: new Text('Picked', style: TextStyle(color: Colors.white, fontSize: 12))
+                child: new Text('Picked', style: TextStyle(color: Colors.white, fontSize: 11))
             ),
             new Container(
                 color: Colors.black54,
                 padding: EdgeInsets.all(7),
-                child: new Text('Points', style: TextStyle(color: Colors.white, fontSize: 12))
+                child: new Text('Points', style: TextStyle(color: Colors.white, fontSize: 11))
             )
           ]
       )
@@ -329,7 +329,7 @@ class SpeciesLikelihood extends StatelessWidget {
                         children: [
                             Stack(
                             children: [
-                              new Text(data[i]['Label'], style: TextStyle()),
+                              new Text(data[i]['Label'], style: TextStyle(fontSize: 12)),
                               ((icon != null) ? icon : new Container())
                             ]
                             )
@@ -341,7 +341,7 @@ class SpeciesLikelihood extends StatelessWidget {
                     child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          new Text(data[i]['SpeciesValue'], style: TextStyle(fontWeight: FontWeight.bold)),
+                          new Text(data[i]['SpeciesValue'], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
                         ]
                     )
                 ),
@@ -350,7 +350,7 @@ class SpeciesLikelihood extends StatelessWidget {
                     child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          new Text(data[i]['PickedValue'], style: TextStyle(fontWeight: FontWeight.bold))
+                          new Text(data[i]['PickedValue'], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12))
                         ]
                     )
                 ),
@@ -359,7 +359,7 @@ class SpeciesLikelihood extends StatelessWidget {
                     child: new Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          new Text(((data[i]['Points'] != null && data[i]['Points'] > 0) ? '+'+data[i]['Points'].toString() : '0'), style: TextStyle(fontWeight: FontWeight.bold))
+                          new Text(((data[i]['Points'] != null && data[i]['Points'] > 0) ? '+'+data[i]['Points'].toString() : '0'), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12))
                         ]
                     )
                 )
@@ -374,10 +374,10 @@ class SpeciesLikelihood extends StatelessWidget {
     return new Table(
       border: TableBorder.all(color: Colors.black54),
       columnWidths: {
-        0: FlexColumnWidth(10),
+        0: FlexColumnWidth(9),
         1: FlexColumnWidth(6),
-        2: FlexColumnWidth(3),
-        3: FlexColumnWidth(3),
+        2: FlexColumnWidth(3.5),
+        3: FlexColumnWidth(3.5),
       },
       children: rows,
     );
