@@ -212,9 +212,9 @@ class IdPageState extends State<IdPage> with RouteAware {
     );
   }
 
-  Widget radioRow(int group, int row, IdPageOptions options, int page) {
+  Widget radioRow(int group, int row, List<String> options, int page) {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      for (int i = 0; i < options.radioOp.length; i++)
+      for (int i = 0; i < options.length; i++)
         Padding(
           padding: const EdgeInsets.only(right: 10),
           child: Row(
@@ -225,13 +225,13 @@ class IdPageState extends State<IdPage> with RouteAware {
                 width: 30.0,
                 child: Radio(
                   value: (_page == 1 || _page == 4)
-                      ? int.parse(options.radioOp[i])
+                      ? int.parse(options[i])
                       : i, // get val from text
                   groupValue: group,
                   onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
                 ),
               ),
-              optionText(options.radioOp[i]),
+              optionText(options[i]),
             ],
           ),
         ),
@@ -316,19 +316,23 @@ class IdPageState extends State<IdPage> with RouteAware {
                 Divider(height: 15.0, color: Colors.transparent),
                 (_page != 8)
                     ? optionRow(options.questions[0],
-                        radioRow(_firstGroup, 1, options, _page))
+                        radioRow(_firstGroup, 1, options.radioOp, _page))
                     : Column(children: [
                         Divider(height: 10.0, color: Colors.transparent),
                         inputRow(_firstInput, 0, options),
                         Divider(height: 10.0, color: Colors.transparent),
                         inputRow(_secondInput, 1, options),
                       ]),
-                (_page == 1 || _page == 3)
+                (_page == 3)
                     ? optionRow(options.questions[1],
-                        radioRow(_secondGroup, 2, options, _page))
+                        radioRow(_secondGroup, 2, options.radioOp, _page))
                     : SizedBox.shrink(),
                 (_page == 1)
-                    ? optionRow(options.questions[2], checkRow(3, options))
+                    ? Column(children: [
+                        optionRow(options.questions[1],
+                            radioRow(_secondGroup, 2, options.radioOp2, _page)),
+                        optionRow(options.questions[2], checkRow(3, options)),
+                      ])
                     : SizedBox.shrink(), // something empty, can't be null
                 Divider(height: 35.0, color: Colors.transparent),
               ],

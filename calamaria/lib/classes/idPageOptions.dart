@@ -1,6 +1,6 @@
 class IdPageOptions {
   String mainImg, pageDescription, pageHeading;
-  List<String> questions, radioOp, checkOp;
+  List<String> questions, radioOp, radioOp2, checkOp;
 
   void setData(int page) {
     switch (page) {
@@ -11,6 +11,7 @@ class IdPageOptions {
           "Which upper labials touch the eye?"
         ];
         this.radioOp = ["4", "5", "6"];
+        this.radioOp2 = ["4", "5"];
         this.checkOp = ["2nd", "3rd", "4th"];
         this.mainImg = 'assets/formimages/labialscales.svg';
         this.pageDescription =
