@@ -40,7 +40,7 @@ class SpeciesLikelihood extends StatelessWidget {
     if(this.points <= 0 || this.maxPoints == 0) {
       return 0;
     } else {
-      percentage = (this.points/this.maxPoints*100).toInt();
+      percentage = (this.points/this.maxPoints*100).round().toInt();
     }
 
     return percentage;
