@@ -9,9 +9,9 @@ Future<List<String>> getQuote() async {
   String url = "";
   if (os == "android") {
     os = os[0].toUpperCase() + os.substring(1);
-    url = "http://play.google.com/store/apps/details?id=com.azeam.calamaria";
+    url = "https://play.google.com/store/apps/details?id=com.azeam.calamaria";
   } else {
-    url = "http://"; // TODO: add apple url
+    url = "https://apps.apple.com/app/id1595132024";
   }
 
   String _versionPageText = """<p>This is version """ +
