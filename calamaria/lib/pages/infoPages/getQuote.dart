@@ -11,7 +11,7 @@ Future<List<String>> getQuote() async {
     os = os[0].toUpperCase() + os.substring(1);
     url = "https://play.google.com/store/apps/details?id=com.azeam.calamaria";
   } else {
-    url = "https://apps.apple.com/app/id1595132024";
+    url = "https://apps.apple.com/app/calamaria-of-borneo/id1595132024";
   }
 
   String _versionPageText = """<p>This is version """ +
