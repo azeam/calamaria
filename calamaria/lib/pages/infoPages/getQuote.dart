@@ -8,9 +8,10 @@ Future<List<String>> getQuote() async {
   String os = Platform.operatingSystem;
   String url = "";
   if (os == "android") {
-    os = os[0].toUpperCase() + os.substring(1);
+    os = "Android";
     url = "https://play.google.com/store/apps/details?id=com.azeam.calamaria";
   } else {
+    os = "iOS";
     url = "https://apps.apple.com/app/calamaria-of-borneo/id1595132024";
   }
 
