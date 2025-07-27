@@ -15,22 +15,25 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.1.5+5
+version: 0.1.6+6
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   swipedetector:        # swipe left/right between id pages
-    git: https://github.com/azeam/swipedetector.git # forked to remove prints and update sdk version requirements
-  flutter_html:         # render html 
-    git: https://github.com/azeam/flutter_html.git  # forked to get alt attribute from images to use as title in fullscreen
-  photo_view: ^0.10.2   # for full screen images
-  url_launcher: ^5.7.5  # for opening urls in native browser
-  package_info: ^0.4.3+2 # get app version in app
-
+    git:
+      url: https://github.com/azeam/swipedetector.git # forked to remove prints and update sdk version requirements
+      ref: aa698b51cfbbb97fe1d40d5e8fa9ab8b33944b80
+  flutter_html:
+    git:
+      url: https://github.com/azeam/flutter_html.git
+      ref: abb06f60315acb8107926d3ca1a7dbcd7de03c3b # forked to get alt attribute from images to use as title in fullscreen
+  photo_view: ^0.15.0   # for full screen images
+  url_launcher: ^6.3.2  # for opening urls in native browser
+  package_info_plus: ^8.3.0 # get app version in app
 
   # flutter_html also depends on flutter_svg (used)
   flutter_svg: ^0.20.0-nullsafety.0
