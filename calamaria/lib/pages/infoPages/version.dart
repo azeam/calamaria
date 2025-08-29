@@ -10,10 +10,10 @@ Widget versionPage(BuildContext context) {
       FutureBuilder(
           future: getQuote(),
           builder: (context, AsyncSnapshot<List<String>> snapshot) {
-            if (snapshot.data != null) {
+            if (snapshot.hasData && snapshot.data != null && snapshot.data!.length > 1) {
               return Column(children: [
-                htmlNormalText(snapshot.data[0], context),
-                card(snapshot.data[1], context)
+                htmlNormalText(snapshot.data![0], context),
+                card(snapshot.data![1], context)
               ]);
             }
             return loading(context);

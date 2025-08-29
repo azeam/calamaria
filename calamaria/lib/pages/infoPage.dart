@@ -8,8 +8,8 @@ import '../main.dart';
 import 'common.dart';
 
 InfoPageData page = InfoPageData();
-int index;
-String dataSrc;
+int index = 0;
+String dataSrc = '';
 
 class InfoPageState extends State<InfoPage> {
   @override
@@ -56,7 +56,7 @@ class InfoPageState extends State<InfoPage> {
                               builder:
                                   (context, AsyncSnapshot<String> snapshot) {
                                 if (snapshot.data != null) {
-                                  return htmlNormalText(snapshot.data, context);
+                                  return htmlNormalText(snapshot.data.toString(), context);
                                 }
                                 return loading(context);
                               }),

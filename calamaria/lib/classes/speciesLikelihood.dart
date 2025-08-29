@@ -10,13 +10,13 @@ import 'selectedOptions.dart';
 
 
 class SpeciesLikelihood extends StatelessWidget {
-  double percentage;
-  Species species;
-  SelectedOptions filter;
-  Map<String, dynamic> filterData;
+  double percentage = 0;
+  Species? species;
+  SelectedOptions filter = new SelectedOptions();
+  Map<String, dynamic> filterData = new Map();
 
-  int maxPoints;
-  int points;
+  int maxPoints = 0;
+  int points = 0;
 
   List<Map<String, dynamic>> hits = [];
   List<Map<String, dynamic>> misses = [];
@@ -52,22 +52,24 @@ class SpeciesLikelihood extends StatelessWidget {
   }
 
   void calculatePoints() {
-    calcPoints(filterData['sUpperLabials'], species.upperLabials, species.uncertains);
-    calcPoints(filterData['sLowerLabials'], species.lowerLabials, species.uncertains);
-    calcPoints(filterData['sULTouchingEye'], species.upperLabialsTouchingEye, species.uncertains);
-    calcPoints(filterData['sPreocular'], species.preocular, species.uncertains);
-    calcPoints(filterData['sPostocular'], species.postocular, species.uncertains);
-    calcPoints(filterData['sSSEP'], species.ssep, species.uncertains);
-    calcPoints(filterData['sEyeDiam'], species.eyeDiameter, species.uncertains);
-    calcPoints(filterData['sTail'], species.tail, species.uncertains);
-    calcPoints(filterData['sMental'], species.mental, species.uncertains);
-
+    if(species==null) return;
+    
+    calcPoints(filterData['sUpperLabials'], species?.upperLabials, species?.uncertains);
+    calcPoints(filterData['sLowerLabials'], species?.lowerLabials, species?.uncertains);
+    calcPoints(filterData['sULTouchingEye'], species?.upperLabialsTouchingEye, species?.uncertains);
+    calcPoints(filterData['sPreocular'], species?.preocular, species?.uncertains);
+    calcPoints(filterData['sPostocular'], species?.postocular, species?.uncertains);
+    calcPoints(filterData['sSSEP'], species?.ssep, species?.uncertains);
+    calcPoints(filterData['sEyeDiam'], species?.eyeDiameter, species?.uncertains);
+    calcPoints(filterData['sTail'], species?.tail, species?.uncertains);
+    calcPoints(filterData['sMental'], species?.mental, species?.uncertains);
+    
     bool hemipenes = filterData['sHemipenes'] ?? false;
     if(filterData['sVents'] != null) {
-      calcPoints([hemipenes, filterData['sVents']], species.vents, species.uncertains);
+      calcPoints([hemipenes, filterData['sVents']], species?.vents, species?.uncertains);
     }
     if(filterData['sSubcaudals'] != null) {
-      calcPoints([hemipenes, filterData['sSubcaudals']], species.subcaudals, species.uncertains);
+      calcPoints([hemipenes, filterData['sSubcaudals']], species?.subcaudals, species?.uncertains);
     }
 
   }
@@ -84,7 +86,7 @@ class SpeciesLikelihood extends StatelessWidget {
     if(filter == null || (filter is List && (filter.length <= 0))) {
       return;
     }
-    this.processWarnings(filter, speciesData, species.warnings);
+    this.processWarnings(filter, speciesData, species?.warnings);
 
     String uncertainKey = speciesData.GetUncertainKey(filter);
     SpeciesUncertain uncertain = getUncertain(uncertainKey, uncertains);

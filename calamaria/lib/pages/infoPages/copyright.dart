@@ -67,15 +67,16 @@ Björn, Dennis and Anders
 </p>""";
 
 Widget copyrightPage(BuildContext context) {
+  
   return Container(
     child: Column(children: [
       FutureBuilder(
           future: getQuote(),
           builder: (context, AsyncSnapshot<List<String>> snapshot) {
-            if (snapshot.data != null) {
+            if (snapshot.hasData && snapshot.data != null && snapshot.data!.length > 1) {
               return Column(children: [
                 htmlNormalText(_text, context),
-                card(snapshot.data[1], context),
+                card(snapshot.data![1], context),
                 htmlNormalText(_endText, context)
               ]);
             }

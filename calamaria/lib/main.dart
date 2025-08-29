@@ -17,6 +17,9 @@ void main() => runApp(Calamaria());
 final RouteObserver<PageRoute> routeObserver = new RouteObserver<PageRoute>();
 
 class Calamaria extends StatelessWidget {
+  Key defaultKey = new Key('home');
+  int defaultPage = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,31 +30,32 @@ class Calamaria extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: InfoPage(pageLinkText: "welcome"),
+      home: InfoPage(key: defaultKey, page: defaultPage, pageLinkText: "welcome"),
     );
   }
 }
 
 class IdPage extends StatefulWidget {
-  IdPage({Key key, this.page}) : super(key: key);
+  IdPage({Key? key, required this.page}) : super(key: key);
   final int page;
   @override
   IdPageState createState() => IdPageState();
 }
 
 class PageListSpecies extends StatefulWidget {
-  //PageListSpecies(this.filter, {Key key, this.title}) : super(key: key);
-  SelectedOptions filter;
+  
+  SelectedOptions? filter = new SelectedOptions();
+  
 
-  PageListSpecies([this.filter]) {}
-  //final String title;
+  PageListSpecies([this.filter]);
+  
 
   @override
   PageState_ListSpecies createState() => PageState_ListSpecies(filter);
 }
 
 class InfoPage extends StatefulWidget {
-  InfoPage({Key key, this.page, this.pageLinkText}) : super(key: key);
+  InfoPage({Key? key, this.page = 0, this.pageLinkText = ''}) : super(key: key);
   final int page;
   final String pageLinkText;
   @override
@@ -59,7 +63,7 @@ class InfoPage extends StatefulWidget {
 }
 
 class PageSpeciesInfo extends StatefulWidget {
-  PageSpeciesInfo(this.speciesId, {Key key, this.title}) : super(key: key);
+  PageSpeciesInfo(this.speciesId, {Key? key, this.title = ''}) : super(key: key);
   final int speciesId;
   final String title;
   @override
@@ -78,7 +82,7 @@ class PageLikelihoodInfo extends StatefulWidget {
 }
 
 class FullScreenImage extends StatefulWidget {
-  FullScreenImage({Key key, this.photoUrl, this.title}) : super(key: key);
+  FullScreenImage({Key? key, required this.photoUrl, required this.title}) : super(key: key);
   final String photoUrl;
   final String title;
   @override

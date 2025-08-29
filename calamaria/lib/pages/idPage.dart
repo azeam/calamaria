@@ -16,14 +16,14 @@ class IdPageState extends State<IdPage> with RouteAware {
   bool _secondCheck = false;
   bool _thirdCheck = false;
 
-  int _page;
-  int _firstGroup;
-  int _secondGroup;
+  int _page = 0;
+  int _firstGroup = 0;
+  int _secondGroup = 0;
 
-  String _firstInput;
-  String _secondInput;
+  String _firstInput = '';
+  String _secondInput = '';
 
-  IdPageOptions options;
+  IdPageOptions options = IdPageOptions();
 
   @override
   void initState() {
@@ -37,7 +37,11 @@ class IdPageState extends State<IdPage> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context));
+
+    final modalRoute = ModalRoute.of(context);
+    if(modalRoute is PageRoute) {
+      routeObserver.subscribe(this, modalRoute);
+    }
   }
 
   @override
@@ -101,64 +105,70 @@ class IdPageState extends State<IdPage> with RouteAware {
   }
 
   // only page 1 has checkboxes
-  void _handleFirstCheck(bool value) {
-    setState(() => _firstCheck = value);
+  void _handleFirstCheck(bool? value) {
+    bool checked = value ?? false;
+    setState(() => _firstCheck = checked);
     (_firstCheck)
         ? SelectedOptions.sULTouchingEye.add(2)
         : SelectedOptions.sULTouchingEye.remove(2);
   }
 
-  void _handleSecondCheck(bool value) {
-    setState(() => _secondCheck = value);
+  void _handleSecondCheck(bool? value) {
+    bool checked = value ?? false;
+    setState(() => _secondCheck = checked);
     (_secondCheck)
         ? SelectedOptions.sULTouchingEye.add(3)
         : SelectedOptions.sULTouchingEye.remove(3);
   }
 
-  void _handleThirdCheck(bool value) {
-    setState(() => _thirdCheck = value);
+  void _handleThirdCheck(bool? value) {
+    bool checked = value ?? false;
+    setState(() => _thirdCheck = checked);
     (_thirdCheck)
         ? SelectedOptions.sULTouchingEye.add(4)
         : SelectedOptions.sULTouchingEye.remove(4);
   }
 
-  void _handleFirstRow(int value) {
+  void _handleFirstRow(int? value) {
+    int selectValue = value ?? 0;
+
     setState(() {
-      _firstGroup = value;
+      _firstGroup = selectValue;
     });
     switch (_page) {
       case 1:
-        SelectedOptions.sUpperLabials = value;
+        SelectedOptions.sUpperLabials = selectValue;
         break;
       case 2:
-        SelectedOptions.sMental = value;
+        SelectedOptions.sMental = selectValue;
         break;
       case 3:
-        SelectedOptions.sPreocular = value;
+        SelectedOptions.sPreocular = selectValue;
         break;
       case 4:
-        SelectedOptions.sSSEP = value;
+        SelectedOptions.sSSEP = selectValue;
         break;
       case 5:
-        SelectedOptions.sEyeDiam = value;
+        SelectedOptions.sEyeDiam = selectValue;
         break;
       case 6:
-        SelectedOptions.sHemipenes = value;
+        SelectedOptions.sHemipenes = selectValue;
         break;
       case 7:
-        SelectedOptions.sTail = value;
+        SelectedOptions.sTail = selectValue;
         break;
     }
   }
 
   // page 1 and 3
   void _handleSecondRow(int value) {
+    int selectValue = value ?? 0;
     setState(() {
-      _secondGroup = value;
+      _secondGroup = selectValue;
     });
     (_page == 1)
-        ? SelectedOptions.sLowerLabials = value
-        : SelectedOptions.sPostocular = value;
+        ? SelectedOptions.sLowerLabials = selectValue
+        : SelectedOptions.sPostocular = selectValue;
   }
 
   // only page 8 has inputs
@@ -228,7 +238,13 @@ class IdPageState extends State<IdPage> with RouteAware {
                       ? int.parse(options[i])
                       : i, // get val from text
                   groupValue: group,
-                  onChanged: row == 1 ? _handleFirstRow : _handleSecondRow,
+                  onChanged: (int? value) {
+                    if (row == 1) {
+                      _handleFirstRow(value!);
+                    } else {
+                      _handleSecondRow(value!);
+                    }
+                  } 
                 ),
               ),
               optionText(options[i]),
@@ -300,7 +316,7 @@ class IdPageState extends State<IdPage> with RouteAware {
               children: <Widget>[
                 Divider(height: 10.0, color: Colors.transparent),
                 Text(options.pageHeading,
-                    style: Theme.of(context).textTheme.headline5),
+                    style: Theme.of(context).textTheme.headlineSmall),
                 Divider(height: 8.0, color: Colors.transparent),
                 htmlNormalText(
                     "<p>" + options.pageDescription + "</p>", context),

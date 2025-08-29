@@ -6,8 +6,8 @@ import 'common.dart';
 
 class FullScreenImageState extends State<FullScreenImage>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  bool _appBarVisible;
+  late AnimationController _controller;
+  bool _appBarVisible = false;
 
   @override
   void initState() {

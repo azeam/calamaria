@@ -1,6 +1,6 @@
 class IdPageOptions {
-  String mainImg, pageDescription, pageHeading;
-  List<String> questions, radioOp, radioOp2, checkOp;
+  String mainImg = '', pageDescription = '', pageHeading = '';
+  List<String> questions = [], radioOp = [], radioOp2 = [], checkOp = [];
 
   void setData(int page) {
     switch (page) {

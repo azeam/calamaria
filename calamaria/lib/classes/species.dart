@@ -22,30 +22,33 @@ class Species {
   final List uncertains;
   final List warnings;
   final String author;
+  
 
   Species(
-      {this.specieId,
-      this.scientificName,
-      this.upperLabials,
-      this.lowerLabials,
-      this.upperLabialsTouchingEye,
-      this.mental,
-      this.preocular,
-      this.supraocular,
-      this.postocular,
-      this.ssep,
-      this.eyeDiameter,
-      this.vents,
-      this.subcaudals,
-      this.tail,
-      this.uncertains,
-      this.warnings,
-      this.description,
-      this.author});
+      {
+        this.specieId = 0,
+        this.scientificName = 'Not found',
+        this.upperLabials = const SpeciesDataUpperLabials(),
+        this.lowerLabials = const SpeciesDataLowerLabials(list: []),
+        this.upperLabialsTouchingEye = const SpeciesDataUpperLabialsTouchingEye(list: []),
+        this.mental = const SpeciesDataMental(isTouching: false, isNotTouching: false),
+        this.preocular = const SpeciesDataPreocular(isPresent: false, isAbsent: false),
+        this.supraocular = const SpeciesDataSupraocular(isPresent: false, isAbsent: false),
+        this.postocular = const SpeciesDataPostocular(isPresent: false, isAbsent: false),
+        this.ssep = const SpeciesDataSSEP(isFour: false, isFive: false, isSix: false),
+        this.eyeDiameter = const SpeciesDataEyeDiameter(isSmaller: false, isEqual: false, isLarger: false),
+        this.vents = const SpeciesDataVents(maleMin: -1, maleMax: -1, femaleMin: -1, femaleMax: -1, bothMin: -1, bothMax: -1),
+        this.subcaudals = const SpeciesDataSubcaudals(maleMin: -1, maleMax: -1, femaleMin: -1, femaleMax: -1, bothMin: -1, bothMax: -1),
+        this.tail = const SpeciesDataTail(isGradual: false, isIntermediate: false, isAbrupt: false),
+        this.uncertains = const [],
+        this.warnings = const [],
+        this.description = '',
+        this.author = ''
+      });
 
 
   factory Species.fromJSON(Map<String, dynamic> json,
-      [Map<String, dynamic> likelihoodJson]) {
+      [Map<String, dynamic>? likelihoodJson]) {
     var species = new Species(
       specieId: json['id'] as int,
       scientificName: json['ScientificName'] as String,
@@ -113,7 +116,8 @@ class Species {
 
 class SpeciesDataUpperLabials {
   final List list;
-  SpeciesDataUpperLabials({this.list});
+  
+  const SpeciesDataUpperLabials({this.list = const []});
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
@@ -143,7 +147,7 @@ class SpeciesDataUpperLabials {
 
 class SpeciesDataLowerLabials {
   final List list;
-  SpeciesDataLowerLabials({this.list});
+  const SpeciesDataLowerLabials({required this.list});
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
@@ -173,7 +177,7 @@ class SpeciesDataLowerLabials {
 
 class SpeciesDataUpperLabialsTouchingEye {
   final List list;
-  SpeciesDataUpperLabialsTouchingEye({this.list});
+  const SpeciesDataUpperLabialsTouchingEye({required this.list});
 
   Map<String, dynamic> getTableObject(filter, species) {
     String pickedText = filter.join(' & ');
@@ -206,9 +210,9 @@ class SpeciesDataUpperLabialsTouchingEye {
 }
 
 class SpeciesDataMental {
-  bool isTouching;
-  bool isNotTouching;
-  SpeciesDataMental({this.isTouching, this.isNotTouching});
+  final bool isTouching;
+  final bool isNotTouching;
+  const SpeciesDataMental({required this.isTouching, required this.isNotTouching});
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
@@ -236,9 +240,9 @@ class SpeciesDataMental {
 }
 
 class SpeciesDataPreocular {
-  bool isPresent;
-  bool isAbsent;
-  SpeciesDataPreocular({this.isPresent, this.isAbsent});
+  final bool isPresent;
+  final bool isAbsent;
+  const SpeciesDataPreocular({required this.isPresent, required this.isAbsent});
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
@@ -261,9 +265,9 @@ class SpeciesDataPreocular {
 }
 
 class SpeciesDataSupraocular {
-  bool isPresent;
-  bool isAbsent;
-  SpeciesDataSupraocular({this.isPresent, this.isAbsent});
+  final bool isPresent;
+  final bool isAbsent;
+  const SpeciesDataSupraocular({required this.isPresent, required this.isAbsent});
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
@@ -286,9 +290,9 @@ class SpeciesDataSupraocular {
 }
 
 class SpeciesDataPostocular {
-  bool isPresent;
-  bool isAbsent;
-  SpeciesDataPostocular({this.isPresent, this.isAbsent});
+  final bool isPresent;
+  final bool isAbsent;
+  const SpeciesDataPostocular({required this.isPresent, required this.isAbsent});
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
@@ -315,10 +319,10 @@ class SpeciesDataPostocular {
 }
 
 class SpeciesDataSSEP {
-  bool isFour;
-  bool isFive;
-  bool isSix;
-  SpeciesDataSSEP({this.isFour, this.isFive, this.isSix});
+  final bool isFour;
+  final bool isFive;
+  final bool isSix;
+  const SpeciesDataSSEP({required this.isFour, required this.isFive, required this.isSix});
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
@@ -375,10 +379,10 @@ class SpeciesDataSSEP {
 }
 
 class SpeciesDataEyeDiameter {
-  bool isSmaller;
-  bool isEqual;
-  bool isLarger;
-  SpeciesDataEyeDiameter({this.isSmaller, this.isEqual, this.isLarger});
+  final bool isSmaller;
+  final bool isEqual;
+  final bool isLarger;
+  const SpeciesDataEyeDiameter({required this.isSmaller, required this.isEqual, required this.isLarger});
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();
@@ -435,19 +439,21 @@ class SpeciesDataEyeDiameter {
 }
 
 class SpeciesDataVents {
-  int maleMin;
-  int maleMax;
-  int femaleMin;
-  int femaleMax;
-  int bothMin;
-  int bothMax;
-  SpeciesDataVents(
-      {this.maleMin,
-      this.maleMax,
-      this.femaleMin,
-      this.femaleMax,
-      this.bothMin,
-      this.bothMax});
+  final int maleMin;
+  final int maleMax;
+  final int femaleMin;
+  final int femaleMax;
+  final int bothMin;
+  final int bothMax;
+  const SpeciesDataVents(
+      {
+        this.maleMin = -1,
+        this.maleMax = -1,
+        this.femaleMin = -1,
+        this.femaleMax = -1,
+        this.bothMin = -1,
+        this.bothMax = -1
+      });
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter[1].toString();
@@ -495,19 +501,21 @@ class SpeciesDataVents {
 }
 
 class SpeciesDataSubcaudals {
-  int maleMin;
-  int maleMax;
-  int femaleMin;
-  int femaleMax;
-  int bothMin;
-  int bothMax;
-  SpeciesDataSubcaudals(
-      {this.maleMin,
-      this.maleMax,
-      this.femaleMin,
-      this.femaleMax,
-      this.bothMin,
-      this.bothMax});
+  final int maleMin;
+  final int maleMax;
+  final int femaleMin;
+  final int femaleMax;
+  final int bothMin;
+  final int bothMax;
+  const SpeciesDataSubcaudals(
+      {
+        this.maleMin = -1,
+        this.maleMax = -1,
+        this.femaleMin = -1,
+        this.femaleMax = -1,
+        this.bothMin = -1,
+        this.bothMax = -1
+      });
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter[1].toString();
@@ -554,10 +562,10 @@ class SpeciesDataSubcaudals {
 }
 
 class SpeciesDataTail {
-  bool isGradual;
-  bool isIntermediate;
-  bool isAbrupt;
-  SpeciesDataTail({this.isGradual, this.isIntermediate, this.isAbrupt});
+  final bool isGradual;
+  final bool isIntermediate;
+  final bool isAbrupt;
+  const SpeciesDataTail({required this.isGradual, required this.isIntermediate, required this.isAbrupt});
 
   Map<String, dynamic> getTableObject(filter, Species species) {
     String pickedText = filter.toString();

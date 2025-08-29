@@ -26,7 +26,7 @@ class SpeciesInfo extends StatelessWidget {
     return headlinesToRender;
   }
 
-  SpeciesInfo({Key key, this.species, this.speciesId}) : super(key: key);
+  SpeciesInfo({Key? key, required this.species, required this.speciesId}) : super(key: key);
 
   Widget categories(headline, data, BuildContext context) {
     return ListTileTheme(
@@ -47,7 +47,7 @@ class SpeciesInfo extends StatelessWidget {
           future: _splitData(),
           builder: (context, AsyncSnapshot<Map<String, String>> snapshot) {
             if (snapshot.data != null) {
-              Map<String, String> data = Map.from(snapshot.data);
+              Map<String, String> data = Map.from(snapshot.data ?? new Map());
               var keysList = data.keys.toList();
               return ListView.builder(
                   physics: const BouncingScrollPhysics(),

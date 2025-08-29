@@ -9,7 +9,7 @@ import 'speciesInfoPage.dart';
 import '../main.dart';
 
 class PageState_ListSpecies extends State<PageListSpecies> {
-  final SelectedOptions filter;
+  final SelectedOptions? filter;
   PageState_ListSpecies(this.filter);
 
   @override
@@ -25,7 +25,7 @@ class PageState_ListSpecies extends State<PageListSpecies> {
                 future: DefaultAssetBundle.of(context)
                     .loadString('assets/species.json'),
                 builder: (context, snapshot) {
-                  List<Species> species = parseJson(snapshot.data);
+                  List<Species> species = parseJson(snapshot.data.toString());
                   return species.isNotEmpty
                       ? ((this.filter != null)
                           ? new SpeciesResult(
@@ -38,7 +38,7 @@ class PageState_ListSpecies extends State<PageListSpecies> {
     );
   }
 
-  List<Species> parseJson(String response) {
+  List<Species> parseJson(String? response) {
     if (response == null) {
       return [];
     }

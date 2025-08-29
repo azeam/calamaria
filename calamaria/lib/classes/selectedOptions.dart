@@ -1,15 +1,15 @@
 class SelectedOptions {
-  static int sUpperLabials,
-      sLowerLabials,
-      sMental,
-      sPreocular,
-      sPostocular,
-      sSSEP,
-      sEyeDiam,
-      sHemipenes,
-      sVents,
-      sSubcaudals,
-      sTail;
+  static int sUpperLabials = -1,
+      sLowerLabials = -1,
+      sMental = -1,
+      sPreocular = -1,
+      sPostocular = -1,
+      sSSEP = -1,
+      sEyeDiam = -1,
+      sHemipenes = -1,
+      sVents = -1,
+      sSubcaudals = -1,
+      sTail = -1;
   static Set<int> sULTouchingEye = Set<int>();
 
   Map<String, dynamic> toJson() {
@@ -21,17 +21,17 @@ class SelectedOptions {
           ? true
           : sMental == 1
               ? false
-              : null,
+              : -1,
       "sPreocular": sPreocular == 0
           ? true
           : sPreocular == 1
               ? false
-              : null,
+              : -1,
       "sPostocular": sPostocular == 0
           ? true
           : sPostocular == 1
               ? false
-              : null,
+              : -1,
       "sSSEP": sSSEP,
       "sEyeDiam": sEyeDiam == 0
           ? "smaller"
@@ -39,12 +39,12 @@ class SelectedOptions {
               ? "equal"
               : sEyeDiam == 2
                   ? "larger"
-                  : null,
+                  : -1,
       "sHemipenes": sHemipenes == 0
           ? true
           : sHemipenes == 1
               ? false
-              : null,
+              : -1,
       "sVents": sVents,
       "sSubcaudals": sSubcaudals,
       "sTail": sTail == 0
@@ -53,22 +53,22 @@ class SelectedOptions {
               ? "intermediate"
               : sTail == 2
                   ? "abrupt"
-                  : null,
+                  : -1,
     };
   }
 
   void resetData() {
     sULTouchingEye = Set<int>();
-    sUpperLabials = null;
-    sLowerLabials = null;
-    sMental = null;
-    sPreocular = null;
-    sPostocular = null;
-    sSSEP = null;
-    sEyeDiam = null;
-    sHemipenes = null;
-    sVents = null;
-    sSubcaudals = null;
-    sTail = null;
+    sUpperLabials = -1;
+    sLowerLabials = -1;
+    sMental = -1;
+    sPreocular = -1;
+    sPostocular = -1;
+    sSSEP = -1;
+    sEyeDiam = -1;
+    sHemipenes = -1;
+    sVents = -1;
+    sSubcaudals = -1;
+    sTail = -1;
   }
 }

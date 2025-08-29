@@ -85,7 +85,7 @@ const data = """{
 var jsonData = jsonDecode(data)['menuItems'] as List;
 
 class InfoPageData {
-  String pageDescription, pageHeading, icon;
+  String pageDescription = '', pageHeading = '', icon = '';
 
   List<Info> menuItems = jsonData.map((data) => Info.fromJson(data)).toList();
 

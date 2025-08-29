@@ -90,15 +90,17 @@ showAlert(BuildContext context, String question, String action) {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      FlatButton(
+                      TextButton(
                         onPressed: () {
                           Navigator.of(dialogContext).pop();
                         },
                         child: Text("Cancel"),
-                        color: Colors.blueGrey,
-                        textColor: Colors.white,
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.blueGrey,
+                          foregroundColor: Colors.white,
+                        )
                       ),
-                      FlatButton(
+                      TextButton(
                         onPressed: () {
                           enableSameMenu = true;
                           if (action == "clear") {
@@ -109,8 +111,10 @@ showAlert(BuildContext context, String question, String action) {
                           }
                         },
                         child: Text("Continue"),
-                        color: Colors.blueGrey,
-                        textColor: Colors.white,
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.blueGrey,
+                          foregroundColor: Colors.white,
+                        )
                       )
                     ],
                   )
@@ -274,7 +278,7 @@ Widget htmlNormalText(String data, BuildContext context) {
           ? Style(
               border: Border(
                   bottom: BorderSide(color: Theme.of(context).dividerColor)))
-          : null,
+          : Style(),
       "table": Style(margin: EdgeInsets.only(top: 46))
     },
     data: data,

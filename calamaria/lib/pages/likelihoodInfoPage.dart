@@ -56,9 +56,11 @@ class PageState_LikelihoodInfoPage extends State<PageLikelihoodInfo> {
                                 flex: 4,
                                 child: new Container(
                                   alignment: Alignment.topRight,
-                                  child: new FlatButton(
-                                    color: Colors.lightGreen,
-                                    textColor: Colors.white,
+                                  child: new TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.lightGreen,
+                                      foregroundColor: Colors.white,
+                                    ),
                                     onPressed: () {
                                       Navigator.push(
                                         context,

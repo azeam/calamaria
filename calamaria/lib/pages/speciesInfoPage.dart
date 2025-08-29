@@ -9,8 +9,8 @@ import '../main.dart';
 import 'common.dart';
 
 class PageState_SpeciesInfoPage extends State<PageSpeciesInfo> {
-  final int speciesId;
-  List<Species> species;
+  late final int speciesId;
+  late List<Species> species;
   PageState_SpeciesInfoPage(this.speciesId);
   String title = "Loading...";
 
